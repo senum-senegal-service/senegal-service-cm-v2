@@ -45,12 +45,12 @@ function initializeKeycloak(keycloak: KeycloakService) {
         clientId: environment.KEYCLOACK_CLIENT_ID,
       },
       enableBearerInterceptor: true,
-      loadUserProfileAtStartUp: true,
+      // loadUserProfileAtStartUp: true,
 
       initOptions: {
         onLoad: 'login-required',
         checkLoginIframe: false,
-        checkLoginIframeInterval: 5,
+        // checkLoginIframeInterval: 5,
 
       },
     });
@@ -90,7 +90,7 @@ export function createTranslateLoader(http: HttpClient) {
     KeycloakAngularModule,
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    // { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     {
       provide: HTTP_INTERCEPTORS,

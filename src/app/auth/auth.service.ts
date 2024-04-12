@@ -7,8 +7,6 @@ import {
   RegisterInput,
   Session,
 } from 'src/graphql/generated';
-import Keycloak from 'keycloak-js';
-import { environment } from 'src/environments/environment';
 
 export enum AuthConstant {
   tokenLocalName = 'token',
@@ -19,17 +17,11 @@ export enum AuthConstant {
   providedIn: 'root',
 })
 export class AuthService {
-  // private keycloakAuth: Keycloak.KeycloakInstance;
   constructor(
     private loginGQL: LoginGQL,
     private registerGQL: RegisterGQL,
     private router: Router
   ) {
-    // this.keycloakAuth = new Keycloak({
-    //   url: environment.KEYCLOAK_URL,
-    //   realm: environment.KEYCLOACK_REALM,
-    //   clientId: environment.KEYCLOACK_CLIENT_ID,
-    // });
   }
 
   login(payload: LoginInput): Promise<Session> {
@@ -49,14 +41,6 @@ export class AuthService {
       );
     });
   }
-
-  // async login(username: string, password: string): Promise<any> {
-  //   return new Promise((resolve, reject) => {
-  //     this.keycloakAuth.login({ username, password })
-  //       .then(resolve)
-  //       .catch(reject);
-  //   });
-  // }
 
   register(payload: RegisterInput): Promise<Session> {
     return new Promise((resolve, reject) => {
