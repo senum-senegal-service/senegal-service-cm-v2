@@ -1,0 +1,130 @@
+<div class="page-wrapper" fxLayout="column" fxLayoutGap="24px">
+    <span class="goback" fxLayout="row" fxLayoutAlign="start center" appGoBack><span><mat-icon
+                fxLayoutAlign="start center">arrow_back</mat-icon></span><span>back</span></span>
+    <div class="container " fxLayout="column" fxLayoutGap="40px">
+        <span class="title">{{formTitle}}</span>
+        <form class="form-container" fxLayout="column" fxLayoutGap="32px">
+            <div fxLayout="column" fxLayoutGap="24px">
+                <div fxLayout="row" fxLayoutGap="24px" fxLayoutAlign="space-between start">
+                    <div fxFlex="31" fxLayout="column" fxLayoutGap="8px">
+                        <label for="title">Nom <span class="color-danger">*</span></label>
+                        <input type="text" id="title" class="form-control" placeholder="Nom du texte de réferences">
+                    </div>
+                    <div fxFlex="31" fxLayout="column" fxLayoutGap="8px">
+                        <label for="sigle">Sigle</label>
+                        <input type="text" id="sigle" class="form-control" placeholder="Nom du texte de réferences">
+                    </div>
+                    <div fxFlex="31" fxLayout="column" fxLayoutGap="8px">
+                        <label for="">Rataché a </label>
+                        <mat-form-field class="form-control">
+                            <mat-label class="label">Choisir...</mat-label>
+                            <mat-select [(ngModel)]="selectedValue" name="food">
+                                <div *ngFor="let stat of states">
+                                    <mat-option [value]="stat.value">{{stat.viewValue}}</mat-option>
+                                </div>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div fxLayout="row" fxLayoutGap="24px" fxLayoutAlign="space-between start">
+                    <div fxFlex="32" fxLayout="column" fxLayoutGap="8px">
+                        <label for="add">Adresse</label>
+                        <input type="text" id="add" class="form-control" placeholder="Nom du texte de réferences">
+                    </div>
+                    <div fxFlex="32" fxLayout="column" fxLayoutGap="8px">
+                        <label for="bp">Boite postale</label>
+                        <input type="text" id="bp" class="form-control" placeholder="Nom du texte de réferences">
+                    </div>
+                    <div fxFlex="32" fxLayout="column" fxLayoutGap="8px">
+                        <label for="ville">Ville</label>
+                        <input type="text" id="ville" class="form-control" placeholder="Nom du texte de réferences">
+                    </div>
+                </div>
+                <div fxLayout="row" fxLayoutGap="24px" fxLayoutAlign="space-between start">
+                    <div fxFlex="31" fxLayout="column" fxLayoutGap="8px">
+                        <label for="region">Région</label>
+                        <input type="text" id="region" class="form-control" placeholder="Nom du texte de réferences">
+                    </div>
+                    <div fxFlex="31" fxLayout="column" fxLayoutGap="8px">
+                        <label for="">Pays</label>
+                        <mat-form-field class="form-control">
+                            <mat-label class="label">Choisir...</mat-label>
+                            <mat-select [(ngModel)]="selectedValue" name="pays">
+                                <div *ngFor="let stat of states">
+                                    <mat-option [value]="stat.value">{{stat.viewValue}}</mat-option>
+                                </div>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div fxFlex="31" fxLayout="column" fxLayoutGap="8px">
+                        <label for="mail">Email</label>
+                        <div class="input-wrapper" fxLayout="row">
+                            <span class="text label" fxLayoutAlign="start center">{{'@'}}</span>
+                            <input class="form-control" type="text" id="mail">
+                        </div>
+                    </div>
+                </div>
+                <div fxLayout="row" fxLayoutGap="24px" fxLayoutAlign="space-between start">
+                    <div fxFlex="31" fxLayout="column" fxLayoutGap="8px">
+                        <label for="tel">Téléphone</label>
+                        <input type="text" id="tel" class="form-control" placeholder="Nom du texte de réferences">
+                    </div>
+                    <div fxFlex="31" fxLayout="column" fxLayoutGap="8px">
+                        <label for="fax">Fax</label>
+                        <input type="text" id="fax" class="form-control" placeholder="Nom du texte de réferences">
+                    </div>
+
+                    <div fxFlex="31" fxLayout="column" fxLayoutGap="8px">
+                        <label for="url">Site web</label>
+                        <div class="input-wrapper" fxLayout="row">
+                            <span class="text label" fxLayoutAlign="start center">https:\\</span>
+                            <input class="form-control" type="text" id="url">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div fxLayout="column" fxLayoutGap="24px">
+                <div fxLayout="row" fxLayoutGap="24px">
+                    <div fxFlex="50" fxLayout="column" fxLayoutGap="8px">
+                        <label for="description">Description </label>
+                        <textarea class="form-control" name="" id="description" cols="30" rows="4"></textarea>
+                    </div>
+                    <div fxFlex="50" fxLayout="column" fxLayoutGap="8px">
+                        <label for="acces">Accés </label>
+                        <textarea class="form-control" name="" id="acces" cols="30" rows="4"></textarea>
+                    </div>
+                </div>
+                <div fxLayout="row" fxLayoutGap="24px">
+                    <div fxFlex="50" fxLayout="column" fxLayoutGap="8px">
+                        <label for="remarque">Remarque </label>
+                        <textarea class="form-control" name="" id="remarque" cols="30" rows="4"></textarea>
+                    </div>
+                    <div fxFlex="50" fxLayout="column" fxLayoutGap="8px">
+                        <label for="observation">Observations</label>
+                        <textarea class="form-control" name="" id="observation" cols="30" rows="4"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="24px">
+                <div fxLayout="column" fxLayoutGap="8px">
+                    <label for="">Etat </label>
+                    <mat-form-field class="form-control">
+                        <mat-label class="label">Choisir une date</mat-label>
+                        <mat-select [(ngModel)]="selectedValue" name="food">
+                            <div *ngFor="let stat of states">
+                                <mat-option [value]="stat.value">{{stat.viewValue}}</mat-option>
+                            </div>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <mat-slide-toggle formControlName="est_publie">
+                    <span class="label">Cliquez pour publier</span>
+                </mat-slide-toggle>
+            </div>
+            <div class="form-action" fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="24px">
+                <button class="btn  btn-form-cancel" appGoBack>Annuler</button>
+                <button class="btn btn-form-primary">Enregistrer</button>
+            </div>
+        </form>
+    </div>
+</div>

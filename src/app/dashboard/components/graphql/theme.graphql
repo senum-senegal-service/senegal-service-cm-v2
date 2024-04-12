@@ -1,0 +1,57 @@
+query FetchSousThemes($queryFilter: QueryDataConfigInput) {
+	fetchSousThemes(queryFilter: $queryFilter) {
+		pagination {
+			totalItems
+			pageCount
+			currentPage
+			pageSize
+		}
+		results {
+			id
+			slug
+			libelle
+			ordre
+			icon
+			themes {
+				id
+				libelle
+			}
+		}
+	}
+}
+
+query SearchSousThemes($queryFilter: QueryDataConfigInput) {
+	searchResults: fetchSousThemes(queryFilter: $queryFilter) {
+		pagination {
+			totalItems
+			pageCount
+			currentPage
+			pageSize
+		}
+		results {
+			id
+			nom: libelle
+		}
+	}
+}
+
+query FetchThemes($queryFilter: QueryDataConfigInput) {
+	fetchThemes(queryFilter: $queryFilter) {
+		pagination {
+			totalItems
+			pageCount
+			currentPage
+			pageSize
+		}
+		results {
+			id
+			slug
+			libelle
+			espace_id
+			couleur
+			ordre
+			icon
+			line_icon
+		}
+	}
+}

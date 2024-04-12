@@ -1,0 +1,31 @@
+.card {
+    height: auto;
+    width: 200px;
+    background-color: #fff;
+    border-radius: 7px;
+    padding: 24px;
+
+    .icon {
+        height: 32px;
+        width: 32px;
+
+        font-size: 32px;
+        color: #00409A;
+    }
+
+    .label {
+        color: #343a40;
+        font-size: 16px;
+        font-weight: 600;
+        text-transform: capitalize;
+
+        .nbr {
+            color: #343a4040;
+        }
+    }
+}
+
+.cards-wrapper {
+    display: grid;
+    gap: 32px;
+}

@@ -1,0 +1,33 @@
+stages:
+  - build
+  - deploy
+
+build-job:
+  stage: build
+  image: node:20.2.0
+  only:
+    - main
+  script:
+    - npm install
+    - NODE_OPTIONS=--max-old-space-size=4096 npm run build
+  artifacts:
+    paths:
+      - dist/
+
+deploy-job:
+  stage: deploy
+  image: amazon/aws-cli:2.7.22
+  only:
+    - main
+  script:
+    - export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID
+    - export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
+    - export AWS_DEFAULT_REGION=us-east-1
+    - echo "Deploying to AWS S3..."
+    - aws s3 sync --acl public-read --delete dist/senegal-service-cm s3://senegal-service-cm
+    - echo "Invalidating CloudFront distribution..."
+    - aws cloudfront create-invalidation --distribution-id E28E4BUGWL0OWO --paths '/*'
+  environment:
+    name: production
+
+

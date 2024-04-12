@@ -1,0 +1,11 @@
+<div class="container page-wrapper">
+    <div class="cards-wrapper" fxLayout="row wrap">
+        <div class="card" *ngFor="let card of cardList" fxLayout="column" fxLayoutAlign="start center"
+            fxLayoutGap="24px">
+            <div class="label">{{card.label}} <span class="nbr">({{card.nbr}})</span></div>
+            <div class="icon">
+                <i [class]="card.icon"></i>
+            </div>
+        </div>
+    </div>
+</div>

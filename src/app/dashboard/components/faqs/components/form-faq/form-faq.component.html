@@ -1,0 +1,56 @@
+<div class="page-wrapper" fxLayout="column" fxLayoutGap="24px">
+    <span class="goback" fxLayout="row" fxLayoutAlign="start center" appGoBack><span><mat-icon
+                fxLayoutAlign="start center">arrow_back</mat-icon></span><span>back</span></span>
+    <div class="container " fxLayout="column" fxLayoutGap="40px">
+        <span class="title">{{formTitle}}</span>
+        <form class="form-container" fxLayout="column" fxLayoutGap="32px">
+            <div fxLayout="column" fxLayoutGap="24px">
+                <div fxLayout="column" fxLayoutGap="8px">
+                    <label for="question">Question <span class="color-danger">*</span></label>
+                    <textarea class="form-control" name="" id="question" cols="30" rows="4"></textarea>
+                </div>
+                <div fxLayout="column" fxLayoutGap="8px">
+                    <label for="editor">Description <span class="color-danger">*</span></label>
+                    <angular-editor [(ngModel)]="content" name="angular-editor" id="editor"
+                        [config]="editorConfig"></angular-editor>
+                </div>
+                <div fxLayout="column" fxLayoutGap="8px">
+                    <label for="observation">Observation </label>
+                    <textarea class="form-control" name="" id="observation" cols="30" rows="4"></textarea>
+                </div>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="24px">
+                <div fxLayout="column" fxLayoutGap="8px">
+                    <label for="">Derniere date de modification</label>
+                    <mat-form-field class="form-control">
+                        <mat-label class="label">Choisir une date</mat-label>
+                        <input matInput [matDatepicker]="picker">
+                        <mat-hint>MM/DD/YYYY</mat-hint>
+                        <mat-datepicker-toggle matIconSuffix [for]="picker">
+                            <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+                        </mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+                </div>
+                <div fxLayout="column" fxLayoutGap="8px">
+                    <label for="">Etat <span class="color-danger">*</span></label>
+                    <mat-form-field class="form-control">
+                        <mat-label class="label">Choisir un état</mat-label>
+                        <mat-select [(ngModel)]="selectedValue" name="food">
+                            <div *ngFor="let stat of states">
+                                <mat-option [value]="stat.value">{{stat.viewValue}}</mat-option>
+                            </div>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <mat-slide-toggle formControlName="est_publie">
+                    <span class="label">Cliquez pour publier</span>
+                </mat-slide-toggle>
+            </div>
+            <div class="form-action" fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="24px">
+                <button class="btn  btn-form-cancel" appGoBack>Annuler</button>
+                <button class="btn btn-form-primary">Enregistrer</button>
+            </div>
+        </form>
+    </div>
+</div>

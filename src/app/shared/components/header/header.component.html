@@ -1,0 +1,21 @@
+<div class="container" fxLayout="row" fxLayoutAlign="space-between center">
+    <div fxLayout="row" fxLayoutGap="24px">
+        <span class="toggle-sidebar" fxLayoutAlign="center center" (click)="handleToggleSidebar()">&#9776;</span>
+    </div>
+    <div class="dropdown" [appDropdown]="'dropdown-user'">
+        <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="8px">
+            <span class="user-icon" fxLayoutAlign="center center">
+                <mat-icon fxLayoutAlign="center center">person</mat-icon>
+            </span>
+            <span class="btn-toggle"><mat-icon fxLayoutAlign="center center">keyboard_arrow_down</mat-icon></span>
+        </div>
+        <div class="dropdown-content" id="dropdown-user">
+            <div class="dropdown-option">
+                profil
+            </div>
+            <div class="dropdown-option" (click)="logout()">
+                Déconnexion
+            </div>
+        </div>
+    </div>
+</div>

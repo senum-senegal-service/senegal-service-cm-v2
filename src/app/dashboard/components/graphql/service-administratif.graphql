@@ -1,0 +1,29 @@
+query FetchServiceAdministratifs($queryFilter: QueryDataConfigInput) {
+	fetchServiceAdministratifs(queryFilter: $queryFilter) {
+		pagination {
+			totalItems
+			pageCount
+			currentPage
+			pageSize
+		}
+		results {
+			id
+			nom
+		}
+	}
+}
+
+query SearchServiceAdministratifs($queryFilter: QueryDataConfigInput) {
+	searchResults: fetchServiceAdministratifs(queryFilter: $queryFilter) {
+		pagination {
+			totalItems
+			pageCount
+			currentPage
+			pageSize
+		}
+		results {
+			id
+			nom
+		}
+	}
+}

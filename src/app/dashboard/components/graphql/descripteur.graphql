@@ -1,0 +1,31 @@
+query FetchDescripteurs($queryFilter: QueryDataConfigInput) {
+	fetchDescripteurs(queryFilter: $queryFilter) {
+		pagination {
+			totalItems
+			pageCount
+			currentPage
+			pageSize
+		}
+		results {
+			id
+			libelle
+			status
+		}
+	}
+}
+
+query SearchDescripteurs($queryFilter: QueryDataConfigInput) {
+	searchResults: fetchDescripteurs(queryFilter: $queryFilter) {
+		pagination {
+			totalItems
+			pageCount
+			currentPage
+			pageSize
+		}
+		results {
+			id
+			nom: libelle
+		}
+	}
+}
+

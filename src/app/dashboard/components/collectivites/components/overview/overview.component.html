@@ -1,0 +1,131 @@
+<div class="page-wrapper overview-wrapper" fxLayout="column" fxLayoutGap="40px">
+    <div class="top" fxLayout="column" fxLayoutGap="32px">
+        <span class="title">Gestion des actualités</span>
+        <div fxLayout="column" fxLayoutGap="24px">
+            <div fxLayout="row" fxLayoutAlign="space-between center">
+                <div class="search">
+                    <input matInput type="text" class="form-control" placeholder="Rechercher" (keyup)="search($event)">
+                    <span class="icon"><mat-icon>search</mat-icon></span>
+                </div>
+                <span class="btn btn-primary" routerLink="create">
+                    <span>+</span>
+                    <span>Ajouter</span>
+                </span>
+            </div>
+            <div class="filters-container" fxLayout="row wrap">
+                <div fxLayout="column" fxLayoutGap="8px">
+                    <label for="filtre-etat">Filtrer par région</label>
+                    <mat-form-field class="form-control">
+                        <mat-label class="label">Choisir un état</mat-label>
+                        <mat-select id="filtre-etat" [(ngModel)]="selectedState" name="etat">
+                            <div *ngFor="let state of states">
+                                <mat-option [value]="state.value">{{state.viewValue}}</mat-option>
+                            </div>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div fxLayout="column" fxLayoutGap="8px">
+                    <label for="filtre-etat">Filtrer par département</label>
+                    <mat-form-field class="form-control">
+                        <mat-label class="label">Choisir un état</mat-label>
+                        <mat-select id="filtre-etat" [(ngModel)]="selectedState" name="etat">
+                            <div *ngFor="let state of states">
+                                <mat-option [value]="state.value">{{state.viewValue}}</mat-option>
+                            </div>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div fxLayout="column" fxLayoutGap="8px">
+                    <label for="filtre-etat">Filtrer par arrondissement</label>
+                    <mat-form-field class="form-control">
+                        <mat-label class="label">Choisir un état</mat-label>
+                        <mat-select id="filtre-etat" [(ngModel)]="selectedState" name="etat">
+                            <div *ngFor="let state of states">
+                                <mat-option [value]="state.value">{{state.viewValue}}</mat-option>
+                            </div>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div fxLayout="column" fxLayoutGap="8px">
+                    <label for="">Filtrer par commune</label>
+                    <mat-form-field class="form-control">
+                        <mat-label class="label">Choisir un état</mat-label>
+                        <mat-select id="filtre-etat" [(ngModel)]="selectedStatut" name="etatPub">
+                            <div *ngFor="let statut of statuts">
+                                <mat-option [value]="statut.value">{{statut.viewValue}}</mat-option>
+                            </div>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div fxLayout="column" fxLayoutGap="8px">
+                    <label for="">Filtrer par type</label>
+                    <mat-form-field class="form-control">
+                        <mat-label class="label">Choisir un état</mat-label>
+                        <mat-select id="filtre-etat" [(ngModel)]="selectedStatut" name="etatPub">
+                            <div *ngFor="let statut of statuts">
+                                <mat-option [value]="statut.value">{{statut.viewValue}}</mat-option>
+                            </div>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ############ -->
+
+    <div *ngIf="!dataSource" fxLayoutAlign="center center">
+        <mat-spinner></mat-spinner>
+    </div>
+    <div *ngIf="dataSource" class="mat-elevation-z8">
+        <table class="table" mat-table matSort [dataSource]="dataSource">
+            <!-- Position Column -->
+            <ng-container matColumnDef="code">
+                <th mat-header-cell mat-sort-header *matHeaderCellDef> Code </th>
+                <td mat-cell *matCellDef="let element"> {{element.name.firstname }} </td>
+            </ng-container>
+
+            <!-- Position Column -->
+            <ng-container matColumnDef="titre">
+                <th mat-header-cell mat-sort-header *matHeaderCellDef> Titre </th>
+                <td mat-cell *matCellDef="let element"> {{element.name.firstname }} </td>
+            </ng-container>
+
+            <!-- Name Column -->
+            <ng-container matColumnDef="description">
+                <th mat-header-cell mat-sort-header *matHeaderCellDef> Description </th>
+                <td mat-cell *matCellDef="let element"> {{element.username}} </td>
+            </ng-container>
+
+            <!-- Email Column -->
+            <ng-container matColumnDef="type">
+                <th mat-header-cell mat-sort-header *matHeaderCellDef> Type </th>
+                <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+            </ng-container>
+
+            <!-- Symbol Column -->
+            <ng-container matColumnDef="parent">
+                <th mat-header-cell *matHeaderCellDef> Parent </th>
+                <td mat-cell *matCellDef="let element"> en cours de redaction </td>
+            </ng-container>
+
+            <!-- Options Column -->
+            <ng-container matColumnDef="action">
+                <th mat-header-cell *matHeaderCellDef> Action </th>
+                <td mat-cell *matCellDef="let element">
+                    <span class="btn-icon btn--edit" [routerLink]="[element.id]"><mat-icon>edit</mat-icon></span>
+                    <span class="btn-icon btn--delete"
+                        (click)="handleDeleteUser(element.id)"><mat-icon>delete_outline</mat-icon></span>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+            </tr>
+
+        </table>
+        <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons
+            aria-label="Select page of periodic elements">
+        </mat-paginator>
+    </div>
+    <!-- ################### -->
+</div>

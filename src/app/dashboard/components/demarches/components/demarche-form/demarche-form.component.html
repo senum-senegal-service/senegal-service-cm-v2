@@ -1,0 +1,170 @@
+<div class="page-wrapper" fxLayout="column" fxLayoutGap="24px">
+    <span class="goback" fxLayout="row" fxLayoutAlign="start center" appGoBack><span><mat-icon
+                fxLayoutAlign="start center">arrow_back</mat-icon></span><span>back</span></span>
+    <div class="container " fxLayout="column" fxLayoutGap="40px">
+        <span class="title">{{formTitle}}</span>
+        <form [formGroup]="demarcheForm" class="form-container" fxLayout="column" fxLayoutGap="32px">
+            <div fxLayout="column" fxLayoutGap="24px">
+                <div fxFlex="50" fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="24px">
+                    <div fxFlex="75" fxLayout="column" fxLayoutGap="8px">
+                        <label for="demarche-title">Titre <span class="color-danger">*</span></label>
+                        <input formControlName="titre" type="text" id="demarche-title" class="form-control"
+                            placeholder="Title...">
+                    </div>
+                    <div fxLayout="column" fxLayoutGap="8px">
+                        <mat-slide-toggle formControlName="a_la_une">
+                            <span class="label">Mettre à la une</span>
+                        </mat-slide-toggle>
+                    </div>
+
+                </div>
+                <div fxLayout="column" fxLayoutGap="8px">
+                    <label for="demarche-subtitle">Sous-thémes <span class="color-danger">*</span></label>
+                    <app-multi-select [name]="'sous_themes'" [form]="demarcheForm"
+                        [options]="sousThemes"></app-multi-select>
+                </div>
+                <div fxLayout="column" fxLayoutGap="8px">
+                    <label for="resume">Résumé</label>
+                    <textarea formControlName="resume" class="form-control" name="" id="resume" cols="30"
+                        rows="3"></textarea>
+                </div>
+                <div fxLayout="column" fxLayoutGap="8px">
+                    <label for="description">Description</label>
+                    <textarea formControlName="description" class="form-control" name="" id="description" cols="30"
+                        rows="6"></textarea>
+                </div>
+                <div fxLayout="column" fxLayoutGap="8px">
+                    <label for="editor">Corps</label>
+                    <angular-editor formControlName="corps" name="angular-editor" id="editor"
+                        [config]="editorConfig"></angular-editor>
+                </div>
+                <div fxLayout="column" fxLayoutGap="8px">
+                    <label for="scriptum">Post scriptum</label>
+                    <textarea formControlName="post_scriptum" class="form-control" name="" id="scriptum" cols="30"
+                        rows="2" placeholder="PS:"></textarea>
+                </div>
+            </div>
+            <div fxLayout="column" fxLayoutGap="32px">
+                <span class="title">Information sur la téléprocédure</span>
+                <div fxLayout="column" fxLayoutGap="24px">
+                    <div fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="24px">
+                        <mat-slide-toggle formControlName="teleprocedure">
+                            <span class="label">Dispose d'une teleprocedure</span>
+                        </mat-slide-toggle>
+                        <div fxFlex="50" *ngIf="teleprocedure" fxLayout="column" fxLayoutGap="8px">
+                            <label for="url">Url</label>
+                            <div class="input-wrapper" fxLayout="row">
+                                <span class="text label" fxLayoutAlign="start center">https:\\</span>
+                                <input formControlName="url" name="url" class="form-control" type="text" id="url">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div fxLayout="row" fxLayoutGap="24px">
+                        <div fxFlex="auto" fxLayout="column" fxLayoutGap="8px">
+                            <label for="cout">Coût</label>
+                            <div class="input-wrapper" fxLayout="row">
+                                <span class="text label" fxLayoutAlign="start center">FCFA</span>
+                                <input formControlName="cout" class="form-control" type="number" id="cout">
+                            </div>
+                        </div>
+                        <div fxFlex="50" fxLayout="column" fxLayoutGap="8px">
+                            <label for="delai">Délai</label>
+                            <div class="input-wrapper" fxLayout="row">
+                                <span class="text label" fxLayoutAlign="start center">EnJours</span>
+                                <input formControlName="delai" name="delai" class="form-control" type="number"
+                                    id="delai">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div fxLayout="column" fxLayoutGap="32px">
+                <span class="title">Autres informations</span>
+                <div fxLayout="column" fxLayoutGap="24px">
+                    <div fxLayout="row" fxLayoutGap="24px">
+                        <div fxFlex="50" fxLayout="column" fxLayoutGap="8px">
+                            <label for="services-concernés">Services concernés</label>
+                            <app-multi-select [name]="'service_administratifs'" [form]="demarcheForm"
+                                [options]="servicesAdministratifs"></app-multi-select>
+                        </div>
+                        <div fxFlex="50" fxLayout="column" fxLayoutGap="8px">
+                            <label for="textes-references">Textes de référence </label>
+                            <app-multi-select [name]="'textes'" [form]="demarcheForm"
+                                [options]="textes"></app-multi-select>
+                        </div>
+                    </div>
+                    <div fxLayout="row" fxLayoutGap="24px">
+                        <div fxFlex="50" fxLayout="column" fxLayoutGap="8px">
+                            <label for="formulaires">Formulaires</label>
+                            <app-multi-select [name]="'formulaires'" [form]="demarcheForm"
+                                [options]="formulaires"></app-multi-select>
+                        </div>
+                        <div fxFlex="50" fxLayout="column" fxLayoutGap="8px">
+                            <label for="modeles-lettres">Modéles de lettres </label>
+                            <app-multi-select [name]="'modele_lettres'" [form]="demarcheForm"
+                                [options]="modeleLettres"></app-multi-select>
+                        </div>
+                    </div>
+                    <div fxLayout="row" fxLayoutGap="24px">
+                        <div fxFlex="50" fxLayout="column" fxLayoutGap="8px">
+                            <label for="faqs">FAQs</label>
+                            <app-multi-select [name]="'faqs'" [form]="demarcheForm" [options]="faqs"></app-multi-select>
+                        </div>
+                        <div fxFlex="50" fxLayout="column" fxLayoutGap="8px">
+                            <label for="desripteurs"> Descripteurs </label>
+                            <app-multi-select [name]="'descripteurs'" [form]="demarcheForm"
+                                [options]="descripteurs"></app-multi-select>
+                        </div>
+                    </div>
+                    <div fxLayout="column" fxLayoutGap="8px">
+                        <label for="others-demarches">Démarches liées</label>
+                        <app-multi-select [name]="'demarches'" [form]="demarcheForm"
+                            [options]="demarches"></app-multi-select>
+                    </div>
+                    <div fxLayout="column" fxLayoutGap="8px">
+                        <label for="liens-utiles">Liens utiles </label>
+                        <app-multi-select [name]="'lien_utiles'" [form]="demarcheForm"
+                            [options]="liensUtils"></app-multi-select>
+                    </div>
+                    <div fxLayout="column" fxLayoutGap="8px">
+                        <label for="mot-cles">Mot clés </label>
+                        <input type="text" id="mot-cles" formControlName="mot_cle" class="form-control"
+                            placeholder="Liste des mots clés pour la recherche">
+                    </div>
+                    <div fxLayout="column" fxLayoutGap="8px">
+                        <label for="observation">Observation </label>
+                        <textarea class="form-control" formControlName="observations" name="observation"
+                            id="observation" cols="30" rows="2" placeholder="Ajoutez un observation privée"></textarea>
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="24px">
+                        <div fxLayout="column" fxLayoutGap="8px">
+                            <label for="">Etat</label>
+                            <mat-form-field class="form-control">
+                                <mat-label class="label">Choisir un état</mat-label>
+                                <mat-select formControlName="etat">
+                                    <div *ngFor="let stat of states">
+                                        <mat-option [value]="stat.value">{{stat.viewValue}}</mat-option>
+                                    </div>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                        <div fxLayout="column" fxLayoutGap="8px">
+                            <span class="label">Publication</span>
+                            <div fxLayout="row" fxLayoutGap="12px">
+                                <mat-slide-toggle formControlName="est_publie">
+                                    <span class="label">Cliquez pour publier</span>
+                                </mat-slide-toggle>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-action" fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="24px">
+                <button class="btn  btn-form-cancel" appGoBack>Annuler</button>
+                <button class="btn btn-form-primary" (click)="onSubmit()">Enregistrer</button>
+            </div>
+        </form>
+    </div>
+</div>

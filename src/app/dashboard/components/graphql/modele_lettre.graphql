@@ -1,0 +1,31 @@
+query FetchModeleLettres($queryFilter: QueryDataConfigInput) {
+	fetchModeleLettres(queryFilter: $queryFilter) {
+		pagination {
+			totalItems
+			pageCount
+			currentPage
+			pageSize
+		}
+		results {
+			id
+			nom
+			slug
+		}
+	}
+}
+
+query SearchModeleLettres($queryFilter: QueryDataConfigInput) {
+	searchResults: fetchModeleLettres(queryFilter: $queryFilter) {
+		pagination {
+			totalItems
+			pageCount
+			currentPage
+			pageSize
+		}
+		results {
+			id
+			nom
+			slug
+		}
+	}
+}

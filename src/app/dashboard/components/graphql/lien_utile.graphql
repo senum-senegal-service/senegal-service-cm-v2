@@ -1,0 +1,33 @@
+query FetchLienUtiles($queryFilter: QueryDataConfigInput) {
+	fetchLienUtiles(queryFilter: $queryFilter) {
+		pagination {
+			totalItems
+			pageCount
+			currentPage
+			pageSize
+		}
+		results {
+			id
+			nom
+			description
+			url
+			est_publie
+		}
+	}
+}
+
+
+query SearchLienUtiles($queryFilter: QueryDataConfigInput) {
+	searchResults: fetchLienUtiles(queryFilter: $queryFilter) {
+		pagination {
+			totalItems
+			pageCount
+			currentPage
+			pageSize
+		}
+		results {
+			id
+			nom
+		}
+	}
+}

@@ -1,0 +1,31 @@
+query FetchFaqs($queryFilter: QueryDataConfigInput) {
+	fetchFaqs(queryFilter: $queryFilter) {
+		pagination {
+			totalItems
+			pageCount
+			currentPage
+			pageSize
+		}
+		results {
+			id
+			question
+			reponse
+		}
+	}
+}
+
+query SearchFaqs($queryFilter: QueryDataConfigInput) {
+	searchResults: fetchFaqs(queryFilter: $queryFilter) {
+		pagination {
+			totalItems
+			pageCount
+			currentPage
+			pageSize
+		}
+		results {
+			id
+			nom: question
+		}
+	}
+}
+

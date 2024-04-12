@@ -1,0 +1,17 @@
+<div class="page-wrapper" fxLayout="column" fxLayoutGap="24px">
+    <span class="goback" fxLayout="row" fxLayoutAlign="start center" appGoBack><span><mat-icon
+                fxLayoutAlign="start center">arrow_back</mat-icon></span><span>back</span></span>
+    <div class="container " fxLayout="column" fxLayoutGap="40px">
+        <span class="title">{{formTitle}}</span>
+        <form class="form-container" fxLayout="column" fxLayoutGap="32px">
+            <div fxLayout="column" fxLayoutGap="8px">
+                <label for="libelle">Libellé <span class="color-danger">*</span></label>
+                <input type="text" class="form-control" id="libelle" placeholder="Libellé">
+            </div>
+            <div class="form-action" fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="24px">
+                <button class="btn  btn-form-cancel" appGoBack>Annuler</button>
+                <button class="btn btn-form-primary">Enregistrer</button>
+            </div>
+        </form>
+    </div>
+</div>

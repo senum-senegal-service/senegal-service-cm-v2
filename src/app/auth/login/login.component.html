@@ -1,0 +1,24 @@
+<form class="form-container" fxLayout="column" fxLayoutGap="16px">
+  <div fxLayoutAlign="center center">
+    <div class="logo-container" [ngStyle]="{'background-image':'url('+'./assets/img/logo-senum.svg'+')'}">
+    </div>
+  </div>
+  <div fxLayout="column" fxLayoutGap="40px">
+    <div fxLayout="column" fxLayoutGap="24px">
+      <label class="form-group" fxLayout="column" fxLayoutGap="4px">
+        <span class="label">Email</span>
+        <input class="form-control" formControlName="email" type="text" placeholder="hello@example.com"
+          autocomplete="yes">
+      </label>
+      <label class="form-group" fxLayout="column" fxLayoutAlign="center start" fxLayoutGap="4px">
+        <span class="label">Mot de pass</span>
+        <input class="form-control" [type]="hidePassword?'text':'password'" formControlName="password"
+          placeholder="votre mot de passe">
+        <span class="btn-show-password" (click)="hidePassword=!hidePassword">
+          <mat-icon>{{hidePassword?'visibility':'visibility_off'}}</mat-icon>
+        </span>
+      </label>
+    </div>
+    <button class="submit" type="submit" routerLink="/dashboard">Connexion</button>
+  </div>
+</form>

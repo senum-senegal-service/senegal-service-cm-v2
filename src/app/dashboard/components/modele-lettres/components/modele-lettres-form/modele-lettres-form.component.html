@@ -1,0 +1,62 @@
+<div class="page-wrapper" fxLayout="column" fxLayoutGap="24px">
+    <span class="goback" fxLayout="row" fxLayoutAlign="start center" appGoBack><span><mat-icon
+                fxLayoutAlign="start center">arrow_back</mat-icon></span><span>back</span></span>
+    <div class="container " fxLayout="column" fxLayoutGap="40px">
+        <span class="title">{{formTitle}}</span>
+        <form class="form-container" fxLayout="column" fxLayoutGap="32px">
+            <div fxLayout="column" fxLayoutGap="24px">
+                <div fxFlex="50" fxLayout="column" fxLayoutGap="8px">
+                    <label for="title">Nom du modèle de lettre <span class="color-danger">*</span></label>
+                    <input type="text" id="title" class="form-control" placeholder="Nom du modèle de lettre">
+                </div>
+                <div fxFlex="50" fxLayout="column" fxLayoutGap="8px">
+                    <label for="remarque">Remarques ( <span class="text">Apparaîtra sur le site</span> ) <span
+                            class="color-danger">*</span></label>
+                    <input type="text" id="remarque" class="form-control">
+                </div>
+                <div fxLayout="column" fxLayoutGap="8px">
+                    <label for="description">Description </label>
+                    <textarea class="form-control" name="" id="description" cols="30" rows="4"
+                        placeholder="Ajouter une description"></textarea>
+                </div>
+                <div fxLayout="column" fxLayoutGap="8px">
+                    <label for="observation">Observations </label>
+                    <textarea class="form-control" name="" id="observation" cols="30" rows="4"
+                        placeholder="Ajouter une observations privées"></textarea>
+                </div>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="24px">
+                <div fxLayout="column" fxLayoutGap="8px">
+                    <label for="">Derniere date de modification</label>
+                    <mat-form-field class="form-control">
+                        <mat-label class="label">Choisir une date</mat-label>
+                        <input matInput [matDatepicker]="picker">
+                        <mat-hint>MM/DD/YYYY</mat-hint>
+                        <mat-datepicker-toggle matIconSuffix [for]="picker">
+                            <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+                        </mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+                </div>
+                <div fxLayout="column" fxLayoutGap="8px">
+                    <label for="">Etat de la fiche </label>
+                    <mat-form-field class="form-control">
+                        <mat-label class="label">Favorite food</mat-label>
+                        <mat-select [(ngModel)]="selectedValue" name="food">
+                            <div *ngFor="let stat of states">
+                                <mat-option [value]="stat.value">{{stat.viewValue}}</mat-option>
+                            </div>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <mat-slide-toggle formControlName="est_publie">
+                    <span class="label">Cliquez pour publier</span>
+                </mat-slide-toggle>
+            </div>
+            <div class="form-action" fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="24px">
+                <button class="btn  btn-form-cancel" appGoBack>Annuler</button>
+                <button class="btn btn-form-primary">Enregistrer</button>
+            </div>
+        </form>
+    </div>
+</div>

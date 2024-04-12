@@ -1,0 +1,19 @@
+<div class="dropdown" appDropdown="{{uniqueId}}">
+  <div class="form-control input-with-dropdown" fxLayout="row wrap"
+      fxLayoutAlign="start center">
+      <span class="badge badge-primary" *ngFor="let selt of selectedOptions"
+          fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="6px">
+          <span class="btn-remove" (click)="removeOption(selt.id)">x</span>
+          <span>{{selt.nom}}</span>
+      </span>
+      <input fxFlex="auto" type="text" id="__{{uniqueId}}" name="search"
+          class="form-control" [(ngModel)]="searchTerm" (input)="filterOptions()"
+          autocomplete="off" autocapitalize="off">
+  </div>
+  <div class="dropdown-content dropdown-content-input" id="{{uniqueId}}">
+      <div for="demarche-subtitle" class="dropdown-option"
+          *ngFor="let opt of filteredOptions" (click)="selectOption(opt)"
+          [ngClass]="isAllreadySelected(opt)?'is-selected':''">{{opt.nom}}
+      </div>
+  </div>
+</div>

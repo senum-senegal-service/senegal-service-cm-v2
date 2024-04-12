@@ -1,0 +1,62 @@
+<form [formGroup]="formFilter" (ngSubmit)="onSubmit()" class="modal-filter" fxLayout="column">
+    <div class="form-top" fxLayout="row" fxLayoutAlign="space-between center">
+        <span class="title">Annonces filtre</span>
+        <span (click)="onClose()" class="btn btn-rounded"><mat-icon
+                fxLayoutAlign="center center">close</mat-icon></span>
+    </div>
+    <div fxLayout="column" fxLayoutGap="24px">
+        <div fxFlex="100" fxLayout="row" fxLayoutAlign="space-between start" fxLayoutGap="16px">
+            <div fxFlex="50" fxLayout="column" fxLayoutGap="8px">
+                <label for="">Filtre par etat</label>
+                <mat-form-field>
+                    <mat-label>Favorite food</mat-label>
+                    <mat-select [(ngModel)]="selectedValue" name="food">
+                        <div *ngFor="let stat of states">
+                            <mat-option [value]="stat.value">{{stat.viewValue}}</mat-option>
+                        </div>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div fxFlex="50" fxLayout="column" fxLayoutGap="8px">
+                <label for="">Filtre par statut publication</label>
+                <mat-form-field>
+                    <mat-label>Favorite food</mat-label>
+                    <mat-select [(ngModel)]="selectedValue" name="food">
+                        <div *ngFor="let stat of states">
+                            <mat-option [value]="stat.value">{{stat.viewValue}}</mat-option>
+                        </div>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+        <div fxFlex="100" fxLayout="row" fxLayoutAlign="space-between start" fxLayoutGap="16px">
+            <div fxFlex="50" fxLayout="column" fxLayoutGap="8px">
+                <label for="">Filtre par date modification</label>
+                <mat-form-field class="example-full-width">
+                    <mat-label>Choose a date</mat-label>
+                    <input matInput [matDatepicker]="picker">
+                    <mat-hint>MM/DD/YYYY</mat-hint>
+                    <mat-datepicker-toggle matIconSuffix [for]="picker">
+                        <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+                    </mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+            </div>
+            <div fxFlex="50"></div>
+        </div>
+    </div>
+    <div class="form-action" fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="24px">
+        <button class="btn btn-form-cancel" type="reset" (click)="onClose()">
+            <span>
+                <mat-icon fxLayoutAlign="start center">close</mat-icon>
+            </span>
+            <span>Reset</span>
+        </button>
+        <button class="btn btn-form-primary" type="submit">
+            <span>
+                <mat-icon fxLayoutAlign="start center">search</mat-icon>
+            </span>
+            <span>Filtrer</span>
+        </button>
+    </div>
+</form>

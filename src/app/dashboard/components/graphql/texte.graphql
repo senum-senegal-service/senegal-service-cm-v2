@@ -1,0 +1,33 @@
+query FetchTextes($queryFilter: QueryDataConfigInput) {
+	fetchTextes(queryFilter: $queryFilter) {
+		pagination {
+			totalItems
+			pageCount
+			currentPage
+			pageSize
+		}
+		results {
+			id
+			nom
+			slug
+			description
+			url
+			est_publie
+		}
+	}
+}
+
+query SearchTextes($queryFilter: QueryDataConfigInput) {
+	searchResults: fetchTextes(queryFilter: $queryFilter) {
+		pagination {
+			totalItems
+			pageCount
+			currentPage
+			pageSize
+		}
+		results {
+			id
+			nom
+		}
+	}
+}

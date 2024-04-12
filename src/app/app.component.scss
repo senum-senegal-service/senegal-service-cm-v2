@@ -1,0 +1,14 @@
+#progress-page {
+  position: fixed;
+  z-index: 999999;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100vw;
+  height: 7px;
+  background-color: white;
+}
+
+.container {
+  background: #f1f5f7;
+}

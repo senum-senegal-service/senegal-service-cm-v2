@@ -1,0 +1,152 @@
+query FetchDemarches($queryFilter: QueryDataConfigInput, $demarcheFilter: DemarcheInputSearchInput) {
+	fetchDemarches(queryFilter: $queryFilter, demarcheFilter: $demarcheFilter) {
+		pagination {
+			totalItems
+			pageCount
+			pageSize
+			currentPage
+		}
+		results {
+			id
+			titre
+      resume
+      updatedAt
+      etat
+      est_publie
+      observations
+			sous_themes {
+				id
+				libelle
+				slug
+			}
+		}
+
+	}
+}
+
+query SearchDemarches($queryFilter: QueryDataConfigInput) {
+	searchResults: fetchDemarches(queryFilter: $queryFilter) {
+		pagination {
+			totalItems
+			pageCount
+			pageSize
+			currentPage
+		}
+		results {
+			id
+			nom: titre
+		}
+
+	}
+}
+
+mutation CreateDemarche($demarcheInput: DemarcheInput!) {
+	createDemarche(demarcheInput: $demarcheInput) {
+		id
+		titre
+		url
+		cout
+		corps
+		mot_cle
+		delai
+		description
+		resume
+		a_la_une
+		slug
+		observations
+		post_scriptum
+		etat
+		est_publie
+		teleprocedure
+		sous_themes {
+			id
+			libelle
+		}
+		service_administratifs {
+			id
+			nom
+		}
+		formulaires {
+			id
+			nom
+		}
+		faqs {
+			id
+			question
+		}
+		descripteurs {
+			id
+			libelle
+		}
+		modele_lettres {
+			id
+			nom
+		}
+		textes {
+			id
+			nom
+		}
+		lien_utiles {
+			id
+			nom
+		}
+
+	}
+}
+
+query FetchDemarche($demarcheId: String!) {
+	fetchDemarche(demarcheId: $demarcheId) {
+		id
+		titre
+		url
+		cout
+		corps
+		mot_cle
+		delai
+		description
+		resume
+		a_la_une
+		slug
+		observations
+		post_scriptum
+		etat
+		est_publie
+		teleprocedure
+		service_administratifs {
+				id
+				nom
+			}
+			sous_themes {
+				id
+				nom: libelle
+			}
+			formulaires {
+				id
+				nom
+			}
+			faqs {
+				id
+				nom: question
+			}
+		descripteurs {
+			id
+			nom: libelle
+		}
+		modele_lettres {
+			id
+			nom: nom
+		}
+		textes {
+			id
+			nom
+		}
+		lien_utiles {
+			id
+			nom
+		}
+    demarches {
+      id
+      nom: titre
+    }
+	}
+}
