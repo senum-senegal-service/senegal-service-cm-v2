@@ -12,7 +12,6 @@ export class AuthGuard implements CanActivate {
 
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
     if (this.keycloakService.isLoggedIn()) {
-      console.log("yes")
       return true;
     } else {
       // Rediriger l'utilisateur vers la page de connexion

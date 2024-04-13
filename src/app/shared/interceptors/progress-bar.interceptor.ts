@@ -17,7 +17,6 @@ export class ProgressBarInterceptor implements HttpInterceptor {
 
     return next.handle(request).pipe(
       catchError((error: HttpErrorResponse) => {
-        // Afficher un message d'erreur à l'aide de MatSnackBar
         this.snackBarService.showErrorSnackBar();
 
         return throwError(error); // Propagez l'erreur

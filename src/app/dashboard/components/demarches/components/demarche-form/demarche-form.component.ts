@@ -5,7 +5,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { SnackBarService } from 'src/app/shared/services/snackbar.service';
 import { EditorConfig } from 'src/app/shared/utils/angular-editor-configuration';
+import { patchArrayValue } from 'src/app/shared/utils/common.utils';
 import { SelectOptions } from 'src/app/shared/utils/selec-options';
+import { environment } from 'src/environments/environment';
 import {
   CreateDemarcheGQL,
   Demarche,
@@ -29,6 +31,7 @@ import {
 export class DemarcheFormComponent implements OnChanges {
   @Input() formTitle: string;
   @Input() demarcheId: string;
+  @Input() type: string = "create";
   content: string = '';
   editorConfig: AngularEditorConfig = EditorConfig;
 
@@ -52,6 +55,8 @@ export class DemarcheFormComponent implements OnChanges {
 
   demarcheForm: FormGroup;
   demarche: Demarche;
+  apiUrl: string = `${environment.API_URI}/demarche`;
+  demo: File;
 
   constructor(
     private fb: FormBuilder,
@@ -110,7 +115,10 @@ export class DemarcheFormComponent implements OnChanges {
       .fetch({ demarcheId: this.demarcheId })
       .subscribe((result) => {
         this.demarche = result.data.fetchDemarche as any;
+        const demarcheObject = Object.assign({}, this.demarche);
         this.demarcheForm.patchValue(this.demarche);
+        patchArrayValue(['demarches', 'sous_themes', 'formulaires', 'lien_utiles', 'textes', 'service_administratifs', 'modele_lettres', 'descripteurs', 'faqs'], this.demarcheForm, demarcheObject)
+        console.log({form: this.demarcheForm.value})
       });
   }
 
@@ -122,45 +130,51 @@ export class DemarcheFormComponent implements OnChanges {
   }
 
   onSubmit() {
-    console.log({ vvv: this.demarcheForm.value });
-    if (this.demarcheForm.valid) {
-      this.createDemarcheGQL
-        .mutate({ demarcheInput: this.demarcheForm.value })
-        .subscribe((result) => {
-          this.snackbarService.showSuccessSnackBar(
-            'Démarche ajouté avec succés'
-          );
-          this.router.navigate(['/dashboard/demarches']);
-        });
-      // const formData = new FormData();
-      // for (const key in this.demarcheForm.value) {
-      //   if (key !== 'attachment') { // Ne pas ajouter attachment ici car il a besoin d'un traitement spécial
-      //     formData.append(key, this.demarcheForm.value[key]);
-      //   }
-      // }
-      // // Vous devez avoir le attachment comme un objet File pour append ici
-      // if (this.demarcheForm.get('attachment').value) {
-      //   formData.append('attachment', this.demarcheForm.get('attachment').value);
-      // }
-
-      // // Remplacer 'votreEndpoint' par l'URL vers laquelle vous soumettez le formulaire
-      // this.http.post('votreEndpoint', formData).subscribe(response => {
-      //   console.log(response);
-      //   // Gérer la réponse ici
-      // }, error => {
-      //   console.error(error);
-      //   // Gérer l'erreur ici
-      // });
+    if(this.type === 'create') {
+      this.create();
+    } else {
+      this.update();
     }
+  }
+
+  create() {
+    if (this.demarcheForm.valid) {
+      const formData = new FormData();
+      formData.append('data', JSON.stringify(this.demarcheForm.value));
+      formData.append('demo', this.demo);
+      this.http.post(this.apiUrl, formData).subscribe(response => {
+        this.snackbarService.showSuccessSnackBar(
+          'Démarche ajouté avec succés'
+        );
+        this.router.navigate(['/dashboard/demarches']);
+      }, error => {
+        console.error(error);
+      });
+    }
+  }
+
+  update() {
+    if(this.demarcheForm.valid && this.demarcheId) {
+      const formData = new FormData();
+      formData.append('data', JSON.stringify(this.demarcheForm.value));
+      formData.append('demo', this.demo);
+      this.http.put(`${this.apiUrl}/${this.demarcheId}`, formData).subscribe(response => {
+        this.snackbarService.showSuccessSnackBar(
+          'Démarche modifié avec succés'
+        );
+        this.router.navigate(['/dashboard/demarches']);
+      }, error => {
+        console.error(error);
+      });
+    }
+
   }
 
   // Handler pour les changements de attachments
   onFileChange(event) {
     if (event.target.files.length > 0) {
       const file = event.target.files[0];
-      this.demarcheForm.patchValue({
-        attachment: file,
-      });
+      this.demo = file;
     }
   }
 
@@ -200,7 +214,7 @@ export class DemarcheFormComponent implements OnChanges {
 
   getServiceAdministratifs() {
     this.searchServiceAdministratifsGQL
-      .fetch({ queryFilter: { limit: 10000 } })
+      .fetch({ queryFilter: { limit: 10000 } }, { fetchPolicy: 'cache-first' })
       .subscribe((result) => {
         this.servicesAdministratifs = result.data.searchResults.results;
       });
@@ -208,7 +222,7 @@ export class DemarcheFormComponent implements OnChanges {
 
   getTextes() {
     this.searchTextesGQL
-      .fetch({ queryFilter: { limit: 10000 } })
+      .fetch({ queryFilter: { limit: 10000 } }, { fetchPolicy: 'cache-first' })
       .subscribe((result) => {
         this.textes = result.data.searchResults.results;
       });
@@ -216,7 +230,7 @@ export class DemarcheFormComponent implements OnChanges {
 
   getFormulaires() {
     this.searchFormulairesGQL
-      .fetch({ queryFilter: { limit: 10000 } })
+      .fetch({ queryFilter: { limit: 10000 } }, { fetchPolicy: 'cache-first' })
       .subscribe((result) => {
         this.formulaires = result.data.searchResults.results;
       });
@@ -224,7 +238,7 @@ export class DemarcheFormComponent implements OnChanges {
 
   getModeleLettres() {
     this.searchModeleLettresGQL
-      .fetch({ queryFilter: { limit: 10000 } })
+      .fetch({ queryFilter: { limit: 10000 } }, { fetchPolicy: 'cache-first' })
       .subscribe((result) => {
         this.modeleLettres = result.data.searchResults.results;
       });
@@ -232,7 +246,7 @@ export class DemarcheFormComponent implements OnChanges {
 
   getFaqs() {
     this.searchFaqsGQL
-      .fetch({ queryFilter: { limit: 10000 } })
+      .fetch({ queryFilter: { limit: 10000 } }, { fetchPolicy: 'cache-first' })
       .subscribe((result) => {
         this.faqs = result.data.searchResults.results;
       });
@@ -240,7 +254,7 @@ export class DemarcheFormComponent implements OnChanges {
 
   getDescripteurs() {
     this.searchDescripteursGQL
-      .fetch({ queryFilter: { limit: 10000 } })
+      .fetch({ queryFilter: { limit: 10000 } }, { fetchPolicy: 'cache-first' })
       .subscribe((result) => {
         this.descripteurs = result.data.searchResults.results;
       });
@@ -248,7 +262,7 @@ export class DemarcheFormComponent implements OnChanges {
 
   getDemarches() {
     this.searchDemarchesGQL
-      .fetch({ queryFilter: { limit: 10000 } })
+      .fetch({ queryFilter: { limit: 10000 } }, { fetchPolicy: 'cache-first' })
       .subscribe((result) => {
         this.demarches = result.data.searchResults.results;
       });
@@ -256,7 +270,7 @@ export class DemarcheFormComponent implements OnChanges {
 
   getLiensUtils() {
     this.searchLienUtilesGQL
-      .fetch({ queryFilter: { limit: 10000 } })
+      .fetch({ queryFilter: { limit: 10000 } }, { fetchPolicy: 'cache-first' })
       .subscribe((result) => {
         this.liensUtils = result.data.searchResults.results;
       });
@@ -264,7 +278,7 @@ export class DemarcheFormComponent implements OnChanges {
 
   getSousThemes() {
     this.searchSousThemesGQL
-      .fetch({ queryFilter: { limit: 10000 } })
+      .fetch({ queryFilter: { limit: 10000 } }, { fetchPolicy: 'cache-first' })
       .subscribe((result) => {
         this.sousThemes = result.data.searchResults.results;
       });

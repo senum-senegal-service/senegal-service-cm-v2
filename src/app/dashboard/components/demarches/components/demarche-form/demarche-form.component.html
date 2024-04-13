@@ -20,7 +20,7 @@
                 </div>
                 <div fxLayout="column" fxLayoutGap="8px">
                     <label for="demarche-subtitle">Sous-thémes <span class="color-danger">*</span></label>
-                    <app-multi-select [name]="'sous_themes'" [form]="demarcheForm"
+                    <app-multi-select [value]="demarche?.sous_themes || []" [name]="'sous_themes'" [form]="demarcheForm"
                         [options]="sousThemes"></app-multi-select>
                 </div>
                 <div fxLayout="column" fxLayoutGap="8px">
@@ -30,8 +30,8 @@
                 </div>
                 <div fxLayout="column" fxLayoutGap="8px">
                     <label for="description">Description</label>
-                    <textarea formControlName="description" class="form-control" name="" id="description" cols="30"
-                        rows="6"></textarea>
+                    <angular-editor formControlName="description" name="angular-editor" id="description"
+                        [config]="editorConfig"></angular-editor>
                 </div>
                 <div fxLayout="column" fxLayoutGap="8px">
                     <label for="editor">Corps</label>
@@ -85,46 +85,46 @@
                     <div fxLayout="row" fxLayoutGap="24px">
                         <div fxFlex="50" fxLayout="column" fxLayoutGap="8px">
                             <label for="services-concernés">Services concernés</label>
-                            <app-multi-select [name]="'service_administratifs'" [form]="demarcheForm"
+                            <app-multi-select [value]="demarche?.service_administratifs || []" [name]="'service_administratifs'" [form]="demarcheForm"
                                 [options]="servicesAdministratifs"></app-multi-select>
                         </div>
                         <div fxFlex="50" fxLayout="column" fxLayoutGap="8px">
                             <label for="textes-references">Textes de référence </label>
-                            <app-multi-select [name]="'textes'" [form]="demarcheForm"
+                            <app-multi-select [value]="demarche?.textes || []" [name]="'textes'" [form]="demarcheForm"
                                 [options]="textes"></app-multi-select>
                         </div>
                     </div>
                     <div fxLayout="row" fxLayoutGap="24px">
                         <div fxFlex="50" fxLayout="column" fxLayoutGap="8px">
                             <label for="formulaires">Formulaires</label>
-                            <app-multi-select [name]="'formulaires'" [form]="demarcheForm"
+                            <app-multi-select [value]="demarche?.formulaires || []" [name]="'formulaires'" [form]="demarcheForm"
                                 [options]="formulaires"></app-multi-select>
                         </div>
                         <div fxFlex="50" fxLayout="column" fxLayoutGap="8px">
                             <label for="modeles-lettres">Modéles de lettres </label>
-                            <app-multi-select [name]="'modele_lettres'" [form]="demarcheForm"
+                            <app-multi-select [value]="demarche?.modele_lettres || []" [name]="'modele_lettres'" [form]="demarcheForm"
                                 [options]="modeleLettres"></app-multi-select>
                         </div>
                     </div>
                     <div fxLayout="row" fxLayoutGap="24px">
                         <div fxFlex="50" fxLayout="column" fxLayoutGap="8px">
                             <label for="faqs">FAQs</label>
-                            <app-multi-select [name]="'faqs'" [form]="demarcheForm" [options]="faqs"></app-multi-select>
+                            <app-multi-select [name]="'faqs'" [value]="demarche?.faqs || []" [form]="demarcheForm" [options]="faqs"></app-multi-select>
                         </div>
                         <div fxFlex="50" fxLayout="column" fxLayoutGap="8px">
                             <label for="desripteurs"> Descripteurs </label>
-                            <app-multi-select [name]="'descripteurs'" [form]="demarcheForm"
+                            <app-multi-select [value]="demarche?.descripteurs || []" [name]="'descripteurs'" [form]="demarcheForm"
                                 [options]="descripteurs"></app-multi-select>
                         </div>
                     </div>
                     <div fxLayout="column" fxLayoutGap="8px">
                         <label for="others-demarches">Démarches liées</label>
-                        <app-multi-select [name]="'demarches'" [form]="demarcheForm"
+                        <app-multi-select [value]="demarche?.demarches || []" [name]="'demarches'" [form]="demarcheForm"
                             [options]="demarches"></app-multi-select>
                     </div>
                     <div fxLayout="column" fxLayoutGap="8px">
                         <label for="liens-utiles">Liens utiles </label>
-                        <app-multi-select [name]="'lien_utiles'" [form]="demarcheForm"
+                        <app-multi-select [value]="demarche?.lien_utiles || []" [name]="'lien_utiles'" [form]="demarcheForm"
                             [options]="liensUtils"></app-multi-select>
                     </div>
                     <div fxLayout="column" fxLayoutGap="8px">
@@ -139,6 +139,13 @@
                     </div>
                     <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="24px">
                         <div fxLayout="column" fxLayoutGap="8px">
+                            <span class="label">Demo</span>
+                            <div fxLayout="row" fxLayoutGap="12px">
+                                <input type="file" class="form-control" (change)="onFileChange($event)">
+
+                            </div>
+                        </div>
+                        <div fxLayout="column" fxLayoutGap="8px">
                             <label for="">Etat</label>
                             <mat-form-field class="form-control">
                                 <mat-label class="label">Choisir un état</mat-label>
@@ -150,14 +157,14 @@
                             </mat-form-field>
                         </div>
                         <div fxLayout="column" fxLayoutGap="8px">
-                            <span class="label">Publication</span>
-                            <div fxLayout="row" fxLayoutGap="12px">
-                                <mat-slide-toggle formControlName="est_publie">
-                                    <span class="label">Cliquez pour publier</span>
-                                </mat-slide-toggle>
+                          <span class="label">Publication</span>
+                          <div fxLayout="row" fxLayoutGap="12px">
+                              <mat-slide-toggle formControlName="est_publie">
+                                  <span class="label">Cliquez pour publier</span>
+                              </mat-slide-toggle>
 
-                            </div>
-                        </div>
+                          </div>
+                      </div>
                     </div>
                 </div>
             </div>

@@ -13,6 +13,7 @@ export class MultiSelectComponent implements OnInit, OnChanges {
   @Input() options: any[];
   @Input() name: string;
   @Input() form: FormGroup;
+  @Input() value: any[] = [];
   filteredOptions: any[];
   searchTerm: string = '';
   selectedOptions: any[] = [];
@@ -90,9 +91,13 @@ export class MultiSelectComponent implements OnInit, OnChanges {
     }
 
     fillForm() {
-      if(this.form) {
-        this.selectedOptions = this.form.controls[this.name].value || [];
-        // this.updateForm();
+      if(this.form && this.options?.length) {
+        this.selectedOptions = (this.value || []).map(so => {
+          return this.options.find(o => o.id == so.id);
+        });
+
+        console.log({value: this.value, selectedOptions: this.selectedOptions, options: this.options})
+        this.updateForm();
       }
     }
 }
