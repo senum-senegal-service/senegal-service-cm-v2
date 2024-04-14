@@ -135,3 +135,15 @@ query FetchHub($hubId: String!) {
 		}
 	}
 }
+
+mutation DeleteHub($hubId: String!) {
+  deleteHub(hubId: $hubId)
+}
+
+mutation PublishHub($hubId: String!) {
+  publishHub(hubId: $hubId)
+}
+
+mutation UnPublishHub($hubId: String!) {
+  unPublishHub(hubId: $hubId)
+}

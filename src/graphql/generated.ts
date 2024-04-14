@@ -390,7 +390,13 @@ export type Mutation = {
   createTexte: Texte;
   createTheme: Theme;
   createUser: User;
+  deleteDemarche: Scalars['Boolean']['output'];
+  deleteHub: Scalars['Boolean']['output'];
+  publishDemarche: Scalars['Boolean']['output'];
+  publishHub: Scalars['Boolean']['output'];
   register: Session;
+  unPublishDemarche: Scalars['Boolean']['output'];
+  unPublishHub: Scalars['Boolean']['output'];
   updateDemarche: Scalars['Boolean']['output'];
   updateDescripteur: Scalars['Boolean']['output'];
   updateFaq: Scalars['Boolean']['output'];
@@ -466,8 +472,38 @@ export type MutationCreateUserArgs = {
 };
 
 
+export type MutationDeleteDemarcheArgs = {
+  demarcheId: Scalars['Any']['input'];
+};
+
+
+export type MutationDeleteHubArgs = {
+  hubId: Scalars['String']['input'];
+};
+
+
+export type MutationPublishDemarcheArgs = {
+  demarcheId: Scalars['Any']['input'];
+};
+
+
+export type MutationPublishHubArgs = {
+  hubId: Scalars['String']['input'];
+};
+
+
 export type MutationRegisterArgs = {
   registerInput: RegisterInput;
+};
+
+
+export type MutationUnPublishDemarcheArgs = {
+  demarcheId: Scalars['Any']['input'];
+};
+
+
+export type MutationUnPublishHubArgs = {
+  hubId: Scalars['String']['input'];
 };
 
 
@@ -1047,6 +1083,27 @@ export type FetchDemarcheQueryVariables = Exact<{
 
 export type FetchDemarcheQuery = { __typename?: 'Query', fetchDemarche: { __typename?: 'Demarche', id: any, titre: string, url?: string | null, cout?: number | null, corps?: string | null, mot_cle?: string | null, delai?: number | null, description: string, resume?: string | null, a_la_une?: boolean | null, slug: string, observations?: string | null, post_scriptum?: string | null, etat?: string | null, est_publie?: boolean | null, teleprocedure?: boolean | null, service_administratifs: Array<{ __typename?: 'ServiceAdministratif', id: number, nom: string }>, sous_themes: Array<{ __typename?: 'SousTheme', id: string, nom: string }>, formulaires: Array<{ __typename?: 'Formulaire', id: number, nom: string }>, faqs: Array<{ __typename?: 'Faq', id: number, nom: string }>, descripteurs: Array<{ __typename?: 'Descripteur', id: number, nom: string }>, modele_lettres: Array<{ __typename?: 'ModeleLettre', id: number, nom: string }>, textes: Array<{ __typename?: 'Texte', id: number, nom: string }>, lien_utiles: Array<{ __typename?: 'LienUtile', id: number, nom: string }>, demarches: Array<{ __typename?: 'Demarche', id: any, nom: string }> } };
 
+export type DeleteDemarcheMutationVariables = Exact<{
+  demarcheId: Scalars['Any']['input'];
+}>;
+
+
+export type DeleteDemarcheMutation = { __typename?: 'Mutation', deleteDemarche: boolean };
+
+export type PublishDemarcheMutationVariables = Exact<{
+  demarcheId: Scalars['Any']['input'];
+}>;
+
+
+export type PublishDemarcheMutation = { __typename?: 'Mutation', publishDemarche: boolean };
+
+export type UnPublishDemarcheMutationVariables = Exact<{
+  demarcheId: Scalars['Any']['input'];
+}>;
+
+
+export type UnPublishDemarcheMutation = { __typename?: 'Mutation', unPublishDemarche: boolean };
+
 export type FetchDescripteursQueryVariables = Exact<{
   queryFilter?: InputMaybe<QueryDataConfigInput>;
 }>;
@@ -1187,6 +1244,27 @@ export type FetchHubQueryVariables = Exact<{
 
 
 export type FetchHubQuery = { __typename?: 'Query', fetchHub: { __typename?: 'Hub', id: any, titre: string, mot_cle?: string | null, description: string, resume?: string | null, slug: string, observations?: string | null, etat?: string | null, est_publie?: boolean | null, a_la_une?: boolean | null, service_administratifs: Array<{ __typename?: 'ServiceAdministratif', id: number, nom: string }>, sous_themes: Array<{ __typename?: 'SousTheme', id: string, nom: string }>, formulaires: Array<{ __typename?: 'Formulaire', id: number, nom: string }>, faqs: Array<{ __typename?: 'Faq', id: number, nom: string }>, descripteurs: Array<{ __typename?: 'Descripteur', id: number, nom: string }>, modele_lettres: Array<{ __typename?: 'ModeleLettre', id: number, nom: string }>, textes: Array<{ __typename?: 'Texte', id: number, nom: string }>, lien_utiles: Array<{ __typename?: 'LienUtile', id: number, nom: string }> } };
+
+export type DeleteHubMutationVariables = Exact<{
+  hubId: Scalars['String']['input'];
+}>;
+
+
+export type DeleteHubMutation = { __typename?: 'Mutation', deleteHub: boolean };
+
+export type PublishHubMutationVariables = Exact<{
+  hubId: Scalars['String']['input'];
+}>;
+
+
+export type PublishHubMutation = { __typename?: 'Mutation', publishHub: boolean };
+
+export type UnPublishHubMutationVariables = Exact<{
+  hubId: Scalars['String']['input'];
+}>;
+
+
+export type UnPublishHubMutation = { __typename?: 'Mutation', unPublishHub: boolean };
 
 export const RegisterDocument = gql`
     mutation Register($registerInput: RegisterInput!) {
@@ -1423,6 +1501,54 @@ export const FetchDemarcheDocument = gql`
   })
   export class FetchDemarcheGQL extends Apollo.Query<FetchDemarcheQuery, FetchDemarcheQueryVariables> {
     document = FetchDemarcheDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const DeleteDemarcheDocument = gql`
+    mutation DeleteDemarche($demarcheId: Any!) {
+  deleteDemarche(demarcheId: $demarcheId)
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class DeleteDemarcheGQL extends Apollo.Mutation<DeleteDemarcheMutation, DeleteDemarcheMutationVariables> {
+    document = DeleteDemarcheDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const PublishDemarcheDocument = gql`
+    mutation PublishDemarche($demarcheId: Any!) {
+  publishDemarche(demarcheId: $demarcheId)
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class PublishDemarcheGQL extends Apollo.Mutation<PublishDemarcheMutation, PublishDemarcheMutationVariables> {
+    document = PublishDemarcheDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const UnPublishDemarcheDocument = gql`
+    mutation UnPublishDemarche($demarcheId: Any!) {
+  unPublishDemarche(demarcheId: $demarcheId)
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class UnPublishDemarcheGQL extends Apollo.Mutation<UnPublishDemarcheMutation, UnPublishDemarcheMutationVariables> {
+    document = UnPublishDemarcheDocument;
     
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
@@ -2062,6 +2188,54 @@ export const FetchHubDocument = gql`
   })
   export class FetchHubGQL extends Apollo.Query<FetchHubQuery, FetchHubQueryVariables> {
     document = FetchHubDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const DeleteHubDocument = gql`
+    mutation DeleteHub($hubId: String!) {
+  deleteHub(hubId: $hubId)
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class DeleteHubGQL extends Apollo.Mutation<DeleteHubMutation, DeleteHubMutationVariables> {
+    document = DeleteHubDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const PublishHubDocument = gql`
+    mutation PublishHub($hubId: String!) {
+  publishHub(hubId: $hubId)
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class PublishHubGQL extends Apollo.Mutation<PublishHubMutation, PublishHubMutationVariables> {
+    document = PublishHubDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const UnPublishHubDocument = gql`
+    mutation UnPublishHub($hubId: String!) {
+  unPublishHub(hubId: $hubId)
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class UnPublishHubGQL extends Apollo.Mutation<UnPublishHubMutation, UnPublishHubMutationVariables> {
+    document = UnPublishHubDocument;
     
     constructor(apollo: Apollo.Apollo) {
       super(apollo);

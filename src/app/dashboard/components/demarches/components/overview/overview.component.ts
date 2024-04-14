@@ -6,10 +6,13 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MockService } from 'src/app/shared/services/mock.service';
 import { ModalConfirmationComponent } from 'src/app/shared/components/modal-confirmation/modal-confirmation.component';
 import {
+  DeleteDemarcheGQL,
   Demarche,
   FetchDemarchesGQL,
   PaginationInfo,
+  PublishDemarcheGQL,
   QueryDataConfigInput,
+  UnPublishDemarcheGQL,
 } from 'src/graphql/generated';
 import { defaultTablePageSize } from 'src/app/shared/constants';
 import { FormBuilder, FormGroup } from '@angular/forms';
@@ -21,6 +24,7 @@ import {
   tap,
 } from 'rxjs';
 import { SelectOptions } from 'src/app/shared/utils/selec-options';
+import { SnackBarService } from 'src/app/shared/services/snackbar.service';
 
 @Component({
   selector: 'app-overview-demarche',
@@ -66,7 +70,11 @@ export class OverviewComponent {
     private api: MockService,
     private fetchDemarchesGQL: FetchDemarchesGQL,
     public dialog: MatDialog,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private snackBarService: SnackBarService,
+    private deleteDemarcheGQL: DeleteDemarcheGQL,
+    private publishDemarcheGQL: PublishDemarcheGQL,
+    private unPublishDemarcheGQL: UnPublishDemarcheGQL
   ) {
     this.getDemarches();
     this.filterForm = this.fb.group({
@@ -108,7 +116,7 @@ export class OverviewComponent {
     });
   }
 
-  getDemarches() {
+  getDemarches(useCache=true) {
     const demarcheFilter = this.getFilters();
     const queryFilter = {
       limit: this.pageSize,
@@ -116,7 +124,7 @@ export class OverviewComponent {
       search: this.filterForm?.value?.search || null,
     };
     this.fetchDemarchesGQL
-      .fetch({ queryFilter, demarcheFilter })
+      .fetch({ queryFilter, demarcheFilter }, { fetchPolicy: useCache ? 'cache-first': 'no-cache' })
       .subscribe((result) => {
         this.data = result.data.fetchDemarches as any;
         this.currentPage = this.data.pagination.currentPage;
@@ -135,26 +143,90 @@ export class OverviewComponent {
     this.getDemarches();
   }
 
-  handleDeleteUser(id: number) {
+  handleDeleteDemarche(id: string) {
     this.openDialogDelete(id);
+  }
+
+  handlePublishDemarche(id: string) {
+    this.openDialogPublish(id);
+  }
+
+  handleUnPublishDemarche(id: string) {
+    this.openDialogUnPublish(id);
   }
 
   search($event: Event) {
     this.searchTerms.next(($event.target as HTMLInputElement).value);
   }
 
-  openDialogDelete(id: number): void {
+  openDialogDelete(id: string): void {
     const dialogRef = this.dialog.open(ModalConfirmationComponent, {
       maxHeight: '90vh',
       maxWidth: '600px',
       width: '100%',
     });
 
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result) {
-        this.api.deteleUser(id).subscribe((resp) => {
-          console.log(id);
+    dialogRef.afterClosed().subscribe((resp) => {
+      if (resp) {
+        this.deleteDemarcheGQL.mutate({ demarcheId: id }).subscribe((result) => {
+          if(result.data.deleteDemarche) {
+            this.getDemarches(false);
+          }
         });
+      }
+    });
+  }
+
+  openDialogPublish(id: string): void {
+    const dialogRef = this.dialog.open(ModalConfirmationComponent, {
+      maxHeight: '90vh',
+      maxWidth: '600px',
+      width: '100%',
+      data: {
+        message: "Veuillez confirmer la publication !",
+        btnMessage: "Publier"
+      }
+    });
+
+    dialogRef.afterClosed().subscribe((resp) => {
+      if (resp) {
+        this.publishDemarcheGQL.mutate({ demarcheId: id }).subscribe(
+          (result) => {
+            if(result.data.publishDemarche) {
+              this.getDemarches(false);
+            }
+          },
+          error => {
+            this.snackBarService.showErrorSnackBar();
+          }
+        );
+      }
+    });
+  }
+
+  openDialogUnPublish(id: string): void {
+    const dialogRef = this.dialog.open(ModalConfirmationComponent, {
+      maxHeight: '90vh',
+      maxWidth: '600px',
+      width: '100%',
+      data: {
+        message: "Veuillez confirmer la dépublication !",
+        btnMessage: "Dépublier"
+      }
+    });
+
+    dialogRef.afterClosed().subscribe((resp) => {
+      if (resp) {
+        this.unPublishDemarcheGQL.mutate({ demarcheId: id }).subscribe(
+          (result) => {
+            if(result.data.unPublishDemarche) {
+              this.getDemarches(false);
+            }
+          },
+          error => {
+            this.snackBarService.showErrorSnackBar();
+          }
+        );
       }
     });
   }

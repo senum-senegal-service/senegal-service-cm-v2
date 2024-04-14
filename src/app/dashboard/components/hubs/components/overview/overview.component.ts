@@ -10,6 +10,9 @@ import {
   FetchHubsGQL,
   PaginationInfo,
   QueryDataConfigInput,
+  DeleteHubGQL,
+  PublishHubGQL,
+  UnPublishHubGQL,
 } from 'src/graphql/generated';
 import { defaultTablePageSize } from 'src/app/shared/constants';
 import { FormBuilder, FormGroup } from '@angular/forms';
@@ -21,6 +24,7 @@ import {
   tap,
 } from 'rxjs';
 import { SelectOptions } from 'src/app/shared/utils/selec-options';
+import { SnackBarService } from 'src/app/shared/services/snackbar.service';
 
 @Component({
   selector: 'app-overview-hub',
@@ -66,7 +70,11 @@ export class OverviewComponent {
     private api: MockService,
     private fetchHubsGQL: FetchHubsGQL,
     public dialog: MatDialog,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private snackBarService: SnackBarService,
+    private deleteHubGQL: DeleteHubGQL,
+    private publishHubGQL: PublishHubGQL,
+    private unPublishHubGQL: UnPublishHubGQL
   ) {
     this.getHubs();
     this.filterForm = this.fb.group({
@@ -108,7 +116,7 @@ export class OverviewComponent {
     });
   }
 
-  getHubs() {
+  getHubs(useCache=true) {
     const hubFilter = this.getFilters();
     const queryFilter = {
       limit: this.pageSize,
@@ -116,7 +124,7 @@ export class OverviewComponent {
       search: this.filterForm?.value?.search || null,
     };
     this.fetchHubsGQL
-      .fetch({ queryFilter, hubFilter })
+      .fetch({ queryFilter, hubFilter }, { fetchPolicy: useCache ? 'cache-first' : 'no-cache' })
       .subscribe((result) => {
         this.data = result.data.fetchHubs as any;
         this.currentPage = this.data.pagination.currentPage;
@@ -135,30 +143,95 @@ export class OverviewComponent {
     this.getHubs();
   }
 
-  handleDeleteUser(id: number) {
+  handleDeleteHub(id: string) {
     this.openDialogDelete(id);
   }
 
-  handlePublish(id: number) {
-    this.openDialogDelete(id);
+  handlePublish(id: string) {
+    this.openDialogPublish(id);
+  }
+
+  handleUnPublish(id: string) {
+    this.openDialogUnPublish(id);
   }
 
   search($event: Event) {
     this.searchTerms.next(($event.target as HTMLInputElement).value);
   }
 
-  openDialogDelete(id: number): void {
+  openDialogDelete(id: string): void {
     const dialogRef = this.dialog.open(ModalConfirmationComponent, {
       maxHeight: '90vh',
       maxWidth: '600px',
       width: '100%',
     });
 
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result) {
-        this.api.deteleUser(id).subscribe((resp) => {
-          console.log(id);
-        });
+    dialogRef.afterClosed().subscribe((resp) => {
+      if (resp) {
+        this.deleteHubGQL.mutate({ hubId: id }).subscribe(
+          (result) => {
+            if(result.data.deleteHub) {
+              this.getHubs(false);
+            }
+          },
+          error => {
+            this.snackBarService.showErrorSnackBar();
+          }
+        );
+      }
+    });
+  }
+
+  openDialogPublish(id: string): void {
+    const dialogRef = this.dialog.open(ModalConfirmationComponent, {
+      maxHeight: '90vh',
+      maxWidth: '600px',
+      width: '100%',
+      data: {
+        message: "Veuillez confirmer la publication !",
+        btnMessage: "Publier"
+      }
+    });
+
+    dialogRef.afterClosed().subscribe((resp) => {
+      if (resp) {
+        this.publishHubGQL.mutate({ hubId: id }).subscribe(
+          (result) => {
+            if(result.data.publishHub) {
+              this.getHubs(false);
+            }
+          },
+          error => {
+            this.snackBarService.showErrorSnackBar();
+          }
+        );
+      }
+    });
+  }
+
+  openDialogUnPublish(id: string): void {
+    const dialogRef = this.dialog.open(ModalConfirmationComponent, {
+      maxHeight: '90vh',
+      maxWidth: '600px',
+      width: '100%',
+      data: {
+        message: "Veuillez confirmer la dépublication !",
+        btnMessage: "Dépublier"
+      }
+    });
+
+    dialogRef.afterClosed().subscribe((resp) => {
+      if (resp) {
+        this.unPublishHubGQL.mutate({ hubId: id }).subscribe(
+          (result) => {
+            if(result.data.unPublishHub) {
+              this.getHubs(false);
+            }
+          },
+          error => {
+            this.snackBarService.showErrorSnackBar();
+          }
+        );
       }
     });
   }

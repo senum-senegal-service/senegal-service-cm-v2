@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { DIALOG_DATA } from '@angular/cdk/dialog';
+import { Component, Inject } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
@@ -7,10 +8,19 @@ import { MatDialogRef } from '@angular/material/dialog';
   styleUrls: ['./modal-confirmation.component.scss'],
 })
 export class ModalConfirmationComponent {
-  constructor(public dialogRef: MatDialogRef<ModalConfirmationComponent>) {}
+  message: string;
+  btnMessage: string;
+  constructor(
+    public dialogRef: MatDialogRef<ModalConfirmationComponent>,
+    @Inject(DIALOG_DATA) private data: any
+  ) {
+    console.log({data})
+    this.message = data?.message || "Confirmer la suppression !";
+    this.btnMessage = data?.btnMessage || "Supprimer";
+  }
 
   onNoClick(): void {
-    this.dialogRef.close(true);
+    this.dialogRef.close(false);
   }
 
   handleDelete() {

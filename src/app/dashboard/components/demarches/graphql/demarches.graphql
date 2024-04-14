@@ -150,3 +150,15 @@ query FetchDemarche($demarcheId: String!) {
     }
 	}
 }
+
+mutation DeleteDemarche($demarcheId: Any!) {
+  deleteDemarche(demarcheId: $demarcheId)
+}
+
+mutation PublishDemarche($demarcheId: Any!) {
+  publishDemarche(demarcheId: $demarcheId)
+}
+
+mutation UnPublishDemarche($demarcheId: Any!) {
+  unPublishDemarche(demarcheId: $demarcheId)
+}
