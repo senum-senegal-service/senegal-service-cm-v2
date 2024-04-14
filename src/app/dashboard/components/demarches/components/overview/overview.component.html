@@ -18,7 +18,7 @@
                     <label for="filtre-etat">Filtrer par état</label>
                     <mat-form-field class="form-control">
                         <mat-label class="label">Choisir un état</mat-label>
-                        <mat-select (selectionChange)="getDemarches()" id="filtre-etat" formControlName="est_publie"
+                        <mat-select (selectionChange)="getDemarches()" id="filtre-etat" formControlName="etat"
                             name="etatPub">
                             <div *ngFor="let state of states">
                                 <mat-option [value]="state.value">{{state.viewValue}}</mat-option>

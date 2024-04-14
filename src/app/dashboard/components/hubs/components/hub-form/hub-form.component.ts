@@ -132,7 +132,7 @@ export class HubFormComponent implements OnChanges {
         this.snackbarService.showSuccessSnackBar(
           'Hub ajouté avec succés'
         );
-        this.router.navigate(['/dashboard/hubs']);
+        this.router.navigate(['/dashboard/hubs-de-vie']);
       }, error => {
         console.error(error);
       });
@@ -148,7 +148,7 @@ export class HubFormComponent implements OnChanges {
         this.snackbarService.showSuccessSnackBar(
           'Hub modifié avec succés'
         );
-        this.router.navigate(['/dashboard/hubs']);
+        this.router.navigate(['/dashboard/hubs-de-vie']);
       }, error => {
         console.error(error);
       });
