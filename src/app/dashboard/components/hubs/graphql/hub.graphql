@@ -1,0 +1,137 @@
+query FetchHubs($queryFilter: QueryDataConfigInput, $hubFilter: HubInputSearchInput) {
+	fetchHubs(queryFilter: $queryFilter, hubFilter: $hubFilter) {
+		pagination {
+			totalItems
+			pageCount
+			pageSize
+			currentPage
+		}
+		results {
+			id
+			titre
+      resume
+      updatedAt
+      etat
+      est_publie
+      observations
+      a_la_une
+			sous_themes {
+				id
+				libelle
+				slug
+			}
+		}
+
+	}
+}
+
+query SearchHubs($queryFilter: QueryDataConfigInput) {
+	searchResults: fetchHubs(queryFilter: $queryFilter) {
+		pagination {
+			totalItems
+			pageCount
+			pageSize
+			currentPage
+		}
+		results {
+			id
+			nom: titre
+		}
+
+	}
+}
+
+mutation CreateHub($hubInput: HubInput!) {
+	createHub(hubInput: $hubInput) {
+		id
+		titre
+		mot_cle
+		description
+		resume
+		slug
+		observations
+		etat
+		est_publie
+    a_la_une
+		sous_themes {
+			id
+			libelle
+		}
+		service_administratifs {
+			id
+			nom
+		}
+		formulaires {
+			id
+			nom
+		}
+		faqs {
+			id
+			question
+		}
+		descripteurs {
+			id
+			libelle
+		}
+		modele_lettres {
+			id
+			nom
+		}
+		textes {
+			id
+			nom
+		}
+		lien_utiles {
+			id
+			nom
+		}
+
+	}
+}
+
+query FetchHub($hubId: String!) {
+	fetchHub(hubId: $hubId) {
+		id
+		titre
+		mot_cle
+		description
+		resume
+		slug
+		observations
+		etat
+		est_publie
+    a_la_une
+		service_administratifs {
+				id
+				nom
+			}
+			sous_themes {
+				id
+				nom: libelle
+			}
+			formulaires {
+				id
+				nom
+			}
+			faqs {
+				id
+				nom: question
+			}
+		descripteurs {
+			id
+			nom: libelle
+		}
+		modele_lettres {
+			id
+			nom: nom
+		}
+		textes {
+			id
+			nom
+		}
+		lien_utiles {
+			id
+			nom
+		}
+	}
+}

@@ -23,19 +23,19 @@ export type Scalars = {
 
 export type Demarche = {
   __typename?: 'Demarche';
-  a_la_une: Scalars['Boolean']['output'];
+  a_la_une?: Maybe<Scalars['Boolean']['output']>;
   add_by?: Maybe<Scalars['String']['output']>;
   corps?: Maybe<Scalars['String']['output']>;
   cout?: Maybe<Scalars['Int']['output']>;
   createdAt: Scalars['DateTime']['output'];
-  date_publication: Scalars['DateTime']['output'];
+  date_publication?: Maybe<Scalars['DateTime']['output']>;
   delai?: Maybe<Scalars['Int']['output']>;
   delatedAt?: Maybe<Scalars['DateTime']['output']>;
   demarches: Array<Demarche>;
   descripteurs: Array<Descripteur>;
   description: Scalars['String']['output'];
-  est_publie: Scalars['Boolean']['output'];
-  etat: Scalars['String']['output'];
+  est_publie?: Maybe<Scalars['Boolean']['output']>;
+  etat?: Maybe<Scalars['String']['output']>;
   faqs: Array<Faq>;
   formulaires: Array<Formulaire>;
   id: Scalars['Any']['output'];
@@ -48,7 +48,7 @@ export type Demarche = {
   service_administratifs: Array<ServiceAdministratif>;
   slug: Scalars['String']['output'];
   sous_themes: Array<SousTheme>;
-  teleprocedure: Scalars['Boolean']['output'];
+  teleprocedure?: Maybe<Scalars['Boolean']['output']>;
   textes: Array<Texte>;
   titre: Scalars['String']['output'];
   updatedAt: Scalars['DateTime']['output'];
@@ -216,6 +216,85 @@ export type FormulaireUpdateInput = {
   slug: Scalars['String']['input'];
 };
 
+export type Hub = {
+  __typename?: 'Hub';
+  a_la_une?: Maybe<Scalars['Boolean']['output']>;
+  add_by?: Maybe<Scalars['String']['output']>;
+  createdAt: Scalars['DateTime']['output'];
+  date_publication?: Maybe<Scalars['DateTime']['output']>;
+  delatedAt?: Maybe<Scalars['DateTime']['output']>;
+  demarches: Array<Hub>;
+  descripteurs: Array<Descripteur>;
+  description: Scalars['String']['output'];
+  est_publie?: Maybe<Scalars['Boolean']['output']>;
+  etat?: Maybe<Scalars['String']['output']>;
+  faqs: Array<Faq>;
+  formulaires: Array<Formulaire>;
+  id: Scalars['Any']['output'];
+  lien_utiles: Array<LienUtile>;
+  modele_lettres: Array<ModeleLettre>;
+  mot_cle?: Maybe<Scalars['String']['output']>;
+  observations?: Maybe<Scalars['String']['output']>;
+  resume?: Maybe<Scalars['String']['output']>;
+  service_administratifs: Array<ServiceAdministratif>;
+  slug: Scalars['String']['output'];
+  sous_themes: Array<SousTheme>;
+  textes: Array<Texte>;
+  titre: Scalars['String']['output'];
+  updatedAt: Scalars['DateTime']['output'];
+};
+
+export type HubInput = {
+  descripteurs?: InputMaybe<Array<Scalars['Any']['input']>>;
+  description: Scalars['String']['input'];
+  est_publie: Scalars['Boolean']['input'];
+  etat: Scalars['String']['input'];
+  faqs?: InputMaybe<Array<Scalars['Any']['input']>>;
+  formulaires?: InputMaybe<Array<Scalars['Any']['input']>>;
+  lien_utiles?: InputMaybe<Array<Scalars['Any']['input']>>;
+  modele_lettres?: InputMaybe<Array<Scalars['Any']['input']>>;
+  mot_cle?: InputMaybe<Scalars['String']['input']>;
+  observations?: InputMaybe<Scalars['String']['input']>;
+  resume?: InputMaybe<Scalars['String']['input']>;
+  service_administratifs?: InputMaybe<Array<Scalars['Any']['input']>>;
+  sous_themes?: InputMaybe<Array<Scalars['String']['input']>>;
+  textes?: InputMaybe<Array<Scalars['Any']['input']>>;
+  titre: Scalars['String']['input'];
+};
+
+export type HubInputSearchInput = {
+  a_la_une?: InputMaybe<Scalars['Boolean']['input']>;
+  est_publie?: InputMaybe<Scalars['Boolean']['input']>;
+  etat?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type HubUpdateInput = {
+  a_la_une?: InputMaybe<Scalars['Int']['input']>;
+  corps?: InputMaybe<Scalars['String']['input']>;
+  cout?: InputMaybe<Scalars['Int']['input']>;
+  date_publication?: InputMaybe<Scalars['DateTime']['input']>;
+  delai?: InputMaybe<Scalars['Int']['input']>;
+  descripteurs: Array<Scalars['String']['input']>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  est_publie?: InputMaybe<Scalars['Int']['input']>;
+  etat?: InputMaybe<Scalars['String']['input']>;
+  faqs: Array<Scalars['String']['input']>;
+  formulaires: Array<Scalars['String']['input']>;
+  lien_utiles: Array<Scalars['String']['input']>;
+  modele_lettres: Array<Scalars['String']['input']>;
+  mot_cle?: InputMaybe<Scalars['String']['input']>;
+  observations?: InputMaybe<Scalars['String']['input']>;
+  post_scriptum?: InputMaybe<Scalars['String']['input']>;
+  resume?: InputMaybe<Scalars['String']['input']>;
+  service_administratifs: Array<Scalars['String']['input']>;
+  slug?: InputMaybe<Scalars['String']['input']>;
+  sous_themes: Array<Scalars['String']['input']>;
+  teleprocedure?: InputMaybe<Scalars['Int']['input']>;
+  textes: Array<Scalars['String']['input']>;
+  titre?: InputMaybe<Scalars['String']['input']>;
+  url?: InputMaybe<Scalars['String']['input']>;
+};
+
 export type LienUtile = {
   __typename?: 'LienUtile';
   date_publication?: Maybe<Scalars['DateTime']['output']>;
@@ -303,6 +382,7 @@ export type Mutation = {
   createDescripteur: Descripteur;
   createFaq: Faq;
   createFormulaire: Formulaire;
+  createHub: Hub;
   createLienUtile: LienUtile;
   createModeleLettre: ModeleLettre;
   createServiceAdministratif: ServiceAdministratif;
@@ -315,6 +395,7 @@ export type Mutation = {
   updateDescripteur: Scalars['Boolean']['output'];
   updateFaq: Scalars['Boolean']['output'];
   updateFormulaire: Scalars['Boolean']['output'];
+  updateHub: Scalars['Boolean']['output'];
   updateLienUtile: Scalars['Boolean']['output'];
   updateModeleLettre: Scalars['Boolean']['output'];
   updateServiceAdministratif: Scalars['Boolean']['output'];
@@ -342,6 +423,11 @@ export type MutationCreateFaqArgs = {
 
 export type MutationCreateFormulaireArgs = {
   formulaireInput: FormulaireInput;
+};
+
+
+export type MutationCreateHubArgs = {
+  hubInput: HubInput;
 };
 
 
@@ -406,6 +492,12 @@ export type MutationUpdateFaqArgs = {
 export type MutationUpdateFormulaireArgs = {
   formulaireId: Scalars['ID']['input'];
   formulaireInput: FormulaireUpdateInput;
+};
+
+
+export type MutationUpdateHubArgs = {
+  hubId: Scalars['ID']['input'];
+  hubInput: HubUpdateInput;
 };
 
 
@@ -485,6 +577,12 @@ export type PaginatedFormulaireResult = {
   results: Array<Formulaire>;
 };
 
+export type PaginatedHubResult = {
+  __typename?: 'PaginatedHubResult';
+  pagination: PaginationInfo;
+  results: Array<Hub>;
+};
+
 export type PaginatedLienUtileResult = {
   __typename?: 'PaginatedLienUtileResult';
   pagination: PaginationInfo;
@@ -532,6 +630,7 @@ export type PaginationInfo = {
 export type Query = {
   __typename?: 'Query';
   fetchAllDemarches: Demarche;
+  fetchAllHubs: Hub;
   fetchDemarche: Demarche;
   fetchDemarches: PaginatedDemarcheResult;
   fetchDescripteur: Descripteur;
@@ -540,6 +639,8 @@ export type Query = {
   fetchFaqs: PaginatedFaqResult;
   fetchFormulaire: Formulaire;
   fetchFormulaires: PaginatedFormulaireResult;
+  fetchHub: Hub;
+  fetchHubs: PaginatedHubResult;
   fetchLienUtile: LienUtile;
   fetchLienUtiles: PaginatedLienUtileResult;
   fetchModeleLettre: ModeleLettre;
@@ -559,6 +660,11 @@ export type Query = {
 
 
 export type QueryFetchAllDemarchesArgs = {
+  queryFilter?: InputMaybe<QueryDataConfigInput>;
+};
+
+
+export type QueryFetchAllHubsArgs = {
   queryFilter?: InputMaybe<QueryDataConfigInput>;
 };
 
@@ -600,6 +706,17 @@ export type QueryFetchFormulaireArgs = {
 
 
 export type QueryFetchFormulairesArgs = {
+  queryFilter?: InputMaybe<QueryDataConfigInput>;
+};
+
+
+export type QueryFetchHubArgs = {
+  hubId: Scalars['String']['input'];
+};
+
+
+export type QueryFetchHubsArgs = {
+  hubFilter?: InputMaybe<HubInputSearchInput>;
   queryFilter?: InputMaybe<QueryDataConfigInput>;
 };
 
@@ -907,7 +1024,7 @@ export type FetchDemarchesQueryVariables = Exact<{
 }>;
 
 
-export type FetchDemarchesQuery = { __typename?: 'Query', fetchDemarches: { __typename?: 'PaginatedDemarcheResult', pagination: { __typename?: 'PaginationInfo', totalItems: number, pageCount: number, pageSize: number, currentPage: number }, results: Array<{ __typename?: 'Demarche', id: any, titre: string, resume?: string | null, updatedAt: any, etat: string, est_publie: boolean, observations?: string | null, sous_themes: Array<{ __typename?: 'SousTheme', id: string, libelle: string, slug: string }> }> } };
+export type FetchDemarchesQuery = { __typename?: 'Query', fetchDemarches: { __typename?: 'PaginatedDemarcheResult', pagination: { __typename?: 'PaginationInfo', totalItems: number, pageCount: number, pageSize: number, currentPage: number }, results: Array<{ __typename?: 'Demarche', id: any, titre: string, resume?: string | null, updatedAt: any, etat?: string | null, est_publie?: boolean | null, observations?: string | null, sous_themes: Array<{ __typename?: 'SousTheme', id: string, libelle: string, slug: string }> }> } };
 
 export type SearchDemarchesQueryVariables = Exact<{
   queryFilter?: InputMaybe<QueryDataConfigInput>;
@@ -921,14 +1038,14 @@ export type CreateDemarcheMutationVariables = Exact<{
 }>;
 
 
-export type CreateDemarcheMutation = { __typename?: 'Mutation', createDemarche: { __typename?: 'Demarche', id: any, titre: string, url?: string | null, cout?: number | null, corps?: string | null, mot_cle?: string | null, delai?: number | null, description: string, resume?: string | null, a_la_une: boolean, slug: string, observations?: string | null, post_scriptum?: string | null, etat: string, est_publie: boolean, teleprocedure: boolean, sous_themes: Array<{ __typename?: 'SousTheme', id: string, libelle: string }>, service_administratifs: Array<{ __typename?: 'ServiceAdministratif', id: number, nom: string }>, formulaires: Array<{ __typename?: 'Formulaire', id: number, nom: string }>, faqs: Array<{ __typename?: 'Faq', id: number, question: string }>, descripteurs: Array<{ __typename?: 'Descripteur', id: number, libelle: string }>, modele_lettres: Array<{ __typename?: 'ModeleLettre', id: number, nom: string }>, textes: Array<{ __typename?: 'Texte', id: number, nom: string }>, lien_utiles: Array<{ __typename?: 'LienUtile', id: number, nom: string }> } };
+export type CreateDemarcheMutation = { __typename?: 'Mutation', createDemarche: { __typename?: 'Demarche', id: any, titre: string, url?: string | null, cout?: number | null, corps?: string | null, mot_cle?: string | null, delai?: number | null, description: string, resume?: string | null, a_la_une?: boolean | null, slug: string, observations?: string | null, post_scriptum?: string | null, etat?: string | null, est_publie?: boolean | null, teleprocedure?: boolean | null, sous_themes: Array<{ __typename?: 'SousTheme', id: string, libelle: string }>, service_administratifs: Array<{ __typename?: 'ServiceAdministratif', id: number, nom: string }>, formulaires: Array<{ __typename?: 'Formulaire', id: number, nom: string }>, faqs: Array<{ __typename?: 'Faq', id: number, question: string }>, descripteurs: Array<{ __typename?: 'Descripteur', id: number, libelle: string }>, modele_lettres: Array<{ __typename?: 'ModeleLettre', id: number, nom: string }>, textes: Array<{ __typename?: 'Texte', id: number, nom: string }>, lien_utiles: Array<{ __typename?: 'LienUtile', id: number, nom: string }> } };
 
 export type FetchDemarcheQueryVariables = Exact<{
   demarcheId: Scalars['String']['input'];
 }>;
 
 
-export type FetchDemarcheQuery = { __typename?: 'Query', fetchDemarche: { __typename?: 'Demarche', id: any, titre: string, url?: string | null, cout?: number | null, corps?: string | null, mot_cle?: string | null, delai?: number | null, description: string, resume?: string | null, a_la_une: boolean, slug: string, observations?: string | null, post_scriptum?: string | null, etat: string, est_publie: boolean, teleprocedure: boolean, service_administratifs: Array<{ __typename?: 'ServiceAdministratif', id: number, nom: string }>, sous_themes: Array<{ __typename?: 'SousTheme', id: string, nom: string }>, formulaires: Array<{ __typename?: 'Formulaire', id: number, nom: string }>, faqs: Array<{ __typename?: 'Faq', id: number, nom: string }>, descripteurs: Array<{ __typename?: 'Descripteur', id: number, nom: string }>, modele_lettres: Array<{ __typename?: 'ModeleLettre', id: number, nom: string }>, textes: Array<{ __typename?: 'Texte', id: number, nom: string }>, lien_utiles: Array<{ __typename?: 'LienUtile', id: number, nom: string }>, demarches: Array<{ __typename?: 'Demarche', id: any, nom: string }> } };
+export type FetchDemarcheQuery = { __typename?: 'Query', fetchDemarche: { __typename?: 'Demarche', id: any, titre: string, url?: string | null, cout?: number | null, corps?: string | null, mot_cle?: string | null, delai?: number | null, description: string, resume?: string | null, a_la_une?: boolean | null, slug: string, observations?: string | null, post_scriptum?: string | null, etat?: string | null, est_publie?: boolean | null, teleprocedure?: boolean | null, service_administratifs: Array<{ __typename?: 'ServiceAdministratif', id: number, nom: string }>, sous_themes: Array<{ __typename?: 'SousTheme', id: string, nom: string }>, formulaires: Array<{ __typename?: 'Formulaire', id: number, nom: string }>, faqs: Array<{ __typename?: 'Faq', id: number, nom: string }>, descripteurs: Array<{ __typename?: 'Descripteur', id: number, nom: string }>, modele_lettres: Array<{ __typename?: 'ModeleLettre', id: number, nom: string }>, textes: Array<{ __typename?: 'Texte', id: number, nom: string }>, lien_utiles: Array<{ __typename?: 'LienUtile', id: number, nom: string }>, demarches: Array<{ __typename?: 'Demarche', id: any, nom: string }> } };
 
 export type FetchDescripteursQueryVariables = Exact<{
   queryFilter?: InputMaybe<QueryDataConfigInput>;
@@ -1041,6 +1158,35 @@ export type FetchThemesQueryVariables = Exact<{
 
 
 export type FetchThemesQuery = { __typename?: 'Query', fetchThemes: { __typename?: 'PaginatedThemeResult', pagination: { __typename?: 'PaginationInfo', totalItems: number, pageCount: number, currentPage: number, pageSize: number }, results: Array<{ __typename?: 'Theme', id: number, slug: string, libelle: string, espace_id?: number | null, couleur?: string | null, ordre: number, icon?: string | null, line_icon?: string | null }> } };
+
+export type FetchHubsQueryVariables = Exact<{
+  queryFilter?: InputMaybe<QueryDataConfigInput>;
+  hubFilter?: InputMaybe<HubInputSearchInput>;
+}>;
+
+
+export type FetchHubsQuery = { __typename?: 'Query', fetchHubs: { __typename?: 'PaginatedHubResult', pagination: { __typename?: 'PaginationInfo', totalItems: number, pageCount: number, pageSize: number, currentPage: number }, results: Array<{ __typename?: 'Hub', id: any, titre: string, resume?: string | null, updatedAt: any, etat?: string | null, est_publie?: boolean | null, observations?: string | null, a_la_une?: boolean | null, sous_themes: Array<{ __typename?: 'SousTheme', id: string, libelle: string, slug: string }> }> } };
+
+export type SearchHubsQueryVariables = Exact<{
+  queryFilter?: InputMaybe<QueryDataConfigInput>;
+}>;
+
+
+export type SearchHubsQuery = { __typename?: 'Query', searchResults: { __typename?: 'PaginatedHubResult', pagination: { __typename?: 'PaginationInfo', totalItems: number, pageCount: number, pageSize: number, currentPage: number }, results: Array<{ __typename?: 'Hub', id: any, nom: string }> } };
+
+export type CreateHubMutationVariables = Exact<{
+  hubInput: HubInput;
+}>;
+
+
+export type CreateHubMutation = { __typename?: 'Mutation', createHub: { __typename?: 'Hub', id: any, titre: string, mot_cle?: string | null, description: string, resume?: string | null, slug: string, observations?: string | null, etat?: string | null, est_publie?: boolean | null, a_la_une?: boolean | null, sous_themes: Array<{ __typename?: 'SousTheme', id: string, libelle: string }>, service_administratifs: Array<{ __typename?: 'ServiceAdministratif', id: number, nom: string }>, formulaires: Array<{ __typename?: 'Formulaire', id: number, nom: string }>, faqs: Array<{ __typename?: 'Faq', id: number, question: string }>, descripteurs: Array<{ __typename?: 'Descripteur', id: number, libelle: string }>, modele_lettres: Array<{ __typename?: 'ModeleLettre', id: number, nom: string }>, textes: Array<{ __typename?: 'Texte', id: number, nom: string }>, lien_utiles: Array<{ __typename?: 'LienUtile', id: number, nom: string }> } };
+
+export type FetchHubQueryVariables = Exact<{
+  hubId: Scalars['String']['input'];
+}>;
+
+
+export type FetchHubQuery = { __typename?: 'Query', fetchHub: { __typename?: 'Hub', id: any, titre: string, mot_cle?: string | null, description: string, resume?: string | null, slug: string, observations?: string | null, etat?: string | null, est_publie?: boolean | null, a_la_une?: boolean | null, service_administratifs: Array<{ __typename?: 'ServiceAdministratif', id: number, nom: string }>, sous_themes: Array<{ __typename?: 'SousTheme', id: string, nom: string }>, formulaires: Array<{ __typename?: 'Formulaire', id: number, nom: string }>, faqs: Array<{ __typename?: 'Faq', id: number, nom: string }>, descripteurs: Array<{ __typename?: 'Descripteur', id: number, nom: string }>, modele_lettres: Array<{ __typename?: 'ModeleLettre', id: number, nom: string }>, textes: Array<{ __typename?: 'Texte', id: number, nom: string }>, lien_utiles: Array<{ __typename?: 'LienUtile', id: number, nom: string }> } };
 
 export const RegisterDocument = gql`
     mutation Register($registerInput: RegisterInput!) {
@@ -1733,6 +1879,189 @@ export const FetchThemesDocument = gql`
   })
   export class FetchThemesGQL extends Apollo.Query<FetchThemesQuery, FetchThemesQueryVariables> {
     document = FetchThemesDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const FetchHubsDocument = gql`
+    query FetchHubs($queryFilter: QueryDataConfigInput, $hubFilter: HubInputSearchInput) {
+  fetchHubs(queryFilter: $queryFilter, hubFilter: $hubFilter) {
+    pagination {
+      totalItems
+      pageCount
+      pageSize
+      currentPage
+    }
+    results {
+      id
+      titre
+      resume
+      updatedAt
+      etat
+      est_publie
+      observations
+      a_la_une
+      sous_themes {
+        id
+        libelle
+        slug
+      }
+    }
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class FetchHubsGQL extends Apollo.Query<FetchHubsQuery, FetchHubsQueryVariables> {
+    document = FetchHubsDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const SearchHubsDocument = gql`
+    query SearchHubs($queryFilter: QueryDataConfigInput) {
+  searchResults: fetchHubs(queryFilter: $queryFilter) {
+    pagination {
+      totalItems
+      pageCount
+      pageSize
+      currentPage
+    }
+    results {
+      id
+      nom: titre
+    }
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class SearchHubsGQL extends Apollo.Query<SearchHubsQuery, SearchHubsQueryVariables> {
+    document = SearchHubsDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const CreateHubDocument = gql`
+    mutation CreateHub($hubInput: HubInput!) {
+  createHub(hubInput: $hubInput) {
+    id
+    titre
+    mot_cle
+    description
+    resume
+    slug
+    observations
+    etat
+    est_publie
+    a_la_une
+    sous_themes {
+      id
+      libelle
+    }
+    service_administratifs {
+      id
+      nom
+    }
+    formulaires {
+      id
+      nom
+    }
+    faqs {
+      id
+      question
+    }
+    descripteurs {
+      id
+      libelle
+    }
+    modele_lettres {
+      id
+      nom
+    }
+    textes {
+      id
+      nom
+    }
+    lien_utiles {
+      id
+      nom
+    }
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class CreateHubGQL extends Apollo.Mutation<CreateHubMutation, CreateHubMutationVariables> {
+    document = CreateHubDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const FetchHubDocument = gql`
+    query FetchHub($hubId: String!) {
+  fetchHub(hubId: $hubId) {
+    id
+    titre
+    mot_cle
+    description
+    resume
+    slug
+    observations
+    etat
+    est_publie
+    a_la_une
+    service_administratifs {
+      id
+      nom
+    }
+    sous_themes {
+      id
+      nom: libelle
+    }
+    formulaires {
+      id
+      nom
+    }
+    faqs {
+      id
+      nom: question
+    }
+    descripteurs {
+      id
+      nom: libelle
+    }
+    modele_lettres {
+      id
+      nom: nom
+    }
+    textes {
+      id
+      nom
+    }
+    lien_utiles {
+      id
+      nom
+    }
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class FetchHubGQL extends Apollo.Query<FetchHubQuery, FetchHubQueryVariables> {
+    document = FetchHubDocument;
     
     constructor(apollo: Apollo.Apollo) {
       super(apollo);

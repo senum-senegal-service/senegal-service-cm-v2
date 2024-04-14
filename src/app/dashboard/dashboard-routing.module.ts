@@ -36,7 +36,7 @@ const routes: Routes = [
       {
         path: 'hubs-de-vie',
         loadChildren: () =>
-          import('./components/hubs/hubs.module').then((m) => m.HubsModule),
+          import('./components/hubs/hub.module').then((m) => m.HubsModule),
       },
       {
         path: 'annonces',

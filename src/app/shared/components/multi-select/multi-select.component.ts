@@ -96,7 +96,7 @@ export class MultiSelectComponent implements OnInit, OnChanges {
           return this.options.find(o => o.id == so.id);
         });
 
-        console.log({value: this.value, selectedOptions: this.selectedOptions, options: this.options})
+        // console.log({value: this.value, selectedOptions: this.selectedOptions, options: this.options})
         this.updateForm();
       }
     }
