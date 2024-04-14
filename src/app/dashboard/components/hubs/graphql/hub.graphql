@@ -147,3 +147,4 @@ mutation PublishHub($hubId: String!) {
 mutation UnPublishHub($hubId: String!) {
   unPublishHub(hubId: $hubId)
 }
+

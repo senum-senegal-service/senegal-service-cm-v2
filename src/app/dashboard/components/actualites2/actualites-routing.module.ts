@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule, Routes } from '@angular/router';
-
+import { Router, RouterModule, Routes } from '@angular/router';
 import { ActualitesComponent } from './actualites.component';
 import { OverviewComponent } from './components/overview/overview.component';
 import { CreateActualiteComponent } from './components/create-actualite/create-actualite.component';

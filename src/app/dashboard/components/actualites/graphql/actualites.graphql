@@ -1,0 +1,118 @@
+query FetchActualites($queryFilter: QueryDataConfigInput, $actualiteFilter: ActualiteInputSearchInput) {
+	fetchActualites(queryFilter: $queryFilter, actualiteFilter: $actualiteFilter) {
+		pagination {
+			totalItems
+			pageCount
+			pageSize
+			currentPage
+		}
+		results {
+			id
+			titre
+      description
+      updatedAt
+      etat
+      est_publie
+      observations
+			sous_themes {
+				id
+				libelle
+				slug
+			}
+		}
+
+	}
+}
+
+
+query SearchActualites($queryFilter: QueryDataConfigInput) {
+	searchResults: fetchActualites(queryFilter: $queryFilter) {
+		pagination {
+			totalItems
+			pageCount
+			pageSize
+			currentPage
+		}
+		results {
+			id
+			nom: titre
+		}
+
+	}
+}
+
+mutation CreateActualite($actualiteInput: ActualiteInput!) {
+	createActualite(actualiteInput: $actualiteInput) {
+		id
+		titre
+		url
+		mot_cle
+		description
+		a_la_une
+		slug
+		observations
+		etat
+		est_publie
+		sous_themes {
+			id
+			libelle
+		}
+		service_administratifs {
+			id
+			nom
+		}
+		textes {
+			id
+			nom
+		}
+		demarches {
+			id
+			titre
+		}
+
+	}
+}
+
+query FetchActualite($actualiteId: String!) {
+	fetchActualite(actualiteId: $actualiteId) {
+		id
+		titre
+		url
+		mot_cle
+		description
+		a_la_une
+		slug
+    contenu
+		observations
+		etat
+		est_publie
+		service_administratifs {
+				id
+				nom
+			}
+			sous_themes {
+				id
+				nom: libelle
+			}
+		textes {
+			id
+			nom
+		}
+    demarches {
+      id
+      nom: titre
+    }
+	}
+}
+
+mutation DeleteActualite($actualiteId: Any!) {
+  deleteActualite(actualiteId: $actualiteId)
+}
+
+mutation PublishActualite($actualiteId: Any!) {
+  publishActualite(actualiteId: $actualiteId)
+}
+
+mutation UnPublishActualite($actualiteId: Any!) {
+  unPublishActualite(actualiteId: $actualiteId)
+}

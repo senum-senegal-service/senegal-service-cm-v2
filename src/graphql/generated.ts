@@ -21,6 +21,69 @@ export type Scalars = {
   DateTime: { input: any; output: any; }
 };
 
+export type Actualite = {
+  __typename?: 'Actualite';
+  a_la_une?: Maybe<Scalars['Boolean']['output']>;
+  add_by?: Maybe<Scalars['String']['output']>;
+  contenu: Scalars['String']['output'];
+  createdAt: Scalars['DateTime']['output'];
+  date_publication?: Maybe<Scalars['DateTime']['output']>;
+  delatedAt?: Maybe<Scalars['DateTime']['output']>;
+  demarches: Array<Demarche>;
+  description?: Maybe<Scalars['String']['output']>;
+  est_publie?: Maybe<Scalars['Boolean']['output']>;
+  etat?: Maybe<Scalars['String']['output']>;
+  id: Scalars['Any']['output'];
+  mot_cle?: Maybe<Scalars['String']['output']>;
+  observations?: Maybe<Scalars['String']['output']>;
+  service_administratifs: Array<ServiceAdministratif>;
+  slug: Scalars['String']['output'];
+  sous_themes: Array<SousTheme>;
+  textes: Array<Texte>;
+  titre: Scalars['String']['output'];
+  updatedAt: Scalars['DateTime']['output'];
+  url?: Maybe<Scalars['String']['output']>;
+};
+
+export type ActualiteInput = {
+  contenu: Scalars['String']['input'];
+  demarches?: InputMaybe<Array<Scalars['Any']['input']>>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  est_publie: Scalars['Boolean']['input'];
+  etat: Scalars['String']['input'];
+  mot_cle?: InputMaybe<Scalars['String']['input']>;
+  observations?: InputMaybe<Scalars['String']['input']>;
+  service_administratifs?: InputMaybe<Array<Scalars['Any']['input']>>;
+  sous_themes?: InputMaybe<Array<Scalars['String']['input']>>;
+  textes?: InputMaybe<Array<Scalars['Any']['input']>>;
+  titre: Scalars['String']['input'];
+  url?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type ActualiteInputSearchInput = {
+  a_la_une?: InputMaybe<Scalars['Boolean']['input']>;
+  est_publie?: InputMaybe<Scalars['Boolean']['input']>;
+  etat?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type ActualiteUpdateInput = {
+  a_la_une?: InputMaybe<Scalars['Int']['input']>;
+  contenu?: InputMaybe<Scalars['String']['input']>;
+  date_publication?: InputMaybe<Scalars['DateTime']['input']>;
+  demarches: Array<Scalars['String']['input']>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  est_publie?: InputMaybe<Scalars['Int']['input']>;
+  etat?: InputMaybe<Scalars['String']['input']>;
+  mot_cle?: InputMaybe<Scalars['String']['input']>;
+  observations?: InputMaybe<Scalars['String']['input']>;
+  service_administratifs: Array<Scalars['String']['input']>;
+  slug?: InputMaybe<Scalars['String']['input']>;
+  sous_themes: Array<Scalars['String']['input']>;
+  textes: Array<Scalars['String']['input']>;
+  titre?: InputMaybe<Scalars['String']['input']>;
+  url?: InputMaybe<Scalars['String']['input']>;
+};
+
 export type Demarche = {
   __typename?: 'Demarche';
   a_la_une?: Maybe<Scalars['Boolean']['output']>;
@@ -378,6 +441,7 @@ export type ModeleLettreUpdateInput = {
 
 export type Mutation = {
   __typename?: 'Mutation';
+  createActualite: Actualite;
   createDemarche: Demarche;
   createDescripteur: Descripteur;
   createFaq: Faq;
@@ -390,13 +454,17 @@ export type Mutation = {
   createTexte: Texte;
   createTheme: Theme;
   createUser: User;
+  deleteActualite: Scalars['Boolean']['output'];
   deleteDemarche: Scalars['Boolean']['output'];
   deleteHub: Scalars['Boolean']['output'];
+  publishActualite: Scalars['Boolean']['output'];
   publishDemarche: Scalars['Boolean']['output'];
   publishHub: Scalars['Boolean']['output'];
   register: Session;
+  unPublishActualite: Scalars['Boolean']['output'];
   unPublishDemarche: Scalars['Boolean']['output'];
   unPublishHub: Scalars['Boolean']['output'];
+  updateActualite: Scalars['Boolean']['output'];
   updateDemarche: Scalars['Boolean']['output'];
   updateDescripteur: Scalars['Boolean']['output'];
   updateFaq: Scalars['Boolean']['output'];
@@ -409,6 +477,11 @@ export type Mutation = {
   updateTexte: Scalars['Boolean']['output'];
   updateTheme: Scalars['Boolean']['output'];
   updateUser: Scalars['Boolean']['output'];
+};
+
+
+export type MutationCreateActualiteArgs = {
+  actualiteInput: ActualiteInput;
 };
 
 
@@ -472,6 +545,11 @@ export type MutationCreateUserArgs = {
 };
 
 
+export type MutationDeleteActualiteArgs = {
+  actualiteId: Scalars['Any']['input'];
+};
+
+
 export type MutationDeleteDemarcheArgs = {
   demarcheId: Scalars['Any']['input'];
 };
@@ -479,6 +557,11 @@ export type MutationDeleteDemarcheArgs = {
 
 export type MutationDeleteHubArgs = {
   hubId: Scalars['String']['input'];
+};
+
+
+export type MutationPublishActualiteArgs = {
+  actualiteId: Scalars['Any']['input'];
 };
 
 
@@ -497,6 +580,11 @@ export type MutationRegisterArgs = {
 };
 
 
+export type MutationUnPublishActualiteArgs = {
+  actualiteId: Scalars['Any']['input'];
+};
+
+
 export type MutationUnPublishDemarcheArgs = {
   demarcheId: Scalars['Any']['input'];
 };
@@ -504,6 +592,12 @@ export type MutationUnPublishDemarcheArgs = {
 
 export type MutationUnPublishHubArgs = {
   hubId: Scalars['String']['input'];
+};
+
+
+export type MutationUpdateActualiteArgs = {
+  actualiteId: Scalars['ID']['input'];
+  actualiteInput: ActualiteUpdateInput;
 };
 
 
@@ -589,6 +683,12 @@ export type OrderByInput = {
   property: Scalars['String']['input'];
 };
 
+export type PaginatedActualiteResult = {
+  __typename?: 'PaginatedActualiteResult';
+  pagination: PaginationInfo;
+  results: Array<Actualite>;
+};
+
 export type PaginatedDemarcheResult = {
   __typename?: 'PaginatedDemarcheResult';
   pagination: PaginationInfo;
@@ -665,6 +765,9 @@ export type PaginationInfo = {
 
 export type Query = {
   __typename?: 'Query';
+  fetchActualite: Actualite;
+  fetchActualites: PaginatedActualiteResult;
+  fetchAllActualites: Actualite;
   fetchAllDemarches: Demarche;
   fetchAllHubs: Hub;
   fetchDemarche: Demarche;
@@ -692,6 +795,22 @@ export type Query = {
   fetchUser: User;
   fetchUsers: Array<User>;
   login: Session;
+};
+
+
+export type QueryFetchActualiteArgs = {
+  actualiteId: Scalars['String']['input'];
+};
+
+
+export type QueryFetchActualitesArgs = {
+  actualiteFilter?: InputMaybe<ActualiteInputSearchInput>;
+  queryFilter?: InputMaybe<QueryDataConfigInput>;
+};
+
+
+export type QueryFetchAllActualitesArgs = {
+  queryFilter?: InputMaybe<QueryDataConfigInput>;
 };
 
 
@@ -1054,6 +1173,56 @@ export type LoginQueryVariables = Exact<{
 
 export type LoginQuery = { __typename?: 'Query', login: { __typename?: 'Session', token: string, user: { __typename?: 'User', id: string } } };
 
+export type FetchActualitesQueryVariables = Exact<{
+  queryFilter?: InputMaybe<QueryDataConfigInput>;
+  actualiteFilter?: InputMaybe<ActualiteInputSearchInput>;
+}>;
+
+
+export type FetchActualitesQuery = { __typename?: 'Query', fetchActualites: { __typename?: 'PaginatedActualiteResult', pagination: { __typename?: 'PaginationInfo', totalItems: number, pageCount: number, pageSize: number, currentPage: number }, results: Array<{ __typename?: 'Actualite', id: any, titre: string, description?: string | null, updatedAt: any, etat?: string | null, est_publie?: boolean | null, observations?: string | null, sous_themes: Array<{ __typename?: 'SousTheme', id: string, libelle: string, slug: string }> }> } };
+
+export type SearchActualitesQueryVariables = Exact<{
+  queryFilter?: InputMaybe<QueryDataConfigInput>;
+}>;
+
+
+export type SearchActualitesQuery = { __typename?: 'Query', searchResults: { __typename?: 'PaginatedActualiteResult', pagination: { __typename?: 'PaginationInfo', totalItems: number, pageCount: number, pageSize: number, currentPage: number }, results: Array<{ __typename?: 'Actualite', id: any, nom: string }> } };
+
+export type CreateActualiteMutationVariables = Exact<{
+  actualiteInput: ActualiteInput;
+}>;
+
+
+export type CreateActualiteMutation = { __typename?: 'Mutation', createActualite: { __typename?: 'Actualite', id: any, titre: string, url?: string | null, mot_cle?: string | null, description?: string | null, a_la_une?: boolean | null, slug: string, observations?: string | null, etat?: string | null, est_publie?: boolean | null, sous_themes: Array<{ __typename?: 'SousTheme', id: string, libelle: string }>, service_administratifs: Array<{ __typename?: 'ServiceAdministratif', id: number, nom: string }>, textes: Array<{ __typename?: 'Texte', id: number, nom: string }>, demarches: Array<{ __typename?: 'Demarche', id: any, titre: string }> } };
+
+export type FetchActualiteQueryVariables = Exact<{
+  actualiteId: Scalars['String']['input'];
+}>;
+
+
+export type FetchActualiteQuery = { __typename?: 'Query', fetchActualite: { __typename?: 'Actualite', id: any, titre: string, url?: string | null, mot_cle?: string | null, description?: string | null, a_la_une?: boolean | null, slug: string, contenu: string, observations?: string | null, etat?: string | null, est_publie?: boolean | null, service_administratifs: Array<{ __typename?: 'ServiceAdministratif', id: number, nom: string }>, sous_themes: Array<{ __typename?: 'SousTheme', id: string, nom: string }>, textes: Array<{ __typename?: 'Texte', id: number, nom: string }>, demarches: Array<{ __typename?: 'Demarche', id: any, nom: string }> } };
+
+export type DeleteActualiteMutationVariables = Exact<{
+  actualiteId: Scalars['Any']['input'];
+}>;
+
+
+export type DeleteActualiteMutation = { __typename?: 'Mutation', deleteActualite: boolean };
+
+export type PublishActualiteMutationVariables = Exact<{
+  actualiteId: Scalars['Any']['input'];
+}>;
+
+
+export type PublishActualiteMutation = { __typename?: 'Mutation', publishActualite: boolean };
+
+export type UnPublishActualiteMutationVariables = Exact<{
+  actualiteId: Scalars['Any']['input'];
+}>;
+
+
+export type UnPublishActualiteMutation = { __typename?: 'Mutation', unPublishActualite: boolean };
+
 export type FetchDemarchesQueryVariables = Exact<{
   queryFilter?: InputMaybe<QueryDataConfigInput>;
   demarcheFilter?: InputMaybe<DemarcheInputSearchInput>;
@@ -1303,6 +1472,205 @@ export const LoginDocument = gql`
   })
   export class LoginGQL extends Apollo.Query<LoginQuery, LoginQueryVariables> {
     document = LoginDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const FetchActualitesDocument = gql`
+    query FetchActualites($queryFilter: QueryDataConfigInput, $actualiteFilter: ActualiteInputSearchInput) {
+  fetchActualites(queryFilter: $queryFilter, actualiteFilter: $actualiteFilter) {
+    pagination {
+      totalItems
+      pageCount
+      pageSize
+      currentPage
+    }
+    results {
+      id
+      titre
+      description
+      updatedAt
+      etat
+      est_publie
+      observations
+      sous_themes {
+        id
+        libelle
+        slug
+      }
+    }
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class FetchActualitesGQL extends Apollo.Query<FetchActualitesQuery, FetchActualitesQueryVariables> {
+    document = FetchActualitesDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const SearchActualitesDocument = gql`
+    query SearchActualites($queryFilter: QueryDataConfigInput) {
+  searchResults: fetchActualites(queryFilter: $queryFilter) {
+    pagination {
+      totalItems
+      pageCount
+      pageSize
+      currentPage
+    }
+    results {
+      id
+      nom: titre
+    }
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class SearchActualitesGQL extends Apollo.Query<SearchActualitesQuery, SearchActualitesQueryVariables> {
+    document = SearchActualitesDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const CreateActualiteDocument = gql`
+    mutation CreateActualite($actualiteInput: ActualiteInput!) {
+  createActualite(actualiteInput: $actualiteInput) {
+    id
+    titre
+    url
+    mot_cle
+    description
+    a_la_une
+    slug
+    observations
+    etat
+    est_publie
+    sous_themes {
+      id
+      libelle
+    }
+    service_administratifs {
+      id
+      nom
+    }
+    textes {
+      id
+      nom
+    }
+    demarches {
+      id
+      titre
+    }
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class CreateActualiteGQL extends Apollo.Mutation<CreateActualiteMutation, CreateActualiteMutationVariables> {
+    document = CreateActualiteDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const FetchActualiteDocument = gql`
+    query FetchActualite($actualiteId: String!) {
+  fetchActualite(actualiteId: $actualiteId) {
+    id
+    titre
+    url
+    mot_cle
+    description
+    a_la_une
+    slug
+    contenu
+    observations
+    etat
+    est_publie
+    service_administratifs {
+      id
+      nom
+    }
+    sous_themes {
+      id
+      nom: libelle
+    }
+    textes {
+      id
+      nom
+    }
+    demarches {
+      id
+      nom: titre
+    }
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class FetchActualiteGQL extends Apollo.Query<FetchActualiteQuery, FetchActualiteQueryVariables> {
+    document = FetchActualiteDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const DeleteActualiteDocument = gql`
+    mutation DeleteActualite($actualiteId: Any!) {
+  deleteActualite(actualiteId: $actualiteId)
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class DeleteActualiteGQL extends Apollo.Mutation<DeleteActualiteMutation, DeleteActualiteMutationVariables> {
+    document = DeleteActualiteDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const PublishActualiteDocument = gql`
+    mutation PublishActualite($actualiteId: Any!) {
+  publishActualite(actualiteId: $actualiteId)
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class PublishActualiteGQL extends Apollo.Mutation<PublishActualiteMutation, PublishActualiteMutationVariables> {
+    document = PublishActualiteDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const UnPublishActualiteDocument = gql`
+    mutation UnPublishActualite($actualiteId: Any!) {
+  unPublishActualite(actualiteId: $actualiteId)
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class UnPublishActualiteGQL extends Apollo.Mutation<UnPublishActualiteMutation, UnPublishActualiteMutationVariables> {
+    document = UnPublishActualiteDocument;
     
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
