@@ -15,6 +15,11 @@ export class DashboardComponent implements OnInit {
       icon: 'dashboard',
     },
     {
+      label: 'Gestion des hubs de vie',
+      link: 'hubs-de-vie',
+      icon: 'device_hub',
+    },
+    {
       label: 'Gestion des demarches',
       link: 'demarches',
       icon: 'list_alt',
@@ -25,14 +30,14 @@ export class DashboardComponent implements OnInit {
       icon: 'query_builder',
     },
     {
-      label: 'Gestion des hubs de vie',
-      link: 'hubs-de-vie',
-      icon: 'device_hub',
-    },
-    {
       label: 'Gestion des annonces',
       link: 'annonces',
       icon: 'announcement',
+    },
+    {
+      label: 'Gestion des services',
+      link: 'services',
+      icon: 'laptop',
     },
     {
       label: 'Gestion thématique',

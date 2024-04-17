@@ -521,6 +521,7 @@ export type Mutation = {
   createHub: Hub;
   createLienUtile: LienUtile;
   createModeleLettre: ModeleLettre;
+  createService: Service;
   createServiceAdministratif: ServiceAdministratif;
   createSousTheme: SousTheme;
   createTexte: Texte;
@@ -530,15 +531,18 @@ export type Mutation = {
   deleteAnnonce: Scalars['Boolean']['output'];
   deleteDemarche: Scalars['Boolean']['output'];
   deleteHub: Scalars['Boolean']['output'];
+  deleteService: Scalars['Boolean']['output'];
   publishActualite: Scalars['Boolean']['output'];
   publishAnnonce: Scalars['Boolean']['output'];
   publishDemarche: Scalars['Boolean']['output'];
   publishHub: Scalars['Boolean']['output'];
+  publishService: Scalars['Boolean']['output'];
   register: Session;
   unPublishActualite: Scalars['Boolean']['output'];
   unPublishAnnonce: Scalars['Boolean']['output'];
   unPublishDemarche: Scalars['Boolean']['output'];
   unPublishHub: Scalars['Boolean']['output'];
+  unPublishService: Scalars['Boolean']['output'];
   updateActualite: Scalars['Boolean']['output'];
   updateAnnonce: Scalars['Boolean']['output'];
   updateDemarche: Scalars['Boolean']['output'];
@@ -548,6 +552,7 @@ export type Mutation = {
   updateHub: Scalars['Boolean']['output'];
   updateLienUtile: Scalars['Boolean']['output'];
   updateModeleLettre: Scalars['Boolean']['output'];
+  updateService: Scalars['Boolean']['output'];
   updateServiceAdministratif: Scalars['Boolean']['output'];
   updateSousTheme: Scalars['Boolean']['output'];
   updateTexte: Scalars['Boolean']['output'];
@@ -601,6 +606,11 @@ export type MutationCreateModeleLettreArgs = {
 };
 
 
+export type MutationCreateServiceArgs = {
+  serviceInput: ServiceInput;
+};
+
+
 export type MutationCreateServiceAdministratifArgs = {
   serviceAdministratifInput: ServiceAdministratifInput;
 };
@@ -646,6 +656,11 @@ export type MutationDeleteHubArgs = {
 };
 
 
+export type MutationDeleteServiceArgs = {
+  serviceId: Scalars['Any']['input'];
+};
+
+
 export type MutationPublishActualiteArgs = {
   actualiteId: Scalars['Any']['input'];
 };
@@ -663,6 +678,11 @@ export type MutationPublishDemarcheArgs = {
 
 export type MutationPublishHubArgs = {
   hubId: Scalars['String']['input'];
+};
+
+
+export type MutationPublishServiceArgs = {
+  serviceId: Scalars['Any']['input'];
 };
 
 
@@ -688,6 +708,11 @@ export type MutationUnPublishDemarcheArgs = {
 
 export type MutationUnPublishHubArgs = {
   hubId: Scalars['String']['input'];
+};
+
+
+export type MutationUnPublishServiceArgs = {
+  serviceId: Scalars['Any']['input'];
 };
 
 
@@ -742,6 +767,12 @@ export type MutationUpdateLienUtileArgs = {
 export type MutationUpdateModeleLettreArgs = {
   modeleLettreId: Scalars['ID']['input'];
   modeleLettreInput: ModeleLettreUpdateInput;
+};
+
+
+export type MutationUpdateServiceArgs = {
+  serviceId: Scalars['ID']['input'];
+  serviceInput: ServiceUpdateInput;
 };
 
 
@@ -845,6 +876,12 @@ export type PaginatedServiceAdministratifResult = {
   results: Array<ServiceAdministratif>;
 };
 
+export type PaginatedServiceResult = {
+  __typename?: 'PaginatedServiceResult';
+  pagination: PaginationInfo;
+  results: Array<Service>;
+};
+
 export type PaginatedSousThemeResult = {
   __typename?: 'PaginatedSousThemeResult';
   pagination: PaginationInfo;
@@ -879,6 +916,7 @@ export type Query = {
   fetchAllAnnonces: Annonce;
   fetchAllDemarches: Demarche;
   fetchAllHubs: Hub;
+  fetchAllServices: Service;
   fetchAnnonce: Annonce;
   fetchAnnonces: PaginatedAnnonceResult;
   fetchDemarche: Demarche;
@@ -895,8 +933,10 @@ export type Query = {
   fetchLienUtiles: PaginatedLienUtileResult;
   fetchModeleLettre: ModeleLettre;
   fetchModeleLettres: PaginatedModeleLettreResult;
+  fetchService: Service;
   fetchServiceAdministratif: ServiceAdministratif;
   fetchServiceAdministratifs: PaginatedServiceAdministratifResult;
+  fetchServices: PaginatedServiceResult;
   fetchSousTheme: SousTheme;
   fetchSousThemes: PaginatedSousThemeResult;
   fetchTexte: Texte;
@@ -936,6 +976,11 @@ export type QueryFetchAllDemarchesArgs = {
 
 
 export type QueryFetchAllHubsArgs = {
+  queryFilter?: InputMaybe<QueryDataConfigInput>;
+};
+
+
+export type QueryFetchAllServicesArgs = {
   queryFilter?: InputMaybe<QueryDataConfigInput>;
 };
 
@@ -1023,6 +1068,11 @@ export type QueryFetchModeleLettresArgs = {
 };
 
 
+export type QueryFetchServiceArgs = {
+  serviceId: Scalars['String']['input'];
+};
+
+
 export type QueryFetchServiceAdministratifArgs = {
   serviceAdministratifId: Scalars['String']['input'];
 };
@@ -1030,6 +1080,12 @@ export type QueryFetchServiceAdministratifArgs = {
 
 export type QueryFetchServiceAdministratifsArgs = {
   queryFilter?: InputMaybe<QueryDataConfigInput>;
+};
+
+
+export type QueryFetchServicesArgs = {
+  queryFilter?: InputMaybe<QueryDataConfigInput>;
+  serviceFilter?: InputMaybe<ServiceInputSearchInput>;
 };
 
 
@@ -1082,6 +1138,29 @@ export type QueryDataConfigInput = {
 export type RegisterInput = {
   email: Scalars['String']['input'];
   password: Scalars['String']['input'];
+};
+
+export type Service = {
+  __typename?: 'Service';
+  a_la_une?: Maybe<Scalars['Boolean']['output']>;
+  add_by?: Maybe<Scalars['String']['output']>;
+  contenu: Scalars['String']['output'];
+  createdAt: Scalars['DateTime']['output'];
+  date_publication?: Maybe<Scalars['DateTime']['output']>;
+  delatedAt?: Maybe<Scalars['DateTime']['output']>;
+  description?: Maybe<Scalars['String']['output']>;
+  est_publie?: Maybe<Scalars['Boolean']['output']>;
+  etat?: Maybe<Scalars['String']['output']>;
+  id: Scalars['Any']['output'];
+  media_type?: Maybe<Scalars['String']['output']>;
+  mot_cle?: Maybe<Scalars['String']['output']>;
+  poster: Scalars['String']['output'];
+  service_administratifs: Array<ServiceAdministratif>;
+  slug: Scalars['String']['output'];
+  sous_themes: Array<SousTheme>;
+  titre: Scalars['String']['output'];
+  updatedAt: Scalars['DateTime']['output'];
+  url?: Maybe<Scalars['String']['output']>;
 };
 
 export type ServiceAdministratif = {
@@ -1165,6 +1244,41 @@ export type ServiceAdministratifUpdateInput = {
   telephone?: InputMaybe<Scalars['String']['input']>;
   type_service?: InputMaybe<Scalars['String']['input']>;
   ville?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type ServiceInput = {
+  contenu: Scalars['String']['input'];
+  description?: InputMaybe<Scalars['String']['input']>;
+  est_publie: Scalars['Boolean']['input'];
+  etat: Scalars['String']['input'];
+  media_type?: InputMaybe<Scalars['String']['input']>;
+  mot_cle?: InputMaybe<Scalars['String']['input']>;
+  service_administratifs?: InputMaybe<Array<Scalars['Any']['input']>>;
+  sous_themes?: InputMaybe<Array<Scalars['String']['input']>>;
+  titre: Scalars['String']['input'];
+  url?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type ServiceInputSearchInput = {
+  a_la_une?: InputMaybe<Scalars['Boolean']['input']>;
+  est_publie?: InputMaybe<Scalars['Boolean']['input']>;
+  etat?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type ServiceUpdateInput = {
+  a_la_une?: InputMaybe<Scalars['Int']['input']>;
+  contenu?: InputMaybe<Scalars['String']['input']>;
+  date_publication?: InputMaybe<Scalars['DateTime']['input']>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  est_publie?: InputMaybe<Scalars['Int']['input']>;
+  etat?: InputMaybe<Scalars['String']['input']>;
+  media_type?: InputMaybe<Scalars['String']['input']>;
+  mot_cle?: InputMaybe<Scalars['String']['input']>;
+  service_administratifs: Array<Scalars['String']['input']>;
+  slug?: InputMaybe<Scalars['String']['input']>;
+  sous_themes: Array<Scalars['String']['input']>;
+  titre?: InputMaybe<Scalars['String']['input']>;
+  url?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type Session = {
@@ -1617,6 +1731,56 @@ export type UnPublishHubMutationVariables = Exact<{
 
 
 export type UnPublishHubMutation = { __typename?: 'Mutation', unPublishHub: boolean };
+
+export type FetchServicesQueryVariables = Exact<{
+  queryFilter?: InputMaybe<QueryDataConfigInput>;
+  serviceFilter?: InputMaybe<ServiceInputSearchInput>;
+}>;
+
+
+export type FetchServicesQuery = { __typename?: 'Query', fetchServices: { __typename?: 'PaginatedServiceResult', pagination: { __typename?: 'PaginationInfo', totalItems: number, pageCount: number, pageSize: number, currentPage: number }, results: Array<{ __typename?: 'Service', id: any, titre: string, description?: string | null, updatedAt: any, etat?: string | null, url?: string | null, contenu: string, est_publie?: boolean | null, sous_themes: Array<{ __typename?: 'SousTheme', id: string, libelle: string, slug: string }>, service_administratifs: Array<{ __typename?: 'ServiceAdministratif', id: number, nom: string }> }> } };
+
+export type SearchServicesQueryVariables = Exact<{
+  queryFilter?: InputMaybe<QueryDataConfigInput>;
+}>;
+
+
+export type SearchServicesQuery = { __typename?: 'Query', searchResults: { __typename?: 'PaginatedServiceResult', pagination: { __typename?: 'PaginationInfo', totalItems: number, pageCount: number, pageSize: number, currentPage: number }, results: Array<{ __typename?: 'Service', id: any, nom: string }> } };
+
+export type CreateServiceMutationVariables = Exact<{
+  serviceInput: ServiceInput;
+}>;
+
+
+export type CreateServiceMutation = { __typename?: 'Mutation', createService: { __typename?: 'Service', id: any, titre: string, mot_cle?: string | null, description?: string | null, a_la_une?: boolean | null, slug: string, etat?: string | null, est_publie?: boolean | null, contenu: string, sous_themes: Array<{ __typename?: 'SousTheme', id: string, libelle: string }>, service_administratifs: Array<{ __typename?: 'ServiceAdministratif', id: number, nom: string }> } };
+
+export type FetchServiceQueryVariables = Exact<{
+  serviceId: Scalars['String']['input'];
+}>;
+
+
+export type FetchServiceQuery = { __typename?: 'Query', fetchService: { __typename?: 'Service', id: any, titre: string, url?: string | null, mot_cle?: string | null, description?: string | null, contenu: string, a_la_une?: boolean | null, slug: string, etat?: string | null, est_publie?: boolean | null, poster: string, media_type?: string | null, service_administratifs: Array<{ __typename?: 'ServiceAdministratif', id: number, nom: string }>, sous_themes: Array<{ __typename?: 'SousTheme', id: string, nom: string }> } };
+
+export type DeleteServiceMutationVariables = Exact<{
+  serviceId: Scalars['Any']['input'];
+}>;
+
+
+export type DeleteServiceMutation = { __typename?: 'Mutation', deleteService: boolean };
+
+export type PublishServiceMutationVariables = Exact<{
+  serviceId: Scalars['Any']['input'];
+}>;
+
+
+export type PublishServiceMutation = { __typename?: 'Mutation', publishService: boolean };
+
+export type UnPublishServiceMutationVariables = Exact<{
+  serviceId: Scalars['Any']['input'];
+}>;
+
+
+export type UnPublishServiceMutation = { __typename?: 'Mutation', unPublishService: boolean };
 
 export const RegisterDocument = gql`
     mutation Register($registerInput: RegisterInput!) {
@@ -2983,6 +3147,194 @@ export const UnPublishHubDocument = gql`
   })
   export class UnPublishHubGQL extends Apollo.Mutation<UnPublishHubMutation, UnPublishHubMutationVariables> {
     document = UnPublishHubDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const FetchServicesDocument = gql`
+    query FetchServices($queryFilter: QueryDataConfigInput, $serviceFilter: ServiceInputSearchInput) {
+  fetchServices(queryFilter: $queryFilter, serviceFilter: $serviceFilter) {
+    pagination {
+      totalItems
+      pageCount
+      pageSize
+      currentPage
+    }
+    results {
+      id
+      titre
+      description
+      updatedAt
+      etat
+      url
+      contenu
+      est_publie
+      sous_themes {
+        id
+        libelle
+        slug
+      }
+      service_administratifs {
+        id
+        nom
+      }
+    }
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class FetchServicesGQL extends Apollo.Query<FetchServicesQuery, FetchServicesQueryVariables> {
+    document = FetchServicesDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const SearchServicesDocument = gql`
+    query SearchServices($queryFilter: QueryDataConfigInput) {
+  searchResults: fetchServices(queryFilter: $queryFilter) {
+    pagination {
+      totalItems
+      pageCount
+      pageSize
+      currentPage
+    }
+    results {
+      id
+      nom: titre
+    }
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class SearchServicesGQL extends Apollo.Query<SearchServicesQuery, SearchServicesQueryVariables> {
+    document = SearchServicesDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const CreateServiceDocument = gql`
+    mutation CreateService($serviceInput: ServiceInput!) {
+  createService(serviceInput: $serviceInput) {
+    id
+    titre
+    mot_cle
+    description
+    a_la_une
+    slug
+    etat
+    est_publie
+    contenu
+    sous_themes {
+      id
+      libelle
+    }
+    service_administratifs {
+      id
+      nom
+    }
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class CreateServiceGQL extends Apollo.Mutation<CreateServiceMutation, CreateServiceMutationVariables> {
+    document = CreateServiceDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const FetchServiceDocument = gql`
+    query FetchService($serviceId: String!) {
+  fetchService(serviceId: $serviceId) {
+    id
+    titre
+    url
+    mot_cle
+    description
+    contenu
+    a_la_une
+    slug
+    etat
+    est_publie
+    poster
+    media_type
+    service_administratifs {
+      id
+      nom
+    }
+    sous_themes {
+      id
+      nom: libelle
+    }
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class FetchServiceGQL extends Apollo.Query<FetchServiceQuery, FetchServiceQueryVariables> {
+    document = FetchServiceDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const DeleteServiceDocument = gql`
+    mutation DeleteService($serviceId: Any!) {
+  deleteService(serviceId: $serviceId)
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class DeleteServiceGQL extends Apollo.Mutation<DeleteServiceMutation, DeleteServiceMutationVariables> {
+    document = DeleteServiceDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const PublishServiceDocument = gql`
+    mutation PublishService($serviceId: Any!) {
+  publishService(serviceId: $serviceId)
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class PublishServiceGQL extends Apollo.Mutation<PublishServiceMutation, PublishServiceMutationVariables> {
+    document = PublishServiceDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const UnPublishServiceDocument = gql`
+    mutation UnPublishService($serviceId: Any!) {
+  unPublishService(serviceId: $serviceId)
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class UnPublishServiceGQL extends Apollo.Mutation<UnPublishServiceMutation, UnPublishServiceMutationVariables> {
+    document = UnPublishServiceDocument;
     
     constructor(apollo: Apollo.Apollo) {
       super(apollo);

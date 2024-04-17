@@ -75,7 +75,7 @@ export class OverviewComponent {
     private publishAnnonceGQL: PublishAnnonceGQL,
     private unPublishAnnonceGQL: UnPublishAnnonceGQL
   ) {
-    this.getAnnonces();
+    this.getAnnonces(false);
     this.filterForm = this.fb.group({
       teleprocedure: [null],
       etat: [null],

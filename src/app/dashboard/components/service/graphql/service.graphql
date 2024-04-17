@@ -1,0 +1,106 @@
+query FetchServices($queryFilter: QueryDataConfigInput, $serviceFilter: ServiceInputSearchInput) {
+	fetchServices(queryFilter: $queryFilter, serviceFilter: $serviceFilter) {
+		pagination {
+			totalItems
+			pageCount
+			pageSize
+			currentPage
+		}
+		results {
+			id
+			titre
+      description
+      updatedAt
+      etat
+      url
+      contenu
+      est_publie
+			sous_themes {
+				id
+				libelle
+				slug
+			}
+      service_administratifs {
+        id
+        nom
+      }
+		}
+
+	}
+}
+
+query SearchServices($queryFilter: QueryDataConfigInput) {
+	searchResults: fetchServices(queryFilter: $queryFilter) {
+		pagination {
+			totalItems
+			pageCount
+			pageSize
+			currentPage
+		}
+		results {
+			id
+			nom: titre
+		}
+
+	}
+}
+
+mutation CreateService($serviceInput: ServiceInput!) {
+	createService(serviceInput: $serviceInput) {
+		id
+		titre
+		mot_cle
+		description
+		a_la_une
+		slug
+		etat
+		est_publie
+    contenu
+		sous_themes {
+			id
+			libelle
+		}
+		service_administratifs {
+			id
+			nom
+		}
+
+	}
+}
+
+query FetchService($serviceId: String!) {
+	fetchService(serviceId: $serviceId) {
+		id
+		titre
+		url
+		mot_cle
+		description
+    contenu
+		a_la_une
+		slug
+		etat
+		est_publie
+    poster
+    media_type
+		service_administratifs {
+				id
+				nom
+			}
+			sous_themes {
+				id
+				nom: libelle
+			}
+	}
+}
+
+mutation DeleteService($serviceId: Any!) {
+  deleteService(serviceId: $serviceId)
+}
+
+mutation PublishService($serviceId: Any!) {
+  publishService(serviceId: $serviceId)
+}
+
+mutation UnPublishService($serviceId: Any!) {
+  unPublishService(serviceId: $serviceId)
+}

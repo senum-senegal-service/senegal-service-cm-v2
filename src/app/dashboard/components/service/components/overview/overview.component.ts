@@ -6,13 +6,13 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MockService } from 'src/app/shared/services/mock.service';
 import { ModalConfirmationComponent } from 'src/app/shared/components/modal-confirmation/modal-confirmation.component';
 import {
-  Hub,
-  FetchHubsGQL,
+  DeleteServiceGQL,
+  Service,
+  FetchServicesGQL,
   PaginationInfo,
+  PublishServiceGQL,
   QueryDataConfigInput,
-  DeleteHubGQL,
-  PublishHubGQL,
-  UnPublishHubGQL,
+  UnPublishServiceGQL,
 } from 'src/graphql/generated';
 import { defaultTablePageSize } from 'src/app/shared/constants';
 import { FormBuilder, FormGroup } from '@angular/forms';
@@ -25,14 +25,15 @@ import {
 } from 'rxjs';
 import { SelectOptions } from 'src/app/shared/utils/selec-options';
 import { SnackBarService } from 'src/app/shared/services/snackbar.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-overview-hub',
+  selector: 'app-overview-service',
   templateUrl: './overview.component.html',
   styleUrls: ['./overview.component.scss'],
 })
 export class OverviewComponent {
-  data: { pagination: PaginationInfo; results: Hub[] };
+  data: { pagination: PaginationInfo; results: Service[] };
   currentPage: number = 1;
   pageSize: number = defaultTablePageSize;
   totalItems: number = 0;
@@ -43,7 +44,6 @@ export class OverviewComponent {
     'date-modification',
     'etat',
     'data-publication',
-    'observations',
     'action',
   ];
   dataSource = new MatTableDataSource<any>(null);
@@ -68,15 +68,16 @@ export class OverviewComponent {
 
   constructor(
     private api: MockService,
-    private fetchHubsGQL: FetchHubsGQL,
+    private fetchServicesGQL: FetchServicesGQL,
     public dialog: MatDialog,
     private fb: FormBuilder,
     private snackBarService: SnackBarService,
-    private deleteHubGQL: DeleteHubGQL,
-    private publishHubGQL: PublishHubGQL,
-    private unPublishHubGQL: UnPublishHubGQL
+    private deleteServiceGQL: DeleteServiceGQL,
+    private publishServiceGQL: PublishServiceGQL,
+    private unPublishServiceGQL: UnPublishServiceGQL,
+    private activatedRoute: ActivatedRoute
   ) {
-    this.getHubs(false);
+    this.getServices(false);
     this.filterForm = this.fb.group({
       teleprocedure: [null],
       etat: [null],
@@ -88,7 +89,7 @@ export class OverviewComponent {
       .pipe(
         debounceTime(500), // Attendre 500ms après chaque frappe avant de lancer la requête
         distinctUntilChanged(), // Ignorer la recherche si la même requête est répétée
-        tap((term: string) => this.getHubs())
+        tap((term: string) => this.getServices())
       )
       .subscribe((r) => {});
   }
@@ -116,17 +117,17 @@ export class OverviewComponent {
     });
   }
 
-  getHubs(useCache=true) {
-    const hubFilter = this.getFilters();
+  getServices(useCache=true) {
+    const serviceFilter = this.getFilters();
     const queryFilter = {
       limit: this.pageSize,
       page: this.currentPage,
       search: this.filterForm?.value?.search || null,
     };
-    this.fetchHubsGQL
-      .fetch({ queryFilter, hubFilter }, { fetchPolicy: useCache ? 'cache-first' : 'no-cache' })
+    this.fetchServicesGQL
+      .fetch({ queryFilter, serviceFilter }, { fetchPolicy: useCache ? 'cache-first': 'no-cache' })
       .subscribe((result) => {
-        this.data = result.data.fetchHubs as any;
+        this.data = result.data.fetchServices as any;
         this.currentPage = this.data.pagination.currentPage;
         this.pageSize = this.data.pagination.pageSize;
         this.totalItems = this.data.pagination.totalItems;
@@ -140,18 +141,18 @@ export class OverviewComponent {
 
     this.currentPage = pageIndex + 1;
     this.pageSize = pageSize;
-    this.getHubs();
+    this.getServices();
   }
 
-  handleDeleteHub(id: string) {
+  handleDeleteService(id: string) {
     this.openDialogDelete(id);
   }
 
-  handlePublish(id: string) {
+  handlePublishService(id: string) {
     this.openDialogPublish(id);
   }
 
-  handleUnPublish(id: string) {
+  handleUnPublishService(id: string) {
     this.openDialogUnPublish(id);
   }
 
@@ -168,16 +169,11 @@ export class OverviewComponent {
 
     dialogRef.afterClosed().subscribe((resp) => {
       if (resp) {
-        this.deleteHubGQL.mutate({ hubId: id }).subscribe(
-          (result) => {
-            if(result.data.deleteHub) {
-              this.getHubs(false);
-            }
-          },
-          error => {
-            this.snackBarService.showErrorSnackBar();
+        this.deleteServiceGQL.mutate({ serviceId: id }).subscribe((result) => {
+          if(result.data.deleteService) {
+            this.getServices(false);
           }
-        );
+        });
       }
     });
   }
@@ -195,10 +191,10 @@ export class OverviewComponent {
 
     dialogRef.afterClosed().subscribe((resp) => {
       if (resp) {
-        this.publishHubGQL.mutate({ hubId: id }).subscribe(
+        this.publishServiceGQL.mutate({ serviceId: id }).subscribe(
           (result) => {
-            if(result.data.publishHub) {
-              this.getHubs(false);
+            if(result.data.publishService) {
+              this.getServices(false);
             }
           },
           error => {
@@ -222,10 +218,10 @@ export class OverviewComponent {
 
     dialogRef.afterClosed().subscribe((resp) => {
       if (resp) {
-        this.unPublishHubGQL.mutate({ hubId: id }).subscribe(
+        this.unPublishServiceGQL.mutate({ serviceId: id }).subscribe(
           (result) => {
-            if(result.data.unPublishHub) {
-              this.getHubs(false);
+            if(result.data.unPublishService) {
+              this.getServices(false);
             }
           },
           error => {

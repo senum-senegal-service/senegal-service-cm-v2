@@ -76,7 +76,7 @@ export class OverviewComponent {
     private publishActualiteGQL: PublishActualiteGQL,
     private unPublishActualiteGQL: UnPublishActualiteGQL
   ) {
-    this.getActualites();
+    this.getActualites(false);
     this.filterForm = this.fb.group({
       teleprocedure: [null],
       etat: [null],
