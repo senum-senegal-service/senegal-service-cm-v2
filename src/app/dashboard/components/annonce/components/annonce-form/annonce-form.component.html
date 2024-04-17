@@ -3,114 +3,120 @@
                 fxLayoutAlign="start center">arrow_back</mat-icon></span><span>back</span></span>
     <div class="container " fxLayout="column" fxLayoutGap="40px">
         <span class="title">{{formTitle}}</span>
-        <form class="form-container" fxLayout="column" fxLayoutGap="32px">
+        <form [formGroup]="annonceForm" class="form-container" fxLayout="column" fxLayoutGap="32px">
             <div fxLayout="column" fxLayoutGap="24px">
-                <div class="form-image">
-                    <input type="file" id="hub-image" accept="image/*,video/*" (change)="previewMedia($event)">
-                    <label for="hub-image" fxLayout="column" fxLayoutGap="8px">
-                        <span class="label">Image/Video <span class="color-danger">*</span></span>
-                        <div class="image-container">
-                            <img *ngIf="mediaType === 'image' && mediaPreview" [src]="mediaPreview" alt="Image preview">
-                            <video *ngIf="mediaType === 'video' && mediaPreview" [src]="mediaPreview" controls>
-                                Your browser does not support the video tag.
-                            </video>
-                            <div *ngIf="!mediaPreview" fxLayout="column" fxLayoutAlign="center center"
-                                fxLayoutGap="12px">
-                                <mat-icon>cloud_upload</mat-icon>
-                                <span fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="6px">
-                                    <span class="label">Upload Image/Video</span>
-                                    <span class="image-size">Media size must be less than 20MB</span>
-                                </span>
-                            </div>
-                        </div>
-                    </label>
-                </div>
-                <div fxFlex="50" fxLayout="column" fxLayoutGap="8px">
-                    <label for="annonce-title">Titre <span class="color-danger">*</span></label>
-                    <input type="text" id="annonce-title" class="form-control" placeholder="Title...">
-                </div>
-                <div fxFlex="50" fxLayout="column" fxLayoutGap="8px">
-                    <label for="annonce-sous-title">Sous titre <span class="color-danger">*</span></label>
-                    <input type="text" id="annonce-sous-title" class="form-control" placeholder="Title...">
-                </div>
-                <div fxLayout="column" fxLayoutGap="8px">
-                    <label for="description">Description <span class="color-danger">*</span></label>
-                    <textarea class="form-control" name="" id="description" cols="30" rows="6"></textarea>
-                </div>
-                <!-- <div fxLayout="column" fxLayoutGap="8px">
-                    <label for="editor">Contenu de l'actualité <span class="color-danger">*</span></label>
-                    <angular-editor [(ngModel)]="content" name="angular-editor" id="editor"
-                        [config]="editorConfig"></angular-editor>
-                </div> -->
-                <div fxLayout="column" fxLayoutGap="8px">
-                    <label for="url">Lien externe</label>
-                    <div class="input-wrapper" fxLayout="row">
-                        <span class="text label" fxLayoutAlign="start center">https:\\</span>
-                        <input class="form-control" type="text" id="url">
-                    </div>
-                </div>
-            </div>
-            <div fxLayout="column" fxLayoutGap="32px">
-                <span class="title">Autres informations</span>
-                <div fxLayout="column" fxLayoutGap="24px">
-                    <!-- <div fxLayout="row" fxLayoutGap="24px">
-                        <div fxFlex="50" fxLayout="column" fxLayoutGap="8px">
-                            <label for="services-concernés">Sous themes</label>
-                            <input type="text" id="services-concernés" class="form-control">
-                        </div>
-                        <div fxFlex="50" fxLayout="column" fxLayoutGap="8px">
-                            <label for="textes-references">Démarches</label>
-                            <input type="text" id="textes-references" class="form-control">
-                        </div>
-                    </div>
-                    <div fxLayout="row" fxLayoutGap="24px">
-                        <div fxFlex="50" fxLayout="column" fxLayoutGap="8px">
-                            <label for="formulaires">Services administratifs</label>
-                            <input type="text" id="formulaires" class="form-control">
-                        </div>
-                        <div fxFlex="50" fxLayout="column" fxLayoutGap="8px">
-                            <label for="modeles-lettres">Textes de références </label>
-                            <input type="text" id="modeles-lettres" class="form-control">
-                        </div>
+                <div fxFlex="50" fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="24px">
+                    <div fxFlex="75" fxLayout="column" fxLayoutGap="8px">
+                        <label for="annonce-title">Titre <span class="color-danger">*</span></label>
+                        <input formControlName="titre" type="text" id="annonce-title" class="form-control"
+                            placeholder="Titre...">
                     </div>
                     <div fxLayout="column" fxLayoutGap="8px">
-                        <label for="observation">Observation </label>
-                        <textarea class="form-control" name="observation" id="observation" cols="30" rows="2"
-                            placeholder="Ajoutez un observation privée"></textarea>
-                    </div> -->
-                    <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="24px">
-                        <div fxLayout="column" fxLayoutGap="8px">
-                            <label for="">Derniere date de modification</label>
-                            <mat-form-field class="form-control">
-                                <mat-label class="label">Choose a date</mat-label>
-                                <input matInput [matDatepicker]="picker">
-                                <mat-hint>MM/DD/YYYY</mat-hint>
-                                <mat-datepicker-toggle matIconSuffix [for]="picker">
-                                    <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
-                                </mat-datepicker-toggle>
-                                <mat-datepicker #picker></mat-datepicker>
-                            </mat-form-field>
+                        <mat-slide-toggle formControlName="a_la_une">
+                            <span class="label">Mettre à la une</span>
+                        </mat-slide-toggle>
+                    </div>
+
+                </div>
+
+                <div fxLayout="column" fxLayoutGap="8px">
+                  <label for="sous_titre">Sous titre</label>
+                  <input formControlName="sous_titre" type="text" id="sous_titre" class="form-control"
+                            placeholder="Sous titre...">
+                </div>
+
+                <div fxLayout="column" fxLayoutGap="8px">
+                  <label for="description">Description</label>
+                  <textarea formControlName="description" class="form-control" name="" id="description" cols="30"
+                      rows="3"></textarea>
+              </div>
+              <div fxFlex="50" fxLayout="column" fxLayoutGap="8px">
+                <label for="pages">Pages</label>
+                <app-multi-select [value]="selectedPages || []" [name]="'pages'" [form]="annonceForm"
+                    [options]="pages"></app-multi-select>
+              </div>
+
+              <div fxLayout="row" fxLayoutGap="24px">
+                <div fxFlex="50" fxLayout="column" fxLayoutGap="8px">
+                  <label for="action_button_url">Lien bouton d'action</label>
+                  <div class="input-wrapper" fxLayout="row">
+                      <span class="text label" fxLayoutAlign="start center">https:\\</span>
+                      <input formControlName="action_button_url" class="form-control" type="text" id="action_button_url">
+                  </div>
+                </div>
+                <div fxFlex="50" fxLayout="column" fxLayoutGap="8px">
+                  <label for="action_button_text">Texte bouton d'action</label>
+                  <input formControlName="action_button_text" type="text" id="action_button_text" class="form-control">
+                </div>
+
+            </div>
+            </div>
+                <div fxLayout="column" fxLayoutGap="24px">
+                    <div fxLayout="row" fxLayoutGap="24px">
+                        <div fxFlex="50" fxLayout="column" fxLayoutGap="8px">
+                          <label for="services-concernes">Services concernés</label>
+                          <app-multi-select [value]="annonce?.service_administratifs || []" [name]="'service_administratifs'" [form]="annonceForm"
+                              [options]="servicesAdministratifs"></app-multi-select>
                         </div>
+                        <div fxFlex="50" fxLayout="column" fxLayoutGap="8px">
+                          <label for="annonce-subtitle">Sous-thémes <span class="color-danger">*</span></label>
+                          <app-multi-select [value]="annonce?.sous_themes || []" [name]="'sous_themes'" [form]="annonceForm"
+                              [options]="sousThemes"></app-multi-select>
+                        </div>
+                    </div>
+
+                    <div fxLayout="column" fxLayoutGap="8px">
+                        <label for="mot-cles">Mot clés </label>
+                        <input type="text" id="mot-cles" formControlName="mot_cle" class="form-control"
+                            placeholder="Liste des mots clés pour la recherche">
+                    </div>
+                    <div class="form-image">
+                      <input type="file" id="hub-image" accept="image/*,video/*" (change)="changePoster($event)">
+                      <label for="hub-image" fxLayout="column" fxLayoutGap="8px">
+                          <span class="label">Image/Video <span class="color-danger">*</span></span>
+                          <div class="image-container">
+                              <img *ngIf="mediaType === 'image' && mediaPreview" [src]="mediaPreview" alt="Image preview">
+                              <video *ngIf="mediaType === 'video' && mediaPreview" [src]="mediaPreview" id="poster" autoplay muted>
+                                  Your browser does not support the video tag.
+                              </video>
+                              <div *ngIf="!mediaPreview" fxLayout="column" fxLayoutAlign="center center"
+                                  fxLayoutGap="12px">
+                                  <mat-icon>cloud_upload</mat-icon>
+                                  <span fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="6px">
+                                      <span class="label">Upload Image/Video</span>
+                                      <span class="image-size">Media size must be less than 50MB</span>
+                                  </span>
+                              </div>
+                          </div>
+                      </label>
+                  </div>
+                    <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="24px">
+
                         <div fxLayout="column" fxLayoutGap="8px">
-                            <label for="">Etat <span class="color-danger">*</span></label>
+                            <label for="">Etat</label>
                             <mat-form-field class="form-control">
-                                <mat-label class="label">Favorite food</mat-label>
-                                <mat-select [(ngModel)]="selectedValue" name="food">
+                                <mat-label class="label">Choisir un état</mat-label>
+                                <mat-select formControlName="etat">
                                     <div *ngFor="let stat of states">
                                         <mat-option [value]="stat.value">{{stat.viewValue}}</mat-option>
                                     </div>
                                 </mat-select>
                             </mat-form-field>
                         </div>
-                        <mat-slide-toggle formControlName="est_publie">
-                            <span class="label">Cliquez pour publier</span>
-                        </mat-slide-toggle>
+                        <div fxLayout="column" fxLayoutGap="8px">
+                          <span class="label">Publication</span>
+                          <div fxLayout="row" fxLayoutGap="12px">
+                              <mat-slide-toggle formControlName="est_publie">
+                                  <span class="label">Cliquez pour publier</span>
+                              </mat-slide-toggle>
+
+                          </div>
+                      </div>
                     </div>
                 </div>
-            </div>
             <div class="form-action" fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="24px">
                 <button class="btn  btn-form-cancel" appGoBack>Annuler</button>
-                <button class="btn btn-form-primary">Enregistrer</button>
+                <button class="btn btn-form-primary" (click)="onSubmit()">Enregistrer</button>
             </div>
         </form>
     </div>

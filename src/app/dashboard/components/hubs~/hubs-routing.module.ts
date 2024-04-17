@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
-import { AnnonceComponent } from '../annonce/annonce.component';
+import { AnnonceComponent } from '../annonce2/annonce.component';
 import { OverviewComponent } from './components/overview/overview.component';
 import { CreateHubComponent } from './components/create-hub/create-hub.component';
 import { EditHubComponent } from './components/edit-hub/edit-hub.component';

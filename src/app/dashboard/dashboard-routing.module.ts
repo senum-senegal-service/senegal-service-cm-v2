@@ -42,7 +42,7 @@ const routes: Routes = [
         path: 'annonces',
         loadChildren: () =>
           import('./components/annonce/annonce.module').then(
-            (m) => m.AnnonceModule
+            (m) => m.AnnoncesModule
           ),
       },
       {

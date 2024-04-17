@@ -1,15 +1,15 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Router, RouterModule, Routes } from '@angular/router';
-import { ActualitesComponent } from './actualites.component';
+import { RouterModule, Routes } from '@angular/router';
+import { AnnonceComponent } from './annonce.component';
 import { OverviewComponent } from './components/overview/overview.component';
-import { CreateActualiteComponent } from './components/create-actualite/create-actualite.component';
-import { EditActualiteComponent } from './components/edit-actualite/edit-actualite.component';
+import { CreateAnnonceComponent } from './components/create-annonce/create-annonce.component';
+import { EditAnnonceComponent } from './components/edit-annonce/edit-annonce.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: ActualitesComponent,
+    component: AnnonceComponent,
 
     children: [
       {
@@ -18,11 +18,11 @@ const routes: Routes = [
       },
       {
         path: 'create',
-        component: CreateActualiteComponent,
+        component: CreateAnnonceComponent,
       },
       {
         path: ':id',
-        component: EditActualiteComponent,
+        component: EditAnnonceComponent,
       },
     ],
   },
@@ -33,4 +33,4 @@ const routes: Routes = [
   imports: [CommonModule, RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class ActualitesRoutingModule {}
+export class AnnonceRoutingModule {}

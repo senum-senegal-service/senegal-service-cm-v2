@@ -1,0 +1,114 @@
+query FetchAnnonces($queryFilter: QueryDataConfigInput, $annonceFilter: AnnonceInputSearchInput) {
+	fetchAnnonces(queryFilter: $queryFilter, annonceFilter: $annonceFilter) {
+		pagination {
+			totalItems
+			pageCount
+			pageSize
+			currentPage
+		}
+		results {
+			id
+			titre
+      sous_titre
+      description
+      updatedAt
+      etat
+      url
+      est_publie
+        action_button_url
+    action_button_text
+			sous_themes {
+				id
+				libelle
+				slug
+			}
+      service_administratifs {
+        id
+        nom
+      }
+		}
+
+	}
+}
+
+
+query SearchAnnonces($queryFilter: QueryDataConfigInput) {
+	searchResults: fetchAnnonces(queryFilter: $queryFilter) {
+		pagination {
+			totalItems
+			pageCount
+			pageSize
+			currentPage
+		}
+		results {
+			id
+			nom: titre
+		}
+
+	}
+}
+
+mutation CreateAnnonce($annonceInput: AnnonceInput!) {
+	createAnnonce(annonceInput: $annonceInput) {
+		id
+		titre
+    sous_titre
+		mot_cle
+		description
+		a_la_une
+		slug
+		etat
+		est_publie
+    action_button_url
+    action_button_text
+		sous_themes {
+			id
+			libelle
+		}
+		service_administratifs {
+			id
+			nom
+		}
+
+	}
+}
+
+query FetchAnnonce($annonceId: String!) {
+	fetchAnnonce(annonceId: $annonceId) {
+		id
+		titre
+    sous_titre
+		url
+		mot_cle
+		description
+		a_la_une
+		slug
+		etat
+		est_publie
+    pages
+    action_button_url
+    action_button_text
+    poster
+    media_type
+		service_administratifs {
+				id
+				nom
+			}
+			sous_themes {
+				id
+				nom: libelle
+			}
+	}
+}
+
+mutation DeleteAnnonce($annonceId: Any!) {
+  deleteAnnonce(annonceId: $annonceId)
+}
+
+mutation PublishAnnonce($annonceId: Any!) {
+  publishAnnonce(annonceId: $annonceId)
+}
+
+mutation UnPublishAnnonce($annonceId: Any!) {
+  unPublishAnnonce(annonceId: $annonceId)
+}

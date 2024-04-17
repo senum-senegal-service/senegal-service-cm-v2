@@ -84,6 +84,77 @@ export type ActualiteUpdateInput = {
   url?: InputMaybe<Scalars['String']['input']>;
 };
 
+export type Annonce = {
+  __typename?: 'Annonce';
+  a_la_une?: Maybe<Scalars['Boolean']['output']>;
+  action_button_text?: Maybe<Scalars['String']['output']>;
+  action_button_url?: Maybe<Scalars['String']['output']>;
+  add_by?: Maybe<Scalars['String']['output']>;
+  createdAt: Scalars['DateTime']['output'];
+  date_publication?: Maybe<Scalars['DateTime']['output']>;
+  delatedAt?: Maybe<Scalars['DateTime']['output']>;
+  description?: Maybe<Scalars['String']['output']>;
+  est_publie?: Maybe<Scalars['Boolean']['output']>;
+  etat?: Maybe<Scalars['String']['output']>;
+  id: Scalars['Any']['output'];
+  media_type?: Maybe<Scalars['String']['output']>;
+  mot_cle?: Maybe<Scalars['String']['output']>;
+  pages?: Maybe<Array<WebsitePage>>;
+  poster: Scalars['String']['output'];
+  service_administratifs?: Maybe<Array<ServiceAdministratif>>;
+  slug: Scalars['String']['output'];
+  sous_themes?: Maybe<Array<SousTheme>>;
+  sous_titre?: Maybe<Scalars['String']['output']>;
+  titre: Scalars['String']['output'];
+  updatedAt: Scalars['DateTime']['output'];
+  url?: Maybe<Scalars['String']['output']>;
+};
+
+export type AnnonceInput = {
+  action_button_text?: InputMaybe<Scalars['String']['input']>;
+  action_button_url?: InputMaybe<Scalars['String']['input']>;
+  contenu: Scalars['String']['input'];
+  description?: InputMaybe<Scalars['String']['input']>;
+  est_publie: Scalars['Boolean']['input'];
+  etat: Scalars['String']['input'];
+  media_type?: InputMaybe<Scalars['String']['input']>;
+  mot_cle?: InputMaybe<Scalars['String']['input']>;
+  observations?: InputMaybe<Scalars['String']['input']>;
+  pages?: InputMaybe<Array<WebsitePage>>;
+  service_administratifs?: InputMaybe<Array<Scalars['Any']['input']>>;
+  sous_themes?: InputMaybe<Array<Scalars['String']['input']>>;
+  sous_titre?: InputMaybe<Scalars['String']['input']>;
+  titre: Scalars['String']['input'];
+  url?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type AnnonceInputSearchInput = {
+  a_la_une?: InputMaybe<Scalars['Boolean']['input']>;
+  est_publie?: InputMaybe<Scalars['Boolean']['input']>;
+  etat?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type AnnonceUpdateInput = {
+  a_la_une?: InputMaybe<Scalars['Int']['input']>;
+  action_button_text?: InputMaybe<Scalars['String']['input']>;
+  action_button_url?: InputMaybe<Scalars['String']['input']>;
+  contenu?: InputMaybe<Scalars['String']['input']>;
+  date_publication?: InputMaybe<Scalars['DateTime']['input']>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  est_publie?: InputMaybe<Scalars['Int']['input']>;
+  etat?: InputMaybe<Scalars['String']['input']>;
+  media_type?: InputMaybe<Scalars['String']['input']>;
+  mot_cle?: InputMaybe<Scalars['String']['input']>;
+  observations?: InputMaybe<Scalars['String']['input']>;
+  pages?: InputMaybe<Array<WebsitePage>>;
+  service_administratifs?: InputMaybe<Array<Scalars['String']['input']>>;
+  slug?: InputMaybe<Scalars['String']['input']>;
+  sous_themes?: InputMaybe<Array<Scalars['String']['input']>>;
+  sous_titre?: InputMaybe<Scalars['String']['input']>;
+  titre?: InputMaybe<Scalars['String']['input']>;
+  url?: InputMaybe<Scalars['String']['input']>;
+};
+
 export type Demarche = {
   __typename?: 'Demarche';
   a_la_une?: Maybe<Scalars['Boolean']['output']>;
@@ -442,6 +513,7 @@ export type ModeleLettreUpdateInput = {
 export type Mutation = {
   __typename?: 'Mutation';
   createActualite: Actualite;
+  createAnnonce: Annonce;
   createDemarche: Demarche;
   createDescripteur: Descripteur;
   createFaq: Faq;
@@ -455,16 +527,20 @@ export type Mutation = {
   createTheme: Theme;
   createUser: User;
   deleteActualite: Scalars['Boolean']['output'];
+  deleteAnnonce: Scalars['Boolean']['output'];
   deleteDemarche: Scalars['Boolean']['output'];
   deleteHub: Scalars['Boolean']['output'];
   publishActualite: Scalars['Boolean']['output'];
+  publishAnnonce: Scalars['Boolean']['output'];
   publishDemarche: Scalars['Boolean']['output'];
   publishHub: Scalars['Boolean']['output'];
   register: Session;
   unPublishActualite: Scalars['Boolean']['output'];
+  unPublishAnnonce: Scalars['Boolean']['output'];
   unPublishDemarche: Scalars['Boolean']['output'];
   unPublishHub: Scalars['Boolean']['output'];
   updateActualite: Scalars['Boolean']['output'];
+  updateAnnonce: Scalars['Boolean']['output'];
   updateDemarche: Scalars['Boolean']['output'];
   updateDescripteur: Scalars['Boolean']['output'];
   updateFaq: Scalars['Boolean']['output'];
@@ -482,6 +558,11 @@ export type Mutation = {
 
 export type MutationCreateActualiteArgs = {
   actualiteInput: ActualiteInput;
+};
+
+
+export type MutationCreateAnnonceArgs = {
+  annonceInput: AnnonceInput;
 };
 
 
@@ -550,6 +631,11 @@ export type MutationDeleteActualiteArgs = {
 };
 
 
+export type MutationDeleteAnnonceArgs = {
+  annonceId: Scalars['Any']['input'];
+};
+
+
 export type MutationDeleteDemarcheArgs = {
   demarcheId: Scalars['Any']['input'];
 };
@@ -562,6 +648,11 @@ export type MutationDeleteHubArgs = {
 
 export type MutationPublishActualiteArgs = {
   actualiteId: Scalars['Any']['input'];
+};
+
+
+export type MutationPublishAnnonceArgs = {
+  annonceId: Scalars['Any']['input'];
 };
 
 
@@ -585,6 +676,11 @@ export type MutationUnPublishActualiteArgs = {
 };
 
 
+export type MutationUnPublishAnnonceArgs = {
+  annonceId: Scalars['Any']['input'];
+};
+
+
 export type MutationUnPublishDemarcheArgs = {
   demarcheId: Scalars['Any']['input'];
 };
@@ -598,6 +694,12 @@ export type MutationUnPublishHubArgs = {
 export type MutationUpdateActualiteArgs = {
   actualiteId: Scalars['ID']['input'];
   actualiteInput: ActualiteUpdateInput;
+};
+
+
+export type MutationUpdateAnnonceArgs = {
+  annonceId: Scalars['ID']['input'];
+  annonceInput: AnnonceUpdateInput;
 };
 
 
@@ -689,6 +791,12 @@ export type PaginatedActualiteResult = {
   results: Array<Actualite>;
 };
 
+export type PaginatedAnnonceResult = {
+  __typename?: 'PaginatedAnnonceResult';
+  pagination: PaginationInfo;
+  results: Array<Annonce>;
+};
+
 export type PaginatedDemarcheResult = {
   __typename?: 'PaginatedDemarcheResult';
   pagination: PaginationInfo;
@@ -768,8 +876,11 @@ export type Query = {
   fetchActualite: Actualite;
   fetchActualites: PaginatedActualiteResult;
   fetchAllActualites: Actualite;
+  fetchAllAnnonces: Annonce;
   fetchAllDemarches: Demarche;
   fetchAllHubs: Hub;
+  fetchAnnonce: Annonce;
+  fetchAnnonces: PaginatedAnnonceResult;
   fetchDemarche: Demarche;
   fetchDemarches: PaginatedDemarcheResult;
   fetchDescripteur: Descripteur;
@@ -814,12 +925,28 @@ export type QueryFetchAllActualitesArgs = {
 };
 
 
+export type QueryFetchAllAnnoncesArgs = {
+  queryFilter?: InputMaybe<QueryDataConfigInput>;
+};
+
+
 export type QueryFetchAllDemarchesArgs = {
   queryFilter?: InputMaybe<QueryDataConfigInput>;
 };
 
 
 export type QueryFetchAllHubsArgs = {
+  queryFilter?: InputMaybe<QueryDataConfigInput>;
+};
+
+
+export type QueryFetchAnnonceArgs = {
+  annonceId: Scalars['String']['input'];
+};
+
+
+export type QueryFetchAnnoncesArgs = {
+  annonceFilter?: InputMaybe<AnnonceInputSearchInput>;
   queryFilter?: InputMaybe<QueryDataConfigInput>;
 };
 
@@ -1159,6 +1286,12 @@ export type UserUpdateInput = {
   id: Scalars['String']['input'];
 };
 
+/** Website pages */
+export enum WebsitePage {
+  Demarche = 'Demarche',
+  Home = 'Home'
+}
+
 export type RegisterMutationVariables = Exact<{
   registerInput: RegisterInput;
 }>;
@@ -1179,7 +1312,7 @@ export type FetchActualitesQueryVariables = Exact<{
 }>;
 
 
-export type FetchActualitesQuery = { __typename?: 'Query', fetchActualites: { __typename?: 'PaginatedActualiteResult', pagination: { __typename?: 'PaginationInfo', totalItems: number, pageCount: number, pageSize: number, currentPage: number }, results: Array<{ __typename?: 'Actualite', id: any, titre: string, description?: string | null, updatedAt: any, etat?: string | null, est_publie?: boolean | null, observations?: string | null, sous_themes: Array<{ __typename?: 'SousTheme', id: string, libelle: string, slug: string }> }> } };
+export type FetchActualitesQuery = { __typename?: 'Query', fetchActualites: { __typename?: 'PaginatedActualiteResult', pagination: { __typename?: 'PaginationInfo', totalItems: number, pageCount: number, pageSize: number, currentPage: number }, results: Array<{ __typename?: 'Actualite', id: any, titre: string, description?: string | null, updatedAt: any, etat?: string | null, est_publie?: boolean | null, observations?: string | null, url?: string | null, sous_themes: Array<{ __typename?: 'SousTheme', id: string, libelle: string, slug: string }> }> } };
 
 export type SearchActualitesQueryVariables = Exact<{
   queryFilter?: InputMaybe<QueryDataConfigInput>;
@@ -1222,6 +1355,56 @@ export type UnPublishActualiteMutationVariables = Exact<{
 
 
 export type UnPublishActualiteMutation = { __typename?: 'Mutation', unPublishActualite: boolean };
+
+export type FetchAnnoncesQueryVariables = Exact<{
+  queryFilter?: InputMaybe<QueryDataConfigInput>;
+  annonceFilter?: InputMaybe<AnnonceInputSearchInput>;
+}>;
+
+
+export type FetchAnnoncesQuery = { __typename?: 'Query', fetchAnnonces: { __typename?: 'PaginatedAnnonceResult', pagination: { __typename?: 'PaginationInfo', totalItems: number, pageCount: number, pageSize: number, currentPage: number }, results: Array<{ __typename?: 'Annonce', id: any, titre: string, sous_titre?: string | null, description?: string | null, updatedAt: any, etat?: string | null, url?: string | null, est_publie?: boolean | null, action_button_url?: string | null, action_button_text?: string | null, sous_themes?: Array<{ __typename?: 'SousTheme', id: string, libelle: string, slug: string }> | null, service_administratifs?: Array<{ __typename?: 'ServiceAdministratif', id: number, nom: string }> | null }> } };
+
+export type SearchAnnoncesQueryVariables = Exact<{
+  queryFilter?: InputMaybe<QueryDataConfigInput>;
+}>;
+
+
+export type SearchAnnoncesQuery = { __typename?: 'Query', searchResults: { __typename?: 'PaginatedAnnonceResult', pagination: { __typename?: 'PaginationInfo', totalItems: number, pageCount: number, pageSize: number, currentPage: number }, results: Array<{ __typename?: 'Annonce', id: any, nom: string }> } };
+
+export type CreateAnnonceMutationVariables = Exact<{
+  annonceInput: AnnonceInput;
+}>;
+
+
+export type CreateAnnonceMutation = { __typename?: 'Mutation', createAnnonce: { __typename?: 'Annonce', id: any, titre: string, sous_titre?: string | null, mot_cle?: string | null, description?: string | null, a_la_une?: boolean | null, slug: string, etat?: string | null, est_publie?: boolean | null, action_button_url?: string | null, action_button_text?: string | null, sous_themes?: Array<{ __typename?: 'SousTheme', id: string, libelle: string }> | null, service_administratifs?: Array<{ __typename?: 'ServiceAdministratif', id: number, nom: string }> | null } };
+
+export type FetchAnnonceQueryVariables = Exact<{
+  annonceId: Scalars['String']['input'];
+}>;
+
+
+export type FetchAnnonceQuery = { __typename?: 'Query', fetchAnnonce: { __typename?: 'Annonce', id: any, titre: string, sous_titre?: string | null, url?: string | null, mot_cle?: string | null, description?: string | null, a_la_une?: boolean | null, slug: string, etat?: string | null, est_publie?: boolean | null, pages?: Array<WebsitePage> | null, action_button_url?: string | null, action_button_text?: string | null, poster: string, media_type?: string | null, service_administratifs?: Array<{ __typename?: 'ServiceAdministratif', id: number, nom: string }> | null, sous_themes?: Array<{ __typename?: 'SousTheme', id: string, nom: string }> | null } };
+
+export type DeleteAnnonceMutationVariables = Exact<{
+  annonceId: Scalars['Any']['input'];
+}>;
+
+
+export type DeleteAnnonceMutation = { __typename?: 'Mutation', deleteAnnonce: boolean };
+
+export type PublishAnnonceMutationVariables = Exact<{
+  annonceId: Scalars['Any']['input'];
+}>;
+
+
+export type PublishAnnonceMutation = { __typename?: 'Mutation', publishAnnonce: boolean };
+
+export type UnPublishAnnonceMutationVariables = Exact<{
+  annonceId: Scalars['Any']['input'];
+}>;
+
+
+export type UnPublishAnnonceMutation = { __typename?: 'Mutation', unPublishAnnonce: boolean };
 
 export type FetchDemarchesQueryVariables = Exact<{
   queryFilter?: InputMaybe<QueryDataConfigInput>;
@@ -1494,6 +1677,7 @@ export const FetchActualitesDocument = gql`
       etat
       est_publie
       observations
+      url
       sous_themes {
         id
         libelle
@@ -1671,6 +1855,201 @@ export const UnPublishActualiteDocument = gql`
   })
   export class UnPublishActualiteGQL extends Apollo.Mutation<UnPublishActualiteMutation, UnPublishActualiteMutationVariables> {
     document = UnPublishActualiteDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const FetchAnnoncesDocument = gql`
+    query FetchAnnonces($queryFilter: QueryDataConfigInput, $annonceFilter: AnnonceInputSearchInput) {
+  fetchAnnonces(queryFilter: $queryFilter, annonceFilter: $annonceFilter) {
+    pagination {
+      totalItems
+      pageCount
+      pageSize
+      currentPage
+    }
+    results {
+      id
+      titre
+      sous_titre
+      description
+      updatedAt
+      etat
+      url
+      est_publie
+      action_button_url
+      action_button_text
+      sous_themes {
+        id
+        libelle
+        slug
+      }
+      service_administratifs {
+        id
+        nom
+      }
+    }
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class FetchAnnoncesGQL extends Apollo.Query<FetchAnnoncesQuery, FetchAnnoncesQueryVariables> {
+    document = FetchAnnoncesDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const SearchAnnoncesDocument = gql`
+    query SearchAnnonces($queryFilter: QueryDataConfigInput) {
+  searchResults: fetchAnnonces(queryFilter: $queryFilter) {
+    pagination {
+      totalItems
+      pageCount
+      pageSize
+      currentPage
+    }
+    results {
+      id
+      nom: titre
+    }
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class SearchAnnoncesGQL extends Apollo.Query<SearchAnnoncesQuery, SearchAnnoncesQueryVariables> {
+    document = SearchAnnoncesDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const CreateAnnonceDocument = gql`
+    mutation CreateAnnonce($annonceInput: AnnonceInput!) {
+  createAnnonce(annonceInput: $annonceInput) {
+    id
+    titre
+    sous_titre
+    mot_cle
+    description
+    a_la_une
+    slug
+    etat
+    est_publie
+    action_button_url
+    action_button_text
+    sous_themes {
+      id
+      libelle
+    }
+    service_administratifs {
+      id
+      nom
+    }
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class CreateAnnonceGQL extends Apollo.Mutation<CreateAnnonceMutation, CreateAnnonceMutationVariables> {
+    document = CreateAnnonceDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const FetchAnnonceDocument = gql`
+    query FetchAnnonce($annonceId: String!) {
+  fetchAnnonce(annonceId: $annonceId) {
+    id
+    titre
+    sous_titre
+    url
+    mot_cle
+    description
+    a_la_une
+    slug
+    etat
+    est_publie
+    pages
+    action_button_url
+    action_button_text
+    poster
+    media_type
+    service_administratifs {
+      id
+      nom
+    }
+    sous_themes {
+      id
+      nom: libelle
+    }
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class FetchAnnonceGQL extends Apollo.Query<FetchAnnonceQuery, FetchAnnonceQueryVariables> {
+    document = FetchAnnonceDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const DeleteAnnonceDocument = gql`
+    mutation DeleteAnnonce($annonceId: Any!) {
+  deleteAnnonce(annonceId: $annonceId)
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class DeleteAnnonceGQL extends Apollo.Mutation<DeleteAnnonceMutation, DeleteAnnonceMutationVariables> {
+    document = DeleteAnnonceDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const PublishAnnonceDocument = gql`
+    mutation PublishAnnonce($annonceId: Any!) {
+  publishAnnonce(annonceId: $annonceId)
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class PublishAnnonceGQL extends Apollo.Mutation<PublishAnnonceMutation, PublishAnnonceMutationVariables> {
+    document = PublishAnnonceDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const UnPublishAnnonceDocument = gql`
+    mutation UnPublishAnnonce($annonceId: Any!) {
+  unPublishAnnonce(annonceId: $annonceId)
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class UnPublishAnnonceGQL extends Apollo.Mutation<UnPublishAnnonceMutation, UnPublishAnnonceMutationVariables> {
+    document = UnPublishAnnonceDocument;
     
     constructor(apollo: Apollo.Apollo) {
       super(apollo);

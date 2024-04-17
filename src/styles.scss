@@ -265,6 +265,7 @@ body {
 
     .image-container {
       cursor: pointer;
+      pointer-events: none;
       background-color: #cacaca20;
       height: 250px;
       max-width: 400px;

@@ -1,23 +1,34 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AnnonceRoutingModule } from './annonce-routing.module';
-import { AnnonceComponent } from './annonce.component';
+import { AnnoncesComponent } from './annonce.component';
+import { AnnoncesRoutingModule } from './annonce-routing.module';
 import { OverviewComponent } from './components/overview/overview.component';
-import { MaterialModule } from 'src/app/shared/modules/material/material.module';
-import { AnnonceFormComponent } from './components/annonce-form/annonce-form.component';
 import { CreateAnnonceComponent } from './components/create-annonce/create-annonce.component';
+import { AnnonceFormComponent } from './components/annonce-form/annonce-form.component';
 import { EditAnnonceComponent } from './components/edit-annonce/edit-annonce.component';
-import { AnnonceModlaFilterComponent } from './components/annonce-modla-filter/annonce-modla-filter.component';
+import { MaterialModule } from 'src/app/shared/modules/material/material.module';
+import { DropdownModule } from 'src/app/shared/directives/dropdown/dropdown.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MultiSelectModule } from 'src/app/shared/components/multi-select/multi-select.module';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   declarations: [
-    AnnonceComponent,
+    AnnoncesComponent,
     OverviewComponent,
-    AnnonceFormComponent,
     CreateAnnonceComponent,
+    AnnonceFormComponent,
     EditAnnonceComponent,
-    AnnonceModlaFilterComponent,
   ],
-  imports: [CommonModule, AnnonceRoutingModule, MaterialModule],
+  imports: [
+    CommonModule,
+    AnnoncesRoutingModule,
+    MaterialModule,
+    DropdownModule,
+    ReactiveFormsModule,
+    FormsModule,
+    MultiSelectModule,
+    FlexLayoutModule,
+  ],
 })
-export class AnnonceModule {}
+export class AnnoncesModule {}

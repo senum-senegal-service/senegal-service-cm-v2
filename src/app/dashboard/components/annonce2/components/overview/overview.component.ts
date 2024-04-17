@@ -5,10 +5,11 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ModalConfirmationComponent } from 'src/app/shared/components/modal-confirmation/modal-confirmation.component';
 import { MockService } from 'src/app/shared/services/mock.service';
+import { AnnonceModlaFilterComponent } from '../annonce-modla-filter/annonce-modla-filter.component';
 import { SelectOptions } from 'src/app/shared/utils/selec-options';
 
 @Component({
-  selector: 'app-overview-actualites',
+  selector: 'app-overview',
   templateUrl: './overview.component.html',
   styleUrls: ['./overview.component.scss'],
 })
@@ -16,8 +17,6 @@ export class OverviewComponent {
   displayedColumns: string[] = [
     'titre',
     'description',
-    'sous-themes',
-    'etat',
     'statut',
     'data-publication',
     'action',
@@ -29,7 +28,6 @@ export class OverviewComponent {
   selectedStatut: string;
 
   states: any[] = SelectOptions.states;
-
   statuts: any[] = SelectOptions.statuts;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -54,6 +52,10 @@ export class OverviewComponent {
     this.openDialogDelete(id);
   }
 
+  handleFilterDemarche() {
+    this.openDialogFilter(this.dataFilter);
+  }
+
   search(event: Event) {
     const searchValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = searchValue;
@@ -72,6 +74,20 @@ export class OverviewComponent {
           console.log(id);
         });
       }
+    });
+  }
+
+  openDialogFilter(data: any): void {
+    const dialogRef = this.dialog.open(AnnonceModlaFilterComponent, {
+      data: data,
+      maxHeight: '90vh',
+      maxWidth: '600px',
+      width: '100%',
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log('The dialog was closed');
+      console.log(result);
     });
   }
 }

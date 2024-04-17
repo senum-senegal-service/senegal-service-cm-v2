@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
-import { AnnonceComponent } from './annonce.component';
+
+import { AnnoncesComponent } from './annonce.component';
 import { OverviewComponent } from './components/overview/overview.component';
 import { CreateAnnonceComponent } from './components/create-annonce/create-annonce.component';
 import { EditAnnonceComponent } from './components/edit-annonce/edit-annonce.component';
@@ -9,7 +10,7 @@ import { EditAnnonceComponent } from './components/edit-annonce/edit-annonce.com
 const routes: Routes = [
   {
     path: '',
-    component: AnnonceComponent,
+    component: AnnoncesComponent,
 
     children: [
       {
@@ -33,4 +34,4 @@ const routes: Routes = [
   imports: [CommonModule, RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class AnnonceRoutingModule {}
+export class AnnoncesRoutingModule {}
