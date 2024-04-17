@@ -86,7 +86,7 @@ export class DashboardComponent implements OnInit {
     },
     {
       label: 'Paramétrage',
-      link: '',
+      link: 'settings',
       icon: 'settings',
     },
   ];
