@@ -84,11 +84,11 @@ export class DashboardComponent implements OnInit {
       link: 'collectivites',
       icon: 'map',
     },
-    {
-      label: 'Paramétrage',
-      link: 'settings',
-      icon: 'settings',
-    },
+    // {
+    //   label: 'Paramétrage',
+    //   link: 'settings',
+    //   icon: 'settings',
+    // },
   ];
 
   constructor(private servceSidebar: SidebarService) {}
