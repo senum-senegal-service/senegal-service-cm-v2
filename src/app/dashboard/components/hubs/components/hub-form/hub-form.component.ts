@@ -57,6 +57,8 @@ export class HubFormComponent implements OnChanges {
   hub: Hub;
   apiUrl: string = `${environment.API_URI}/hub`;
   poster: File;
+  mediaPreview: any;
+  mediaType: string;
 
   constructor(
     private fb: FormBuilder,
@@ -105,13 +107,14 @@ export class HubFormComponent implements OnChanges {
       return;
     }
     this.fetchHubGQL
-      .fetch({ hubId: this.hubId })
+      .fetch({ hubId: this.hubId }, { fetchPolicy: 'no-cache' })
       .subscribe((result) => {
         this.hub = result.data.fetchHub as any;
         const hubObject = Object.assign({}, this.hub);
         this.hubForm.patchValue(this.hub);
         patchArrayValue(['sous_themes', 'lien_utiles', 'textes', 'service_administratifs', 'modele_lettres', 'descripteurs', 'faqs'], this.hubForm, hubObject)
-        console.log({form: this.hubForm.value})
+        this.mediaPreview = this.hub.poster;
+        this.mediaType = 'image'
       });
   }
 
@@ -161,6 +164,35 @@ export class HubFormComponent implements OnChanges {
     if (event.target.files.length > 0) {
       const file = event.target.files[0];
       this.poster = file;
+    }
+  }
+
+  changePoster(event: any): void {
+    const input = event.target;
+    if(!input.files.length) {
+      return;
+    }
+    const file = input.files[0];
+    const maxFileSize = 50 * 1024 * 1024; // Taille maximale autorisée en octets (100 Mo)
+    this.poster = file;
+    if (file && file.size < maxFileSize) {
+      const reader = new FileReader();
+
+      reader.onload = () => {
+        this.mediaPreview = reader.result;
+        // Vérifier le type du fichier
+        if (file.type.startsWith('image')) {
+          this.mediaType = 'image';
+        } else if (file.type.startsWith('video')) {
+          this.mediaType = 'video';
+          (document.getElementById('poster') as HTMLVideoElement).volume = 0.1;
+        } else {
+          // Gérer d'autres types de fichiers si nécessaire
+          console.log('Type de fichier non pris en charge');
+        }
+      };
+
+      reader.readAsDataURL(file);
     }
   }
 

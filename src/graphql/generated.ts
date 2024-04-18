@@ -383,6 +383,7 @@ export type Hub = {
   modele_lettres: Array<ModeleLettre>;
   mot_cle?: Maybe<Scalars['String']['output']>;
   observations?: Maybe<Scalars['String']['output']>;
+  poster: Scalars['String']['output'];
   resume?: Maybe<Scalars['String']['output']>;
   service_administratifs: Array<ServiceAdministratif>;
   slug: Scalars['String']['output'];
@@ -1865,7 +1866,7 @@ export type FetchHubQueryVariables = Exact<{
 }>;
 
 
-export type FetchHubQuery = { __typename?: 'Query', fetchHub: { __typename?: 'Hub', id: any, titre: string, mot_cle?: string | null, description: string, resume?: string | null, slug: string, observations?: string | null, etat?: string | null, est_publie?: boolean | null, a_la_une?: boolean | null, service_administratifs: Array<{ __typename?: 'ServiceAdministratif', id: number, nom: string }>, sous_themes: Array<{ __typename?: 'SousTheme', id: string, nom: string }>, formulaires: Array<{ __typename?: 'Formulaire', id: number, nom: string }>, faqs: Array<{ __typename?: 'Faq', id: number, nom: string }>, descripteurs: Array<{ __typename?: 'Descripteur', id: number, nom: string }>, modele_lettres: Array<{ __typename?: 'ModeleLettre', id: number, nom: string }>, textes: Array<{ __typename?: 'Texte', id: number, nom: string }>, lien_utiles: Array<{ __typename?: 'LienUtile', id: number, nom: string }> } };
+export type FetchHubQuery = { __typename?: 'Query', fetchHub: { __typename?: 'Hub', id: any, titre: string, mot_cle?: string | null, description: string, resume?: string | null, slug: string, observations?: string | null, etat?: string | null, est_publie?: boolean | null, a_la_une?: boolean | null, poster: string, service_administratifs: Array<{ __typename?: 'ServiceAdministratif', id: number, nom: string }>, sous_themes: Array<{ __typename?: 'SousTheme', id: string, nom: string }>, formulaires: Array<{ __typename?: 'Formulaire', id: number, nom: string }>, faqs: Array<{ __typename?: 'Faq', id: number, nom: string }>, descripteurs: Array<{ __typename?: 'Descripteur', id: number, nom: string }>, modele_lettres: Array<{ __typename?: 'ModeleLettre', id: number, nom: string }>, textes: Array<{ __typename?: 'Texte', id: number, nom: string }>, lien_utiles: Array<{ __typename?: 'LienUtile', id: number, nom: string }> } };
 
 export type DeleteHubMutationVariables = Exact<{
   hubId: Scalars['String']['input'];
@@ -3300,6 +3301,7 @@ export const FetchHubDocument = gql`
     etat
     est_publie
     a_la_une
+    poster
     service_administratifs {
       id
       nom

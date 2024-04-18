@@ -101,6 +101,7 @@ query FetchAllHubs {
 		etat
 		est_publie
     a_la_une
+
   }
 }
 
@@ -117,6 +118,7 @@ query FetchHub($hubId: String!) {
 		etat
 		est_publie
     a_la_une
+    poster
 		service_administratifs {
 				id
 				nom

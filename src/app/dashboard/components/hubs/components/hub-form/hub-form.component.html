@@ -86,14 +86,29 @@
                         <textarea class="form-control" formControlName="observations" name="observation"
                             id="observation" cols="30" rows="2" placeholder="Ajoutez un observation privée"></textarea>
                     </div>
+                    <div class="form-image">
+                      <input type="file" id="hub-image" accept="image/*" (change)="changePoster($event)">
+                      <label for="hub-image" fxLayout="column" fxLayoutGap="8px">
+                          <span class="label">Image/Video <span class="color-danger">*</span></span>
+                          <div class="image-container">
+                              <img *ngIf="mediaType === 'image' && mediaPreview" [src]="mediaPreview" alt="Image preview">
+                              <video *ngIf="mediaType === 'video' && mediaPreview" [src]="mediaPreview" id="poster" autoplay muted>
+                                  Your browser does not support the video tag.
+                              </video>
+                              <div *ngIf="!mediaPreview" fxLayout="column" fxLayoutAlign="center center"
+                                  fxLayoutGap="12px">
+                                  <mat-icon>cloud_upload</mat-icon>
+                                  <span fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="6px">
+                                      <span class="label">Upload Image/Video</span>
+                                      <span class="image-size">Media size must be less than 50MB</span>
+                                  </span>
+                              </div>
+                          </div>
+                      </label>
+                  </div>
                     <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="24px">
-                        <div fxLayout="column" fxLayoutGap="8px">
-                            <span class="label">Poster</span>
-                            <div fxLayout="row" fxLayoutGap="12px">
-                                <input type="file" class="form-control" (change)="onFileChange($event)">
 
-                            </div>
-                        </div>
+
                         <div fxLayout="column" fxLayoutGap="8px">
                             <label for="">Etat</label>
                             <mat-form-field class="form-control">
