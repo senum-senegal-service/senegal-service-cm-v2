@@ -1,0 +1,75 @@
+<div class="page-wrapper" fxLayout="column" fxLayoutGap="24px">
+  <span class="goback" fxLayout="row" fxLayoutAlign="start center" appGoBack>
+      <span><mat-icon fxLayoutAlign="start center">arrow_back</mat-icon></span>
+      <span>Back</span>
+  </span>
+  <div fxFill class="container" fxLayout="column" fxLayoutGap="40px">
+      <span class="title">{{ formTitle }}</span>
+      <form fxFill [formGroup]="structureForm" class="form-container" fxLayout="column" fxLayoutGap="32px">
+          <div fxFill fxLayout="column" fxLayoutGap="24px">
+              <div fxFill fxLayout="row wrap" fxLayoutAlign="space-between start">
+                  <div fxFlex="49" fxLayout="column" fxLayoutGap="8px">
+                      <label for="libelle">Libelle <span class="color-danger">*</span></label>
+                      <input formControlName="libelle" type="text" id="libelle" class="form-control"
+                             placeholder="Libelle...">
+                  </div>
+                  <div fxFlex="49" fxLayout="column" fxLayoutGap="8px">
+                      <label for="localisation">Localisation</label>
+                      <input formControlName="localisation" type="text" id="localisation" class="form-control"
+                             placeholder="Localisation...">
+                  </div>
+              </div>
+
+              <div fxLayout="column" fxLayoutGap="8px">
+                  <label for="description">Description</label>
+                  <textarea formControlName="description" class="form-control" id="description" cols="30" rows="3"></textarea>
+              </div>
+
+              <div fxFill fxLayout="row wrap" fxLayoutAlign="space-between start">
+                  <div fxFlex="49" fxLayout="column" fxLayoutGap="8px">
+                      <label for="responsable">Responsable</label>
+                      <input formControlName="responsable" type="text" id="responsable" class="form-control"
+                             placeholder="Responsable...">
+                  </div>
+                  <div fxFlex="49" fxLayout="column" fxLayoutGap="8px">
+                      <label for="contact_responsable">Contact Responsable</label>
+                      <input formControlName="contact_responsable" type="text" id="contact_responsable" class="form-control"
+                             placeholder="Contact Responsable...">
+                  </div>
+              </div>
+
+              <div fxFill fxLayout="row wrap" fxLayoutAlign="space-between start">
+                  <div fxFlex="49" fxLayout="column" fxLayoutGap="8px">
+                      <label for="zone">Zone</label>
+                      <input formControlName="zone" type="text" id="zone" class="form-control"
+                             placeholder="Zone...">
+                  </div>
+                  <div fxFlex="49" fxLayout="column" fxLayoutGap="8px">
+                      <label for="map">Map URL</label>
+                      <input formControlName="map" type="text" id="map" class="form-control"
+                             placeholder="Map URL...">
+                  </div>
+              </div>
+
+              <!-- Assuming GPS coordinates are needed -->
+              <div fxFill fxLayout="row wrap" fxLayoutAlign="space-between start">
+                  <div fxFlex="49" fxLayout="column" fxLayoutGap="8px">
+                      <label for="latitude">Latitude</label>
+                      <input formControlName="latitude" type="text" id="latitude" class="form-control"
+                             placeholder="Latitude...">
+                  </div>
+                  <div fxFlex="49" fxLayout="column" fxLayoutGap="8px">
+                      <label for="longitude">Longitude</label>
+                      <input formControlName="longitude" type="text" id="longitude" class="form-control"
+                             placeholder="Longitude...">
+                  </div>
+              </div>
+
+              <div class="form-action" fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="24px">
+                <button class="btn  btn-form-cancel" appGoBack>Annuler</button>
+                <button class="btn btn-form-primary" (click)="onSubmit()">Enregistrer</button>
+            </div>
+          </div>
+      </form>
+  </div>
+</div>

@@ -53,6 +53,13 @@ const routes: Routes = [
           ),
       },
       {
+        path: 'structures',
+        loadChildren: () =>
+          import('./components/structure/structure.module').then(
+            (m) => m.StructuresModule
+          ),
+      },
+      {
         path: 'textes',
         loadChildren: () =>
           import('./components/textes/textes.module').then(

@@ -40,50 +40,55 @@ export class DashboardComponent implements OnInit {
       icon: 'laptop',
     },
     {
-      label: 'Gestion thématique',
-      link: 'themes',
-      icon: 'storage',
-    },
-    {
-      label: 'Gestion des textes',
-      link: 'textes',
-      icon: 'description',
-    },
-    {
-      label: 'Gestion des formulaires',
-      link: 'formulaires',
-      icon: 'chrome_reader_mode',
-    },
-    {
-      label: 'Gestion de la FAQ',
-      link: 'faqs',
-      icon: 'help',
-    },
-    {
-      label: 'Gestion des descripteurs',
-      link: 'descripteurs',
-      icon: 'public',
-    },
-    {
-      label: 'Modéle de lettres',
-      link: 'modele-lettres',
-      icon: 'receipt',
-    },
-    {
-      label: 'Gestion des liens utils',
-      link: 'lien-utiles',
-      icon: 'link',
-    },
-    {
-      label: 'Annuaire des services',
-      link: 'service-administratifs',
-      icon: 'location_on',
-    },
-    {
-      label: 'Découpage territorial',
-      link: 'collectivites',
+      label: 'Structures ESS',
+      link: 'structures',
       icon: 'map',
     },
+    // {
+    //   label: 'Gestion thématique',
+    //   link: 'themes',
+    //   icon: 'storage',
+    // },
+    // {
+    //   label: 'Gestion des textes',
+    //   link: 'textes',
+    //   icon: 'description',
+    // },
+    // {
+    //   label: 'Gestion des formulaires',
+    //   link: 'formulaires',
+    //   icon: 'chrome_reader_mode',
+    // },
+    // {
+    //   label: 'Gestion de la FAQ',
+    //   link: 'faqs',
+    //   icon: 'help',
+    // },
+    // {
+    //   label: 'Gestion des descripteurs',
+    //   link: 'descripteurs',
+    //   icon: 'public',
+    // },
+    // {
+    //   label: 'Modéle de lettres',
+    //   link: 'modele-lettres',
+    //   icon: 'receipt',
+    // },
+    // {
+    //   label: 'Gestion des liens utils',
+    //   link: 'lien-utiles',
+    //   icon: 'link',
+    // },
+    // {
+    //   label: 'Annuaire des services',
+    //   link: 'service-administratifs',
+    //   icon: 'location_on',
+    // },
+    // {
+    //   label: 'Découpage territorial',
+    //   link: 'collectivites',
+    //   icon: 'map',
+    // },
     // {
     //   label: 'Paramétrage',
     //   link: 'settings',

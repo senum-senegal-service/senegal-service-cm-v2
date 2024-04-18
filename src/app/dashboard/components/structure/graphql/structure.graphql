@@ -1,0 +1,101 @@
+query FetchStructures($queryFilter: QueryDataConfigInput, $structureFilter: StructureInputSearchInput) {
+	fetchStructures(queryFilter: $queryFilter, structureFilter: $structureFilter) {
+		pagination {
+			totalItems
+			pageCount
+			pageSize
+			currentPage
+		}
+		results {
+			id
+      libelle
+      collectivite_id
+      description
+      localisation
+      responsable
+      contact_responsable
+      zone
+      latitude
+      longitude
+      map
+      est_publie
+      etat
+      updatedAt: updated_at
+
+		}
+
+	}
+}
+
+
+query SearchStructures($queryFilter: QueryDataConfigInput) {
+	searchResults: fetchStructures(queryFilter: $queryFilter) {
+		pagination {
+			totalItems
+			pageCount
+			pageSize
+			currentPage
+		}
+		results {
+			id
+			nom: libelle
+		}
+
+	}
+}
+
+mutation CreateStructure($structureInput: StructureInput!) {
+	createStructure(structureInput: $structureInput) {
+			id
+      libelle
+      collectivite_id
+      description
+      localisation
+      responsable
+      contact_responsable
+      zone
+      latitude
+      longitude
+      map
+            est_publie
+      etat
+      updatedAt: updated_at
+
+	}
+}
+
+mutation UpdateStructure($structureId: Any!, $structureInput: StructureUpdateInput!) {
+	updateStructure(structureId: $structureId, structureInput: $structureInput)
+
+}
+
+query FetchStructure($structureId: String!) {
+	fetchStructure(structureId: $structureId) {
+			id
+      libelle
+      collectivite_id
+      description
+      localisation
+      responsable
+      contact_responsable
+      zone
+      latitude
+      longitude
+      map
+      est_publie
+      etat
+      updatedAt: updated_at
+	}
+}
+
+mutation DeleteStructure($structureId: Any!) {
+  deleteStructure(structureId: $structureId)
+}
+
+mutation PublishStructure($structureId: Any!) {
+  publishStructure(structureId: $structureId)
+}
+
+mutation UnPublishStructure($structureId: Any!) {
+  unPublishStructure(structureId: $structureId)
+}

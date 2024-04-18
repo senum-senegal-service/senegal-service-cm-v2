@@ -27,8 +27,10 @@ export type Actualite = {
   add_by?: Maybe<Scalars['String']['output']>;
   contenu: Scalars['String']['output'];
   createdAt: Scalars['DateTime']['output'];
+  created_at: Scalars['DateTime']['output'];
   date_publication?: Maybe<Scalars['DateTime']['output']>;
   delatedAt?: Maybe<Scalars['DateTime']['output']>;
+  delated_at?: Maybe<Scalars['DateTime']['output']>;
   demarches: Array<Demarche>;
   description?: Maybe<Scalars['String']['output']>;
   est_publie?: Maybe<Scalars['Boolean']['output']>;
@@ -42,6 +44,7 @@ export type Actualite = {
   textes: Array<Texte>;
   titre: Scalars['String']['output'];
   updatedAt: Scalars['DateTime']['output'];
+  updated_at: Scalars['DateTime']['output'];
   url?: Maybe<Scalars['String']['output']>;
 };
 
@@ -91,8 +94,10 @@ export type Annonce = {
   action_button_url?: Maybe<Scalars['String']['output']>;
   add_by?: Maybe<Scalars['String']['output']>;
   createdAt: Scalars['DateTime']['output'];
+  created_at: Scalars['DateTime']['output'];
   date_publication?: Maybe<Scalars['DateTime']['output']>;
   delatedAt?: Maybe<Scalars['DateTime']['output']>;
+  delated_at?: Maybe<Scalars['DateTime']['output']>;
   description?: Maybe<Scalars['String']['output']>;
   est_publie?: Maybe<Scalars['Boolean']['output']>;
   etat?: Maybe<Scalars['String']['output']>;
@@ -107,6 +112,7 @@ export type Annonce = {
   sous_titre?: Maybe<Scalars['String']['output']>;
   titre: Scalars['String']['output'];
   updatedAt: Scalars['DateTime']['output'];
+  updated_at: Scalars['DateTime']['output'];
   url?: Maybe<Scalars['String']['output']>;
 };
 
@@ -162,9 +168,11 @@ export type Demarche = {
   corps?: Maybe<Scalars['String']['output']>;
   cout?: Maybe<Scalars['Int']['output']>;
   createdAt: Scalars['DateTime']['output'];
+  created_at: Scalars['DateTime']['output'];
   date_publication?: Maybe<Scalars['DateTime']['output']>;
   delai?: Maybe<Scalars['Int']['output']>;
   delatedAt?: Maybe<Scalars['DateTime']['output']>;
+  delated_at?: Maybe<Scalars['DateTime']['output']>;
   demarches: Array<Demarche>;
   descripteurs: Array<Descripteur>;
   description: Scalars['String']['output'];
@@ -186,6 +194,7 @@ export type Demarche = {
   textes: Array<Texte>;
   titre: Scalars['String']['output'];
   updatedAt: Scalars['DateTime']['output'];
+  updated_at: Scalars['DateTime']['output'];
   url?: Maybe<Scalars['String']['output']>;
 };
 
@@ -355,8 +364,10 @@ export type Hub = {
   a_la_une?: Maybe<Scalars['Boolean']['output']>;
   add_by?: Maybe<Scalars['String']['output']>;
   createdAt: Scalars['DateTime']['output'];
+  created_at: Scalars['DateTime']['output'];
   date_publication?: Maybe<Scalars['DateTime']['output']>;
   delatedAt?: Maybe<Scalars['DateTime']['output']>;
+  delated_at?: Maybe<Scalars['DateTime']['output']>;
   demarches: Array<Hub>;
   descripteurs: Array<Descripteur>;
   description: Scalars['String']['output'];
@@ -376,6 +387,7 @@ export type Hub = {
   textes: Array<Texte>;
   titre: Scalars['String']['output'];
   updatedAt: Scalars['DateTime']['output'];
+  updated_at: Scalars['DateTime']['output'];
 };
 
 export type HubInput = {
@@ -524,6 +536,7 @@ export type Mutation = {
   createService: Service;
   createServiceAdministratif: ServiceAdministratif;
   createSousTheme: SousTheme;
+  createStructure: Structure;
   createTexte: Texte;
   createTheme: Theme;
   createUser: User;
@@ -532,17 +545,20 @@ export type Mutation = {
   deleteDemarche: Scalars['Boolean']['output'];
   deleteHub: Scalars['Boolean']['output'];
   deleteService: Scalars['Boolean']['output'];
+  deleteStructure: Scalars['Boolean']['output'];
   publishActualite: Scalars['Boolean']['output'];
   publishAnnonce: Scalars['Boolean']['output'];
   publishDemarche: Scalars['Boolean']['output'];
   publishHub: Scalars['Boolean']['output'];
   publishService: Scalars['Boolean']['output'];
+  publishStructure: Scalars['Boolean']['output'];
   register: Session;
   unPublishActualite: Scalars['Boolean']['output'];
   unPublishAnnonce: Scalars['Boolean']['output'];
   unPublishDemarche: Scalars['Boolean']['output'];
   unPublishHub: Scalars['Boolean']['output'];
   unPublishService: Scalars['Boolean']['output'];
+  unPublishStructure: Scalars['Boolean']['output'];
   updateActualite: Scalars['Boolean']['output'];
   updateAnnonce: Scalars['Boolean']['output'];
   updateDemarche: Scalars['Boolean']['output'];
@@ -555,6 +571,7 @@ export type Mutation = {
   updateService: Scalars['Boolean']['output'];
   updateServiceAdministratif: Scalars['Boolean']['output'];
   updateSousTheme: Scalars['Boolean']['output'];
+  updateStructure: Scalars['Boolean']['output'];
   updateTexte: Scalars['Boolean']['output'];
   updateTheme: Scalars['Boolean']['output'];
   updateUser: Scalars['Boolean']['output'];
@@ -621,6 +638,11 @@ export type MutationCreateSousThemeArgs = {
 };
 
 
+export type MutationCreateStructureArgs = {
+  structureInput: StructureInput;
+};
+
+
 export type MutationCreateTexteArgs = {
   texteInput: TexteInput;
 };
@@ -661,6 +683,11 @@ export type MutationDeleteServiceArgs = {
 };
 
 
+export type MutationDeleteStructureArgs = {
+  structureId: Scalars['Any']['input'];
+};
+
+
 export type MutationPublishActualiteArgs = {
   actualiteId: Scalars['Any']['input'];
 };
@@ -683,6 +710,11 @@ export type MutationPublishHubArgs = {
 
 export type MutationPublishServiceArgs = {
   serviceId: Scalars['Any']['input'];
+};
+
+
+export type MutationPublishStructureArgs = {
+  structureId: Scalars['Any']['input'];
 };
 
 
@@ -713,6 +745,11 @@ export type MutationUnPublishHubArgs = {
 
 export type MutationUnPublishServiceArgs = {
   serviceId: Scalars['Any']['input'];
+};
+
+
+export type MutationUnPublishStructureArgs = {
+  structureId: Scalars['Any']['input'];
 };
 
 
@@ -785,6 +822,12 @@ export type MutationUpdateServiceAdministratifArgs = {
 export type MutationUpdateSousThemeArgs = {
   sousThemeId: Scalars['ID']['input'];
   sousThemeInput: SousThemeUpdateInput;
+};
+
+
+export type MutationUpdateStructureArgs = {
+  structureId: Scalars['Any']['input'];
+  structureInput: StructureUpdateInput;
 };
 
 
@@ -888,6 +931,12 @@ export type PaginatedSousThemeResult = {
   results: Array<SousTheme>;
 };
 
+export type PaginatedStructureResult = {
+  __typename?: 'PaginatedStructureResult';
+  pagination: PaginationInfo;
+  results: Array<Structure>;
+};
+
 export type PaginatedTexteResult = {
   __typename?: 'PaginatedTexteResult';
   pagination: PaginationInfo;
@@ -917,6 +966,7 @@ export type Query = {
   fetchAllDemarches: Demarche;
   fetchAllHubs: Hub;
   fetchAllServices: Service;
+  fetchAllStructures: Structure;
   fetchAnnonce: Annonce;
   fetchAnnonces: PaginatedAnnonceResult;
   fetchDemarche: Demarche;
@@ -939,6 +989,8 @@ export type Query = {
   fetchServices: PaginatedServiceResult;
   fetchSousTheme: SousTheme;
   fetchSousThemes: PaginatedSousThemeResult;
+  fetchStructure: Structure;
+  fetchStructures: PaginatedStructureResult;
   fetchTexte: Texte;
   fetchTextes: PaginatedTexteResult;
   fetchTheme: Theme;
@@ -981,6 +1033,11 @@ export type QueryFetchAllHubsArgs = {
 
 
 export type QueryFetchAllServicesArgs = {
+  queryFilter?: InputMaybe<QueryDataConfigInput>;
+};
+
+
+export type QueryFetchAllStructuresArgs = {
   queryFilter?: InputMaybe<QueryDataConfigInput>;
 };
 
@@ -1099,6 +1156,17 @@ export type QueryFetchSousThemesArgs = {
 };
 
 
+export type QueryFetchStructureArgs = {
+  structureId: Scalars['String']['input'];
+};
+
+
+export type QueryFetchStructuresArgs = {
+  queryFilter?: InputMaybe<QueryDataConfigInput>;
+  structureFilter?: InputMaybe<StructureInputSearchInput>;
+};
+
+
 export type QueryFetchTexteArgs = {
   texteId: Scalars['String']['input'];
 };
@@ -1146,8 +1214,10 @@ export type Service = {
   add_by?: Maybe<Scalars['String']['output']>;
   contenu: Scalars['String']['output'];
   createdAt: Scalars['DateTime']['output'];
+  created_at: Scalars['DateTime']['output'];
   date_publication?: Maybe<Scalars['DateTime']['output']>;
   delatedAt?: Maybe<Scalars['DateTime']['output']>;
+  delated_at?: Maybe<Scalars['DateTime']['output']>;
   description?: Maybe<Scalars['String']['output']>;
   est_publie?: Maybe<Scalars['Boolean']['output']>;
   etat?: Maybe<Scalars['String']['output']>;
@@ -1160,6 +1230,7 @@ export type Service = {
   sous_themes: Array<SousTheme>;
   titre: Scalars['String']['output'];
   updatedAt: Scalars['DateTime']['output'];
+  updated_at: Scalars['DateTime']['output'];
   url?: Maybe<Scalars['String']['output']>;
 };
 
@@ -1311,6 +1382,83 @@ export type SousThemeUpdateInput = {
   ordre?: InputMaybe<Scalars['String']['input']>;
   slug?: InputMaybe<Scalars['String']['input']>;
   themes: Array<Scalars['String']['input']>;
+};
+
+export type Structure = {
+  __typename?: 'Structure';
+  add_by?: Maybe<Scalars['String']['output']>;
+  address_map?: Maybe<Scalars['String']['output']>;
+  collectivite_id: Scalars['Float']['output'];
+  contact_responsable?: Maybe<Scalars['String']['output']>;
+  createdAt: Scalars['DateTime']['output'];
+  created_at: Scalars['DateTime']['output'];
+  date_publication?: Maybe<Scalars['DateTime']['output']>;
+  delatedAt?: Maybe<Scalars['DateTime']['output']>;
+  delated_at?: Maybe<Scalars['DateTime']['output']>;
+  description: Scalars['String']['output'];
+  est_publie?: Maybe<Scalars['Boolean']['output']>;
+  etat?: Maybe<Scalars['String']['output']>;
+  id: Scalars['Any']['output'];
+  latitude: Scalars['String']['output'];
+  libelle: Scalars['String']['output'];
+  localisation?: Maybe<Scalars['String']['output']>;
+  longitude: Scalars['String']['output'];
+  map?: Maybe<Scalars['String']['output']>;
+  paps_address?: Maybe<Scalars['String']['output']>;
+  parent?: Maybe<Structure>;
+  phone?: Maybe<Scalars['String']['output']>;
+  responsable?: Maybe<Scalars['String']['output']>;
+  updatedAt: Scalars['DateTime']['output'];
+  updated_at: Scalars['DateTime']['output'];
+  zone?: Maybe<Scalars['String']['output']>;
+};
+
+export type StructureInput = {
+  add_by?: InputMaybe<Scalars['String']['input']>;
+  address_map?: InputMaybe<Scalars['String']['input']>;
+  collectivite_id: Scalars['Any']['input'];
+  contact_responsable?: InputMaybe<Scalars['String']['input']>;
+  date_publication?: InputMaybe<Scalars['DateTime']['input']>;
+  description: Scalars['String']['input'];
+  est_publie?: InputMaybe<Scalars['Boolean']['input']>;
+  etat?: InputMaybe<Scalars['String']['input']>;
+  latitude: Scalars['String']['input'];
+  libelle: Scalars['String']['input'];
+  localisation?: InputMaybe<Scalars['String']['input']>;
+  longitude: Scalars['String']['input'];
+  map?: InputMaybe<Scalars['String']['input']>;
+  paps_address?: InputMaybe<Scalars['String']['input']>;
+  parent?: InputMaybe<Scalars['String']['input']>;
+  phone?: InputMaybe<Scalars['String']['input']>;
+  responsable?: InputMaybe<Scalars['String']['input']>;
+  zone?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type StructureInputSearchInput = {
+  a_la_une?: InputMaybe<Scalars['Boolean']['input']>;
+  est_publie?: InputMaybe<Scalars['Boolean']['input']>;
+  etat?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type StructureUpdateInput = {
+  add_by?: InputMaybe<Scalars['String']['input']>;
+  address_map?: InputMaybe<Scalars['String']['input']>;
+  collectivite_id: Scalars['Any']['input'];
+  contact_responsable?: InputMaybe<Scalars['String']['input']>;
+  date_publication?: InputMaybe<Scalars['DateTime']['input']>;
+  description: Scalars['String']['input'];
+  est_publie?: InputMaybe<Scalars['Boolean']['input']>;
+  etat?: InputMaybe<Scalars['String']['input']>;
+  latitude: Scalars['String']['input'];
+  libelle: Scalars['String']['input'];
+  localisation?: InputMaybe<Scalars['String']['input']>;
+  longitude: Scalars['String']['input'];
+  map?: InputMaybe<Scalars['String']['input']>;
+  paps_address?: InputMaybe<Scalars['String']['input']>;
+  parent?: InputMaybe<Scalars['String']['input']>;
+  phone?: InputMaybe<Scalars['String']['input']>;
+  responsable?: InputMaybe<Scalars['String']['input']>;
+  zone?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type Texte = {
@@ -1781,6 +1929,64 @@ export type UnPublishServiceMutationVariables = Exact<{
 
 
 export type UnPublishServiceMutation = { __typename?: 'Mutation', unPublishService: boolean };
+
+export type FetchStructuresQueryVariables = Exact<{
+  queryFilter?: InputMaybe<QueryDataConfigInput>;
+  structureFilter?: InputMaybe<StructureInputSearchInput>;
+}>;
+
+
+export type FetchStructuresQuery = { __typename?: 'Query', fetchStructures: { __typename?: 'PaginatedStructureResult', pagination: { __typename?: 'PaginationInfo', totalItems: number, pageCount: number, pageSize: number, currentPage: number }, results: Array<{ __typename?: 'Structure', id: any, libelle: string, collectivite_id: number, description: string, localisation?: string | null, responsable?: string | null, contact_responsable?: string | null, zone?: string | null, latitude: string, longitude: string, map?: string | null, est_publie?: boolean | null, etat?: string | null, updatedAt: any }> } };
+
+export type SearchStructuresQueryVariables = Exact<{
+  queryFilter?: InputMaybe<QueryDataConfigInput>;
+}>;
+
+
+export type SearchStructuresQuery = { __typename?: 'Query', searchResults: { __typename?: 'PaginatedStructureResult', pagination: { __typename?: 'PaginationInfo', totalItems: number, pageCount: number, pageSize: number, currentPage: number }, results: Array<{ __typename?: 'Structure', id: any, nom: string }> } };
+
+export type CreateStructureMutationVariables = Exact<{
+  structureInput: StructureInput;
+}>;
+
+
+export type CreateStructureMutation = { __typename?: 'Mutation', createStructure: { __typename?: 'Structure', id: any, libelle: string, collectivite_id: number, description: string, localisation?: string | null, responsable?: string | null, contact_responsable?: string | null, zone?: string | null, latitude: string, longitude: string, map?: string | null, est_publie?: boolean | null, etat?: string | null, updatedAt: any } };
+
+export type UpdateStructureMutationVariables = Exact<{
+  structureId: Scalars['Any']['input'];
+  structureInput: StructureUpdateInput;
+}>;
+
+
+export type UpdateStructureMutation = { __typename?: 'Mutation', updateStructure: boolean };
+
+export type FetchStructureQueryVariables = Exact<{
+  structureId: Scalars['String']['input'];
+}>;
+
+
+export type FetchStructureQuery = { __typename?: 'Query', fetchStructure: { __typename?: 'Structure', id: any, libelle: string, collectivite_id: number, description: string, localisation?: string | null, responsable?: string | null, contact_responsable?: string | null, zone?: string | null, latitude: string, longitude: string, map?: string | null, est_publie?: boolean | null, etat?: string | null, updatedAt: any } };
+
+export type DeleteStructureMutationVariables = Exact<{
+  structureId: Scalars['Any']['input'];
+}>;
+
+
+export type DeleteStructureMutation = { __typename?: 'Mutation', deleteStructure: boolean };
+
+export type PublishStructureMutationVariables = Exact<{
+  structureId: Scalars['Any']['input'];
+}>;
+
+
+export type PublishStructureMutation = { __typename?: 'Mutation', publishStructure: boolean };
+
+export type UnPublishStructureMutationVariables = Exact<{
+  structureId: Scalars['Any']['input'];
+}>;
+
+
+export type UnPublishStructureMutation = { __typename?: 'Mutation', unPublishStructure: boolean };
 
 export const RegisterDocument = gql`
     mutation Register($registerInput: RegisterInput!) {
@@ -3335,6 +3541,198 @@ export const UnPublishServiceDocument = gql`
   })
   export class UnPublishServiceGQL extends Apollo.Mutation<UnPublishServiceMutation, UnPublishServiceMutationVariables> {
     document = UnPublishServiceDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const FetchStructuresDocument = gql`
+    query FetchStructures($queryFilter: QueryDataConfigInput, $structureFilter: StructureInputSearchInput) {
+  fetchStructures(queryFilter: $queryFilter, structureFilter: $structureFilter) {
+    pagination {
+      totalItems
+      pageCount
+      pageSize
+      currentPage
+    }
+    results {
+      id
+      libelle
+      collectivite_id
+      description
+      localisation
+      responsable
+      contact_responsable
+      zone
+      latitude
+      longitude
+      map
+      est_publie
+      etat
+      updatedAt: updated_at
+    }
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class FetchStructuresGQL extends Apollo.Query<FetchStructuresQuery, FetchStructuresQueryVariables> {
+    document = FetchStructuresDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const SearchStructuresDocument = gql`
+    query SearchStructures($queryFilter: QueryDataConfigInput) {
+  searchResults: fetchStructures(queryFilter: $queryFilter) {
+    pagination {
+      totalItems
+      pageCount
+      pageSize
+      currentPage
+    }
+    results {
+      id
+      nom: libelle
+    }
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class SearchStructuresGQL extends Apollo.Query<SearchStructuresQuery, SearchStructuresQueryVariables> {
+    document = SearchStructuresDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const CreateStructureDocument = gql`
+    mutation CreateStructure($structureInput: StructureInput!) {
+  createStructure(structureInput: $structureInput) {
+    id
+    libelle
+    collectivite_id
+    description
+    localisation
+    responsable
+    contact_responsable
+    zone
+    latitude
+    longitude
+    map
+    est_publie
+    etat
+    updatedAt: updated_at
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class CreateStructureGQL extends Apollo.Mutation<CreateStructureMutation, CreateStructureMutationVariables> {
+    document = CreateStructureDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const UpdateStructureDocument = gql`
+    mutation UpdateStructure($structureId: Any!, $structureInput: StructureUpdateInput!) {
+  updateStructure(structureId: $structureId, structureInput: $structureInput)
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class UpdateStructureGQL extends Apollo.Mutation<UpdateStructureMutation, UpdateStructureMutationVariables> {
+    document = UpdateStructureDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const FetchStructureDocument = gql`
+    query FetchStructure($structureId: String!) {
+  fetchStructure(structureId: $structureId) {
+    id
+    libelle
+    collectivite_id
+    description
+    localisation
+    responsable
+    contact_responsable
+    zone
+    latitude
+    longitude
+    map
+    est_publie
+    etat
+    updatedAt: updated_at
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class FetchStructureGQL extends Apollo.Query<FetchStructureQuery, FetchStructureQueryVariables> {
+    document = FetchStructureDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const DeleteStructureDocument = gql`
+    mutation DeleteStructure($structureId: Any!) {
+  deleteStructure(structureId: $structureId)
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class DeleteStructureGQL extends Apollo.Mutation<DeleteStructureMutation, DeleteStructureMutationVariables> {
+    document = DeleteStructureDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const PublishStructureDocument = gql`
+    mutation PublishStructure($structureId: Any!) {
+  publishStructure(structureId: $structureId)
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class PublishStructureGQL extends Apollo.Mutation<PublishStructureMutation, PublishStructureMutationVariables> {
+    document = PublishStructureDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const UnPublishStructureDocument = gql`
+    mutation UnPublishStructure($structureId: Any!) {
+  unPublishStructure(structureId: $structureId)
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class UnPublishStructureGQL extends Apollo.Mutation<UnPublishStructureMutation, UnPublishStructureMutationVariables> {
+    document = UnPublishStructureDocument;
     
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
