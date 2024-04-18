@@ -112,6 +112,7 @@ query FetchDemarche($demarcheId: String!) {
 		etat
 		est_publie
 		teleprocedure
+    hub
 		service_administratifs {
 				id
 				nom

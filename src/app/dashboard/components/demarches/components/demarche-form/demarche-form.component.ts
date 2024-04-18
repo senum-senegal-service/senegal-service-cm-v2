@@ -11,7 +11,9 @@ import { environment } from 'src/environments/environment';
 import {
   CreateDemarcheGQL,
   Demarche,
+  FetchAllHubsGQL,
   FetchDemarcheGQL,
+  Hub,
   SearchDemarchesGQL,
   SearchDescripteursGQL,
   SearchFaqsGQL,
@@ -49,6 +51,7 @@ export class DemarcheFormComponent implements OnChanges {
   liensUtils = [];
   sousThemes = [];
   faqs = [];
+  hubs: any[] = [];
   filteredOptions: string[] = this.options;
   searchTerm: string = '';
   selectedOptions: string[] = [];
@@ -70,6 +73,7 @@ export class DemarcheFormComponent implements OnChanges {
     private searchDemarchesGQL: SearchDemarchesGQL,
     private searchLienUtilesGQL: SearchLienUtilesGQL,
     private searchSousThemesGQL: SearchSousThemesGQL,
+    private fetchAllHubsGQL: FetchAllHubsGQL,
     private createDemarcheGQL: CreateDemarcheGQL,
     private snackbarService: SnackBarService,
     private router: Router,
@@ -79,6 +83,7 @@ export class DemarcheFormComponent implements OnChanges {
     this.demarcheForm = this.fb.group({
       titre: ['', [Validators.required]],
       sous_themes: [],
+      hub: [],
       resume: ['', [Validators.required]],
       description: ['', [Validators.required]],
       corps: [''],
@@ -228,6 +233,14 @@ export class DemarcheFormComponent implements OnChanges {
       });
   }
 
+  getHubs() {
+    this.fetchAllHubsGQL
+      .fetch({}, { fetchPolicy: 'cache-first' })
+      .subscribe((result) => {
+        this.hubs = result.data.fetchAllHubs as any;
+      });
+  }
+
   getFormulaires() {
     this.searchFormulairesGQL
       .fetch({ queryFilter: { limit: 10000 } }, { fetchPolicy: 'cache-first' })
@@ -294,6 +307,7 @@ export class DemarcheFormComponent implements OnChanges {
     this.getDemarches();
     this.getLiensUtils();
     this.getSousThemes();
+    this.getHubs(),
     this.fetchDemarche();
   }
 }

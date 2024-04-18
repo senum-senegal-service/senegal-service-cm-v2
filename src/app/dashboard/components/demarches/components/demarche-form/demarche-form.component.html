@@ -19,6 +19,12 @@
 
                 </div>
                 <div fxLayout="column" fxLayoutGap="8px">
+                  <label for="demarche-subtitle">Hub de vie <span class="color-danger"></span></label>
+                  <select class="form-control" [value]="demarche?.hub" [name]="'hub'" formControlName="hub">
+                    <option *ngFor="let h of hubs" [value]="h.id">{{ h.titre }}</option>
+                  </select>
+                </div>
+                <div fxLayout="column" fxLayoutGap="8px">
                     <label for="demarche-subtitle">Sous-thémes <span class="color-danger">*</span></label>
                     <app-multi-select [value]="demarche?.sous_themes || []" [name]="'sous_themes'" [form]="demarcheForm"
                         [options]="sousThemes"></app-multi-select>

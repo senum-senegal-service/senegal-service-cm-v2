@@ -89,6 +89,22 @@ mutation CreateHub($hubInput: HubInput!) {
 	}
 }
 
+query FetchAllHubs {
+	fetchAllHubs {
+		id
+		titre
+		mot_cle
+		description
+		resume
+		slug
+		observations
+		etat
+		est_publie
+    a_la_une
+  }
+}
+
+
 query FetchHub($hubId: String!) {
 	fetchHub(hubId: $hubId) {
 		id

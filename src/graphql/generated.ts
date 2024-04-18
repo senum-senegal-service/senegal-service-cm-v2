@@ -180,6 +180,7 @@ export type Demarche = {
   etat?: Maybe<Scalars['String']['output']>;
   faqs: Array<Faq>;
   formulaires: Array<Formulaire>;
+  hub?: Maybe<Scalars['ID']['output']>;
   id: Scalars['Any']['output'];
   lien_utiles: Array<LienUtile>;
   modele_lettres: Array<ModeleLettre>;
@@ -210,6 +211,7 @@ export type DemarcheInput = {
   etat: Scalars['String']['input'];
   faqs?: InputMaybe<Array<Scalars['Any']['input']>>;
   formulaires?: InputMaybe<Array<Scalars['Any']['input']>>;
+  hub?: InputMaybe<Scalars['ID']['input']>;
   lien_utiles?: InputMaybe<Array<Scalars['Any']['input']>>;
   modele_lettres?: InputMaybe<Array<Scalars['Any']['input']>>;
   mot_cle?: InputMaybe<Scalars['String']['input']>;
@@ -243,6 +245,7 @@ export type DemarcheUpdateInput = {
   etat?: InputMaybe<Scalars['String']['input']>;
   faqs: Array<Scalars['String']['input']>;
   formulaires: Array<Scalars['String']['input']>;
+  hub?: InputMaybe<Scalars['ID']['input']>;
   lien_utiles: Array<Scalars['String']['input']>;
   modele_lettres: Array<Scalars['String']['input']>;
   mot_cle?: InputMaybe<Scalars['String']['input']>;
@@ -964,7 +967,7 @@ export type Query = {
   fetchAllActualites: Actualite;
   fetchAllAnnonces: Annonce;
   fetchAllDemarches: Demarche;
-  fetchAllHubs: Hub;
+  fetchAllHubs: Array<Hub>;
   fetchAllServices: Service;
   fetchAllStructures: Structure;
   fetchAnnonce: Annonce;
@@ -1695,7 +1698,7 @@ export type FetchDemarcheQueryVariables = Exact<{
 }>;
 
 
-export type FetchDemarcheQuery = { __typename?: 'Query', fetchDemarche: { __typename?: 'Demarche', id: any, titre: string, url?: string | null, cout?: number | null, corps?: string | null, mot_cle?: string | null, delai?: number | null, description: string, resume?: string | null, a_la_une?: boolean | null, slug: string, observations?: string | null, post_scriptum?: string | null, etat?: string | null, est_publie?: boolean | null, teleprocedure?: boolean | null, service_administratifs: Array<{ __typename?: 'ServiceAdministratif', id: number, nom: string }>, sous_themes: Array<{ __typename?: 'SousTheme', id: string, nom: string }>, formulaires: Array<{ __typename?: 'Formulaire', id: number, nom: string }>, faqs: Array<{ __typename?: 'Faq', id: number, nom: string }>, descripteurs: Array<{ __typename?: 'Descripteur', id: number, nom: string }>, modele_lettres: Array<{ __typename?: 'ModeleLettre', id: number, nom: string }>, textes: Array<{ __typename?: 'Texte', id: number, nom: string }>, lien_utiles: Array<{ __typename?: 'LienUtile', id: number, nom: string }>, demarches: Array<{ __typename?: 'Demarche', id: any, nom: string }> } };
+export type FetchDemarcheQuery = { __typename?: 'Query', fetchDemarche: { __typename?: 'Demarche', id: any, titre: string, url?: string | null, cout?: number | null, corps?: string | null, mot_cle?: string | null, delai?: number | null, description: string, resume?: string | null, a_la_une?: boolean | null, slug: string, observations?: string | null, post_scriptum?: string | null, etat?: string | null, est_publie?: boolean | null, teleprocedure?: boolean | null, hub?: string | null, service_administratifs: Array<{ __typename?: 'ServiceAdministratif', id: number, nom: string }>, sous_themes: Array<{ __typename?: 'SousTheme', id: string, nom: string }>, formulaires: Array<{ __typename?: 'Formulaire', id: number, nom: string }>, faqs: Array<{ __typename?: 'Faq', id: number, nom: string }>, descripteurs: Array<{ __typename?: 'Descripteur', id: number, nom: string }>, modele_lettres: Array<{ __typename?: 'ModeleLettre', id: number, nom: string }>, textes: Array<{ __typename?: 'Texte', id: number, nom: string }>, lien_utiles: Array<{ __typename?: 'LienUtile', id: number, nom: string }>, demarches: Array<{ __typename?: 'Demarche', id: any, nom: string }> } };
 
 export type DeleteDemarcheMutationVariables = Exact<{
   demarcheId: Scalars['Any']['input'];
@@ -1851,6 +1854,11 @@ export type CreateHubMutationVariables = Exact<{
 
 
 export type CreateHubMutation = { __typename?: 'Mutation', createHub: { __typename?: 'Hub', id: any, titre: string, mot_cle?: string | null, description: string, resume?: string | null, slug: string, observations?: string | null, etat?: string | null, est_publie?: boolean | null, a_la_une?: boolean | null, sous_themes: Array<{ __typename?: 'SousTheme', id: string, libelle: string }>, service_administratifs: Array<{ __typename?: 'ServiceAdministratif', id: number, nom: string }>, formulaires: Array<{ __typename?: 'Formulaire', id: number, nom: string }>, faqs: Array<{ __typename?: 'Faq', id: number, question: string }>, descripteurs: Array<{ __typename?: 'Descripteur', id: number, libelle: string }>, modele_lettres: Array<{ __typename?: 'ModeleLettre', id: number, nom: string }>, textes: Array<{ __typename?: 'Texte', id: number, nom: string }>, lien_utiles: Array<{ __typename?: 'LienUtile', id: number, nom: string }> } };
+
+export type FetchAllHubsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FetchAllHubsQuery = { __typename?: 'Query', fetchAllHubs: Array<{ __typename?: 'Hub', id: any, titre: string, mot_cle?: string | null, description: string, resume?: string | null, slug: string, observations?: string | null, etat?: string | null, est_publie?: boolean | null, a_la_une?: boolean | null }> };
 
 export type FetchHubQueryVariables = Exact<{
   hubId: Scalars['String']['input'];
@@ -2573,6 +2581,7 @@ export const FetchDemarcheDocument = gql`
     etat
     est_publie
     teleprocedure
+    hub
     service_administratifs {
       id
       nom
@@ -3246,6 +3255,33 @@ export const CreateHubDocument = gql`
   })
   export class CreateHubGQL extends Apollo.Mutation<CreateHubMutation, CreateHubMutationVariables> {
     document = CreateHubDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const FetchAllHubsDocument = gql`
+    query FetchAllHubs {
+  fetchAllHubs {
+    id
+    titre
+    mot_cle
+    description
+    resume
+    slug
+    observations
+    etat
+    est_publie
+    a_la_une
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class FetchAllHubsGQL extends Apollo.Query<FetchAllHubsQuery, FetchAllHubsQueryVariables> {
+    document = FetchAllHubsDocument;
     
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
