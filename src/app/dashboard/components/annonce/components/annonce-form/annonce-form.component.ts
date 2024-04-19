@@ -100,7 +100,7 @@ export class AnnonceFormComponent implements OnChanges {
       return;
     }
     this.fetchAnnonceGQL
-      .fetch({ annonceId: this.annonceId })
+      .fetch({ annonceId: this.annonceId }, { fetchPolicy: 'no-cache' })
       .subscribe((result) => {
         this.annonce = result.data.fetchAnnonce as any;
         const annonceObject = Object.assign({}, this.annonce);
