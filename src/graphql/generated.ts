@@ -38,6 +38,7 @@ export type Actualite = {
   id: Scalars['Any']['output'];
   mot_cle?: Maybe<Scalars['String']['output']>;
   observations?: Maybe<Scalars['String']['output']>;
+  poster?: Maybe<Scalars['String']['output']>;
   service_administratifs: Array<ServiceAdministratif>;
   slug: Scalars['String']['output'];
   sous_themes: Array<SousTheme>;
@@ -1599,7 +1600,7 @@ export type FetchActualiteQueryVariables = Exact<{
 }>;
 
 
-export type FetchActualiteQuery = { __typename?: 'Query', fetchActualite: { __typename?: 'Actualite', id: any, titre: string, url?: string | null, mot_cle?: string | null, description?: string | null, a_la_une?: boolean | null, slug: string, contenu: string, observations?: string | null, etat?: string | null, est_publie?: boolean | null, service_administratifs: Array<{ __typename?: 'ServiceAdministratif', id: number, nom: string }>, sous_themes: Array<{ __typename?: 'SousTheme', id: string, nom: string }>, textes: Array<{ __typename?: 'Texte', id: number, nom: string }>, demarches: Array<{ __typename?: 'Demarche', id: any, nom: string }> } };
+export type FetchActualiteQuery = { __typename?: 'Query', fetchActualite: { __typename?: 'Actualite', id: any, titre: string, url?: string | null, mot_cle?: string | null, description?: string | null, a_la_une?: boolean | null, slug: string, contenu: string, observations?: string | null, etat?: string | null, est_publie?: boolean | null, poster?: string | null, service_administratifs: Array<{ __typename?: 'ServiceAdministratif', id: number, nom: string }>, sous_themes: Array<{ __typename?: 'SousTheme', id: string, nom: string }>, textes: Array<{ __typename?: 'Texte', id: number, nom: string }>, demarches: Array<{ __typename?: 'Demarche', id: any, nom: string }> } };
 
 export type DeleteActualiteMutationVariables = Exact<{
   actualiteId: Scalars['Any']['input'];
@@ -2161,6 +2162,7 @@ export const FetchActualiteDocument = gql`
     observations
     etat
     est_publie
+    poster
     service_administratifs {
       id
       nom

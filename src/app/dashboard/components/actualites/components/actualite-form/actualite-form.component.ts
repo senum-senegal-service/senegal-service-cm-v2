@@ -58,6 +58,8 @@ export class ActualiteFormComponent implements OnChanges {
   actualite: Actualite;
   apiUrl: string = `${environment.API_URI}/actualite`;
   poster: File;
+  mediaPreview: string | ArrayBuffer | null;
+  mediaType: 'image' | 'video' | null;
 
   constructor(
     private fb: FormBuilder,
@@ -88,7 +90,6 @@ export class ActualiteFormComponent implements OnChanges {
       observations: [''],
       etat: ['', [Validators.required]],
       est_publie: [false],
-      lien_utiles: [],
       demarches: [],
       a_la_une: [false],
       textes: [],
@@ -104,13 +105,14 @@ export class ActualiteFormComponent implements OnChanges {
       return;
     }
     this.fetchActualiteGQL
-      .fetch({ actualiteId: this.actualiteId })
+      .fetch({ actualiteId: this.actualiteId }, { fetchPolicy: 'no-cache' })
       .subscribe((result) => {
         this.actualite = result.data.fetchActualite as any;
         const actualiteObject = Object.assign({}, this.actualite);
         this.actualiteForm.patchValue(this.actualite);
-        patchArrayValue(['actualites', 'sous_themes', 'formulaires', 'lien_utiles', 'textes', 'service_administratifs', 'modele_lettres', 'descripteurs', 'faqs'], this.actualiteForm, actualiteObject)
-        console.log({form: this.actualiteForm.value})
+        patchArrayValue(['sous_themes', 'textes', 'service_administratifs', 'demarches'], this.actualiteForm, actualiteObject)
+        this.mediaType = 'image';
+        this.mediaPreview = this.actualite.poster;
       });
   }
 
@@ -132,7 +134,7 @@ export class ActualiteFormComponent implements OnChanges {
   create() {
     if (this.actualiteForm.valid) {
       const formData = new FormData();
-      formData.append('data', JSON.stringify(this.actualiteForm.value));
+      formData.append('data', JSON.stringify({...this.actualiteForm.value, media_type: this.mediaType}));
       formData.append('poster', this.poster);
       this.http.post(this.apiUrl, formData).subscribe(response => {
         this.snackbarService.showSuccessSnackBar(
@@ -148,7 +150,7 @@ export class ActualiteFormComponent implements OnChanges {
   update() {
     if(this.actualiteForm.valid && this.actualiteId) {
       const formData = new FormData();
-      formData.append('data', JSON.stringify(this.actualiteForm.value));
+      formData.append('data', JSON.stringify({ ...this.actualiteForm.value, media_type: this.mediaType }));
       formData.append('poster', this.poster);
       this.http.put(`${this.apiUrl}/${this.actualiteId}`, formData).subscribe(response => {
         this.snackbarService.showSuccessSnackBar(
@@ -167,6 +169,35 @@ export class ActualiteFormComponent implements OnChanges {
     if (event.target.files.length > 0) {
       const file = event.target.files[0];
       this.poster = file;
+    }
+  }
+
+  changePoster(event: any): void {
+    const input = event.target;
+    if(!input.files.length) {
+      return;
+    }
+    const file = input.files[0];
+    const maxFileSize = 50 * 1024 * 1024; // Taille maximale autorisée en octets (100 Mo)
+    this.poster = file;
+    if (file && file.size < maxFileSize) {
+      const reader = new FileReader();
+
+      reader.onload = () => {
+        this.mediaPreview = reader.result;
+        // Vérifier le type du fichier
+        if (file.type.startsWith('image')) {
+          this.mediaType = 'image';
+        } else if (file.type.startsWith('video')) {
+          this.mediaType = 'video';
+          (document.getElementById('poster') as HTMLVideoElement).volume = 0.1;
+        } else {
+          // Gérer d'autres types de fichiers si nécessaire
+          console.log('Type de fichier non pris en charge');
+        }
+      };
+
+      reader.readAsDataURL(file);
     }
   }
 

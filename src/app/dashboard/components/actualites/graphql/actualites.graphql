@@ -87,6 +87,7 @@ query FetchActualite($actualiteId: String!) {
 		observations
 		etat
 		est_publie
+    poster
 		service_administratifs {
 				id
 				nom
@@ -117,3 +118,4 @@ mutation PublishActualite($actualiteId: Any!) {
 mutation UnPublishActualite($actualiteId: Any!) {
   unPublishActualite(actualiteId: $actualiteId)
 }
+

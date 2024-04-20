@@ -139,7 +139,7 @@ export class AnnonceFormComponent implements OnChanges {
   update() {
     if(this.annonceForm.valid && this.annonceId) {
       const formData = new FormData();
-      formData.append('data', JSON.stringify(this.annonceForm.value));
+      formData.append('data', JSON.stringify({ ...this.annonceForm.value, media_type: this.mediaType }));
       formData.append('poster', this.poster);
       this.http.put(`${this.apiUrl}/${this.annonceId}`, formData).subscribe(response => {
         this.snackbarService.showSuccessSnackBar(
