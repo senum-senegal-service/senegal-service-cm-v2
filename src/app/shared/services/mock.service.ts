@@ -1,12 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, of } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class MockService {
-  apiUrl: string = 'https://fakestoreapi.com/users';
+  apiUrl: string = environment.API_URI+'/users';
   private listSubject: BehaviorSubject<any> = new BehaviorSubject<any>(null);
   private list: any = [];
 
