@@ -60,6 +60,13 @@ const routes: Routes = [
           ),
       },
       {
+        path: 'notations',
+        loadChildren: () =>
+          import('./components/review/review.module').then(
+            (m) => m.ReviewsModule
+          ),
+      },
+      {
         path: 'textes',
         loadChildren: () =>
           import('./components/textes/textes.module').then(

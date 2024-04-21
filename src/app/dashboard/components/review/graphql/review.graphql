@@ -1,0 +1,20 @@
+query FetchDemarcheReviewsMetrics($queryFilter: QueryDataConfigInput) {
+	fetchDemarcheReviewsMetrics(queryFilter: $queryFilter) {
+		pagination {
+			totalItems
+			pageCount
+			pageSize
+			currentPage
+		}
+		results {
+			demarche {
+				id
+				titre
+			}
+			noteAvg
+			numberOfReviews
+
+		}
+	}
+}
+

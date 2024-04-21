@@ -44,6 +44,11 @@ export class DashboardComponent implements OnInit {
       link: 'structures',
       icon: 'map',
     },
+    {
+      label: 'Notation Démarches',
+      link: 'notations',
+      icon: 'star',
+    },
     // {
     //   label: 'Gestion thématique',
     //   link: 'themes',

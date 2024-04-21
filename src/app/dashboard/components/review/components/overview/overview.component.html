@@ -1,0 +1,60 @@
+<div class="page-wrapper overview-wrapper" fxLayout="column" fxLayoutGap="40px">
+    <div class="top" fxLayout="column" fxLayoutGap="32px">
+        <span class="title">Notation Démarches</span>
+        <form [formGroup]="filterForm" fxLayout="column" fxLayoutGap="24px">
+            <div fxLayout="row" fxLayoutAlign="space-between center">
+                <div class="search">
+                    <input matInput formControlName="search" name="search" type="text" class="form-control"
+                        placeholder="Rechercher" (input)="search($event)">
+                    <span class="icon"><mat-icon>search</mat-icon></span>
+                </div>
+            </div>
+        </form>
+    </div>
+    <!-- ############ -->
+
+    <div *ngIf="!dataSource" fxLayoutAlign="center center">
+        <mat-spinner></mat-spinner>
+    </div>
+    <div *ngIf="dataSource" class="mat-elevation-z8">
+        <table class="table" mat-table matSort [dataSource]="dataSource">
+            <!-- Position Column -->
+            <ng-container matColumnDef="demarche">
+                <th mat-header-cell mat-sort-header *matHeaderCellDef> Démarche </th>
+                <td mat-cell *matCellDef="let element"> {{element.demarche?.titre }} </td>
+            </ng-container>
+
+            <!-- Name Column -->
+            <ng-container matColumnDef="noteAvg">
+                <th mat-header-cell mat-sort-header *matHeaderCellDef> Moyenne des notes </th>
+                <td mat-cell *matCellDef="let element"> {{element.noteAvg | number:'1.2-2'}} </td>
+            </ng-container>
+
+            <!-- Email Column -->
+            <ng-container matColumnDef="numberOfReviews">
+                <th mat-header-cell mat-sort-header *matHeaderCellDef> Nombre de reviews </th>
+                <td mat-cell *matCellDef="let element"> {{element.numberOfReviews}} </td>
+            </ng-container>
+
+
+
+            <!-- Options Column -->
+            <ng-container matColumnDef="action">
+                <th mat-header-cell *matHeaderCellDef> Action </th>
+                <td mat-cell *matCellDef="let element" class="actions-btn">
+
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+            </tr>
+
+        </table>
+        <mat-paginator [pageSizeOptions]="[5, 10, 20, 50, 100, 200]" showFirstLastButtons
+            aria-label="Select page of periodic elements" [length]="totalItems" [pageIndex]="currentPage - 1"
+            [pageSize]="pageSize" (page)="changePage($event)">
+        </mat-paginator>
+    </div>
+    <!-- ################### -->
+</div>

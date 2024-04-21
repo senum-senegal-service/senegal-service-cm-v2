@@ -234,6 +234,27 @@ export type DemarcheInputSearchInput = {
   teleprocedure?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
+export type DemarcheReview = {
+  __typename?: 'DemarcheReview';
+  comment?: Maybe<Scalars['String']['output']>;
+  demarche: Scalars['Any']['output'];
+  id: Scalars['ID']['output'];
+  note: Scalars['Int']['output'];
+};
+
+export type DemarcheReviewInput = {
+  comment?: InputMaybe<Scalars['String']['input']>;
+  demarche: Scalars['Any']['input'];
+  note: Scalars['Int']['input'];
+};
+
+export type DemarcheReviewMetric = {
+  __typename?: 'DemarcheReviewMetric';
+  demarche: Demarche;
+  noteAvg: Scalars['Float']['output'];
+  numberOfReviews: Scalars['Int']['output'];
+};
+
 export type DemarcheUpdateInput = {
   a_la_une?: InputMaybe<Scalars['Int']['input']>;
   corps?: InputMaybe<Scalars['String']['input']>;
@@ -532,6 +553,7 @@ export type Mutation = {
   createActualite: Actualite;
   createAnnonce: Annonce;
   createDemarche: Demarche;
+  createDemarcheReview: DemarcheReview;
   createDescripteur: Descripteur;
   createFaq: Faq;
   createFormulaire: Formulaire;
@@ -595,6 +617,11 @@ export type MutationCreateAnnonceArgs = {
 
 export type MutationCreateDemarcheArgs = {
   demarcheInput: DemarcheInput;
+};
+
+
+export type MutationCreateDemarcheReviewArgs = {
+  demarcheReviewInput: DemarcheReviewInput;
 };
 
 
@@ -882,6 +909,12 @@ export type PaginatedDemarcheResult = {
   results: Array<Demarche>;
 };
 
+export type PaginatedDemarcheReviewMetricResult = {
+  __typename?: 'PaginatedDemarcheReviewMetricResult';
+  pagination: PaginationInfo;
+  results: Array<DemarcheReviewMetric>;
+};
+
 export type PaginatedDescripteurResult = {
   __typename?: 'PaginatedDescripteurResult';
   pagination: PaginationInfo;
@@ -975,6 +1008,10 @@ export type Query = {
   fetchAnnonce: Annonce;
   fetchAnnonces: PaginatedAnnonceResult;
   fetchDemarche: Demarche;
+  fetchDemarcheReview: DemarcheReview;
+  fetchDemarcheReviews: Array<DemarcheReview>;
+  fetchDemarcheReviewsMetric: DemarcheReviewMetric;
+  fetchDemarcheReviewsMetrics: PaginatedDemarcheReviewMetricResult;
   fetchDemarches: PaginatedDemarcheResult;
   fetchDescripteur: Descripteur;
   fetchDescripteurs: PaginatedDescripteurResult;
@@ -1060,6 +1097,21 @@ export type QueryFetchAnnoncesArgs = {
 
 export type QueryFetchDemarcheArgs = {
   demarcheId: Scalars['String']['input'];
+};
+
+
+export type QueryFetchDemarcheReviewArgs = {
+  demarcheReviewId: Scalars['ID']['input'];
+};
+
+
+export type QueryFetchDemarcheReviewsMetricArgs = {
+  demarcheId: Scalars['Any']['input'];
+};
+
+
+export type QueryFetchDemarcheReviewsMetricsArgs = {
+  queryFilter?: InputMaybe<QueryDataConfigInput>;
 };
 
 
@@ -1889,6 +1941,13 @@ export type UnPublishHubMutationVariables = Exact<{
 
 
 export type UnPublishHubMutation = { __typename?: 'Mutation', unPublishHub: boolean };
+
+export type FetchDemarcheReviewsMetricsQueryVariables = Exact<{
+  queryFilter?: InputMaybe<QueryDataConfigInput>;
+}>;
+
+
+export type FetchDemarcheReviewsMetricsQuery = { __typename?: 'Query', fetchDemarcheReviewsMetrics: { __typename?: 'PaginatedDemarcheReviewMetricResult', pagination: { __typename?: 'PaginationInfo', totalItems: number, pageCount: number, pageSize: number, currentPage: number }, results: Array<{ __typename?: 'DemarcheReviewMetric', noteAvg: number, numberOfReviews: number, demarche: { __typename?: 'Demarche', id: any, titre: string } }> } };
 
 export type FetchServicesQueryVariables = Exact<{
   queryFilter?: InputMaybe<QueryDataConfigInput>;
@@ -3393,6 +3452,37 @@ export const UnPublishHubDocument = gql`
   })
   export class UnPublishHubGQL extends Apollo.Mutation<UnPublishHubMutation, UnPublishHubMutationVariables> {
     document = UnPublishHubDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const FetchDemarcheReviewsMetricsDocument = gql`
+    query FetchDemarcheReviewsMetrics($queryFilter: QueryDataConfigInput) {
+  fetchDemarcheReviewsMetrics(queryFilter: $queryFilter) {
+    pagination {
+      totalItems
+      pageCount
+      pageSize
+      currentPage
+    }
+    results {
+      demarche {
+        id
+        titre
+      }
+      noteAvg
+      numberOfReviews
+    }
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class FetchDemarcheReviewsMetricsGQL extends Apollo.Query<FetchDemarcheReviewsMetricsQuery, FetchDemarcheReviewsMetricsQueryVariables> {
+    document = FetchDemarcheReviewsMetricsDocument;
     
     constructor(apollo: Apollo.Apollo) {
       super(apollo);

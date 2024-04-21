@@ -1,0 +1,14 @@
+.mat-mdc-table {
+    width: 100%;
+    max-height: none;
+    overflow: auto;
+}
+
+.mat-column-name {
+    height: 100px;
+}
+
+.mat-cell {
+    outline: 2px solid red;
+    height: 200px;
+}
