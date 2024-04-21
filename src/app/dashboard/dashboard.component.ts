@@ -9,11 +9,11 @@ import { SidebarService } from '../shared/services/sidebar.service';
 export class DashboardComponent implements OnInit {
   isSidebarOpened: boolean = true;
   dashboardNav = [
-    {
-      label: 'Tableau de bord',
-      link: 'overview',
-      icon: 'dashboard',
-    },
+    // {
+    //   label: 'Tableau de bord',
+    //   link: 'overview',
+    //   icon: 'dashboard',
+    // },
     {
       label: 'Gestion des hubs de vie',
       link: 'hubs-de-vie',

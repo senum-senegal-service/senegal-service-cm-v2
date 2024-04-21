@@ -7,7 +7,7 @@ import { OverviewComponent } from './components/overview/overview.component';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'overview',
+    redirectTo: 'hubs-de-vie',
     pathMatch: 'full',
   },
   {
