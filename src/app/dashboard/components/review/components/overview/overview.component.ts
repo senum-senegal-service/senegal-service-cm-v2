@@ -36,8 +36,7 @@ export class OverviewComponent {
   displayedColumns: string[] = [
     'demarche',
     'noteAvg',
-    'numberOfReviews',
-    'action',
+    'numberOfReviews'
   ];
   dataSource = new MatTableDataSource<any>(null);
   //filter
