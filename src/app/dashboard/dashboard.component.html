@@ -1,7 +1,7 @@
 <div class="container" fxLayout="row" [ngClass]="isSidebarOpened?'is-opened':'is-closed'">
     <div class="sidebar">
         <div class="top-sidebar " [fxLayoutAlign]="isSidebarOpened?'start center':'center center'">
-            <span *ngIf="isSidebarOpened">Sénégal numérique</span>
+            <span *ngIf="isSidebarOpened">Sénégal Numérique</span>
             <span *ngIf="!isSidebarOpened">SN</span>
         </div>
         <div class="sidebar-content  personnaliez-sidebar">
@@ -9,8 +9,9 @@
                 <span class="nav-item-container" *ngFor="let item of dashboardNav;let i=index">
                     <span fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="12px" class="nav-item"
                         [routerLink]="item.link" routerLinkActive="active">
-                        <span class="icon" fxLayoutAlign="center center"><mat-icon
-                                fxLayoutAlign="center center">{{item.icon}}</mat-icon></span>
+                        <span class="icon" fxLayoutAlign="center center">
+                            <mat-icon fxLayoutAlign="center center">{{item.icon}}</mat-icon>
+                        </span>
                         <span class="label" *ngIf="isSidebarOpened">{{item.label}}</span>
                     </span>
                 </span>
