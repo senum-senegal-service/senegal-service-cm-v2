@@ -3,22 +3,35 @@ import { Injectable } from '@angular/core';
 import * as Apollo from 'apollo-angular';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
-export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
-export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
-export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
-export type MakeEmpty<T extends { [key: string]: unknown }, K extends keyof T> = { [_ in K]?: never };
-export type Incremental<T> = T | { [P in keyof T]?: P extends ' $fragmentName' | '__typename' ? T[P] : never };
+export type Exact<T extends { [key: string]: unknown }> = {
+  [K in keyof T]: T[K];
+};
+export type MakeOptional<T, K extends keyof T> = Omit<T, K> & {
+  [SubKey in K]?: Maybe<T[SubKey]>;
+};
+export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & {
+  [SubKey in K]: Maybe<T[SubKey]>;
+};
+export type MakeEmpty<
+  T extends { [key: string]: unknown },
+  K extends keyof T
+> = { [_ in K]?: never };
+export type Incremental<T> =
+  | T
+  | {
+      [P in keyof T]?: P extends ' $fragmentName' | '__typename' ? T[P] : never;
+    };
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
-  ID: { input: string; output: string; }
-  String: { input: string; output: string; }
-  Boolean: { input: boolean; output: boolean; }
-  Int: { input: number; output: number; }
-  Float: { input: number; output: number; }
+  ID: { input: string; output: string };
+  String: { input: string; output: string };
+  Boolean: { input: boolean; output: boolean };
+  Int: { input: number; output: number };
+  Float: { input: number; output: number };
   /** Any type */
-  Any: { input: any; output: any; }
+  Any: { input: any; output: any };
   /** A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format. */
-  DateTime: { input: any; output: any; }
+  DateTime: { input: any; output: any };
 };
 
 export type Actualite = {
@@ -606,281 +619,228 @@ export type Mutation = {
   updateUser: Scalars['Boolean']['output'];
 };
 
-
 export type MutationCreateActualiteArgs = {
   actualiteInput: ActualiteInput;
 };
-
 
 export type MutationCreateAnnonceArgs = {
   annonceInput: AnnonceInput;
 };
 
-
 export type MutationCreateDemarcheArgs = {
   demarcheInput: DemarcheInput;
 };
-
 
 export type MutationCreateDemarcheReviewArgs = {
   demarcheReviewInput: DemarcheReviewInput;
 };
 
-
 export type MutationCreateDescripteurArgs = {
   descripteurInput: DescripteurInput;
 };
-
 
 export type MutationCreateFaqArgs = {
   faqInput: FaqInput;
 };
 
-
 export type MutationCreateFormulaireArgs = {
   formulaireInput: FormulaireInput;
 };
-
 
 export type MutationCreateHubArgs = {
   hubInput: HubInput;
 };
 
-
 export type MutationCreateLienUtileArgs = {
   lienUtileInput: LienUtileInput;
 };
-
 
 export type MutationCreateModeleLettreArgs = {
   modeleLettreInput: ModeleLettreInput;
 };
 
-
 export type MutationCreateServiceArgs = {
   serviceInput: ServiceInput;
 };
-
 
 export type MutationCreateServiceAdministratifArgs = {
   serviceAdministratifInput: ServiceAdministratifInput;
 };
 
-
 export type MutationCreateSousThemeArgs = {
   sousThemeInput: SousThemeInput;
 };
-
 
 export type MutationCreateStructureArgs = {
   structureInput: StructureInput;
 };
 
-
 export type MutationCreateTexteArgs = {
   texteInput: TexteInput;
 };
-
 
 export type MutationCreateThemeArgs = {
   themeInput: ThemeInput;
 };
 
-
 export type MutationCreateUserArgs = {
   userInput: UserInput;
 };
-
 
 export type MutationDeleteActualiteArgs = {
   actualiteId: Scalars['Any']['input'];
 };
 
-
 export type MutationDeleteAnnonceArgs = {
   annonceId: Scalars['Any']['input'];
 };
-
 
 export type MutationDeleteDemarcheArgs = {
   demarcheId: Scalars['Any']['input'];
 };
 
-
 export type MutationDeleteDemarcheReviewArgs = {
   demarcheReviewId: Scalars['ID']['input'];
 };
-
 
 export type MutationDeleteHubArgs = {
   hubId: Scalars['String']['input'];
 };
 
-
 export type MutationDeleteServiceArgs = {
   serviceId: Scalars['Any']['input'];
 };
-
 
 export type MutationDeleteStructureArgs = {
   structureId: Scalars['Any']['input'];
 };
 
-
 export type MutationPublishActualiteArgs = {
   actualiteId: Scalars['Any']['input'];
 };
-
 
 export type MutationPublishAnnonceArgs = {
   annonceId: Scalars['Any']['input'];
 };
 
-
 export type MutationPublishDemarcheArgs = {
   demarcheId: Scalars['Any']['input'];
 };
-
 
 export type MutationPublishHubArgs = {
   hubId: Scalars['String']['input'];
 };
 
-
 export type MutationPublishServiceArgs = {
   serviceId: Scalars['Any']['input'];
 };
-
 
 export type MutationPublishStructureArgs = {
   structureId: Scalars['Any']['input'];
 };
 
-
 export type MutationRegisterArgs = {
   registerInput: RegisterInput;
 };
-
 
 export type MutationUnPublishActualiteArgs = {
   actualiteId: Scalars['Any']['input'];
 };
 
-
 export type MutationUnPublishAnnonceArgs = {
   annonceId: Scalars['Any']['input'];
 };
-
 
 export type MutationUnPublishDemarcheArgs = {
   demarcheId: Scalars['Any']['input'];
 };
 
-
 export type MutationUnPublishHubArgs = {
   hubId: Scalars['String']['input'];
 };
-
 
 export type MutationUnPublishServiceArgs = {
   serviceId: Scalars['Any']['input'];
 };
 
-
 export type MutationUnPublishStructureArgs = {
   structureId: Scalars['Any']['input'];
 };
-
 
 export type MutationUpdateActualiteArgs = {
   actualiteId: Scalars['ID']['input'];
   actualiteInput: ActualiteUpdateInput;
 };
 
-
 export type MutationUpdateAnnonceArgs = {
   annonceId: Scalars['ID']['input'];
   annonceInput: AnnonceUpdateInput;
 };
-
 
 export type MutationUpdateDemarcheArgs = {
   demarcheId: Scalars['ID']['input'];
   demarcheInput: DemarcheUpdateInput;
 };
 
-
 export type MutationUpdateDescripteurArgs = {
   descripteurId: Scalars['ID']['input'];
   descripteurInput: DescripteurUpdateInput;
 };
-
 
 export type MutationUpdateFaqArgs = {
   faqId: Scalars['ID']['input'];
   faqInput: FaqUpdateInput;
 };
 
-
 export type MutationUpdateFormulaireArgs = {
   formulaireId: Scalars['ID']['input'];
   formulaireInput: FormulaireUpdateInput;
 };
-
 
 export type MutationUpdateHubArgs = {
   hubId: Scalars['ID']['input'];
   hubInput: HubUpdateInput;
 };
 
-
 export type MutationUpdateLienUtileArgs = {
   lienUtileId: Scalars['ID']['input'];
   lienUtileInput: LienUtileUpdateInput;
 };
-
 
 export type MutationUpdateModeleLettreArgs = {
   modeleLettreId: Scalars['ID']['input'];
   modeleLettreInput: ModeleLettreUpdateInput;
 };
 
-
 export type MutationUpdateServiceArgs = {
   serviceId: Scalars['ID']['input'];
   serviceInput: ServiceUpdateInput;
 };
-
 
 export type MutationUpdateServiceAdministratifArgs = {
   serviceAdministratifId: Scalars['String']['input'];
   serviceAdministratifInput: ServiceAdministratifUpdateInput;
 };
 
-
 export type MutationUpdateSousThemeArgs = {
   sousThemeId: Scalars['ID']['input'];
   sousThemeInput: SousThemeUpdateInput;
 };
-
 
 export type MutationUpdateStructureArgs = {
   structureId: Scalars['Any']['input'];
   structureInput: StructureUpdateInput;
 };
 
-
 export type MutationUpdateTexteArgs = {
   texteId: Scalars['ID']['input'];
   texteInput: TexteUpdateInput;
 };
 
-
 export type MutationUpdateThemeArgs = {
   themeId: Scalars['ID']['input'];
   themeInput: ThemeUpdateInput;
 };
-
 
 export type MutationUpdateUserArgs = {
   userId: Scalars['ID']['input'];
@@ -890,7 +850,7 @@ export type MutationUpdateUserArgs = {
 /** Sort order */
 export enum OrderByDirection {
   Asc = 'ASC',
-  Desc = 'DESC'
+  Desc = 'DESC',
 }
 
 export type OrderByInput = {
@@ -1049,212 +1009,171 @@ export type Query = {
   login: Session;
 };
 
-
 export type QueryFetchActualiteArgs = {
   actualiteId: Scalars['String']['input'];
 };
-
 
 export type QueryFetchActualitesArgs = {
   actualiteFilter?: InputMaybe<ActualiteInputSearchInput>;
   queryFilter?: InputMaybe<QueryDataConfigInput>;
 };
 
-
 export type QueryFetchAllActualitesArgs = {
   queryFilter?: InputMaybe<QueryDataConfigInput>;
 };
-
 
 export type QueryFetchAllAnnoncesArgs = {
   queryFilter?: InputMaybe<QueryDataConfigInput>;
 };
 
-
 export type QueryFetchAllDemarchesArgs = {
   queryFilter?: InputMaybe<QueryDataConfigInput>;
 };
-
 
 export type QueryFetchAllHubsArgs = {
   queryFilter?: InputMaybe<QueryDataConfigInput>;
 };
 
-
 export type QueryFetchAllServicesArgs = {
   queryFilter?: InputMaybe<QueryDataConfigInput>;
 };
-
 
 export type QueryFetchAllStructuresArgs = {
   queryFilter?: InputMaybe<QueryDataConfigInput>;
 };
 
-
 export type QueryFetchAnnonceArgs = {
   annonceId: Scalars['String']['input'];
 };
-
 
 export type QueryFetchAnnoncesArgs = {
   annonceFilter?: InputMaybe<AnnonceInputSearchInput>;
   queryFilter?: InputMaybe<QueryDataConfigInput>;
 };
 
-
 export type QueryFetchDemarcheArgs = {
   demarcheId: Scalars['String']['input'];
 };
-
 
 export type QueryFetchDemarcheReviewArgs = {
   demarcheReviewId: Scalars['ID']['input'];
 };
 
-
 export type QueryFetchDemarcheReviewsMetricArgs = {
   demarcheId: Scalars['Any']['input'];
 };
 
-
 export type QueryFetchDemarcheReviewsMetricsArgs = {
   queryFilter?: InputMaybe<QueryDataConfigInput>;
 };
-
 
 export type QueryFetchDemarchesArgs = {
   demarcheFilter?: InputMaybe<DemarcheInputSearchInput>;
   queryFilter?: InputMaybe<QueryDataConfigInput>;
 };
 
-
 export type QueryFetchDescripteurArgs = {
   descripteurId: Scalars['String']['input'];
 };
-
 
 export type QueryFetchDescripteursArgs = {
   queryFilter?: InputMaybe<QueryDataConfigInput>;
 };
 
-
 export type QueryFetchFaqArgs = {
   faqId: Scalars['String']['input'];
 };
-
 
 export type QueryFetchFaqsArgs = {
   queryFilter?: InputMaybe<QueryDataConfigInput>;
 };
 
-
 export type QueryFetchFormulaireArgs = {
   formulaireId: Scalars['String']['input'];
 };
-
 
 export type QueryFetchFormulairesArgs = {
   queryFilter?: InputMaybe<QueryDataConfigInput>;
 };
 
-
 export type QueryFetchHubArgs = {
   hubId: Scalars['String']['input'];
 };
-
 
 export type QueryFetchHubsArgs = {
   hubFilter?: InputMaybe<HubInputSearchInput>;
   queryFilter?: InputMaybe<QueryDataConfigInput>;
 };
 
-
 export type QueryFetchLienUtileArgs = {
   lienUtileId: Scalars['String']['input'];
 };
-
 
 export type QueryFetchLienUtilesArgs = {
   queryFilter?: InputMaybe<QueryDataConfigInput>;
 };
 
-
 export type QueryFetchModeleLettreArgs = {
   modeleLettreId: Scalars['String']['input'];
 };
-
 
 export type QueryFetchModeleLettresArgs = {
   queryFilter?: InputMaybe<QueryDataConfigInput>;
 };
 
-
 export type QueryFetchServiceArgs = {
   serviceId: Scalars['String']['input'];
 };
-
 
 export type QueryFetchServiceAdministratifArgs = {
   serviceAdministratifId: Scalars['String']['input'];
 };
 
-
 export type QueryFetchServiceAdministratifsArgs = {
   queryFilter?: InputMaybe<QueryDataConfigInput>;
 };
-
 
 export type QueryFetchServicesArgs = {
   queryFilter?: InputMaybe<QueryDataConfigInput>;
   serviceFilter?: InputMaybe<ServiceInputSearchInput>;
 };
 
-
 export type QueryFetchSousThemeArgs = {
   sousThemeId: Scalars['String']['input'];
 };
-
 
 export type QueryFetchSousThemesArgs = {
   queryFilter?: InputMaybe<QueryDataConfigInput>;
 };
 
-
 export type QueryFetchStructureArgs = {
   structureId: Scalars['String']['input'];
 };
-
 
 export type QueryFetchStructuresArgs = {
   queryFilter?: InputMaybe<QueryDataConfigInput>;
   structureFilter?: InputMaybe<StructureInputSearchInput>;
 };
 
-
 export type QueryFetchTexteArgs = {
   texteId: Scalars['String']['input'];
 };
-
 
 export type QueryFetchTextesArgs = {
   queryFilter?: InputMaybe<QueryDataConfigInput>;
 };
 
-
 export type QueryFetchThemeArgs = {
   themeId: Scalars['String']['input'];
 };
-
 
 export type QueryFetchThemesArgs = {
   queryFilter?: InputMaybe<QueryDataConfigInput>;
 };
 
-
 export type QueryFetchUserArgs = {
   userId: Scalars['ID']['input'];
 };
-
 
 export type QueryLoginArgs = {
   loginInput: LoginInput;
@@ -1423,6 +1342,7 @@ export type Session = {
 };
 
 export type SousTheme = {
+  [x: string]: any;
   __typename?: 'SousTheme';
   icon?: Maybe<Scalars['String']['output']>;
   id: Scalars['String']['output'];
@@ -1615,722 +1535,1751 @@ export type UserUpdateInput = {
 /** Website pages */
 export enum WebsitePage {
   Demarche = 'Demarche',
-  Home = 'Home'
+  Home = 'Home',
 }
 
 export type RegisterMutationVariables = Exact<{
   registerInput: RegisterInput;
 }>;
 
-
-export type RegisterMutation = { __typename?: 'Mutation', register: { __typename?: 'Session', token: string, user: { __typename?: 'User', id: string } } };
+export type RegisterMutation = {
+  __typename?: 'Mutation';
+  register: {
+    __typename?: 'Session';
+    token: string;
+    user: { __typename?: 'User'; id: string };
+  };
+};
 
 export type LoginQueryVariables = Exact<{
   loginInput: LoginInput;
 }>;
 
-
-export type LoginQuery = { __typename?: 'Query', login: { __typename?: 'Session', token: string, user: { __typename?: 'User', id: string } } };
+export type LoginQuery = {
+  __typename?: 'Query';
+  login: {
+    __typename?: 'Session';
+    token: string;
+    user: { __typename?: 'User'; id: string };
+  };
+};
 
 export type FetchActualitesQueryVariables = Exact<{
   queryFilter?: InputMaybe<QueryDataConfigInput>;
   actualiteFilter?: InputMaybe<ActualiteInputSearchInput>;
 }>;
 
-
-export type FetchActualitesQuery = { __typename?: 'Query', fetchActualites: { __typename?: 'PaginatedActualiteResult', pagination: { __typename?: 'PaginationInfo', totalItems: number, pageCount: number, pageSize: number, currentPage: number }, results: Array<{ __typename?: 'Actualite', id: any, titre: string, description?: string | null, updatedAt: any, etat?: string | null, est_publie?: boolean | null, observations?: string | null, url?: string | null, sous_themes: Array<{ __typename?: 'SousTheme', id: string, libelle: string, slug: string }> }> } };
+export type FetchActualitesQuery = {
+  __typename?: 'Query';
+  fetchActualites: {
+    __typename?: 'PaginatedActualiteResult';
+    pagination: {
+      __typename?: 'PaginationInfo';
+      totalItems: number;
+      pageCount: number;
+      pageSize: number;
+      currentPage: number;
+    };
+    results: Array<{
+      __typename?: 'Actualite';
+      id: any;
+      titre: string;
+      description?: string | null;
+      updatedAt: any;
+      etat?: string | null;
+      est_publie?: boolean | null;
+      observations?: string | null;
+      url?: string | null;
+      sous_themes: Array<{
+        __typename?: 'SousTheme';
+        id: string;
+        libelle: string;
+        slug: string;
+      }>;
+    }>;
+  };
+};
 
 export type SearchActualitesQueryVariables = Exact<{
   queryFilter?: InputMaybe<QueryDataConfigInput>;
 }>;
 
-
-export type SearchActualitesQuery = { __typename?: 'Query', searchResults: { __typename?: 'PaginatedActualiteResult', pagination: { __typename?: 'PaginationInfo', totalItems: number, pageCount: number, pageSize: number, currentPage: number }, results: Array<{ __typename?: 'Actualite', id: any, nom: string }> } };
+export type SearchActualitesQuery = {
+  __typename?: 'Query';
+  searchResults: {
+    __typename?: 'PaginatedActualiteResult';
+    pagination: {
+      __typename?: 'PaginationInfo';
+      totalItems: number;
+      pageCount: number;
+      pageSize: number;
+      currentPage: number;
+    };
+    results: Array<{ __typename?: 'Actualite'; id: any; nom: string }>;
+  };
+};
 
 export type CreateActualiteMutationVariables = Exact<{
   actualiteInput: ActualiteInput;
 }>;
 
-
-export type CreateActualiteMutation = { __typename?: 'Mutation', createActualite: { __typename?: 'Actualite', id: any, titre: string, url?: string | null, mot_cle?: string | null, description?: string | null, a_la_une?: boolean | null, slug: string, observations?: string | null, etat?: string | null, est_publie?: boolean | null, sous_themes: Array<{ __typename?: 'SousTheme', id: string, libelle: string }>, service_administratifs: Array<{ __typename?: 'ServiceAdministratif', id: number, nom: string }>, textes: Array<{ __typename?: 'Texte', id: number, nom: string }>, demarches: Array<{ __typename?: 'Demarche', id: any, titre: string }> } };
+export type CreateActualiteMutation = {
+  __typename?: 'Mutation';
+  createActualite: {
+    __typename?: 'Actualite';
+    id: any;
+    titre: string;
+    url?: string | null;
+    mot_cle?: string | null;
+    description?: string | null;
+    a_la_une?: boolean | null;
+    slug: string;
+    observations?: string | null;
+    etat?: string | null;
+    est_publie?: boolean | null;
+    sous_themes: Array<{
+      __typename?: 'SousTheme';
+      id: string;
+      libelle: string;
+    }>;
+    service_administratifs: Array<{
+      __typename?: 'ServiceAdministratif';
+      id: number;
+      nom: string;
+    }>;
+    textes: Array<{ __typename?: 'Texte'; id: number; nom: string }>;
+    demarches: Array<{ __typename?: 'Demarche'; id: any; titre: string }>;
+  };
+};
 
 export type FetchActualiteQueryVariables = Exact<{
   actualiteId: Scalars['String']['input'];
 }>;
 
-
-export type FetchActualiteQuery = { __typename?: 'Query', fetchActualite: { __typename?: 'Actualite', id: any, titre: string, url?: string | null, mot_cle?: string | null, description?: string | null, a_la_une?: boolean | null, slug: string, contenu: string, observations?: string | null, etat?: string | null, est_publie?: boolean | null, poster?: string | null, service_administratifs: Array<{ __typename?: 'ServiceAdministratif', id: number, nom: string }>, sous_themes: Array<{ __typename?: 'SousTheme', id: string, nom: string }>, textes: Array<{ __typename?: 'Texte', id: number, nom: string }>, demarches: Array<{ __typename?: 'Demarche', id: any, nom: string }> } };
+export type FetchActualiteQuery = {
+  __typename?: 'Query';
+  fetchActualite: {
+    __typename?: 'Actualite';
+    id: any;
+    titre: string;
+    url?: string | null;
+    mot_cle?: string | null;
+    description?: string | null;
+    a_la_une?: boolean | null;
+    slug: string;
+    contenu: string;
+    observations?: string | null;
+    etat?: string | null;
+    est_publie?: boolean | null;
+    poster?: string | null;
+    service_administratifs: Array<{
+      __typename?: 'ServiceAdministratif';
+      id: number;
+      nom: string;
+    }>;
+    sous_themes: Array<{ __typename?: 'SousTheme'; id: string; nom: string }>;
+    textes: Array<{ __typename?: 'Texte'; id: number; nom: string }>;
+    demarches: Array<{ __typename?: 'Demarche'; id: any; nom: string }>;
+  };
+};
 
 export type DeleteActualiteMutationVariables = Exact<{
   actualiteId: Scalars['Any']['input'];
 }>;
 
-
-export type DeleteActualiteMutation = { __typename?: 'Mutation', deleteActualite: boolean };
+export type DeleteActualiteMutation = {
+  __typename?: 'Mutation';
+  deleteActualite: boolean;
+};
 
 export type PublishActualiteMutationVariables = Exact<{
   actualiteId: Scalars['Any']['input'];
 }>;
 
-
-export type PublishActualiteMutation = { __typename?: 'Mutation', publishActualite: boolean };
+export type PublishActualiteMutation = {
+  __typename?: 'Mutation';
+  publishActualite: boolean;
+};
 
 export type UnPublishActualiteMutationVariables = Exact<{
   actualiteId: Scalars['Any']['input'];
 }>;
 
-
-export type UnPublishActualiteMutation = { __typename?: 'Mutation', unPublishActualite: boolean };
+export type UnPublishActualiteMutation = {
+  __typename?: 'Mutation';
+  unPublishActualite: boolean;
+};
 
 export type FetchAnnoncesQueryVariables = Exact<{
   queryFilter?: InputMaybe<QueryDataConfigInput>;
   annonceFilter?: InputMaybe<AnnonceInputSearchInput>;
 }>;
 
-
-export type FetchAnnoncesQuery = { __typename?: 'Query', fetchAnnonces: { __typename?: 'PaginatedAnnonceResult', pagination: { __typename?: 'PaginationInfo', totalItems: number, pageCount: number, pageSize: number, currentPage: number }, results: Array<{ __typename?: 'Annonce', id: any, titre: string, sous_titre?: string | null, description?: string | null, updatedAt: any, etat?: string | null, url?: string | null, est_publie?: boolean | null, action_button_url?: string | null, action_button_text?: string | null, sous_themes?: Array<{ __typename?: 'SousTheme', id: string, libelle: string, slug: string }> | null, service_administratifs?: Array<{ __typename?: 'ServiceAdministratif', id: number, nom: string }> | null }> } };
+export type FetchAnnoncesQuery = {
+  __typename?: 'Query';
+  fetchAnnonces: {
+    __typename?: 'PaginatedAnnonceResult';
+    pagination: {
+      __typename?: 'PaginationInfo';
+      totalItems: number;
+      pageCount: number;
+      pageSize: number;
+      currentPage: number;
+    };
+    results: Array<{
+      __typename?: 'Annonce';
+      id: any;
+      titre: string;
+      sous_titre?: string | null;
+      description?: string | null;
+      updatedAt: any;
+      etat?: string | null;
+      url?: string | null;
+      est_publie?: boolean | null;
+      action_button_url?: string | null;
+      action_button_text?: string | null;
+      sous_themes?: Array<{
+        __typename?: 'SousTheme';
+        id: string;
+        libelle: string;
+        slug: string;
+      }> | null;
+      service_administratifs?: Array<{
+        __typename?: 'ServiceAdministratif';
+        id: number;
+        nom: string;
+      }> | null;
+    }>;
+  };
+};
 
 export type SearchAnnoncesQueryVariables = Exact<{
   queryFilter?: InputMaybe<QueryDataConfigInput>;
 }>;
 
-
-export type SearchAnnoncesQuery = { __typename?: 'Query', searchResults: { __typename?: 'PaginatedAnnonceResult', pagination: { __typename?: 'PaginationInfo', totalItems: number, pageCount: number, pageSize: number, currentPage: number }, results: Array<{ __typename?: 'Annonce', id: any, nom: string }> } };
+export type SearchAnnoncesQuery = {
+  __typename?: 'Query';
+  searchResults: {
+    __typename?: 'PaginatedAnnonceResult';
+    pagination: {
+      __typename?: 'PaginationInfo';
+      totalItems: number;
+      pageCount: number;
+      pageSize: number;
+      currentPage: number;
+    };
+    results: Array<{ __typename?: 'Annonce'; id: any; nom: string }>;
+  };
+};
 
 export type CreateAnnonceMutationVariables = Exact<{
   annonceInput: AnnonceInput;
 }>;
 
-
-export type CreateAnnonceMutation = { __typename?: 'Mutation', createAnnonce: { __typename?: 'Annonce', id: any, titre: string, sous_titre?: string | null, mot_cle?: string | null, description?: string | null, a_la_une?: boolean | null, slug: string, etat?: string | null, est_publie?: boolean | null, action_button_url?: string | null, action_button_text?: string | null, sous_themes?: Array<{ __typename?: 'SousTheme', id: string, libelle: string }> | null, service_administratifs?: Array<{ __typename?: 'ServiceAdministratif', id: number, nom: string }> | null } };
+export type CreateAnnonceMutation = {
+  __typename?: 'Mutation';
+  createAnnonce: {
+    __typename?: 'Annonce';
+    id: any;
+    titre: string;
+    sous_titre?: string | null;
+    mot_cle?: string | null;
+    description?: string | null;
+    a_la_une?: boolean | null;
+    slug: string;
+    etat?: string | null;
+    est_publie?: boolean | null;
+    action_button_url?: string | null;
+    action_button_text?: string | null;
+    sous_themes?: Array<{
+      __typename?: 'SousTheme';
+      id: string;
+      libelle: string;
+    }> | null;
+    service_administratifs?: Array<{
+      __typename?: 'ServiceAdministratif';
+      id: number;
+      nom: string;
+    }> | null;
+  };
+};
 
 export type FetchAnnonceQueryVariables = Exact<{
   annonceId: Scalars['String']['input'];
 }>;
 
-
-export type FetchAnnonceQuery = { __typename?: 'Query', fetchAnnonce: { __typename?: 'Annonce', id: any, titre: string, sous_titre?: string | null, url?: string | null, mot_cle?: string | null, description?: string | null, a_la_une?: boolean | null, slug: string, etat?: string | null, est_publie?: boolean | null, pages?: Array<WebsitePage> | null, action_button_url?: string | null, action_button_text?: string | null, poster: string, media_type?: string | null, service_administratifs?: Array<{ __typename?: 'ServiceAdministratif', id: number, nom: string }> | null, sous_themes?: Array<{ __typename?: 'SousTheme', id: string, nom: string }> | null } };
+export type FetchAnnonceQuery = {
+  __typename?: 'Query';
+  fetchAnnonce: {
+    __typename?: 'Annonce';
+    id: any;
+    titre: string;
+    sous_titre?: string | null;
+    url?: string | null;
+    mot_cle?: string | null;
+    description?: string | null;
+    a_la_une?: boolean | null;
+    slug: string;
+    etat?: string | null;
+    est_publie?: boolean | null;
+    pages?: Array<WebsitePage> | null;
+    action_button_url?: string | null;
+    action_button_text?: string | null;
+    poster: string;
+    media_type?: string | null;
+    service_administratifs?: Array<{
+      __typename?: 'ServiceAdministratif';
+      id: number;
+      nom: string;
+    }> | null;
+    sous_themes?: Array<{
+      __typename?: 'SousTheme';
+      id: string;
+      nom: string;
+    }> | null;
+  };
+};
 
 export type DeleteAnnonceMutationVariables = Exact<{
   annonceId: Scalars['Any']['input'];
 }>;
 
-
-export type DeleteAnnonceMutation = { __typename?: 'Mutation', deleteAnnonce: boolean };
+export type DeleteAnnonceMutation = {
+  __typename?: 'Mutation';
+  deleteAnnonce: boolean;
+};
 
 export type PublishAnnonceMutationVariables = Exact<{
   annonceId: Scalars['Any']['input'];
 }>;
 
-
-export type PublishAnnonceMutation = { __typename?: 'Mutation', publishAnnonce: boolean };
+export type PublishAnnonceMutation = {
+  __typename?: 'Mutation';
+  publishAnnonce: boolean;
+};
 
 export type UnPublishAnnonceMutationVariables = Exact<{
   annonceId: Scalars['Any']['input'];
 }>;
 
-
-export type UnPublishAnnonceMutation = { __typename?: 'Mutation', unPublishAnnonce: boolean };
+export type UnPublishAnnonceMutation = {
+  __typename?: 'Mutation';
+  unPublishAnnonce: boolean;
+};
 
 export type FetchDemarchesQueryVariables = Exact<{
   queryFilter?: InputMaybe<QueryDataConfigInput>;
   demarcheFilter?: InputMaybe<DemarcheInputSearchInput>;
 }>;
 
-
-export type FetchDemarchesQuery = { __typename?: 'Query', fetchDemarches: { __typename?: 'PaginatedDemarcheResult', pagination: { __typename?: 'PaginationInfo', totalItems: number, pageCount: number, pageSize: number, currentPage: number }, results: Array<{ __typename?: 'Demarche', id: any, titre: string, resume?: string | null, updatedAt: any, etat?: string | null, est_publie?: boolean | null, observations?: string | null, sous_themes: Array<{ __typename?: 'SousTheme', id: string, libelle: string, slug: string }> }> } };
+export type FetchDemarchesQuery = {
+  __typename?: 'Query';
+  fetchDemarches: {
+    __typename?: 'PaginatedDemarcheResult';
+    pagination: {
+      __typename?: 'PaginationInfo';
+      totalItems: number;
+      pageCount: number;
+      pageSize: number;
+      currentPage: number;
+    };
+    results: Array<{
+      __typename?: 'Demarche';
+      id: any;
+      titre: string;
+      resume?: string | null;
+      updatedAt: any;
+      etat?: string | null;
+      est_publie?: boolean | null;
+      observations?: string | null;
+      sous_themes: Array<{
+        __typename?: 'SousTheme';
+        id: string;
+        libelle: string;
+        slug: string;
+      }>;
+    }>;
+  };
+};
 
 export type SearchDemarchesQueryVariables = Exact<{
   queryFilter?: InputMaybe<QueryDataConfigInput>;
 }>;
 
-
-export type SearchDemarchesQuery = { __typename?: 'Query', searchResults: { __typename?: 'PaginatedDemarcheResult', pagination: { __typename?: 'PaginationInfo', totalItems: number, pageCount: number, pageSize: number, currentPage: number }, results: Array<{ __typename?: 'Demarche', id: any, nom: string }> } };
+export type SearchDemarchesQuery = {
+  __typename?: 'Query';
+  searchResults: {
+    __typename?: 'PaginatedDemarcheResult';
+    pagination: {
+      __typename?: 'PaginationInfo';
+      totalItems: number;
+      pageCount: number;
+      pageSize: number;
+      currentPage: number;
+    };
+    results: Array<{ __typename?: 'Demarche'; id: any; nom: string }>;
+  };
+};
 
 export type CreateDemarcheMutationVariables = Exact<{
   demarcheInput: DemarcheInput;
 }>;
 
-
-export type CreateDemarcheMutation = { __typename?: 'Mutation', createDemarche: { __typename?: 'Demarche', id: any, titre: string, url?: string | null, cout?: number | null, corps?: string | null, mot_cle?: string | null, delai?: number | null, description: string, resume?: string | null, a_la_une?: boolean | null, slug: string, observations?: string | null, post_scriptum?: string | null, etat?: string | null, est_publie?: boolean | null, teleprocedure?: boolean | null, sous_themes: Array<{ __typename?: 'SousTheme', id: string, libelle: string }>, service_administratifs: Array<{ __typename?: 'ServiceAdministratif', id: number, nom: string }>, formulaires: Array<{ __typename?: 'Formulaire', id: number, nom: string }>, faqs: Array<{ __typename?: 'Faq', id: number, question: string }>, descripteurs: Array<{ __typename?: 'Descripteur', id: number, libelle: string }>, modele_lettres: Array<{ __typename?: 'ModeleLettre', id: number, nom: string }>, textes: Array<{ __typename?: 'Texte', id: number, nom: string }>, lien_utiles: Array<{ __typename?: 'LienUtile', id: number, nom: string }> } };
+export type CreateDemarcheMutation = {
+  __typename?: 'Mutation';
+  createDemarche: {
+    __typename?: 'Demarche';
+    id: any;
+    titre: string;
+    url?: string | null;
+    cout?: number | null;
+    corps?: string | null;
+    mot_cle?: string | null;
+    delai?: number | null;
+    description: string;
+    resume?: string | null;
+    a_la_une?: boolean | null;
+    slug: string;
+    observations?: string | null;
+    post_scriptum?: string | null;
+    etat?: string | null;
+    est_publie?: boolean | null;
+    teleprocedure?: boolean | null;
+    sous_themes: Array<{
+      __typename?: 'SousTheme';
+      id: string;
+      libelle: string;
+    }>;
+    service_administratifs: Array<{
+      __typename?: 'ServiceAdministratif';
+      id: number;
+      nom: string;
+    }>;
+    formulaires: Array<{ __typename?: 'Formulaire'; id: number; nom: string }>;
+    faqs: Array<{ __typename?: 'Faq'; id: number; question: string }>;
+    descripteurs: Array<{
+      __typename?: 'Descripteur';
+      id: number;
+      libelle: string;
+    }>;
+    modele_lettres: Array<{
+      __typename?: 'ModeleLettre';
+      id: number;
+      nom: string;
+    }>;
+    textes: Array<{ __typename?: 'Texte'; id: number; nom: string }>;
+    lien_utiles: Array<{ __typename?: 'LienUtile'; id: number; nom: string }>;
+  };
+};
 
 export type FetchDemarcheQueryVariables = Exact<{
   demarcheId: Scalars['String']['input'];
 }>;
 
-
-export type FetchDemarcheQuery = { __typename?: 'Query', fetchDemarche: { __typename?: 'Demarche', id: any, titre: string, url?: string | null, cout?: number | null, corps?: string | null, mot_cle?: string | null, delai?: number | null, description: string, resume?: string | null, a_la_une?: boolean | null, slug: string, observations?: string | null, post_scriptum?: string | null, etat?: string | null, est_publie?: boolean | null, teleprocedure?: boolean | null, hub?: string | null, service_administratifs: Array<{ __typename?: 'ServiceAdministratif', id: number, nom: string }>, sous_themes: Array<{ __typename?: 'SousTheme', id: string, nom: string }>, formulaires: Array<{ __typename?: 'Formulaire', id: number, nom: string }>, faqs: Array<{ __typename?: 'Faq', id: number, nom: string }>, descripteurs: Array<{ __typename?: 'Descripteur', id: number, nom: string }>, modele_lettres: Array<{ __typename?: 'ModeleLettre', id: number, nom: string }>, textes: Array<{ __typename?: 'Texte', id: number, nom: string }>, lien_utiles: Array<{ __typename?: 'LienUtile', id: number, nom: string }>, demarches: Array<{ __typename?: 'Demarche', id: any, nom: string }> } };
+export type FetchDemarcheQuery = {
+  __typename?: 'Query';
+  fetchDemarche: {
+    __typename?: 'Demarche';
+    id: any;
+    titre: string;
+    url?: string | null;
+    cout?: number | null;
+    corps?: string | null;
+    mot_cle?: string | null;
+    delai?: number | null;
+    description: string;
+    resume?: string | null;
+    a_la_une?: boolean | null;
+    slug: string;
+    observations?: string | null;
+    post_scriptum?: string | null;
+    etat?: string | null;
+    est_publie?: boolean | null;
+    teleprocedure?: boolean | null;
+    hub?: string | null;
+    service_administratifs: Array<{
+      __typename?: 'ServiceAdministratif';
+      id: number;
+      nom: string;
+    }>;
+    sous_themes: Array<{ __typename?: 'SousTheme'; id: string; nom: string }>;
+    formulaires: Array<{ __typename?: 'Formulaire'; id: number; nom: string }>;
+    faqs: Array<{ __typename?: 'Faq'; id: number; nom: string }>;
+    descripteurs: Array<{
+      __typename?: 'Descripteur';
+      id: number;
+      nom: string;
+    }>;
+    modele_lettres: Array<{
+      __typename?: 'ModeleLettre';
+      id: number;
+      nom: string;
+    }>;
+    textes: Array<{ __typename?: 'Texte'; id: number; nom: string }>;
+    lien_utiles: Array<{ __typename?: 'LienUtile'; id: number; nom: string }>;
+    demarches: Array<{ __typename?: 'Demarche'; id: any; nom: string }>;
+  };
+};
 
 export type DeleteDemarcheMutationVariables = Exact<{
   demarcheId: Scalars['Any']['input'];
 }>;
 
-
-export type DeleteDemarcheMutation = { __typename?: 'Mutation', deleteDemarche: boolean };
+export type DeleteDemarcheMutation = {
+  __typename?: 'Mutation';
+  deleteDemarche: boolean;
+};
 
 export type PublishDemarcheMutationVariables = Exact<{
   demarcheId: Scalars['Any']['input'];
 }>;
 
-
-export type PublishDemarcheMutation = { __typename?: 'Mutation', publishDemarche: boolean };
+export type PublishDemarcheMutation = {
+  __typename?: 'Mutation';
+  publishDemarche: boolean;
+};
 
 export type UnPublishDemarcheMutationVariables = Exact<{
   demarcheId: Scalars['Any']['input'];
 }>;
 
-
-export type UnPublishDemarcheMutation = { __typename?: 'Mutation', unPublishDemarche: boolean };
+export type UnPublishDemarcheMutation = {
+  __typename?: 'Mutation';
+  unPublishDemarche: boolean;
+};
 
 export type FetchDescripteursQueryVariables = Exact<{
   queryFilter?: InputMaybe<QueryDataConfigInput>;
 }>;
 
-
-export type FetchDescripteursQuery = { __typename?: 'Query', fetchDescripteurs: { __typename?: 'PaginatedDescripteurResult', pagination: { __typename?: 'PaginationInfo', totalItems: number, pageCount: number, currentPage: number, pageSize: number }, results: Array<{ __typename?: 'Descripteur', id: number, libelle: string, status: number }> } };
+export type FetchDescripteursQuery = {
+  __typename?: 'Query';
+  fetchDescripteurs: {
+    __typename?: 'PaginatedDescripteurResult';
+    pagination: {
+      __typename?: 'PaginationInfo';
+      totalItems: number;
+      pageCount: number;
+      currentPage: number;
+      pageSize: number;
+    };
+    results: Array<{
+      __typename?: 'Descripteur';
+      id: number;
+      libelle: string;
+      status: number;
+    }>;
+  };
+};
 
 export type SearchDescripteursQueryVariables = Exact<{
   queryFilter?: InputMaybe<QueryDataConfigInput>;
 }>;
 
-
-export type SearchDescripteursQuery = { __typename?: 'Query', searchResults: { __typename?: 'PaginatedDescripteurResult', pagination: { __typename?: 'PaginationInfo', totalItems: number, pageCount: number, currentPage: number, pageSize: number }, results: Array<{ __typename?: 'Descripteur', id: number, nom: string }> } };
+export type SearchDescripteursQuery = {
+  __typename?: 'Query';
+  searchResults: {
+    __typename?: 'PaginatedDescripteurResult';
+    pagination: {
+      __typename?: 'PaginationInfo';
+      totalItems: number;
+      pageCount: number;
+      currentPage: number;
+      pageSize: number;
+    };
+    results: Array<{ __typename?: 'Descripteur'; id: number; nom: string }>;
+  };
+};
 
 export type FetchFaqsQueryVariables = Exact<{
   queryFilter?: InputMaybe<QueryDataConfigInput>;
 }>;
 
-
-export type FetchFaqsQuery = { __typename?: 'Query', fetchFaqs: { __typename?: 'PaginatedFaqResult', pagination: { __typename?: 'PaginationInfo', totalItems: number, pageCount: number, currentPage: number, pageSize: number }, results: Array<{ __typename?: 'Faq', id: number, question: string, reponse: string }> } };
+export type FetchFaqsQuery = {
+  __typename?: 'Query';
+  fetchFaqs: {
+    __typename?: 'PaginatedFaqResult';
+    pagination: {
+      __typename?: 'PaginationInfo';
+      totalItems: number;
+      pageCount: number;
+      currentPage: number;
+      pageSize: number;
+    };
+    results: Array<{
+      __typename?: 'Faq';
+      id: number;
+      question: string;
+      reponse: string;
+    }>;
+  };
+};
 
 export type SearchFaqsQueryVariables = Exact<{
   queryFilter?: InputMaybe<QueryDataConfigInput>;
 }>;
 
-
-export type SearchFaqsQuery = { __typename?: 'Query', searchResults: { __typename?: 'PaginatedFaqResult', pagination: { __typename?: 'PaginationInfo', totalItems: number, pageCount: number, currentPage: number, pageSize: number }, results: Array<{ __typename?: 'Faq', id: number, nom: string }> } };
+export type SearchFaqsQuery = {
+  __typename?: 'Query';
+  searchResults: {
+    __typename?: 'PaginatedFaqResult';
+    pagination: {
+      __typename?: 'PaginationInfo';
+      totalItems: number;
+      pageCount: number;
+      currentPage: number;
+      pageSize: number;
+    };
+    results: Array<{ __typename?: 'Faq'; id: number; nom: string }>;
+  };
+};
 
 export type FetchModeleLettresQueryVariables = Exact<{
   queryFilter?: InputMaybe<QueryDataConfigInput>;
 }>;
 
-
-export type FetchModeleLettresQuery = { __typename?: 'Query', fetchModeleLettres: { __typename?: 'PaginatedModeleLettreResult', pagination: { __typename?: 'PaginationInfo', totalItems: number, pageCount: number, currentPage: number, pageSize: number }, results: Array<{ __typename?: 'ModeleLettre', id: number, nom: string, slug: string }> } };
+export type FetchModeleLettresQuery = {
+  __typename?: 'Query';
+  fetchModeleLettres: {
+    __typename?: 'PaginatedModeleLettreResult';
+    pagination: {
+      __typename?: 'PaginationInfo';
+      totalItems: number;
+      pageCount: number;
+      currentPage: number;
+      pageSize: number;
+    };
+    results: Array<{
+      __typename?: 'ModeleLettre';
+      id: number;
+      nom: string;
+      slug: string;
+    }>;
+  };
+};
 
 export type SearchFormulairesQueryVariables = Exact<{
   queryFilter?: InputMaybe<QueryDataConfigInput>;
 }>;
 
-
-export type SearchFormulairesQuery = { __typename?: 'Query', searchResults: { __typename?: 'PaginatedFormulaireResult', pagination: { __typename?: 'PaginationInfo', totalItems: number, pageCount: number, currentPage: number, pageSize: number }, results: Array<{ __typename?: 'Formulaire', id: number, nom: string }> } };
+export type SearchFormulairesQuery = {
+  __typename?: 'Query';
+  searchResults: {
+    __typename?: 'PaginatedFormulaireResult';
+    pagination: {
+      __typename?: 'PaginationInfo';
+      totalItems: number;
+      pageCount: number;
+      currentPage: number;
+      pageSize: number;
+    };
+    results: Array<{ __typename?: 'Formulaire'; id: number; nom: string }>;
+  };
+};
 
 export type FetchLienUtilesQueryVariables = Exact<{
   queryFilter?: InputMaybe<QueryDataConfigInput>;
 }>;
 
-
-export type FetchLienUtilesQuery = { __typename?: 'Query', fetchLienUtiles: { __typename?: 'PaginatedLienUtileResult', pagination: { __typename?: 'PaginationInfo', totalItems: number, pageCount: number, currentPage: number, pageSize: number }, results: Array<{ __typename?: 'LienUtile', id: number, nom: string, description?: string | null, url: string, est_publie: number }> } };
+export type FetchLienUtilesQuery = {
+  __typename?: 'Query';
+  fetchLienUtiles: {
+    __typename?: 'PaginatedLienUtileResult';
+    pagination: {
+      __typename?: 'PaginationInfo';
+      totalItems: number;
+      pageCount: number;
+      currentPage: number;
+      pageSize: number;
+    };
+    results: Array<{
+      __typename?: 'LienUtile';
+      id: number;
+      nom: string;
+      description?: string | null;
+      url: string;
+      est_publie: number;
+    }>;
+  };
+};
 
 export type SearchLienUtilesQueryVariables = Exact<{
   queryFilter?: InputMaybe<QueryDataConfigInput>;
 }>;
 
-
-export type SearchLienUtilesQuery = { __typename?: 'Query', searchResults: { __typename?: 'PaginatedLienUtileResult', pagination: { __typename?: 'PaginationInfo', totalItems: number, pageCount: number, currentPage: number, pageSize: number }, results: Array<{ __typename?: 'LienUtile', id: number, nom: string }> } };
+export type SearchLienUtilesQuery = {
+  __typename?: 'Query';
+  searchResults: {
+    __typename?: 'PaginatedLienUtileResult';
+    pagination: {
+      __typename?: 'PaginationInfo';
+      totalItems: number;
+      pageCount: number;
+      currentPage: number;
+      pageSize: number;
+    };
+    results: Array<{ __typename?: 'LienUtile'; id: number; nom: string }>;
+  };
+};
 
 export type SearchModeleLettresQueryVariables = Exact<{
   queryFilter?: InputMaybe<QueryDataConfigInput>;
 }>;
 
-
-export type SearchModeleLettresQuery = { __typename?: 'Query', searchResults: { __typename?: 'PaginatedModeleLettreResult', pagination: { __typename?: 'PaginationInfo', totalItems: number, pageCount: number, currentPage: number, pageSize: number }, results: Array<{ __typename?: 'ModeleLettre', id: number, nom: string, slug: string }> } };
+export type SearchModeleLettresQuery = {
+  __typename?: 'Query';
+  searchResults: {
+    __typename?: 'PaginatedModeleLettreResult';
+    pagination: {
+      __typename?: 'PaginationInfo';
+      totalItems: number;
+      pageCount: number;
+      currentPage: number;
+      pageSize: number;
+    };
+    results: Array<{
+      __typename?: 'ModeleLettre';
+      id: number;
+      nom: string;
+      slug: string;
+    }>;
+  };
+};
 
 export type FetchServiceAdministratifsQueryVariables = Exact<{
   queryFilter?: InputMaybe<QueryDataConfigInput>;
 }>;
 
-
-export type FetchServiceAdministratifsQuery = { __typename?: 'Query', fetchServiceAdministratifs: { __typename?: 'PaginatedServiceAdministratifResult', pagination: { __typename?: 'PaginationInfo', totalItems: number, pageCount: number, currentPage: number, pageSize: number }, results: Array<{ __typename?: 'ServiceAdministratif', id: number, nom: string }> } };
+export type FetchServiceAdministratifsQuery = {
+  __typename?: 'Query';
+  fetchServiceAdministratifs: {
+    __typename?: 'PaginatedServiceAdministratifResult';
+    pagination: {
+      __typename?: 'PaginationInfo';
+      totalItems: number;
+      pageCount: number;
+      currentPage: number;
+      pageSize: number;
+    };
+    results: Array<{
+      __typename?: 'ServiceAdministratif';
+      id: number;
+      nom: string;
+    }>;
+  };
+};
 
 export type SearchServiceAdministratifsQueryVariables = Exact<{
   queryFilter?: InputMaybe<QueryDataConfigInput>;
 }>;
 
-
-export type SearchServiceAdministratifsQuery = { __typename?: 'Query', searchResults: { __typename?: 'PaginatedServiceAdministratifResult', pagination: { __typename?: 'PaginationInfo', totalItems: number, pageCount: number, currentPage: number, pageSize: number }, results: Array<{ __typename?: 'ServiceAdministratif', id: number, nom: string }> } };
+export type SearchServiceAdministratifsQuery = {
+  __typename?: 'Query';
+  searchResults: {
+    __typename?: 'PaginatedServiceAdministratifResult';
+    pagination: {
+      __typename?: 'PaginationInfo';
+      totalItems: number;
+      pageCount: number;
+      currentPage: number;
+      pageSize: number;
+    };
+    results: Array<{
+      __typename?: 'ServiceAdministratif';
+      id: number;
+      nom: string;
+    }>;
+  };
+};
 
 export type FetchTextesQueryVariables = Exact<{
   queryFilter?: InputMaybe<QueryDataConfigInput>;
 }>;
 
-
-export type FetchTextesQuery = { __typename?: 'Query', fetchTextes: { __typename?: 'PaginatedTexteResult', pagination: { __typename?: 'PaginationInfo', totalItems: number, pageCount: number, currentPage: number, pageSize: number }, results: Array<{ __typename?: 'Texte', id: number, nom: string, slug: string, description?: string | null, url: string, est_publie: number }> } };
+export type FetchTextesQuery = {
+  __typename?: 'Query';
+  fetchTextes: {
+    __typename?: 'PaginatedTexteResult';
+    pagination: {
+      __typename?: 'PaginationInfo';
+      totalItems: number;
+      pageCount: number;
+      currentPage: number;
+      pageSize: number;
+    };
+    results: Array<{
+      __typename?: 'Texte';
+      id: number;
+      nom: string;
+      slug: string;
+      description?: string | null;
+      url: string;
+      est_publie: number;
+    }>;
+  };
+};
 
 export type SearchTextesQueryVariables = Exact<{
   queryFilter?: InputMaybe<QueryDataConfigInput>;
 }>;
 
-
-export type SearchTextesQuery = { __typename?: 'Query', searchResults: { __typename?: 'PaginatedTexteResult', pagination: { __typename?: 'PaginationInfo', totalItems: number, pageCount: number, currentPage: number, pageSize: number }, results: Array<{ __typename?: 'Texte', id: number, nom: string }> } };
+export type SearchTextesQuery = {
+  __typename?: 'Query';
+  searchResults: {
+    __typename?: 'PaginatedTexteResult';
+    pagination: {
+      __typename?: 'PaginationInfo';
+      totalItems: number;
+      pageCount: number;
+      currentPage: number;
+      pageSize: number;
+    };
+    results: Array<{ __typename?: 'Texte'; id: number; nom: string }>;
+  };
+};
 
 export type FetchSousThemesQueryVariables = Exact<{
   queryFilter?: InputMaybe<QueryDataConfigInput>;
 }>;
 
-
-export type FetchSousThemesQuery = { __typename?: 'Query', fetchSousThemes: { __typename?: 'PaginatedSousThemeResult', pagination: { __typename?: 'PaginationInfo', totalItems: number, pageCount: number, currentPage: number, pageSize: number }, results: Array<{ __typename?: 'SousTheme', id: string, slug: string, libelle: string, ordre?: string | null, icon?: string | null, themes: Array<{ __typename?: 'Theme', id: number, libelle: string }> }> } };
+export type FetchSousThemesQuery = {
+  __typename?: 'Query';
+  fetchSousThemes: {
+    __typename?: 'PaginatedSousThemeResult';
+    pagination: {
+      __typename?: 'PaginationInfo';
+      totalItems: number;
+      pageCount: number;
+      currentPage: number;
+      pageSize: number;
+    };
+    results: Array<{
+      __typename?: 'SousTheme';
+      id: string;
+      slug: string;
+      libelle: string;
+      ordre?: string | null;
+      icon?: string | null;
+      themes: Array<{ __typename?: 'Theme'; id: number; libelle: string }>;
+    }>;
+  };
+};
 
 export type SearchSousThemesQueryVariables = Exact<{
   queryFilter?: InputMaybe<QueryDataConfigInput>;
 }>;
 
-
-export type SearchSousThemesQuery = { __typename?: 'Query', searchResults: { __typename?: 'PaginatedSousThemeResult', pagination: { __typename?: 'PaginationInfo', totalItems: number, pageCount: number, currentPage: number, pageSize: number }, results: Array<{ __typename?: 'SousTheme', id: string, nom: string }> } };
+export type SearchSousThemesQuery = {
+  __typename?: 'Query';
+  searchResults: {
+    __typename?: 'PaginatedSousThemeResult';
+    pagination: {
+      __typename?: 'PaginationInfo';
+      totalItems: number;
+      pageCount: number;
+      currentPage: number;
+      pageSize: number;
+    };
+    results: Array<{ __typename?: 'SousTheme'; id: string; nom: string }>;
+  };
+};
 
 export type FetchThemesQueryVariables = Exact<{
   queryFilter?: InputMaybe<QueryDataConfigInput>;
 }>;
 
-
-export type FetchThemesQuery = { __typename?: 'Query', fetchThemes: { __typename?: 'PaginatedThemeResult', pagination: { __typename?: 'PaginationInfo', totalItems: number, pageCount: number, currentPage: number, pageSize: number }, results: Array<{ __typename?: 'Theme', id: number, slug: string, libelle: string, espace_id?: number | null, couleur?: string | null, ordre: number, icon?: string | null, line_icon?: string | null }> } };
+export type FetchThemesQuery = {
+  __typename?: 'Query';
+  fetchThemes: {
+    __typename?: 'PaginatedThemeResult';
+    pagination: {
+      __typename?: 'PaginationInfo';
+      totalItems: number;
+      pageCount: number;
+      currentPage: number;
+      pageSize: number;
+    };
+    results: Array<{
+      __typename?: 'Theme';
+      id: number;
+      slug: string;
+      libelle: string;
+      espace_id?: number | null;
+      couleur?: string | null;
+      ordre: number;
+      icon?: string | null;
+      line_icon?: string | null;
+    }>;
+  };
+};
 
 export type FetchHubsQueryVariables = Exact<{
   queryFilter?: InputMaybe<QueryDataConfigInput>;
   hubFilter?: InputMaybe<HubInputSearchInput>;
 }>;
 
-
-export type FetchHubsQuery = { __typename?: 'Query', fetchHubs: { __typename?: 'PaginatedHubResult', pagination: { __typename?: 'PaginationInfo', totalItems: number, pageCount: number, pageSize: number, currentPage: number }, results: Array<{ __typename?: 'Hub', id: any, titre: string, resume?: string | null, updatedAt: any, etat?: string | null, est_publie?: boolean | null, observations?: string | null, a_la_une?: boolean | null, sous_themes: Array<{ __typename?: 'SousTheme', id: string, libelle: string, slug: string }> }> } };
+export type FetchHubsQuery = {
+  __typename?: 'Query';
+  fetchHubs: {
+    __typename?: 'PaginatedHubResult';
+    pagination: {
+      __typename?: 'PaginationInfo';
+      totalItems: number;
+      pageCount: number;
+      pageSize: number;
+      currentPage: number;
+    };
+    results: Array<{
+      __typename?: 'Hub';
+      id: any;
+      titre: string;
+      resume?: string | null;
+      updatedAt: any;
+      etat?: string | null;
+      est_publie?: boolean | null;
+      observations?: string | null;
+      a_la_une?: boolean | null;
+      sous_themes: Array<{
+        __typename?: 'SousTheme';
+        id: string;
+        libelle: string;
+        slug: string;
+      }>;
+    }>;
+  };
+};
 
 export type SearchHubsQueryVariables = Exact<{
   queryFilter?: InputMaybe<QueryDataConfigInput>;
 }>;
 
-
-export type SearchHubsQuery = { __typename?: 'Query', searchResults: { __typename?: 'PaginatedHubResult', pagination: { __typename?: 'PaginationInfo', totalItems: number, pageCount: number, pageSize: number, currentPage: number }, results: Array<{ __typename?: 'Hub', id: any, nom: string }> } };
+export type SearchHubsQuery = {
+  __typename?: 'Query';
+  searchResults: {
+    __typename?: 'PaginatedHubResult';
+    pagination: {
+      __typename?: 'PaginationInfo';
+      totalItems: number;
+      pageCount: number;
+      pageSize: number;
+      currentPage: number;
+    };
+    results: Array<{ __typename?: 'Hub'; id: any; nom: string }>;
+  };
+};
 
 export type CreateHubMutationVariables = Exact<{
   hubInput: HubInput;
 }>;
 
+export type CreateHubMutation = {
+  __typename?: 'Mutation';
+  createHub: {
+    __typename?: 'Hub';
+    id: any;
+    titre: string;
+    mot_cle?: string | null;
+    description: string;
+    resume?: string | null;
+    slug: string;
+    observations?: string | null;
+    etat?: string | null;
+    est_publie?: boolean | null;
+    a_la_une?: boolean | null;
+    sous_themes: Array<{
+      __typename?: 'SousTheme';
+      id: string;
+      libelle: string;
+    }>;
+    service_administratifs: Array<{
+      __typename?: 'ServiceAdministratif';
+      id: number;
+      nom: string;
+    }>;
+    formulaires: Array<{ __typename?: 'Formulaire'; id: number; nom: string }>;
+    faqs: Array<{ __typename?: 'Faq'; id: number; question: string }>;
+    descripteurs: Array<{
+      __typename?: 'Descripteur';
+      id: number;
+      libelle: string;
+    }>;
+    modele_lettres: Array<{
+      __typename?: 'ModeleLettre';
+      id: number;
+      nom: string;
+    }>;
+    textes: Array<{ __typename?: 'Texte'; id: number; nom: string }>;
+    lien_utiles: Array<{ __typename?: 'LienUtile'; id: number; nom: string }>;
+  };
+};
 
-export type CreateHubMutation = { __typename?: 'Mutation', createHub: { __typename?: 'Hub', id: any, titre: string, mot_cle?: string | null, description: string, resume?: string | null, slug: string, observations?: string | null, etat?: string | null, est_publie?: boolean | null, a_la_une?: boolean | null, sous_themes: Array<{ __typename?: 'SousTheme', id: string, libelle: string }>, service_administratifs: Array<{ __typename?: 'ServiceAdministratif', id: number, nom: string }>, formulaires: Array<{ __typename?: 'Formulaire', id: number, nom: string }>, faqs: Array<{ __typename?: 'Faq', id: number, question: string }>, descripteurs: Array<{ __typename?: 'Descripteur', id: number, libelle: string }>, modele_lettres: Array<{ __typename?: 'ModeleLettre', id: number, nom: string }>, textes: Array<{ __typename?: 'Texte', id: number, nom: string }>, lien_utiles: Array<{ __typename?: 'LienUtile', id: number, nom: string }> } };
+export type FetchAllHubsQueryVariables = Exact<{ [key: string]: never }>;
 
-export type FetchAllHubsQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-export type FetchAllHubsQuery = { __typename?: 'Query', fetchAllHubs: Array<{ __typename?: 'Hub', id: any, titre: string, mot_cle?: string | null, description: string, resume?: string | null, slug: string, observations?: string | null, etat?: string | null, est_publie?: boolean | null, a_la_une?: boolean | null }> };
+export type FetchAllHubsQuery = {
+  __typename?: 'Query';
+  fetchAllHubs: Array<{
+    __typename?: 'Hub';
+    id: any;
+    titre: string;
+    mot_cle?: string | null;
+    description: string;
+    resume?: string | null;
+    slug: string;
+    observations?: string | null;
+    etat?: string | null;
+    est_publie?: boolean | null;
+    a_la_une?: boolean | null;
+  }>;
+};
 
 export type FetchHubQueryVariables = Exact<{
   hubId: Scalars['String']['input'];
 }>;
 
-
-export type FetchHubQuery = { __typename?: 'Query', fetchHub: { __typename?: 'Hub', id: any, titre: string, mot_cle?: string | null, description: string, resume?: string | null, slug: string, observations?: string | null, etat?: string | null, est_publie?: boolean | null, a_la_une?: boolean | null, poster: string, service_administratifs: Array<{ __typename?: 'ServiceAdministratif', id: number, nom: string }>, sous_themes: Array<{ __typename?: 'SousTheme', id: string, nom: string }>, formulaires: Array<{ __typename?: 'Formulaire', id: number, nom: string }>, faqs: Array<{ __typename?: 'Faq', id: number, nom: string }>, descripteurs: Array<{ __typename?: 'Descripteur', id: number, nom: string }>, modele_lettres: Array<{ __typename?: 'ModeleLettre', id: number, nom: string }>, textes: Array<{ __typename?: 'Texte', id: number, nom: string }>, lien_utiles: Array<{ __typename?: 'LienUtile', id: number, nom: string }> } };
+export type FetchHubQuery = {
+  __typename?: 'Query';
+  fetchHub: {
+    __typename?: 'Hub';
+    id: any;
+    titre: string;
+    mot_cle?: string | null;
+    description: string;
+    resume?: string | null;
+    slug: string;
+    observations?: string | null;
+    etat?: string | null;
+    est_publie?: boolean | null;
+    a_la_une?: boolean | null;
+    poster: string;
+    service_administratifs: Array<{
+      __typename?: 'ServiceAdministratif';
+      id: number;
+      nom: string;
+    }>;
+    sous_themes: Array<{ __typename?: 'SousTheme'; id: string; nom: string }>;
+    formulaires: Array<{ __typename?: 'Formulaire'; id: number; nom: string }>;
+    faqs: Array<{ __typename?: 'Faq'; id: number; nom: string }>;
+    descripteurs: Array<{
+      __typename?: 'Descripteur';
+      id: number;
+      nom: string;
+    }>;
+    modele_lettres: Array<{
+      __typename?: 'ModeleLettre';
+      id: number;
+      nom: string;
+    }>;
+    textes: Array<{ __typename?: 'Texte'; id: number; nom: string }>;
+    lien_utiles: Array<{ __typename?: 'LienUtile'; id: number; nom: string }>;
+  };
+};
 
 export type DeleteHubMutationVariables = Exact<{
   hubId: Scalars['String']['input'];
 }>;
 
-
-export type DeleteHubMutation = { __typename?: 'Mutation', deleteHub: boolean };
+export type DeleteHubMutation = { __typename?: 'Mutation'; deleteHub: boolean };
 
 export type PublishHubMutationVariables = Exact<{
   hubId: Scalars['String']['input'];
 }>;
 
-
-export type PublishHubMutation = { __typename?: 'Mutation', publishHub: boolean };
+export type PublishHubMutation = {
+  __typename?: 'Mutation';
+  publishHub: boolean;
+};
 
 export type UnPublishHubMutationVariables = Exact<{
   hubId: Scalars['String']['input'];
 }>;
 
-
-export type UnPublishHubMutation = { __typename?: 'Mutation', unPublishHub: boolean };
+export type UnPublishHubMutation = {
+  __typename?: 'Mutation';
+  unPublishHub: boolean;
+};
 
 export type FetchDemarcheReviewsMetricsQueryVariables = Exact<{
   queryFilter?: InputMaybe<QueryDataConfigInput>;
 }>;
 
-
-export type FetchDemarcheReviewsMetricsQuery = { __typename?: 'Query', fetchDemarcheReviewsMetrics: { __typename?: 'PaginatedDemarcheReviewMetricResult', pagination: { __typename?: 'PaginationInfo', totalItems: number, pageCount: number, pageSize: number, currentPage: number }, results: Array<{ __typename?: 'DemarcheReviewMetric', noteAvg: number, numberOfReviews: number, demarche: { __typename?: 'Demarche', id: any, titre: string } }> } };
+export type FetchDemarcheReviewsMetricsQuery = {
+  __typename?: 'Query';
+  fetchDemarcheReviewsMetrics: {
+    __typename?: 'PaginatedDemarcheReviewMetricResult';
+    pagination: {
+      __typename?: 'PaginationInfo';
+      totalItems: number;
+      pageCount: number;
+      pageSize: number;
+      currentPage: number;
+    };
+    results: Array<{
+      __typename?: 'DemarcheReviewMetric';
+      noteAvg: number;
+      numberOfReviews: number;
+      demarche: { __typename?: 'Demarche'; id: any; titre: string };
+    }>;
+  };
+};
 
 export type FetchServicesQueryVariables = Exact<{
   queryFilter?: InputMaybe<QueryDataConfigInput>;
   serviceFilter?: InputMaybe<ServiceInputSearchInput>;
 }>;
 
-
-export type FetchServicesQuery = { __typename?: 'Query', fetchServices: { __typename?: 'PaginatedServiceResult', pagination: { __typename?: 'PaginationInfo', totalItems: number, pageCount: number, pageSize: number, currentPage: number }, results: Array<{ __typename?: 'Service', id: any, titre: string, description?: string | null, updatedAt: any, etat?: string | null, url?: string | null, contenu: string, est_publie?: boolean | null, sous_themes: Array<{ __typename?: 'SousTheme', id: string, libelle: string, slug: string }>, service_administratifs: Array<{ __typename?: 'ServiceAdministratif', id: number, nom: string }> }> } };
+export type FetchServicesQuery = {
+  __typename?: 'Query';
+  fetchServices: {
+    __typename?: 'PaginatedServiceResult';
+    pagination: {
+      __typename?: 'PaginationInfo';
+      totalItems: number;
+      pageCount: number;
+      pageSize: number;
+      currentPage: number;
+    };
+    results: Array<{
+      __typename?: 'Service';
+      id: any;
+      titre: string;
+      description?: string | null;
+      updatedAt: any;
+      etat?: string | null;
+      url?: string | null;
+      contenu: string;
+      est_publie?: boolean | null;
+      sous_themes: Array<{
+        __typename?: 'SousTheme';
+        id: string;
+        libelle: string;
+        slug: string;
+      }>;
+      service_administratifs: Array<{
+        __typename?: 'ServiceAdministratif';
+        id: number;
+        nom: string;
+      }>;
+    }>;
+  };
+};
 
 export type SearchServicesQueryVariables = Exact<{
   queryFilter?: InputMaybe<QueryDataConfigInput>;
 }>;
 
-
-export type SearchServicesQuery = { __typename?: 'Query', searchResults: { __typename?: 'PaginatedServiceResult', pagination: { __typename?: 'PaginationInfo', totalItems: number, pageCount: number, pageSize: number, currentPage: number }, results: Array<{ __typename?: 'Service', id: any, nom: string }> } };
+export type SearchServicesQuery = {
+  __typename?: 'Query';
+  searchResults: {
+    __typename?: 'PaginatedServiceResult';
+    pagination: {
+      __typename?: 'PaginationInfo';
+      totalItems: number;
+      pageCount: number;
+      pageSize: number;
+      currentPage: number;
+    };
+    results: Array<{ __typename?: 'Service'; id: any; nom: string }>;
+  };
+};
 
 export type CreateServiceMutationVariables = Exact<{
   serviceInput: ServiceInput;
 }>;
 
-
-export type CreateServiceMutation = { __typename?: 'Mutation', createService: { __typename?: 'Service', id: any, titre: string, mot_cle?: string | null, description?: string | null, a_la_une?: boolean | null, slug: string, etat?: string | null, est_publie?: boolean | null, contenu: string, sous_themes: Array<{ __typename?: 'SousTheme', id: string, libelle: string }>, service_administratifs: Array<{ __typename?: 'ServiceAdministratif', id: number, nom: string }> } };
+export type CreateServiceMutation = {
+  __typename?: 'Mutation';
+  createService: {
+    __typename?: 'Service';
+    id: any;
+    titre: string;
+    mot_cle?: string | null;
+    description?: string | null;
+    a_la_une?: boolean | null;
+    slug: string;
+    etat?: string | null;
+    est_publie?: boolean | null;
+    contenu: string;
+    sous_themes: Array<{
+      __typename?: 'SousTheme';
+      id: string;
+      libelle: string;
+    }>;
+    service_administratifs: Array<{
+      __typename?: 'ServiceAdministratif';
+      id: number;
+      nom: string;
+    }>;
+  };
+};
 
 export type FetchServiceQueryVariables = Exact<{
   serviceId: Scalars['String']['input'];
 }>;
 
-
-export type FetchServiceQuery = { __typename?: 'Query', fetchService: { __typename?: 'Service', id: any, titre: string, url?: string | null, mot_cle?: string | null, description?: string | null, contenu: string, a_la_une?: boolean | null, slug: string, etat?: string | null, est_publie?: boolean | null, poster: string, media_type?: string | null, service_administratifs: Array<{ __typename?: 'ServiceAdministratif', id: number, nom: string }>, sous_themes: Array<{ __typename?: 'SousTheme', id: string, nom: string }> } };
+export type FetchServiceQuery = {
+  __typename?: 'Query';
+  fetchService: {
+    __typename?: 'Service';
+    id: any;
+    titre: string;
+    url?: string | null;
+    mot_cle?: string | null;
+    description?: string | null;
+    contenu: string;
+    a_la_une?: boolean | null;
+    slug: string;
+    etat?: string | null;
+    est_publie?: boolean | null;
+    poster: string;
+    media_type?: string | null;
+    service_administratifs: Array<{
+      __typename?: 'ServiceAdministratif';
+      id: number;
+      nom: string;
+    }>;
+    sous_themes: Array<{ __typename?: 'SousTheme'; id: string; nom: string }>;
+  };
+};
 
 export type DeleteServiceMutationVariables = Exact<{
   serviceId: Scalars['Any']['input'];
 }>;
 
-
-export type DeleteServiceMutation = { __typename?: 'Mutation', deleteService: boolean };
+export type DeleteServiceMutation = {
+  __typename?: 'Mutation';
+  deleteService: boolean;
+};
 
 export type PublishServiceMutationVariables = Exact<{
   serviceId: Scalars['Any']['input'];
 }>;
 
-
-export type PublishServiceMutation = { __typename?: 'Mutation', publishService: boolean };
+export type PublishServiceMutation = {
+  __typename?: 'Mutation';
+  publishService: boolean;
+};
 
 export type UnPublishServiceMutationVariables = Exact<{
   serviceId: Scalars['Any']['input'];
 }>;
 
-
-export type UnPublishServiceMutation = { __typename?: 'Mutation', unPublishService: boolean };
+export type UnPublishServiceMutation = {
+  __typename?: 'Mutation';
+  unPublishService: boolean;
+};
 
 export type FetchStructuresQueryVariables = Exact<{
   queryFilter?: InputMaybe<QueryDataConfigInput>;
   structureFilter?: InputMaybe<StructureInputSearchInput>;
 }>;
 
-
-export type FetchStructuresQuery = { __typename?: 'Query', fetchStructures: { __typename?: 'PaginatedStructureResult', pagination: { __typename?: 'PaginationInfo', totalItems: number, pageCount: number, pageSize: number, currentPage: number }, results: Array<{ __typename?: 'Structure', id: any, libelle: string, collectivite_id: number, description: string, localisation?: string | null, responsable?: string | null, contact_responsable?: string | null, zone?: string | null, latitude: string, longitude: string, map?: string | null, est_publie?: boolean | null, etat?: string | null, updatedAt: any }> } };
+export type FetchStructuresQuery = {
+  __typename?: 'Query';
+  fetchStructures: {
+    __typename?: 'PaginatedStructureResult';
+    pagination: {
+      __typename?: 'PaginationInfo';
+      totalItems: number;
+      pageCount: number;
+      pageSize: number;
+      currentPage: number;
+    };
+    results: Array<{
+      __typename?: 'Structure';
+      id: any;
+      libelle: string;
+      collectivite_id: number;
+      description: string;
+      localisation?: string | null;
+      responsable?: string | null;
+      contact_responsable?: string | null;
+      zone?: string | null;
+      latitude: string;
+      longitude: string;
+      map?: string | null;
+      est_publie?: boolean | null;
+      etat?: string | null;
+      updatedAt: any;
+    }>;
+  };
+};
 
 export type SearchStructuresQueryVariables = Exact<{
   queryFilter?: InputMaybe<QueryDataConfigInput>;
 }>;
 
-
-export type SearchStructuresQuery = { __typename?: 'Query', searchResults: { __typename?: 'PaginatedStructureResult', pagination: { __typename?: 'PaginationInfo', totalItems: number, pageCount: number, pageSize: number, currentPage: number }, results: Array<{ __typename?: 'Structure', id: any, nom: string }> } };
+export type SearchStructuresQuery = {
+  __typename?: 'Query';
+  searchResults: {
+    __typename?: 'PaginatedStructureResult';
+    pagination: {
+      __typename?: 'PaginationInfo';
+      totalItems: number;
+      pageCount: number;
+      pageSize: number;
+      currentPage: number;
+    };
+    results: Array<{ __typename?: 'Structure'; id: any; nom: string }>;
+  };
+};
 
 export type CreateStructureMutationVariables = Exact<{
   structureInput: StructureInput;
 }>;
 
-
-export type CreateStructureMutation = { __typename?: 'Mutation', createStructure: { __typename?: 'Structure', id: any, libelle: string, collectivite_id: number, description: string, localisation?: string | null, responsable?: string | null, contact_responsable?: string | null, zone?: string | null, latitude: string, longitude: string, map?: string | null, est_publie?: boolean | null, etat?: string | null, updatedAt: any } };
+export type CreateStructureMutation = {
+  __typename?: 'Mutation';
+  createStructure: {
+    __typename?: 'Structure';
+    id: any;
+    libelle: string;
+    collectivite_id: number;
+    description: string;
+    localisation?: string | null;
+    responsable?: string | null;
+    contact_responsable?: string | null;
+    zone?: string | null;
+    latitude: string;
+    longitude: string;
+    map?: string | null;
+    est_publie?: boolean | null;
+    etat?: string | null;
+    updatedAt: any;
+  };
+};
 
 export type UpdateStructureMutationVariables = Exact<{
   structureId: Scalars['Any']['input'];
   structureInput: StructureUpdateInput;
 }>;
 
-
-export type UpdateStructureMutation = { __typename?: 'Mutation', updateStructure: boolean };
+export type UpdateStructureMutation = {
+  __typename?: 'Mutation';
+  updateStructure: boolean;
+};
 
 export type FetchStructureQueryVariables = Exact<{
   structureId: Scalars['String']['input'];
 }>;
 
-
-export type FetchStructureQuery = { __typename?: 'Query', fetchStructure: { __typename?: 'Structure', id: any, libelle: string, collectivite_id: number, description: string, localisation?: string | null, responsable?: string | null, contact_responsable?: string | null, zone?: string | null, latitude: string, longitude: string, map?: string | null, est_publie?: boolean | null, etat?: string | null, updatedAt: any } };
+export type FetchStructureQuery = {
+  __typename?: 'Query';
+  fetchStructure: {
+    __typename?: 'Structure';
+    id: any;
+    libelle: string;
+    collectivite_id: number;
+    description: string;
+    localisation?: string | null;
+    responsable?: string | null;
+    contact_responsable?: string | null;
+    zone?: string | null;
+    latitude: string;
+    longitude: string;
+    map?: string | null;
+    est_publie?: boolean | null;
+    etat?: string | null;
+    updatedAt: any;
+  };
+};
 
 export type DeleteStructureMutationVariables = Exact<{
   structureId: Scalars['Any']['input'];
 }>;
 
-
-export type DeleteStructureMutation = { __typename?: 'Mutation', deleteStructure: boolean };
+export type DeleteStructureMutation = {
+  __typename?: 'Mutation';
+  deleteStructure: boolean;
+};
 
 export type PublishStructureMutationVariables = Exact<{
   structureId: Scalars['Any']['input'];
 }>;
 
-
-export type PublishStructureMutation = { __typename?: 'Mutation', publishStructure: boolean };
+export type PublishStructureMutation = {
+  __typename?: 'Mutation';
+  publishStructure: boolean;
+};
 
 export type UnPublishStructureMutationVariables = Exact<{
   structureId: Scalars['Any']['input'];
 }>;
 
-
-export type UnPublishStructureMutation = { __typename?: 'Mutation', unPublishStructure: boolean };
+export type UnPublishStructureMutation = {
+  __typename?: 'Mutation';
+  unPublishStructure: boolean;
+};
 
 export const RegisterDocument = gql`
-    mutation Register($registerInput: RegisterInput!) {
-  register(registerInput: $registerInput) {
-    token
-    user {
-      id
-    }
-  }
-}
-    `;
-
-  @Injectable({
-    providedIn: 'root'
-  })
-  export class RegisterGQL extends Apollo.Mutation<RegisterMutation, RegisterMutationVariables> {
-    document = RegisterDocument;
-    
-    constructor(apollo: Apollo.Apollo) {
-      super(apollo);
-    }
-  }
-export const LoginDocument = gql`
-    query Login($loginInput: LoginInput!) {
-  login(loginInput: $loginInput) {
-    token
-    user {
-      id
-    }
-  }
-}
-    `;
-
-  @Injectable({
-    providedIn: 'root'
-  })
-  export class LoginGQL extends Apollo.Query<LoginQuery, LoginQueryVariables> {
-    document = LoginDocument;
-    
-    constructor(apollo: Apollo.Apollo) {
-      super(apollo);
-    }
-  }
-export const FetchActualitesDocument = gql`
-    query FetchActualites($queryFilter: QueryDataConfigInput, $actualiteFilter: ActualiteInputSearchInput) {
-  fetchActualites(queryFilter: $queryFilter, actualiteFilter: $actualiteFilter) {
-    pagination {
-      totalItems
-      pageCount
-      pageSize
-      currentPage
-    }
-    results {
-      id
-      titre
-      description
-      updatedAt
-      etat
-      est_publie
-      observations
-      url
-      sous_themes {
+  mutation Register($registerInput: RegisterInput!) {
+    register(registerInput: $registerInput) {
+      token
+      user {
         id
-        libelle
-        slug
       }
     }
   }
-}
-    `;
+`;
 
-  @Injectable({
-    providedIn: 'root'
-  })
-  export class FetchActualitesGQL extends Apollo.Query<FetchActualitesQuery, FetchActualitesQueryVariables> {
-    document = FetchActualitesDocument;
-    
-    constructor(apollo: Apollo.Apollo) {
-      super(apollo);
+@Injectable({
+  providedIn: 'root',
+})
+export class RegisterGQL extends Apollo.Mutation<
+  RegisterMutation,
+  RegisterMutationVariables
+> {
+  document = RegisterDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
+  }
+}
+export const LoginDocument = gql`
+  query Login($loginInput: LoginInput!) {
+    login(loginInput: $loginInput) {
+      token
+      user {
+        id
+      }
     }
   }
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class LoginGQL extends Apollo.Query<LoginQuery, LoginQueryVariables> {
+  document = LoginDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
+  }
+}
+export const FetchActualitesDocument = gql`
+  query FetchActualites(
+    $queryFilter: QueryDataConfigInput
+    $actualiteFilter: ActualiteInputSearchInput
+  ) {
+    fetchActualites(
+      queryFilter: $queryFilter
+      actualiteFilter: $actualiteFilter
+    ) {
+      pagination {
+        totalItems
+        pageCount
+        pageSize
+        currentPage
+      }
+      results {
+        id
+        titre
+        description
+        updatedAt
+        etat
+        est_publie
+        observations
+        url
+        sous_themes {
+          id
+          libelle
+          slug
+        }
+      }
+    }
+  }
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class FetchActualitesGQL extends Apollo.Query<
+  FetchActualitesQuery,
+  FetchActualitesQueryVariables
+> {
+  document = FetchActualitesDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
+  }
+}
 export const SearchActualitesDocument = gql`
-    query SearchActualites($queryFilter: QueryDataConfigInput) {
-  searchResults: fetchActualites(queryFilter: $queryFilter) {
-    pagination {
-      totalItems
-      pageCount
-      pageSize
-      currentPage
+  query SearchActualites($queryFilter: QueryDataConfigInput) {
+    searchResults: fetchActualites(queryFilter: $queryFilter) {
+      pagination {
+        totalItems
+        pageCount
+        pageSize
+        currentPage
+      }
+      results {
+        id
+        nom: titre
+      }
     }
-    results {
-      id
-      nom: titre
-    }
+  }
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class SearchActualitesGQL extends Apollo.Query<
+  SearchActualitesQuery,
+  SearchActualitesQueryVariables
+> {
+  document = SearchActualitesDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
   }
 }
-    `;
-
-  @Injectable({
-    providedIn: 'root'
-  })
-  export class SearchActualitesGQL extends Apollo.Query<SearchActualitesQuery, SearchActualitesQueryVariables> {
-    document = SearchActualitesDocument;
-    
-    constructor(apollo: Apollo.Apollo) {
-      super(apollo);
-    }
-  }
 export const CreateActualiteDocument = gql`
-    mutation CreateActualite($actualiteInput: ActualiteInput!) {
-  createActualite(actualiteInput: $actualiteInput) {
-    id
-    titre
-    url
-    mot_cle
-    description
-    a_la_une
-    slug
-    observations
-    etat
-    est_publie
-    sous_themes {
-      id
-      libelle
-    }
-    service_administratifs {
-      id
-      nom
-    }
-    textes {
-      id
-      nom
-    }
-    demarches {
+  mutation CreateActualite($actualiteInput: ActualiteInput!) {
+    createActualite(actualiteInput: $actualiteInput) {
       id
       titre
+      url
+      mot_cle
+      description
+      a_la_une
+      slug
+      observations
+      etat
+      est_publie
+      sous_themes {
+        id
+        libelle
+      }
+      service_administratifs {
+        id
+        nom
+      }
+      textes {
+        id
+        nom
+      }
+      demarches {
+        id
+        titre
+      }
     }
+  }
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class CreateActualiteGQL extends Apollo.Mutation<
+  CreateActualiteMutation,
+  CreateActualiteMutationVariables
+> {
+  document = CreateActualiteDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
   }
 }
-    `;
-
-  @Injectable({
-    providedIn: 'root'
-  })
-  export class CreateActualiteGQL extends Apollo.Mutation<CreateActualiteMutation, CreateActualiteMutationVariables> {
-    document = CreateActualiteDocument;
-    
-    constructor(apollo: Apollo.Apollo) {
-      super(apollo);
-    }
-  }
 export const FetchActualiteDocument = gql`
-    query FetchActualite($actualiteId: String!) {
-  fetchActualite(actualiteId: $actualiteId) {
-    id
-    titre
-    url
-    mot_cle
-    description
-    a_la_une
-    slug
-    contenu
-    observations
-    etat
-    est_publie
-    poster
-    service_administratifs {
+  query FetchActualite($actualiteId: String!) {
+    fetchActualite(actualiteId: $actualiteId) {
       id
-      nom
+      titre
+      url
+      mot_cle
+      description
+      a_la_une
+      slug
+      contenu
+      observations
+      etat
+      est_publie
+      poster
+      service_administratifs {
+        id
+        nom
+      }
+      sous_themes {
+        id
+        nom: libelle
+      }
+      textes {
+        id
+        nom
+      }
+      demarches {
+        id
+        nom: titre
+      }
     }
-    sous_themes {
-      id
-      nom: libelle
-    }
-    textes {
-      id
-      nom
-    }
-    demarches {
-      id
-      nom: titre
-    }
+  }
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class FetchActualiteGQL extends Apollo.Query<
+  FetchActualiteQuery,
+  FetchActualiteQueryVariables
+> {
+  document = FetchActualiteDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
   }
 }
-    `;
-
-  @Injectable({
-    providedIn: 'root'
-  })
-  export class FetchActualiteGQL extends Apollo.Query<FetchActualiteQuery, FetchActualiteQueryVariables> {
-    document = FetchActualiteDocument;
-    
-    constructor(apollo: Apollo.Apollo) {
-      super(apollo);
-    }
-  }
 export const DeleteActualiteDocument = gql`
-    mutation DeleteActualite($actualiteId: Any!) {
-  deleteActualite(actualiteId: $actualiteId)
-}
-    `;
-
-  @Injectable({
-    providedIn: 'root'
-  })
-  export class DeleteActualiteGQL extends Apollo.Mutation<DeleteActualiteMutation, DeleteActualiteMutationVariables> {
-    document = DeleteActualiteDocument;
-    
-    constructor(apollo: Apollo.Apollo) {
-      super(apollo);
-    }
+  mutation DeleteActualite($actualiteId: Any!) {
+    deleteActualite(actualiteId: $actualiteId)
   }
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class DeleteActualiteGQL extends Apollo.Mutation<
+  DeleteActualiteMutation,
+  DeleteActualiteMutationVariables
+> {
+  document = DeleteActualiteDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
+  }
+}
 export const PublishActualiteDocument = gql`
-    mutation PublishActualite($actualiteId: Any!) {
-  publishActualite(actualiteId: $actualiteId)
-}
-    `;
-
-  @Injectable({
-    providedIn: 'root'
-  })
-  export class PublishActualiteGQL extends Apollo.Mutation<PublishActualiteMutation, PublishActualiteMutationVariables> {
-    document = PublishActualiteDocument;
-    
-    constructor(apollo: Apollo.Apollo) {
-      super(apollo);
-    }
+  mutation PublishActualite($actualiteId: Any!) {
+    publishActualite(actualiteId: $actualiteId)
   }
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class PublishActualiteGQL extends Apollo.Mutation<
+  PublishActualiteMutation,
+  PublishActualiteMutationVariables
+> {
+  document = PublishActualiteDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
+  }
+}
 export const UnPublishActualiteDocument = gql`
-    mutation UnPublishActualite($actualiteId: Any!) {
-  unPublishActualite(actualiteId: $actualiteId)
-}
-    `;
+  mutation UnPublishActualite($actualiteId: Any!) {
+    unPublishActualite(actualiteId: $actualiteId)
+  }
+`;
 
-  @Injectable({
-    providedIn: 'root'
-  })
-  export class UnPublishActualiteGQL extends Apollo.Mutation<UnPublishActualiteMutation, UnPublishActualiteMutationVariables> {
-    document = UnPublishActualiteDocument;
-    
-    constructor(apollo: Apollo.Apollo) {
-      super(apollo);
+@Injectable({
+  providedIn: 'root',
+})
+export class UnPublishActualiteGQL extends Apollo.Mutation<
+  UnPublishActualiteMutation,
+  UnPublishActualiteMutationVariables
+> {
+  document = UnPublishActualiteDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
+  }
+}
+export const FetchAnnoncesDocument = gql`
+  query FetchAnnonces(
+    $queryFilter: QueryDataConfigInput
+    $annonceFilter: AnnonceInputSearchInput
+  ) {
+    fetchAnnonces(queryFilter: $queryFilter, annonceFilter: $annonceFilter) {
+      pagination {
+        totalItems
+        pageCount
+        pageSize
+        currentPage
+      }
+      results {
+        id
+        titre
+        sous_titre
+        description
+        updatedAt
+        etat
+        url
+        est_publie
+        action_button_url
+        action_button_text
+        sous_themes {
+          id
+          libelle
+          slug
+        }
+        service_administratifs {
+          id
+          nom
+        }
+      }
     }
   }
-export const FetchAnnoncesDocument = gql`
-    query FetchAnnonces($queryFilter: QueryDataConfigInput, $annonceFilter: AnnonceInputSearchInput) {
-  fetchAnnonces(queryFilter: $queryFilter, annonceFilter: $annonceFilter) {
-    pagination {
-      totalItems
-      pageCount
-      pageSize
-      currentPage
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class FetchAnnoncesGQL extends Apollo.Query<
+  FetchAnnoncesQuery,
+  FetchAnnoncesQueryVariables
+> {
+  document = FetchAnnoncesDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
+  }
+}
+export const SearchAnnoncesDocument = gql`
+  query SearchAnnonces($queryFilter: QueryDataConfigInput) {
+    searchResults: fetchAnnonces(queryFilter: $queryFilter) {
+      pagination {
+        totalItems
+        pageCount
+        pageSize
+        currentPage
+      }
+      results {
+        id
+        nom: titre
+      }
     }
-    results {
+  }
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class SearchAnnoncesGQL extends Apollo.Query<
+  SearchAnnoncesQuery,
+  SearchAnnoncesQueryVariables
+> {
+  document = SearchAnnoncesDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
+  }
+}
+export const CreateAnnonceDocument = gql`
+  mutation CreateAnnonce($annonceInput: AnnonceInput!) {
+    createAnnonce(annonceInput: $annonceInput) {
       id
       titre
       sous_titre
+      mot_cle
       description
-      updatedAt
+      a_la_une
+      slug
       etat
-      url
       est_publie
       action_button_url
       action_button_text
       sous_themes {
         id
         libelle
-        slug
       }
       service_administratifs {
         id
@@ -2338,1185 +3287,1309 @@ export const FetchAnnoncesDocument = gql`
       }
     }
   }
-}
-    `;
+`;
 
-  @Injectable({
-    providedIn: 'root'
-  })
-  export class FetchAnnoncesGQL extends Apollo.Query<FetchAnnoncesQuery, FetchAnnoncesQueryVariables> {
-    document = FetchAnnoncesDocument;
-    
-    constructor(apollo: Apollo.Apollo) {
-      super(apollo);
-    }
-  }
-export const SearchAnnoncesDocument = gql`
-    query SearchAnnonces($queryFilter: QueryDataConfigInput) {
-  searchResults: fetchAnnonces(queryFilter: $queryFilter) {
-    pagination {
-      totalItems
-      pageCount
-      pageSize
-      currentPage
-    }
-    results {
-      id
-      nom: titre
-    }
+@Injectable({
+  providedIn: 'root',
+})
+export class CreateAnnonceGQL extends Apollo.Mutation<
+  CreateAnnonceMutation,
+  CreateAnnonceMutationVariables
+> {
+  document = CreateAnnonceDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
   }
 }
-    `;
-
-  @Injectable({
-    providedIn: 'root'
-  })
-  export class SearchAnnoncesGQL extends Apollo.Query<SearchAnnoncesQuery, SearchAnnoncesQueryVariables> {
-    document = SearchAnnoncesDocument;
-    
-    constructor(apollo: Apollo.Apollo) {
-      super(apollo);
-    }
-  }
-export const CreateAnnonceDocument = gql`
-    mutation CreateAnnonce($annonceInput: AnnonceInput!) {
-  createAnnonce(annonceInput: $annonceInput) {
-    id
-    titre
-    sous_titre
-    mot_cle
-    description
-    a_la_une
-    slug
-    etat
-    est_publie
-    action_button_url
-    action_button_text
-    sous_themes {
-      id
-      libelle
-    }
-    service_administratifs {
-      id
-      nom
-    }
-  }
-}
-    `;
-
-  @Injectable({
-    providedIn: 'root'
-  })
-  export class CreateAnnonceGQL extends Apollo.Mutation<CreateAnnonceMutation, CreateAnnonceMutationVariables> {
-    document = CreateAnnonceDocument;
-    
-    constructor(apollo: Apollo.Apollo) {
-      super(apollo);
-    }
-  }
 export const FetchAnnonceDocument = gql`
-    query FetchAnnonce($annonceId: String!) {
-  fetchAnnonce(annonceId: $annonceId) {
-    id
-    titre
-    sous_titre
-    url
-    mot_cle
-    description
-    a_la_une
-    slug
-    etat
-    est_publie
-    pages
-    action_button_url
-    action_button_text
-    poster
-    media_type
-    service_administratifs {
-      id
-      nom
-    }
-    sous_themes {
-      id
-      nom: libelle
-    }
-  }
-}
-    `;
-
-  @Injectable({
-    providedIn: 'root'
-  })
-  export class FetchAnnonceGQL extends Apollo.Query<FetchAnnonceQuery, FetchAnnonceQueryVariables> {
-    document = FetchAnnonceDocument;
-    
-    constructor(apollo: Apollo.Apollo) {
-      super(apollo);
-    }
-  }
-export const DeleteAnnonceDocument = gql`
-    mutation DeleteAnnonce($annonceId: Any!) {
-  deleteAnnonce(annonceId: $annonceId)
-}
-    `;
-
-  @Injectable({
-    providedIn: 'root'
-  })
-  export class DeleteAnnonceGQL extends Apollo.Mutation<DeleteAnnonceMutation, DeleteAnnonceMutationVariables> {
-    document = DeleteAnnonceDocument;
-    
-    constructor(apollo: Apollo.Apollo) {
-      super(apollo);
-    }
-  }
-export const PublishAnnonceDocument = gql`
-    mutation PublishAnnonce($annonceId: Any!) {
-  publishAnnonce(annonceId: $annonceId)
-}
-    `;
-
-  @Injectable({
-    providedIn: 'root'
-  })
-  export class PublishAnnonceGQL extends Apollo.Mutation<PublishAnnonceMutation, PublishAnnonceMutationVariables> {
-    document = PublishAnnonceDocument;
-    
-    constructor(apollo: Apollo.Apollo) {
-      super(apollo);
-    }
-  }
-export const UnPublishAnnonceDocument = gql`
-    mutation UnPublishAnnonce($annonceId: Any!) {
-  unPublishAnnonce(annonceId: $annonceId)
-}
-    `;
-
-  @Injectable({
-    providedIn: 'root'
-  })
-  export class UnPublishAnnonceGQL extends Apollo.Mutation<UnPublishAnnonceMutation, UnPublishAnnonceMutationVariables> {
-    document = UnPublishAnnonceDocument;
-    
-    constructor(apollo: Apollo.Apollo) {
-      super(apollo);
-    }
-  }
-export const FetchDemarchesDocument = gql`
-    query FetchDemarches($queryFilter: QueryDataConfigInput, $demarcheFilter: DemarcheInputSearchInput) {
-  fetchDemarches(queryFilter: $queryFilter, demarcheFilter: $demarcheFilter) {
-    pagination {
-      totalItems
-      pageCount
-      pageSize
-      currentPage
-    }
-    results {
+  query FetchAnnonce($annonceId: String!) {
+    fetchAnnonce(annonceId: $annonceId) {
       id
       titre
-      resume
-      updatedAt
+      sous_titre
+      url
+      mot_cle
+      description
+      a_la_une
+      slug
       etat
       est_publie
+      pages
+      action_button_url
+      action_button_text
+      poster
+      media_type
+      service_administratifs {
+        id
+        nom
+      }
+      sous_themes {
+        id
+        nom: libelle
+      }
+    }
+  }
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class FetchAnnonceGQL extends Apollo.Query<
+  FetchAnnonceQuery,
+  FetchAnnonceQueryVariables
+> {
+  document = FetchAnnonceDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
+  }
+}
+export const DeleteAnnonceDocument = gql`
+  mutation DeleteAnnonce($annonceId: Any!) {
+    deleteAnnonce(annonceId: $annonceId)
+  }
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class DeleteAnnonceGQL extends Apollo.Mutation<
+  DeleteAnnonceMutation,
+  DeleteAnnonceMutationVariables
+> {
+  document = DeleteAnnonceDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
+  }
+}
+export const PublishAnnonceDocument = gql`
+  mutation PublishAnnonce($annonceId: Any!) {
+    publishAnnonce(annonceId: $annonceId)
+  }
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class PublishAnnonceGQL extends Apollo.Mutation<
+  PublishAnnonceMutation,
+  PublishAnnonceMutationVariables
+> {
+  document = PublishAnnonceDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
+  }
+}
+export const UnPublishAnnonceDocument = gql`
+  mutation UnPublishAnnonce($annonceId: Any!) {
+    unPublishAnnonce(annonceId: $annonceId)
+  }
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class UnPublishAnnonceGQL extends Apollo.Mutation<
+  UnPublishAnnonceMutation,
+  UnPublishAnnonceMutationVariables
+> {
+  document = UnPublishAnnonceDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
+  }
+}
+export const FetchDemarchesDocument = gql`
+  query FetchDemarches(
+    $queryFilter: QueryDataConfigInput
+    $demarcheFilter: DemarcheInputSearchInput
+  ) {
+    fetchDemarches(queryFilter: $queryFilter, demarcheFilter: $demarcheFilter) {
+      pagination {
+        totalItems
+        pageCount
+        pageSize
+        currentPage
+      }
+      results {
+        id
+        titre
+        resume
+        updatedAt
+        etat
+        est_publie
+        observations
+        sous_themes {
+          id
+          libelle
+          slug
+        }
+      }
+    }
+  }
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class FetchDemarchesGQL extends Apollo.Query<
+  FetchDemarchesQuery,
+  FetchDemarchesQueryVariables
+> {
+  document = FetchDemarchesDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
+  }
+}
+export const SearchDemarchesDocument = gql`
+  query SearchDemarches($queryFilter: QueryDataConfigInput) {
+    searchResults: fetchDemarches(queryFilter: $queryFilter) {
+      pagination {
+        totalItems
+        pageCount
+        pageSize
+        currentPage
+      }
+      results {
+        id
+        nom: titre
+      }
+    }
+  }
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class SearchDemarchesGQL extends Apollo.Query<
+  SearchDemarchesQuery,
+  SearchDemarchesQueryVariables
+> {
+  document = SearchDemarchesDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
+  }
+}
+export const CreateDemarcheDocument = gql`
+  mutation CreateDemarche($demarcheInput: DemarcheInput!) {
+    createDemarche(demarcheInput: $demarcheInput) {
+      id
+      titre
+      url
+      cout
+      corps
+      mot_cle
+      delai
+      description
+      resume
+      a_la_une
+      slug
       observations
+      post_scriptum
+      etat
+      est_publie
+      teleprocedure
       sous_themes {
         id
         libelle
+      }
+      service_administratifs {
+        id
+        nom
+      }
+      formulaires {
+        id
+        nom
+      }
+      faqs {
+        id
+        question
+      }
+      descripteurs {
+        id
+        libelle
+      }
+      modele_lettres {
+        id
+        nom
+      }
+      textes {
+        id
+        nom
+      }
+      lien_utiles {
+        id
+        nom
+      }
+    }
+  }
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class CreateDemarcheGQL extends Apollo.Mutation<
+  CreateDemarcheMutation,
+  CreateDemarcheMutationVariables
+> {
+  document = CreateDemarcheDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
+  }
+}
+export const FetchDemarcheDocument = gql`
+  query FetchDemarche($demarcheId: String!) {
+    fetchDemarche(demarcheId: $demarcheId) {
+      id
+      titre
+      url
+      cout
+      corps
+      mot_cle
+      delai
+      description
+      resume
+      a_la_une
+      slug
+      observations
+      post_scriptum
+      etat
+      est_publie
+      teleprocedure
+      hub
+      service_administratifs {
+        id
+        nom
+      }
+      sous_themes {
+        id
+        nom: libelle
+      }
+      formulaires {
+        id
+        nom
+      }
+      faqs {
+        id
+        nom: question
+      }
+      descripteurs {
+        id
+        nom: libelle
+      }
+      modele_lettres {
+        id
+        nom: nom
+      }
+      textes {
+        id
+        nom
+      }
+      lien_utiles {
+        id
+        nom
+      }
+      demarches {
+        id
+        nom: titre
+      }
+    }
+  }
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class FetchDemarcheGQL extends Apollo.Query<
+  FetchDemarcheQuery,
+  FetchDemarcheQueryVariables
+> {
+  document = FetchDemarcheDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
+  }
+}
+export const DeleteDemarcheDocument = gql`
+  mutation DeleteDemarche($demarcheId: Any!) {
+    deleteDemarche(demarcheId: $demarcheId)
+  }
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class DeleteDemarcheGQL extends Apollo.Mutation<
+  DeleteDemarcheMutation,
+  DeleteDemarcheMutationVariables
+> {
+  document = DeleteDemarcheDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
+  }
+}
+export const PublishDemarcheDocument = gql`
+  mutation PublishDemarche($demarcheId: Any!) {
+    publishDemarche(demarcheId: $demarcheId)
+  }
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class PublishDemarcheGQL extends Apollo.Mutation<
+  PublishDemarcheMutation,
+  PublishDemarcheMutationVariables
+> {
+  document = PublishDemarcheDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
+  }
+}
+export const UnPublishDemarcheDocument = gql`
+  mutation UnPublishDemarche($demarcheId: Any!) {
+    unPublishDemarche(demarcheId: $demarcheId)
+  }
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class UnPublishDemarcheGQL extends Apollo.Mutation<
+  UnPublishDemarcheMutation,
+  UnPublishDemarcheMutationVariables
+> {
+  document = UnPublishDemarcheDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
+  }
+}
+export const FetchDescripteursDocument = gql`
+  query FetchDescripteurs($queryFilter: QueryDataConfigInput) {
+    fetchDescripteurs(queryFilter: $queryFilter) {
+      pagination {
+        totalItems
+        pageCount
+        currentPage
+        pageSize
+      }
+      results {
+        id
+        libelle
+        status
+      }
+    }
+  }
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class FetchDescripteursGQL extends Apollo.Query<
+  FetchDescripteursQuery,
+  FetchDescripteursQueryVariables
+> {
+  document = FetchDescripteursDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
+  }
+}
+export const SearchDescripteursDocument = gql`
+  query SearchDescripteurs($queryFilter: QueryDataConfigInput) {
+    searchResults: fetchDescripteurs(queryFilter: $queryFilter) {
+      pagination {
+        totalItems
+        pageCount
+        currentPage
+        pageSize
+      }
+      results {
+        id
+        nom: libelle
+      }
+    }
+  }
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class SearchDescripteursGQL extends Apollo.Query<
+  SearchDescripteursQuery,
+  SearchDescripteursQueryVariables
+> {
+  document = SearchDescripteursDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
+  }
+}
+export const FetchFaqsDocument = gql`
+  query FetchFaqs($queryFilter: QueryDataConfigInput) {
+    fetchFaqs(queryFilter: $queryFilter) {
+      pagination {
+        totalItems
+        pageCount
+        currentPage
+        pageSize
+      }
+      results {
+        id
+        question
+        reponse
+      }
+    }
+  }
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class FetchFaqsGQL extends Apollo.Query<
+  FetchFaqsQuery,
+  FetchFaqsQueryVariables
+> {
+  document = FetchFaqsDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
+  }
+}
+export const SearchFaqsDocument = gql`
+  query SearchFaqs($queryFilter: QueryDataConfigInput) {
+    searchResults: fetchFaqs(queryFilter: $queryFilter) {
+      pagination {
+        totalItems
+        pageCount
+        currentPage
+        pageSize
+      }
+      results {
+        id
+        nom: question
+      }
+    }
+  }
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class SearchFaqsGQL extends Apollo.Query<
+  SearchFaqsQuery,
+  SearchFaqsQueryVariables
+> {
+  document = SearchFaqsDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
+  }
+}
+export const FetchModeleLettresDocument = gql`
+  query FetchModeleLettres($queryFilter: QueryDataConfigInput) {
+    fetchModeleLettres(queryFilter: $queryFilter) {
+      pagination {
+        totalItems
+        pageCount
+        currentPage
+        pageSize
+      }
+      results {
+        id
+        nom
         slug
       }
     }
   }
-}
-    `;
+`;
 
-  @Injectable({
-    providedIn: 'root'
-  })
-  export class FetchDemarchesGQL extends Apollo.Query<FetchDemarchesQuery, FetchDemarchesQueryVariables> {
-    document = FetchDemarchesDocument;
-    
-    constructor(apollo: Apollo.Apollo) {
-      super(apollo);
-    }
-  }
-export const SearchDemarchesDocument = gql`
-    query SearchDemarches($queryFilter: QueryDataConfigInput) {
-  searchResults: fetchDemarches(queryFilter: $queryFilter) {
-    pagination {
-      totalItems
-      pageCount
-      pageSize
-      currentPage
-    }
-    results {
-      id
-      nom: titre
-    }
+@Injectable({
+  providedIn: 'root',
+})
+export class FetchModeleLettresGQL extends Apollo.Query<
+  FetchModeleLettresQuery,
+  FetchModeleLettresQueryVariables
+> {
+  document = FetchModeleLettresDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
   }
 }
-    `;
-
-  @Injectable({
-    providedIn: 'root'
-  })
-  export class SearchDemarchesGQL extends Apollo.Query<SearchDemarchesQuery, SearchDemarchesQueryVariables> {
-    document = SearchDemarchesDocument;
-    
-    constructor(apollo: Apollo.Apollo) {
-      super(apollo);
-    }
-  }
-export const CreateDemarcheDocument = gql`
-    mutation CreateDemarche($demarcheInput: DemarcheInput!) {
-  createDemarche(demarcheInput: $demarcheInput) {
-    id
-    titre
-    url
-    cout
-    corps
-    mot_cle
-    delai
-    description
-    resume
-    a_la_une
-    slug
-    observations
-    post_scriptum
-    etat
-    est_publie
-    teleprocedure
-    sous_themes {
-      id
-      libelle
-    }
-    service_administratifs {
-      id
-      nom
-    }
-    formulaires {
-      id
-      nom
-    }
-    faqs {
-      id
-      question
-    }
-    descripteurs {
-      id
-      libelle
-    }
-    modele_lettres {
-      id
-      nom
-    }
-    textes {
-      id
-      nom
-    }
-    lien_utiles {
-      id
-      nom
-    }
-  }
-}
-    `;
-
-  @Injectable({
-    providedIn: 'root'
-  })
-  export class CreateDemarcheGQL extends Apollo.Mutation<CreateDemarcheMutation, CreateDemarcheMutationVariables> {
-    document = CreateDemarcheDocument;
-    
-    constructor(apollo: Apollo.Apollo) {
-      super(apollo);
-    }
-  }
-export const FetchDemarcheDocument = gql`
-    query FetchDemarche($demarcheId: String!) {
-  fetchDemarche(demarcheId: $demarcheId) {
-    id
-    titre
-    url
-    cout
-    corps
-    mot_cle
-    delai
-    description
-    resume
-    a_la_une
-    slug
-    observations
-    post_scriptum
-    etat
-    est_publie
-    teleprocedure
-    hub
-    service_administratifs {
-      id
-      nom
-    }
-    sous_themes {
-      id
-      nom: libelle
-    }
-    formulaires {
-      id
-      nom
-    }
-    faqs {
-      id
-      nom: question
-    }
-    descripteurs {
-      id
-      nom: libelle
-    }
-    modele_lettres {
-      id
-      nom: nom
-    }
-    textes {
-      id
-      nom
-    }
-    lien_utiles {
-      id
-      nom
-    }
-    demarches {
-      id
-      nom: titre
-    }
-  }
-}
-    `;
-
-  @Injectable({
-    providedIn: 'root'
-  })
-  export class FetchDemarcheGQL extends Apollo.Query<FetchDemarcheQuery, FetchDemarcheQueryVariables> {
-    document = FetchDemarcheDocument;
-    
-    constructor(apollo: Apollo.Apollo) {
-      super(apollo);
-    }
-  }
-export const DeleteDemarcheDocument = gql`
-    mutation DeleteDemarche($demarcheId: Any!) {
-  deleteDemarche(demarcheId: $demarcheId)
-}
-    `;
-
-  @Injectable({
-    providedIn: 'root'
-  })
-  export class DeleteDemarcheGQL extends Apollo.Mutation<DeleteDemarcheMutation, DeleteDemarcheMutationVariables> {
-    document = DeleteDemarcheDocument;
-    
-    constructor(apollo: Apollo.Apollo) {
-      super(apollo);
-    }
-  }
-export const PublishDemarcheDocument = gql`
-    mutation PublishDemarche($demarcheId: Any!) {
-  publishDemarche(demarcheId: $demarcheId)
-}
-    `;
-
-  @Injectable({
-    providedIn: 'root'
-  })
-  export class PublishDemarcheGQL extends Apollo.Mutation<PublishDemarcheMutation, PublishDemarcheMutationVariables> {
-    document = PublishDemarcheDocument;
-    
-    constructor(apollo: Apollo.Apollo) {
-      super(apollo);
-    }
-  }
-export const UnPublishDemarcheDocument = gql`
-    mutation UnPublishDemarche($demarcheId: Any!) {
-  unPublishDemarche(demarcheId: $demarcheId)
-}
-    `;
-
-  @Injectable({
-    providedIn: 'root'
-  })
-  export class UnPublishDemarcheGQL extends Apollo.Mutation<UnPublishDemarcheMutation, UnPublishDemarcheMutationVariables> {
-    document = UnPublishDemarcheDocument;
-    
-    constructor(apollo: Apollo.Apollo) {
-      super(apollo);
-    }
-  }
-export const FetchDescripteursDocument = gql`
-    query FetchDescripteurs($queryFilter: QueryDataConfigInput) {
-  fetchDescripteurs(queryFilter: $queryFilter) {
-    pagination {
-      totalItems
-      pageCount
-      currentPage
-      pageSize
-    }
-    results {
-      id
-      libelle
-      status
-    }
-  }
-}
-    `;
-
-  @Injectable({
-    providedIn: 'root'
-  })
-  export class FetchDescripteursGQL extends Apollo.Query<FetchDescripteursQuery, FetchDescripteursQueryVariables> {
-    document = FetchDescripteursDocument;
-    
-    constructor(apollo: Apollo.Apollo) {
-      super(apollo);
-    }
-  }
-export const SearchDescripteursDocument = gql`
-    query SearchDescripteurs($queryFilter: QueryDataConfigInput) {
-  searchResults: fetchDescripteurs(queryFilter: $queryFilter) {
-    pagination {
-      totalItems
-      pageCount
-      currentPage
-      pageSize
-    }
-    results {
-      id
-      nom: libelle
-    }
-  }
-}
-    `;
-
-  @Injectable({
-    providedIn: 'root'
-  })
-  export class SearchDescripteursGQL extends Apollo.Query<SearchDescripteursQuery, SearchDescripteursQueryVariables> {
-    document = SearchDescripteursDocument;
-    
-    constructor(apollo: Apollo.Apollo) {
-      super(apollo);
-    }
-  }
-export const FetchFaqsDocument = gql`
-    query FetchFaqs($queryFilter: QueryDataConfigInput) {
-  fetchFaqs(queryFilter: $queryFilter) {
-    pagination {
-      totalItems
-      pageCount
-      currentPage
-      pageSize
-    }
-    results {
-      id
-      question
-      reponse
-    }
-  }
-}
-    `;
-
-  @Injectable({
-    providedIn: 'root'
-  })
-  export class FetchFaqsGQL extends Apollo.Query<FetchFaqsQuery, FetchFaqsQueryVariables> {
-    document = FetchFaqsDocument;
-    
-    constructor(apollo: Apollo.Apollo) {
-      super(apollo);
-    }
-  }
-export const SearchFaqsDocument = gql`
-    query SearchFaqs($queryFilter: QueryDataConfigInput) {
-  searchResults: fetchFaqs(queryFilter: $queryFilter) {
-    pagination {
-      totalItems
-      pageCount
-      currentPage
-      pageSize
-    }
-    results {
-      id
-      nom: question
-    }
-  }
-}
-    `;
-
-  @Injectable({
-    providedIn: 'root'
-  })
-  export class SearchFaqsGQL extends Apollo.Query<SearchFaqsQuery, SearchFaqsQueryVariables> {
-    document = SearchFaqsDocument;
-    
-    constructor(apollo: Apollo.Apollo) {
-      super(apollo);
-    }
-  }
-export const FetchModeleLettresDocument = gql`
-    query FetchModeleLettres($queryFilter: QueryDataConfigInput) {
-  fetchModeleLettres(queryFilter: $queryFilter) {
-    pagination {
-      totalItems
-      pageCount
-      currentPage
-      pageSize
-    }
-    results {
-      id
-      nom
-      slug
-    }
-  }
-}
-    `;
-
-  @Injectable({
-    providedIn: 'root'
-  })
-  export class FetchModeleLettresGQL extends Apollo.Query<FetchModeleLettresQuery, FetchModeleLettresQueryVariables> {
-    document = FetchModeleLettresDocument;
-    
-    constructor(apollo: Apollo.Apollo) {
-      super(apollo);
-    }
-  }
 export const SearchFormulairesDocument = gql`
-    query SearchFormulaires($queryFilter: QueryDataConfigInput) {
-  searchResults: fetchFormulaires(queryFilter: $queryFilter) {
-    pagination {
-      totalItems
-      pageCount
-      currentPage
-      pageSize
-    }
-    results {
-      id
-      nom
-    }
-  }
-}
-    `;
-
-  @Injectable({
-    providedIn: 'root'
-  })
-  export class SearchFormulairesGQL extends Apollo.Query<SearchFormulairesQuery, SearchFormulairesQueryVariables> {
-    document = SearchFormulairesDocument;
-    
-    constructor(apollo: Apollo.Apollo) {
-      super(apollo);
-    }
-  }
-export const FetchLienUtilesDocument = gql`
-    query FetchLienUtiles($queryFilter: QueryDataConfigInput) {
-  fetchLienUtiles(queryFilter: $queryFilter) {
-    pagination {
-      totalItems
-      pageCount
-      currentPage
-      pageSize
-    }
-    results {
-      id
-      nom
-      description
-      url
-      est_publie
-    }
-  }
-}
-    `;
-
-  @Injectable({
-    providedIn: 'root'
-  })
-  export class FetchLienUtilesGQL extends Apollo.Query<FetchLienUtilesQuery, FetchLienUtilesQueryVariables> {
-    document = FetchLienUtilesDocument;
-    
-    constructor(apollo: Apollo.Apollo) {
-      super(apollo);
-    }
-  }
-export const SearchLienUtilesDocument = gql`
-    query SearchLienUtiles($queryFilter: QueryDataConfigInput) {
-  searchResults: fetchLienUtiles(queryFilter: $queryFilter) {
-    pagination {
-      totalItems
-      pageCount
-      currentPage
-      pageSize
-    }
-    results {
-      id
-      nom
-    }
-  }
-}
-    `;
-
-  @Injectable({
-    providedIn: 'root'
-  })
-  export class SearchLienUtilesGQL extends Apollo.Query<SearchLienUtilesQuery, SearchLienUtilesQueryVariables> {
-    document = SearchLienUtilesDocument;
-    
-    constructor(apollo: Apollo.Apollo) {
-      super(apollo);
-    }
-  }
-export const SearchModeleLettresDocument = gql`
-    query SearchModeleLettres($queryFilter: QueryDataConfigInput) {
-  searchResults: fetchModeleLettres(queryFilter: $queryFilter) {
-    pagination {
-      totalItems
-      pageCount
-      currentPage
-      pageSize
-    }
-    results {
-      id
-      nom
-      slug
-    }
-  }
-}
-    `;
-
-  @Injectable({
-    providedIn: 'root'
-  })
-  export class SearchModeleLettresGQL extends Apollo.Query<SearchModeleLettresQuery, SearchModeleLettresQueryVariables> {
-    document = SearchModeleLettresDocument;
-    
-    constructor(apollo: Apollo.Apollo) {
-      super(apollo);
-    }
-  }
-export const FetchServiceAdministratifsDocument = gql`
-    query FetchServiceAdministratifs($queryFilter: QueryDataConfigInput) {
-  fetchServiceAdministratifs(queryFilter: $queryFilter) {
-    pagination {
-      totalItems
-      pageCount
-      currentPage
-      pageSize
-    }
-    results {
-      id
-      nom
-    }
-  }
-}
-    `;
-
-  @Injectable({
-    providedIn: 'root'
-  })
-  export class FetchServiceAdministratifsGQL extends Apollo.Query<FetchServiceAdministratifsQuery, FetchServiceAdministratifsQueryVariables> {
-    document = FetchServiceAdministratifsDocument;
-    
-    constructor(apollo: Apollo.Apollo) {
-      super(apollo);
-    }
-  }
-export const SearchServiceAdministratifsDocument = gql`
-    query SearchServiceAdministratifs($queryFilter: QueryDataConfigInput) {
-  searchResults: fetchServiceAdministratifs(queryFilter: $queryFilter) {
-    pagination {
-      totalItems
-      pageCount
-      currentPage
-      pageSize
-    }
-    results {
-      id
-      nom
-    }
-  }
-}
-    `;
-
-  @Injectable({
-    providedIn: 'root'
-  })
-  export class SearchServiceAdministratifsGQL extends Apollo.Query<SearchServiceAdministratifsQuery, SearchServiceAdministratifsQueryVariables> {
-    document = SearchServiceAdministratifsDocument;
-    
-    constructor(apollo: Apollo.Apollo) {
-      super(apollo);
-    }
-  }
-export const FetchTextesDocument = gql`
-    query FetchTextes($queryFilter: QueryDataConfigInput) {
-  fetchTextes(queryFilter: $queryFilter) {
-    pagination {
-      totalItems
-      pageCount
-      currentPage
-      pageSize
-    }
-    results {
-      id
-      nom
-      slug
-      description
-      url
-      est_publie
-    }
-  }
-}
-    `;
-
-  @Injectable({
-    providedIn: 'root'
-  })
-  export class FetchTextesGQL extends Apollo.Query<FetchTextesQuery, FetchTextesQueryVariables> {
-    document = FetchTextesDocument;
-    
-    constructor(apollo: Apollo.Apollo) {
-      super(apollo);
-    }
-  }
-export const SearchTextesDocument = gql`
-    query SearchTextes($queryFilter: QueryDataConfigInput) {
-  searchResults: fetchTextes(queryFilter: $queryFilter) {
-    pagination {
-      totalItems
-      pageCount
-      currentPage
-      pageSize
-    }
-    results {
-      id
-      nom
-    }
-  }
-}
-    `;
-
-  @Injectable({
-    providedIn: 'root'
-  })
-  export class SearchTextesGQL extends Apollo.Query<SearchTextesQuery, SearchTextesQueryVariables> {
-    document = SearchTextesDocument;
-    
-    constructor(apollo: Apollo.Apollo) {
-      super(apollo);
-    }
-  }
-export const FetchSousThemesDocument = gql`
-    query FetchSousThemes($queryFilter: QueryDataConfigInput) {
-  fetchSousThemes(queryFilter: $queryFilter) {
-    pagination {
-      totalItems
-      pageCount
-      currentPage
-      pageSize
-    }
-    results {
-      id
-      slug
-      libelle
-      ordre
-      icon
-      themes {
+  query SearchFormulaires($queryFilter: QueryDataConfigInput) {
+    searchResults: fetchFormulaires(queryFilter: $queryFilter) {
+      pagination {
+        totalItems
+        pageCount
+        currentPage
+        pageSize
+      }
+      results {
         id
-        libelle
+        nom
       }
     }
   }
-}
-    `;
+`;
 
-  @Injectable({
-    providedIn: 'root'
-  })
-  export class FetchSousThemesGQL extends Apollo.Query<FetchSousThemesQuery, FetchSousThemesQueryVariables> {
-    document = FetchSousThemesDocument;
-    
-    constructor(apollo: Apollo.Apollo) {
-      super(apollo);
+@Injectable({
+  providedIn: 'root',
+})
+export class SearchFormulairesGQL extends Apollo.Query<
+  SearchFormulairesQuery,
+  SearchFormulairesQueryVariables
+> {
+  document = SearchFormulairesDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
+  }
+}
+export const FetchLienUtilesDocument = gql`
+  query FetchLienUtiles($queryFilter: QueryDataConfigInput) {
+    fetchLienUtiles(queryFilter: $queryFilter) {
+      pagination {
+        totalItems
+        pageCount
+        currentPage
+        pageSize
+      }
+      results {
+        id
+        nom
+        description
+        url
+        est_publie
+      }
     }
   }
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class FetchLienUtilesGQL extends Apollo.Query<
+  FetchLienUtilesQuery,
+  FetchLienUtilesQueryVariables
+> {
+  document = FetchLienUtilesDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
+  }
+}
+export const SearchLienUtilesDocument = gql`
+  query SearchLienUtiles($queryFilter: QueryDataConfigInput) {
+    searchResults: fetchLienUtiles(queryFilter: $queryFilter) {
+      pagination {
+        totalItems
+        pageCount
+        currentPage
+        pageSize
+      }
+      results {
+        id
+        nom
+      }
+    }
+  }
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class SearchLienUtilesGQL extends Apollo.Query<
+  SearchLienUtilesQuery,
+  SearchLienUtilesQueryVariables
+> {
+  document = SearchLienUtilesDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
+  }
+}
+export const SearchModeleLettresDocument = gql`
+  query SearchModeleLettres($queryFilter: QueryDataConfigInput) {
+    searchResults: fetchModeleLettres(queryFilter: $queryFilter) {
+      pagination {
+        totalItems
+        pageCount
+        currentPage
+        pageSize
+      }
+      results {
+        id
+        nom
+        slug
+      }
+    }
+  }
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class SearchModeleLettresGQL extends Apollo.Query<
+  SearchModeleLettresQuery,
+  SearchModeleLettresQueryVariables
+> {
+  document = SearchModeleLettresDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
+  }
+}
+export const FetchServiceAdministratifsDocument = gql`
+  query FetchServiceAdministratifs($queryFilter: QueryDataConfigInput) {
+    fetchServiceAdministratifs(queryFilter: $queryFilter) {
+      pagination {
+        totalItems
+        pageCount
+        currentPage
+        pageSize
+      }
+      results {
+        id
+        nom
+      }
+    }
+  }
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class FetchServiceAdministratifsGQL extends Apollo.Query<
+  FetchServiceAdministratifsQuery,
+  FetchServiceAdministratifsQueryVariables
+> {
+  document = FetchServiceAdministratifsDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
+  }
+}
+export const SearchServiceAdministratifsDocument = gql`
+  query SearchServiceAdministratifs($queryFilter: QueryDataConfigInput) {
+    searchResults: fetchServiceAdministratifs(queryFilter: $queryFilter) {
+      pagination {
+        totalItems
+        pageCount
+        currentPage
+        pageSize
+      }
+      results {
+        id
+        nom
+      }
+    }
+  }
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class SearchServiceAdministratifsGQL extends Apollo.Query<
+  SearchServiceAdministratifsQuery,
+  SearchServiceAdministratifsQueryVariables
+> {
+  document = SearchServiceAdministratifsDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
+  }
+}
+export const FetchTextesDocument = gql`
+  query FetchTextes($queryFilter: QueryDataConfigInput) {
+    fetchTextes(queryFilter: $queryFilter) {
+      pagination {
+        totalItems
+        pageCount
+        currentPage
+        pageSize
+      }
+      results {
+        id
+        nom
+        slug
+        description
+        url
+        est_publie
+      }
+    }
+  }
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class FetchTextesGQL extends Apollo.Query<
+  FetchTextesQuery,
+  FetchTextesQueryVariables
+> {
+  document = FetchTextesDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
+  }
+}
+export const SearchTextesDocument = gql`
+  query SearchTextes($queryFilter: QueryDataConfigInput) {
+    searchResults: fetchTextes(queryFilter: $queryFilter) {
+      pagination {
+        totalItems
+        pageCount
+        currentPage
+        pageSize
+      }
+      results {
+        id
+        nom
+      }
+    }
+  }
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class SearchTextesGQL extends Apollo.Query<
+  SearchTextesQuery,
+  SearchTextesQueryVariables
+> {
+  document = SearchTextesDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
+  }
+}
+export const FetchSousThemesDocument = gql`
+  query FetchSousThemes($queryFilter: QueryDataConfigInput) {
+    fetchSousThemes(queryFilter: $queryFilter) {
+      pagination {
+        totalItems
+        pageCount
+        currentPage
+        pageSize
+      }
+      results {
+        id
+        slug
+        libelle
+        ordre
+        icon
+        themes {
+          id
+          libelle
+        }
+      }
+    }
+  }
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class FetchSousThemesGQL extends Apollo.Query<
+  FetchSousThemesQuery,
+  FetchSousThemesQueryVariables
+> {
+  document = FetchSousThemesDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
+  }
+}
 export const SearchSousThemesDocument = gql`
-    query SearchSousThemes($queryFilter: QueryDataConfigInput) {
-  searchResults: fetchSousThemes(queryFilter: $queryFilter) {
-    pagination {
-      totalItems
-      pageCount
-      currentPage
-      pageSize
+  query SearchSousThemes($queryFilter: QueryDataConfigInput) {
+    searchResults: fetchSousThemes(queryFilter: $queryFilter) {
+      pagination {
+        totalItems
+        pageCount
+        currentPage
+        pageSize
+      }
+      results {
+        id
+        nom: libelle
+      }
     }
-    results {
-      id
-      nom: libelle
-    }
+  }
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class SearchSousThemesGQL extends Apollo.Query<
+  SearchSousThemesQuery,
+  SearchSousThemesQueryVariables
+> {
+  document = SearchSousThemesDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
   }
 }
-    `;
-
-  @Injectable({
-    providedIn: 'root'
-  })
-  export class SearchSousThemesGQL extends Apollo.Query<SearchSousThemesQuery, SearchSousThemesQueryVariables> {
-    document = SearchSousThemesDocument;
-    
-    constructor(apollo: Apollo.Apollo) {
-      super(apollo);
-    }
-  }
 export const FetchThemesDocument = gql`
-    query FetchThemes($queryFilter: QueryDataConfigInput) {
-  fetchThemes(queryFilter: $queryFilter) {
-    pagination {
-      totalItems
-      pageCount
-      currentPage
-      pageSize
+  query FetchThemes($queryFilter: QueryDataConfigInput) {
+    fetchThemes(queryFilter: $queryFilter) {
+      pagination {
+        totalItems
+        pageCount
+        currentPage
+        pageSize
+      }
+      results {
+        id
+        slug
+        libelle
+        espace_id
+        couleur
+        ordre
+        icon
+        line_icon
+      }
     }
-    results {
-      id
-      slug
-      libelle
-      espace_id
-      couleur
-      ordre
-      icon
-      line_icon
-    }
+  }
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class FetchThemesGQL extends Apollo.Query<
+  FetchThemesQuery,
+  FetchThemesQueryVariables
+> {
+  document = FetchThemesDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
   }
 }
-    `;
-
-  @Injectable({
-    providedIn: 'root'
-  })
-  export class FetchThemesGQL extends Apollo.Query<FetchThemesQuery, FetchThemesQueryVariables> {
-    document = FetchThemesDocument;
-    
-    constructor(apollo: Apollo.Apollo) {
-      super(apollo);
+export const FetchHubsDocument = gql`
+  query FetchHubs(
+    $queryFilter: QueryDataConfigInput
+    $hubFilter: HubInputSearchInput
+  ) {
+    fetchHubs(queryFilter: $queryFilter, hubFilter: $hubFilter) {
+      pagination {
+        totalItems
+        pageCount
+        pageSize
+        currentPage
+      }
+      results {
+        id
+        titre
+        resume
+        updatedAt
+        etat
+        est_publie
+        observations
+        a_la_une
+        sous_themes {
+          id
+          libelle
+          slug
+        }
+      }
     }
   }
-export const FetchHubsDocument = gql`
-    query FetchHubs($queryFilter: QueryDataConfigInput, $hubFilter: HubInputSearchInput) {
-  fetchHubs(queryFilter: $queryFilter, hubFilter: $hubFilter) {
-    pagination {
-      totalItems
-      pageCount
-      pageSize
-      currentPage
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class FetchHubsGQL extends Apollo.Query<
+  FetchHubsQuery,
+  FetchHubsQueryVariables
+> {
+  document = FetchHubsDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
+  }
+}
+export const SearchHubsDocument = gql`
+  query SearchHubs($queryFilter: QueryDataConfigInput) {
+    searchResults: fetchHubs(queryFilter: $queryFilter) {
+      pagination {
+        totalItems
+        pageCount
+        pageSize
+        currentPage
+      }
+      results {
+        id
+        nom: titre
+      }
     }
-    results {
+  }
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class SearchHubsGQL extends Apollo.Query<
+  SearchHubsQuery,
+  SearchHubsQueryVariables
+> {
+  document = SearchHubsDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
+  }
+}
+export const CreateHubDocument = gql`
+  mutation CreateHub($hubInput: HubInput!) {
+    createHub(hubInput: $hubInput) {
       id
       titre
+      mot_cle
+      description
       resume
-      updatedAt
+      slug
+      observations
       etat
       est_publie
-      observations
       a_la_une
       sous_themes {
         id
         libelle
-        slug
       }
-    }
-  }
-}
-    `;
-
-  @Injectable({
-    providedIn: 'root'
-  })
-  export class FetchHubsGQL extends Apollo.Query<FetchHubsQuery, FetchHubsQueryVariables> {
-    document = FetchHubsDocument;
-    
-    constructor(apollo: Apollo.Apollo) {
-      super(apollo);
-    }
-  }
-export const SearchHubsDocument = gql`
-    query SearchHubs($queryFilter: QueryDataConfigInput) {
-  searchResults: fetchHubs(queryFilter: $queryFilter) {
-    pagination {
-      totalItems
-      pageCount
-      pageSize
-      currentPage
-    }
-    results {
-      id
-      nom: titre
-    }
-  }
-}
-    `;
-
-  @Injectable({
-    providedIn: 'root'
-  })
-  export class SearchHubsGQL extends Apollo.Query<SearchHubsQuery, SearchHubsQueryVariables> {
-    document = SearchHubsDocument;
-    
-    constructor(apollo: Apollo.Apollo) {
-      super(apollo);
-    }
-  }
-export const CreateHubDocument = gql`
-    mutation CreateHub($hubInput: HubInput!) {
-  createHub(hubInput: $hubInput) {
-    id
-    titre
-    mot_cle
-    description
-    resume
-    slug
-    observations
-    etat
-    est_publie
-    a_la_une
-    sous_themes {
-      id
-      libelle
-    }
-    service_administratifs {
-      id
-      nom
-    }
-    formulaires {
-      id
-      nom
-    }
-    faqs {
-      id
-      question
-    }
-    descripteurs {
-      id
-      libelle
-    }
-    modele_lettres {
-      id
-      nom
-    }
-    textes {
-      id
-      nom
-    }
-    lien_utiles {
-      id
-      nom
-    }
-  }
-}
-    `;
-
-  @Injectable({
-    providedIn: 'root'
-  })
-  export class CreateHubGQL extends Apollo.Mutation<CreateHubMutation, CreateHubMutationVariables> {
-    document = CreateHubDocument;
-    
-    constructor(apollo: Apollo.Apollo) {
-      super(apollo);
-    }
-  }
-export const FetchAllHubsDocument = gql`
-    query FetchAllHubs {
-  fetchAllHubs {
-    id
-    titre
-    mot_cle
-    description
-    resume
-    slug
-    observations
-    etat
-    est_publie
-    a_la_une
-  }
-}
-    `;
-
-  @Injectable({
-    providedIn: 'root'
-  })
-  export class FetchAllHubsGQL extends Apollo.Query<FetchAllHubsQuery, FetchAllHubsQueryVariables> {
-    document = FetchAllHubsDocument;
-    
-    constructor(apollo: Apollo.Apollo) {
-      super(apollo);
-    }
-  }
-export const FetchHubDocument = gql`
-    query FetchHub($hubId: String!) {
-  fetchHub(hubId: $hubId) {
-    id
-    titre
-    mot_cle
-    description
-    resume
-    slug
-    observations
-    etat
-    est_publie
-    a_la_une
-    poster
-    service_administratifs {
-      id
-      nom
-    }
-    sous_themes {
-      id
-      nom: libelle
-    }
-    formulaires {
-      id
-      nom
-    }
-    faqs {
-      id
-      nom: question
-    }
-    descripteurs {
-      id
-      nom: libelle
-    }
-    modele_lettres {
-      id
-      nom: nom
-    }
-    textes {
-      id
-      nom
-    }
-    lien_utiles {
-      id
-      nom
-    }
-  }
-}
-    `;
-
-  @Injectable({
-    providedIn: 'root'
-  })
-  export class FetchHubGQL extends Apollo.Query<FetchHubQuery, FetchHubQueryVariables> {
-    document = FetchHubDocument;
-    
-    constructor(apollo: Apollo.Apollo) {
-      super(apollo);
-    }
-  }
-export const DeleteHubDocument = gql`
-    mutation DeleteHub($hubId: String!) {
-  deleteHub(hubId: $hubId)
-}
-    `;
-
-  @Injectable({
-    providedIn: 'root'
-  })
-  export class DeleteHubGQL extends Apollo.Mutation<DeleteHubMutation, DeleteHubMutationVariables> {
-    document = DeleteHubDocument;
-    
-    constructor(apollo: Apollo.Apollo) {
-      super(apollo);
-    }
-  }
-export const PublishHubDocument = gql`
-    mutation PublishHub($hubId: String!) {
-  publishHub(hubId: $hubId)
-}
-    `;
-
-  @Injectable({
-    providedIn: 'root'
-  })
-  export class PublishHubGQL extends Apollo.Mutation<PublishHubMutation, PublishHubMutationVariables> {
-    document = PublishHubDocument;
-    
-    constructor(apollo: Apollo.Apollo) {
-      super(apollo);
-    }
-  }
-export const UnPublishHubDocument = gql`
-    mutation UnPublishHub($hubId: String!) {
-  unPublishHub(hubId: $hubId)
-}
-    `;
-
-  @Injectable({
-    providedIn: 'root'
-  })
-  export class UnPublishHubGQL extends Apollo.Mutation<UnPublishHubMutation, UnPublishHubMutationVariables> {
-    document = UnPublishHubDocument;
-    
-    constructor(apollo: Apollo.Apollo) {
-      super(apollo);
-    }
-  }
-export const FetchDemarcheReviewsMetricsDocument = gql`
-    query FetchDemarcheReviewsMetrics($queryFilter: QueryDataConfigInput) {
-  fetchDemarcheReviewsMetrics(queryFilter: $queryFilter) {
-    pagination {
-      totalItems
-      pageCount
-      pageSize
-      currentPage
-    }
-    results {
-      demarche {
+      service_administratifs {
         id
-        titre
+        nom
       }
-      noteAvg
-      numberOfReviews
+      formulaires {
+        id
+        nom
+      }
+      faqs {
+        id
+        question
+      }
+      descripteurs {
+        id
+        libelle
+      }
+      modele_lettres {
+        id
+        nom
+      }
+      textes {
+        id
+        nom
+      }
+      lien_utiles {
+        id
+        nom
+      }
     }
+  }
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class CreateHubGQL extends Apollo.Mutation<
+  CreateHubMutation,
+  CreateHubMutationVariables
+> {
+  document = CreateHubDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
   }
 }
-    `;
-
-  @Injectable({
-    providedIn: 'root'
-  })
-  export class FetchDemarcheReviewsMetricsGQL extends Apollo.Query<FetchDemarcheReviewsMetricsQuery, FetchDemarcheReviewsMetricsQueryVariables> {
-    document = FetchDemarcheReviewsMetricsDocument;
-    
-    constructor(apollo: Apollo.Apollo) {
-      super(apollo);
-    }
-  }
-export const FetchServicesDocument = gql`
-    query FetchServices($queryFilter: QueryDataConfigInput, $serviceFilter: ServiceInputSearchInput) {
-  fetchServices(queryFilter: $queryFilter, serviceFilter: $serviceFilter) {
-    pagination {
-      totalItems
-      pageCount
-      pageSize
-      currentPage
-    }
-    results {
+export const FetchAllHubsDocument = gql`
+  query FetchAllHubs {
+    fetchAllHubs {
       id
       titre
+      mot_cle
       description
-      updatedAt
+      resume
+      slug
+      observations
       etat
-      url
-      contenu
       est_publie
+      a_la_une
+    }
+  }
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class FetchAllHubsGQL extends Apollo.Query<
+  FetchAllHubsQuery,
+  FetchAllHubsQueryVariables
+> {
+  document = FetchAllHubsDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
+  }
+}
+export const FetchHubDocument = gql`
+  query FetchHub($hubId: String!) {
+    fetchHub(hubId: $hubId) {
+      id
+      titre
+      mot_cle
+      description
+      resume
+      slug
+      observations
+      etat
+      est_publie
+      a_la_une
+      poster
+      service_administratifs {
+        id
+        nom
+      }
+      sous_themes {
+        id
+        nom: libelle
+      }
+      formulaires {
+        id
+        nom
+      }
+      faqs {
+        id
+        nom: question
+      }
+      descripteurs {
+        id
+        nom: libelle
+      }
+      modele_lettres {
+        id
+        nom: nom
+      }
+      textes {
+        id
+        nom
+      }
+      lien_utiles {
+        id
+        nom
+      }
+    }
+  }
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class FetchHubGQL extends Apollo.Query<
+  FetchHubQuery,
+  FetchHubQueryVariables
+> {
+  document = FetchHubDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
+  }
+}
+export const DeleteHubDocument = gql`
+  mutation DeleteHub($hubId: String!) {
+    deleteHub(hubId: $hubId)
+  }
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class DeleteHubGQL extends Apollo.Mutation<
+  DeleteHubMutation,
+  DeleteHubMutationVariables
+> {
+  document = DeleteHubDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
+  }
+}
+export const PublishHubDocument = gql`
+  mutation PublishHub($hubId: String!) {
+    publishHub(hubId: $hubId)
+  }
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class PublishHubGQL extends Apollo.Mutation<
+  PublishHubMutation,
+  PublishHubMutationVariables
+> {
+  document = PublishHubDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
+  }
+}
+export const UnPublishHubDocument = gql`
+  mutation UnPublishHub($hubId: String!) {
+    unPublishHub(hubId: $hubId)
+  }
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class UnPublishHubGQL extends Apollo.Mutation<
+  UnPublishHubMutation,
+  UnPublishHubMutationVariables
+> {
+  document = UnPublishHubDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
+  }
+}
+export const FetchDemarcheReviewsMetricsDocument = gql`
+  query FetchDemarcheReviewsMetrics($queryFilter: QueryDataConfigInput) {
+    fetchDemarcheReviewsMetrics(queryFilter: $queryFilter) {
+      pagination {
+        totalItems
+        pageCount
+        pageSize
+        currentPage
+      }
+      results {
+        demarche {
+          id
+          titre
+        }
+        noteAvg
+        numberOfReviews
+      }
+    }
+  }
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class FetchDemarcheReviewsMetricsGQL extends Apollo.Query<
+  FetchDemarcheReviewsMetricsQuery,
+  FetchDemarcheReviewsMetricsQueryVariables
+> {
+  document = FetchDemarcheReviewsMetricsDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
+  }
+}
+export const FetchServicesDocument = gql`
+  query FetchServices(
+    $queryFilter: QueryDataConfigInput
+    $serviceFilter: ServiceInputSearchInput
+  ) {
+    fetchServices(queryFilter: $queryFilter, serviceFilter: $serviceFilter) {
+      pagination {
+        totalItems
+        pageCount
+        pageSize
+        currentPage
+      }
+      results {
+        id
+        titre
+        description
+        updatedAt
+        etat
+        url
+        contenu
+        est_publie
+        sous_themes {
+          id
+          libelle
+          slug
+        }
+        service_administratifs {
+          id
+          nom
+        }
+      }
+    }
+  }
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class FetchServicesGQL extends Apollo.Query<
+  FetchServicesQuery,
+  FetchServicesQueryVariables
+> {
+  document = FetchServicesDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
+  }
+}
+export const SearchServicesDocument = gql`
+  query SearchServices($queryFilter: QueryDataConfigInput) {
+    searchResults: fetchServices(queryFilter: $queryFilter) {
+      pagination {
+        totalItems
+        pageCount
+        pageSize
+        currentPage
+      }
+      results {
+        id
+        nom: titre
+      }
+    }
+  }
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class SearchServicesGQL extends Apollo.Query<
+  SearchServicesQuery,
+  SearchServicesQueryVariables
+> {
+  document = SearchServicesDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
+  }
+}
+export const CreateServiceDocument = gql`
+  mutation CreateService($serviceInput: ServiceInput!) {
+    createService(serviceInput: $serviceInput) {
+      id
+      titre
+      mot_cle
+      description
+      a_la_une
+      slug
+      etat
+      est_publie
+      contenu
       sous_themes {
         id
         libelle
-        slug
       }
       service_administratifs {
         id
@@ -3524,175 +4597,199 @@ export const FetchServicesDocument = gql`
       }
     }
   }
-}
-    `;
+`;
 
-  @Injectable({
-    providedIn: 'root'
-  })
-  export class FetchServicesGQL extends Apollo.Query<FetchServicesQuery, FetchServicesQueryVariables> {
-    document = FetchServicesDocument;
-    
-    constructor(apollo: Apollo.Apollo) {
-      super(apollo);
-    }
-  }
-export const SearchServicesDocument = gql`
-    query SearchServices($queryFilter: QueryDataConfigInput) {
-  searchResults: fetchServices(queryFilter: $queryFilter) {
-    pagination {
-      totalItems
-      pageCount
-      pageSize
-      currentPage
-    }
-    results {
-      id
-      nom: titre
-    }
+@Injectable({
+  providedIn: 'root',
+})
+export class CreateServiceGQL extends Apollo.Mutation<
+  CreateServiceMutation,
+  CreateServiceMutationVariables
+> {
+  document = CreateServiceDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
   }
 }
-    `;
-
-  @Injectable({
-    providedIn: 'root'
-  })
-  export class SearchServicesGQL extends Apollo.Query<SearchServicesQuery, SearchServicesQueryVariables> {
-    document = SearchServicesDocument;
-    
-    constructor(apollo: Apollo.Apollo) {
-      super(apollo);
-    }
-  }
-export const CreateServiceDocument = gql`
-    mutation CreateService($serviceInput: ServiceInput!) {
-  createService(serviceInput: $serviceInput) {
-    id
-    titre
-    mot_cle
-    description
-    a_la_une
-    slug
-    etat
-    est_publie
-    contenu
-    sous_themes {
-      id
-      libelle
-    }
-    service_administratifs {
-      id
-      nom
-    }
-  }
-}
-    `;
-
-  @Injectable({
-    providedIn: 'root'
-  })
-  export class CreateServiceGQL extends Apollo.Mutation<CreateServiceMutation, CreateServiceMutationVariables> {
-    document = CreateServiceDocument;
-    
-    constructor(apollo: Apollo.Apollo) {
-      super(apollo);
-    }
-  }
 export const FetchServiceDocument = gql`
-    query FetchService($serviceId: String!) {
-  fetchService(serviceId: $serviceId) {
-    id
-    titre
-    url
-    mot_cle
-    description
-    contenu
-    a_la_une
-    slug
-    etat
-    est_publie
-    poster
-    media_type
-    service_administratifs {
+  query FetchService($serviceId: String!) {
+    fetchService(serviceId: $serviceId) {
       id
-      nom
+      titre
+      url
+      mot_cle
+      description
+      contenu
+      a_la_une
+      slug
+      etat
+      est_publie
+      poster
+      media_type
+      service_administratifs {
+        id
+        nom
+      }
+      sous_themes {
+        id
+        nom: libelle
+      }
     }
-    sous_themes {
-      id
-      nom: libelle
-    }
+  }
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class FetchServiceGQL extends Apollo.Query<
+  FetchServiceQuery,
+  FetchServiceQueryVariables
+> {
+  document = FetchServiceDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
   }
 }
-    `;
-
-  @Injectable({
-    providedIn: 'root'
-  })
-  export class FetchServiceGQL extends Apollo.Query<FetchServiceQuery, FetchServiceQueryVariables> {
-    document = FetchServiceDocument;
-    
-    constructor(apollo: Apollo.Apollo) {
-      super(apollo);
-    }
-  }
 export const DeleteServiceDocument = gql`
-    mutation DeleteService($serviceId: Any!) {
-  deleteService(serviceId: $serviceId)
-}
-    `;
-
-  @Injectable({
-    providedIn: 'root'
-  })
-  export class DeleteServiceGQL extends Apollo.Mutation<DeleteServiceMutation, DeleteServiceMutationVariables> {
-    document = DeleteServiceDocument;
-    
-    constructor(apollo: Apollo.Apollo) {
-      super(apollo);
-    }
+  mutation DeleteService($serviceId: Any!) {
+    deleteService(serviceId: $serviceId)
   }
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class DeleteServiceGQL extends Apollo.Mutation<
+  DeleteServiceMutation,
+  DeleteServiceMutationVariables
+> {
+  document = DeleteServiceDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
+  }
+}
 export const PublishServiceDocument = gql`
-    mutation PublishService($serviceId: Any!) {
-  publishService(serviceId: $serviceId)
-}
-    `;
-
-  @Injectable({
-    providedIn: 'root'
-  })
-  export class PublishServiceGQL extends Apollo.Mutation<PublishServiceMutation, PublishServiceMutationVariables> {
-    document = PublishServiceDocument;
-    
-    constructor(apollo: Apollo.Apollo) {
-      super(apollo);
-    }
+  mutation PublishService($serviceId: Any!) {
+    publishService(serviceId: $serviceId)
   }
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class PublishServiceGQL extends Apollo.Mutation<
+  PublishServiceMutation,
+  PublishServiceMutationVariables
+> {
+  document = PublishServiceDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
+  }
+}
 export const UnPublishServiceDocument = gql`
-    mutation UnPublishService($serviceId: Any!) {
-  unPublishService(serviceId: $serviceId)
-}
-    `;
+  mutation UnPublishService($serviceId: Any!) {
+    unPublishService(serviceId: $serviceId)
+  }
+`;
 
-  @Injectable({
-    providedIn: 'root'
-  })
-  export class UnPublishServiceGQL extends Apollo.Mutation<UnPublishServiceMutation, UnPublishServiceMutationVariables> {
-    document = UnPublishServiceDocument;
-    
-    constructor(apollo: Apollo.Apollo) {
-      super(apollo);
+@Injectable({
+  providedIn: 'root',
+})
+export class UnPublishServiceGQL extends Apollo.Mutation<
+  UnPublishServiceMutation,
+  UnPublishServiceMutationVariables
+> {
+  document = UnPublishServiceDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
+  }
+}
+export const FetchStructuresDocument = gql`
+  query FetchStructures(
+    $queryFilter: QueryDataConfigInput
+    $structureFilter: StructureInputSearchInput
+  ) {
+    fetchStructures(
+      queryFilter: $queryFilter
+      structureFilter: $structureFilter
+    ) {
+      pagination {
+        totalItems
+        pageCount
+        pageSize
+        currentPage
+      }
+      results {
+        id
+        libelle
+        collectivite_id
+        description
+        localisation
+        responsable
+        contact_responsable
+        zone
+        latitude
+        longitude
+        map
+        est_publie
+        etat
+        updatedAt: updated_at
+      }
     }
   }
-export const FetchStructuresDocument = gql`
-    query FetchStructures($queryFilter: QueryDataConfigInput, $structureFilter: StructureInputSearchInput) {
-  fetchStructures(queryFilter: $queryFilter, structureFilter: $structureFilter) {
-    pagination {
-      totalItems
-      pageCount
-      pageSize
-      currentPage
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class FetchStructuresGQL extends Apollo.Query<
+  FetchStructuresQuery,
+  FetchStructuresQueryVariables
+> {
+  document = FetchStructuresDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
+  }
+}
+export const SearchStructuresDocument = gql`
+  query SearchStructures($queryFilter: QueryDataConfigInput) {
+    searchResults: fetchStructures(queryFilter: $queryFilter) {
+      pagination {
+        totalItems
+        pageCount
+        pageSize
+        currentPage
+      }
+      results {
+        id
+        nom: libelle
+      }
     }
-    results {
+  }
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class SearchStructuresGQL extends Apollo.Query<
+  SearchStructuresQuery,
+  SearchStructuresQueryVariables
+> {
+  document = SearchStructuresDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
+  }
+}
+export const CreateStructureDocument = gql`
+  mutation CreateStructure($structureInput: StructureInput!) {
+    createStructure(structureInput: $structureInput) {
       id
       libelle
       collectivite_id
@@ -3709,169 +4806,131 @@ export const FetchStructuresDocument = gql`
       updatedAt: updated_at
     }
   }
-}
-    `;
+`;
 
-  @Injectable({
-    providedIn: 'root'
-  })
-  export class FetchStructuresGQL extends Apollo.Query<FetchStructuresQuery, FetchStructuresQueryVariables> {
-    document = FetchStructuresDocument;
-    
-    constructor(apollo: Apollo.Apollo) {
-      super(apollo);
-    }
-  }
-export const SearchStructuresDocument = gql`
-    query SearchStructures($queryFilter: QueryDataConfigInput) {
-  searchResults: fetchStructures(queryFilter: $queryFilter) {
-    pagination {
-      totalItems
-      pageCount
-      pageSize
-      currentPage
-    }
-    results {
-      id
-      nom: libelle
-    }
+@Injectable({
+  providedIn: 'root',
+})
+export class CreateStructureGQL extends Apollo.Mutation<
+  CreateStructureMutation,
+  CreateStructureMutationVariables
+> {
+  document = CreateStructureDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
   }
 }
-    `;
-
-  @Injectable({
-    providedIn: 'root'
-  })
-  export class SearchStructuresGQL extends Apollo.Query<SearchStructuresQuery, SearchStructuresQueryVariables> {
-    document = SearchStructuresDocument;
-    
-    constructor(apollo: Apollo.Apollo) {
-      super(apollo);
-    }
-  }
-export const CreateStructureDocument = gql`
-    mutation CreateStructure($structureInput: StructureInput!) {
-  createStructure(structureInput: $structureInput) {
-    id
-    libelle
-    collectivite_id
-    description
-    localisation
-    responsable
-    contact_responsable
-    zone
-    latitude
-    longitude
-    map
-    est_publie
-    etat
-    updatedAt: updated_at
-  }
-}
-    `;
-
-  @Injectable({
-    providedIn: 'root'
-  })
-  export class CreateStructureGQL extends Apollo.Mutation<CreateStructureMutation, CreateStructureMutationVariables> {
-    document = CreateStructureDocument;
-    
-    constructor(apollo: Apollo.Apollo) {
-      super(apollo);
-    }
-  }
 export const UpdateStructureDocument = gql`
-    mutation UpdateStructure($structureId: Any!, $structureInput: StructureUpdateInput!) {
-  updateStructure(structureId: $structureId, structureInput: $structureInput)
-}
-    `;
-
-  @Injectable({
-    providedIn: 'root'
-  })
-  export class UpdateStructureGQL extends Apollo.Mutation<UpdateStructureMutation, UpdateStructureMutationVariables> {
-    document = UpdateStructureDocument;
-    
-    constructor(apollo: Apollo.Apollo) {
-      super(apollo);
-    }
+  mutation UpdateStructure(
+    $structureId: Any!
+    $structureInput: StructureUpdateInput!
+  ) {
+    updateStructure(structureId: $structureId, structureInput: $structureInput)
   }
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class UpdateStructureGQL extends Apollo.Mutation<
+  UpdateStructureMutation,
+  UpdateStructureMutationVariables
+> {
+  document = UpdateStructureDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
+  }
+}
 export const FetchStructureDocument = gql`
-    query FetchStructure($structureId: String!) {
-  fetchStructure(structureId: $structureId) {
-    id
-    libelle
-    collectivite_id
-    description
-    localisation
-    responsable
-    contact_responsable
-    zone
-    latitude
-    longitude
-    map
-    est_publie
-    etat
-    updatedAt: updated_at
-  }
-}
-    `;
-
-  @Injectable({
-    providedIn: 'root'
-  })
-  export class FetchStructureGQL extends Apollo.Query<FetchStructureQuery, FetchStructureQueryVariables> {
-    document = FetchStructureDocument;
-    
-    constructor(apollo: Apollo.Apollo) {
-      super(apollo);
+  query FetchStructure($structureId: String!) {
+    fetchStructure(structureId: $structureId) {
+      id
+      libelle
+      collectivite_id
+      description
+      localisation
+      responsable
+      contact_responsable
+      zone
+      latitude
+      longitude
+      map
+      est_publie
+      etat
+      updatedAt: updated_at
     }
   }
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class FetchStructureGQL extends Apollo.Query<
+  FetchStructureQuery,
+  FetchStructureQueryVariables
+> {
+  document = FetchStructureDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
+  }
+}
 export const DeleteStructureDocument = gql`
-    mutation DeleteStructure($structureId: Any!) {
-  deleteStructure(structureId: $structureId)
-}
-    `;
-
-  @Injectable({
-    providedIn: 'root'
-  })
-  export class DeleteStructureGQL extends Apollo.Mutation<DeleteStructureMutation, DeleteStructureMutationVariables> {
-    document = DeleteStructureDocument;
-    
-    constructor(apollo: Apollo.Apollo) {
-      super(apollo);
-    }
+  mutation DeleteStructure($structureId: Any!) {
+    deleteStructure(structureId: $structureId)
   }
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class DeleteStructureGQL extends Apollo.Mutation<
+  DeleteStructureMutation,
+  DeleteStructureMutationVariables
+> {
+  document = DeleteStructureDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
+  }
+}
 export const PublishStructureDocument = gql`
-    mutation PublishStructure($structureId: Any!) {
-  publishStructure(structureId: $structureId)
-}
-    `;
-
-  @Injectable({
-    providedIn: 'root'
-  })
-  export class PublishStructureGQL extends Apollo.Mutation<PublishStructureMutation, PublishStructureMutationVariables> {
-    document = PublishStructureDocument;
-    
-    constructor(apollo: Apollo.Apollo) {
-      super(apollo);
-    }
+  mutation PublishStructure($structureId: Any!) {
+    publishStructure(structureId: $structureId)
   }
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class PublishStructureGQL extends Apollo.Mutation<
+  PublishStructureMutation,
+  PublishStructureMutationVariables
+> {
+  document = PublishStructureDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
+  }
+}
 export const UnPublishStructureDocument = gql`
-    mutation UnPublishStructure($structureId: Any!) {
-  unPublishStructure(structureId: $structureId)
-}
-    `;
-
-  @Injectable({
-    providedIn: 'root'
-  })
-  export class UnPublishStructureGQL extends Apollo.Mutation<UnPublishStructureMutation, UnPublishStructureMutationVariables> {
-    document = UnPublishStructureDocument;
-    
-    constructor(apollo: Apollo.Apollo) {
-      super(apollo);
-    }
+  mutation UnPublishStructure($structureId: Any!) {
+    unPublishStructure(structureId: $structureId)
   }
+`;
+
+@Injectable({
+  providedIn: 'root',
+})
+export class UnPublishStructureGQL extends Apollo.Mutation<
+  UnPublishStructureMutation,
+  UnPublishStructureMutationVariables
+> {
+  document = UnPublishStructureDocument;
+
+  constructor(apollo: Apollo.Apollo) {
+    super(apollo);
+  }
+}
