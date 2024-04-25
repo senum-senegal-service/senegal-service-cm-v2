@@ -6,6 +6,7 @@ import { ActualitesComponent } from './actualites.component';
 import { OverviewComponent } from './components/overview/overview.component';
 import { CreateActualiteComponent } from './components/create-actualite/create-actualite.component';
 import { EditActualiteComponent } from './components/edit-actualite/edit-actualite.component';
+import { ViewActualityComponent } from './components/view-actuality/view-actuality.component';
 
 const routes: Routes = [
   {
@@ -24,6 +25,10 @@ const routes: Routes = [
       {
         path: ':id',
         component: EditActualiteComponent,
+      },
+      {
+        path: 'detail/:id',
+        component: ViewActualityComponent,
       },
     ],
   },

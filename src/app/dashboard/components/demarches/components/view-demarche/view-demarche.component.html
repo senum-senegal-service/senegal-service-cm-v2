@@ -1,0 +1,298 @@
+<div class="page-wrapper container-wrapper detail-container" fxLayout="column" fxLayoutGap="24px">
+    <div fxLayout="column" fxLayoutGap="7px">
+        <span class="title">Gestion des démarches</span>
+        <span class="sub-title">Informations sur le démarche</span>
+    </div>
+    <div class="btn-actions" fxLayout="row" fxLayoutAlign="end start" fxLayoutGap="12px">
+        <button class="btn btn-primary" fxLayout="row" fxLayoutAlign="start center"
+            fxLayoutGap="4px"><mat-icon>check</mat-icon><span>Changer l'état de validation</span></button>
+        <button class="btn btn-success" fxLayout="row" fxLayoutAlign="start center"
+            fxLayoutGap="4px"><mat-icon>screen_share</mat-icon> <span>Publié</span></button>
+        <button class="btn btn-danger" fxLayout="row" fxLayoutAlign="start center"
+            fxLayoutGap="4px"><mat-icon>stop_screen_share</mat-icon>
+            <span>Dépublié</span></button>
+        <button class="btn btn-warning" fxLayout="row" fxLayoutAlign="start center"
+            fxLayoutGap="4px"><mat-icon>edit</mat-icon><span>Modifier</span></button>
+        <button class="btn btn-outline-primary" fxLayout="row" fxLayoutAlign="start center"
+            fxLayoutGap="4px"><mat-icon>public</mat-icon><span>Voir sur le portail</span></button>
+    </div>
+    <div fxLayout="row" fxLayoutGap="24px" fxLayoutAlign="start none">
+        <ul class="navs" fxLayout="column" fxLayoutGap="12px">
+            <li class="nav-link" *ngFor="let link of navList;let i=index" [ngClass]="i==0?'active':''">
+                {{link}}</li>
+        </ul>
+        <div fxFlex="auto" class="content">
+            <div class="tab active gap-32" id="tab-0">
+                <div class="top" fxLayout="row" fxLayoutGap="24px" fxLayoutAlign="start start">
+                    <ul fxFlex="50" class="list-group">
+                        <li class="item">
+                            <p>
+                                <span class="txt-bolder">Titre :</span>
+                                <span class="txt-light">Accéder à la documentation du Centre de Recherches et de
+                                    Documentation
+                                    du Sénégal</span>
+                            </p>
+                        </li>
+                        <li class="item">
+                            <p>
+                                <span class="txt-bolder">Est à la une :</span>
+                                <span class="txt-light badge badge-purple">Non</span>
+                            </p>
+                        </li>
+                        <li class="item">
+                            <p>
+                                <span class="txt-bolder">Sous-thèmes :</span>
+                                <span class="txt-light ">
+                                    <span class="link">Enseignement supérieur</span> / <span class="link">Livres,
+                                        lecture
+                                        et
+                                        bibliothèques</span> / </span>
+                            </p>
+                        </li>
+                        <li class="item">
+                            <p>
+                                <span class="txt-bolder">Date de dernière modification :</span>
+                                <span class="txt-light">13/12/2011 à 09:07:53</span>
+                            </p>
+                        </li>
+                        <li class="item">
+                            <p>
+                                <span class="txt-bolder">Date de publication :</span>
+                                <span class="txt-light">13/12/2011 à 09:07:53</span>
+                            </p>
+                        </li>
+                    </ul>
+                    <ul fxFlex="50" class="list-group">
+                        <li class="item">
+                            <p>
+                                <span class="txt-bolder">Coût :</span>
+                                <span class="txt-light"></span>
+                            </p>
+                        </li>
+                        <li class="item">
+                            <p>
+                                <span class="txt-bolder">Délai :</span>
+                                <span class="txt-light"></span>
+                            </p>
+                        </li>
+                        <li class="item">
+                            <p>
+                                <span class="txt-bolder">Lien téléprocédure :</span>
+                                <span class="txt-light "></span>
+                            </p>
+                        </li>
+                        <li class="item">
+                            <p>
+                                <span class="txt-bolder">Etat de validation :</span>
+                                <span class="txt-light  badge badge-purple">En cours de rédaction</span>
+                            </p>
+                        </li>
+                        <li class="item">
+                            <p>
+                                <span class="txt-bolder">Est Publié ? :</span>
+                                <span class="txt-light  badge badge-danger">Non</span>
+                            </p>
+                        </li>
+                    </ul>
+                </div>
+                <ul class="list-group">
+                    <li class="item">
+                        <p>
+                            <span class="txt-bolder">Résumé :</span>
+                            <span class="txt-light"></span>
+                        </p>
+                    </li>
+                    <li class="item">
+                        <p>
+                            <span class="txt-bolder">Description :</span>
+                            <span class="txt-light">Le Centre de Recherches et de Documentation du Sénégal (CRDS) est un
+                                organisme public rattaché à l’Université Gaston
+                                Berger de Saint louis. Il met son fonds documentaire à la disposition des
+                                usagers.</span>
+                        </p>
+                    </li>
+                    <li class="item">
+                        <div fxLayout="column" fxLayoutGap="16px">
+                            <span class="txt-bolder">Corps :</span>
+                            <p fxLayout="column" fxLayoutGap="8px">
+                                <span class="txt-bolder">Qui peut faire la demande ?</span>
+                                <span class="txt-light">Toute personne physique ou morale, tout chercheur.
+                                </span>
+                            </p>
+                            <p fxLayout="column" fxLayoutGap="8px">
+                                <span class="txt-bolder">Quand peut-on effectuer la démarche?</span>
+                                <span class="txt-light">Aux heures d'ouverture.
+                                </span>
+                            </p>
+                            <div fxLayout="column" fxLayoutGap="8px">
+                                <span class="txt-bolder">Quels sont les documents à fournir ?</span>
+                                <ul class="list-disc" fxLayout="column">
+                                    <li class="txt-light">Une demande manuscrite adressée à la Directrice du CRDS</li>
+                                    <li class="txt-light">Un descriptif des besoins documentaires</li>
+                                </ul>
+                            </div>
+                            <p fxLayout="column" fxLayoutGap="8px">
+                                <span class="txt-bolder">Quel est le coût ?</span>
+                                <span class="txt-light">Gratuit.</span>
+                            </p>
+                            <p fxLayout="column" fxLayoutGap="8px">
+                                <span class="txt-bolder">Quelle est la nature de la pièce délivrée ?</span>
+                                <span class="txt-light">Une carte de lecteur,</span>
+                            </p>
+                        </div>
+                    </li>
+                    <li class="item">
+                        <p>
+                            <span class="txt-bolder">Post-sciptum :</span>
+                        </p>
+                    </li>
+                </ul>
+            </div>
+            <div class="tab gap-20" id="tab-1">
+                <span class="tab-title">Liste des services concernés</span>
+                <table class="table table-administratif">
+                    <tr>
+                        <th>#</th>
+                        <th>Nom</th>
+                        <th>Sigle</th>
+                        <th>Adresse</th>
+                        <th>Email</th>
+                        <th>Téléphone</th>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>Germany</td>
+                        <td>Maria Anders</td>
+                        <td>Germany</td>
+                        <td>Maria Anders</td>
+                        <td>Germany</td>
+                    </tr>
+                </table>
+                <p class="list-vide" fxHide>La liste des services administratifs est vide.
+            </div>
+            <div class="tab gap-20" id="tab-2">
+                <span class="tab-title">Liste des textes de référence</span>
+                <table class="table table-liens-references">
+                    <tr>
+                        <th>#</th>
+                        <th>Nom</th>
+                        <th>Sigle</th>
+                        <th>Adresse</th>
+                        <th>Email</th>
+                        <th>Téléphone</th>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td class="link">Code de l'urbanisme</td>
+                        <td>Maria Anders</td>
+                        <td>Germany</td>
+                        <td>Maria Anders</td>
+                        <td>Germany</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>Germany</td>
+                        <td>Maria Anders</td>
+                        <td>Germany</td>
+                        <td>Maria Anders</td>
+                        <td>Germany</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>Germany</td>
+                        <td>Maria Anders</td>
+                        <td>Germany</td>
+                        <td>Maria Anders</td>
+                        <td>Germany</td>
+                    </tr>
+                </table>
+                <p class="list-vide" fxHide>La liste des textes de référence est vide.
+            </div>
+            <div class="tab gap-20" id="tab-3">
+                <span class="tab-title">Liste des formualires</span>
+                <table fxHide class="table table-liens-references">
+                    <tr>
+                        <th>#</th>
+                        <th>Nom</th>
+                        <th>Sigle</th>
+                        <th>Adresse</th>
+                        <th>Email</th>
+                        <th>Téléphone</th>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td class="link">Code de l'urbanisme</td>
+                        <td>Maria Anders</td>
+                        <td>Germany</td>
+                        <td>Maria Anders</td>
+                        <td>Germany</td>
+                    </tr>
+                </table>
+                <p class="list-vide" fxShow>La liste des formulaires est vide.
+                </p>
+            </div>
+            <div class="tab gap-20" id="tab-4">
+                <span class="tab-title">Liste des modéles de lettres</span>
+                <table fxHide class="table table-liens-references">
+                    <tr>
+                        <th>#</th>
+                        <th>Nom</th>
+                        <th>Sigle</th>
+                        <th>Adresse</th>
+                        <th>Email</th>
+                        <th>Téléphone</th>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td class="link">Code de l'urbanisme</td>
+                        <td>Maria Anders</td>
+                        <td>Germany</td>
+                        <td>Maria Anders</td>
+                        <td>Germany</td>
+                    </tr>
+                </table>
+                <p class="list-vide" fxShow>La liste des modéles de lettres est vide.
+                </p>
+            </div>
+            <div class="tab gap-20" id="tab-5">
+                <span class="tab-title">Liste des Questions\Réponses</span>
+                <table fxHide class="table table-liens-references">
+                    <tr>
+                        <th>#</th>
+                        <th>Nom</th>
+                        <th>Sigle</th>
+                        <th>Adresse</th>
+                        <th>Email</th>
+                        <th>Téléphone</th>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td class="link">Code de l'urbanisme</td>
+                        <td>Maria Anders</td>
+                        <td>Germany</td>
+                        <td>Maria Anders</td>
+                        <td>Germany</td>
+                    </tr>
+                </table>
+                <p class="list-vide" fxShow>Cette démarche n'est lié à aucune question.
+                </p>
+            </div>
+            <div class="tab gap-20" id="tab-6">
+                <span class="tab-title">Liste des Questions\Réponses</span>
+                <table class="table table-questions-reponses">
+                    <tr>
+                        <th>#</th>
+                        <th>Action</th>
+                        <th>Commentaire</th>
+                        <th>Effectuée par</th>
+                        <th>Date</th>
+                    </tr>
+                    <tr>
+
+                    </tr>
+                </table>
+            </div>
+
+        </div>
+    </div>
+</div>

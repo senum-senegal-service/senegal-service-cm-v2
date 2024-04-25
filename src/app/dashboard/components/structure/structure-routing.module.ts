@@ -6,6 +6,7 @@ import { StructuresComponent } from './structure.component';
 import { OverviewComponent } from './components/overview/overview.component';
 import { CreateStructureComponent } from './components/create-structure/create-structure.component';
 import { EditStructureComponent } from './components/edit-structure/edit-structure.component';
+import { ViewStructureComponent } from './components/view-structure/view-structure.component';
 
 const routes: Routes = [
   {
@@ -24,6 +25,10 @@ const routes: Routes = [
       {
         path: ':id',
         component: EditStructureComponent,
+      },
+      {
+        path: 'detail/:id',
+        component: ViewStructureComponent,
       },
     ],
   },

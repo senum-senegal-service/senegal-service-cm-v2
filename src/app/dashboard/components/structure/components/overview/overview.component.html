@@ -98,8 +98,8 @@
             <ng-container matColumnDef="action">
                 <th mat-header-cell *matHeaderCellDef> Action </th>
                 <td mat-cell *matCellDef="let element" class="actions-btn">
-                    <span class="btn-icon btn-info" #tooltip="matTooltip"
-                        matTooltip="Info"><mat-icon>help_outline</mat-icon></span>
+                    <span class="btn-icon btn-info" #tooltip="matTooltip" matTooltip="Info"
+                        [routerLink]="'detail/'+[element.id]"><mat-icon>help_outline</mat-icon></span>
                     <span class="btn-icon" #tooltip="matTooltip" matTooltip="Editer"
                         [routerLink]="[element.id]"><mat-icon>edit</mat-icon></span>
                     <span class="btn-icon btn--delete" #tooltip="matTooltip" matTooltip="Supprimer"
