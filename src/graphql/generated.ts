@@ -253,6 +253,7 @@ export type DemarcheReviewMetric = {
   demarche: Demarche;
   noteAvg: Scalars['Float']['output'];
   numberOfReviews: Scalars['Int']['output'];
+  reviews: Array<DemarcheReview>;
 };
 
 export type DemarcheUpdateInput = {
@@ -570,6 +571,7 @@ export type Mutation = {
   deleteActualite: Scalars['Boolean']['output'];
   deleteAnnonce: Scalars['Boolean']['output'];
   deleteDemarche: Scalars['Boolean']['output'];
+  deleteDemarcheReview: Scalars['Boolean']['output'];
   deleteHub: Scalars['Boolean']['output'];
   deleteService: Scalars['Boolean']['output'];
   deleteStructure: Scalars['Boolean']['output'];
@@ -702,6 +704,11 @@ export type MutationDeleteAnnonceArgs = {
 
 export type MutationDeleteDemarcheArgs = {
   demarcheId: Scalars['Any']['input'];
+};
+
+
+export type MutationDeleteDemarcheReviewArgs = {
+  demarcheReviewId: Scalars['ID']['input'];
 };
 
 

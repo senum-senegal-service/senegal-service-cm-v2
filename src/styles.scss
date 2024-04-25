@@ -344,7 +344,8 @@ label,
   }
 
   &:focus {
-    outline: #ced4da 1px solid;
+    border: 1px solid #4869ee;
+    box-shadow: 0 0 0 3px #4869ee3f;
   }
 }
 
@@ -366,6 +367,11 @@ label,
     outline: none;
     padding: 0;
     width: auto;
+
+    &:focus {
+      border: none;
+      box-shadow: none;
+    }
   }
 
   .btn-remove {
@@ -830,10 +836,15 @@ mat-form-field {
   border-collapse: collapse;
   width: 100%;
 
-  tr:nth-child(odd) {
-    background-color: #dddddd25;
+  tr {
     border-bottom: 1px solid #ced4da !important;
+
+    &:nth-child(odd) {
+      background-color: #dddddd25;
+    }
   }
+
+
 
   .actions {
     max-width: 140px;
@@ -856,6 +867,13 @@ mat-form-field {
     text-align: left;
     padding: 8px;
   }
+}
+
+.table-wrapper {
+  max-width: 100%;
+  width: 100%;
+  overflow-x: auto;
+  outline: 1px solid red;
 }
 
 .badge {

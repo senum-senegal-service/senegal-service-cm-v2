@@ -1,121 +1,126 @@
 <div class="page-wrapper overview-wrapper" fxLayout="column" fxLayoutGap="40px">
-  <div class="top" fxLayout="column" fxLayoutGap="32px">
-      <span class="title">Gestion des structures ESS</span>
-      <form [formGroup]="filterForm" fxLayout="column" fxLayoutGap="24px">
-        <div fxLayout="row" fxLayoutAlign="space-between center">
-            <div class="search">
-                <input matInput formControlName="search" name="search" type="text" class="form-control"
-                    placeholder="Rechercher" (input)="search($event)">
-                <span class="icon"><mat-icon>search</mat-icon></span>
+    <div class="top" fxLayout="column" fxLayoutGap="32px">
+        <span class="title">Gestion des structures ESS</span>
+        <form [formGroup]="filterForm" fxLayout="column" fxLayoutGap="24px">
+            <div fxLayout="row" fxLayoutAlign="space-between center">
+                <div class="search">
+                    <input matInput formControlName="search" name="search" type="text" class="form-control"
+                        placeholder="Rechercher" (input)="search($event)">
+                    <span class="icon"><mat-icon>search</mat-icon></span>
+                </div>
+                <span class="btn btn-primary" routerLink="create">
+                    <span>+</span>
+                    <span>Ajouter</span>
+                </span>
             </div>
-            <span class="btn btn-primary" routerLink="create">
-                <span>+</span>
-                <span>Ajouter</span>
-            </span>
-        </div>
-        <div class="filters-container" fxLayout="row wrap">
-            <div fxLayout="column" fxLayoutGap="8px">
-                <label for="filtre-etat">Filtrer par état</label>
-                <mat-form-field class="form-control">
-                    <mat-label class="label">Choisir un état</mat-label>
-                    <mat-select (selectionChange)="getStructures()" id="filtre-etat" formControlName="etat"
-                        name="etatPub">
-                        <div *ngFor="let state of states">
-                            <mat-option [value]="state.value">{{state.viewValue}}</mat-option>
-                        </div>
-                    </mat-select>
-                </mat-form-field>
+            <div class="filters-container" fxLayout="row wrap">
+                <div fxLayout="column" fxLayoutGap="8px">
+                    <label for="filtre-etat">Filtrer par état</label>
+                    <mat-form-field class="form-control">
+                        <mat-label class="label">Choisir un état</mat-label>
+                        <mat-select (selectionChange)="getStructures()" id="filtre-etat" formControlName="etat"
+                            name="etatPub">
+                            <div *ngFor="let state of states">
+                                <mat-option [value]="state.value">{{state.viewValue}}</mat-option>
+                            </div>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div fxLayout="column" fxLayoutGap="8px">
+                    <label for="">Filtrer par statut publication</label>
+                    <mat-form-field class="form-control">
+                        <mat-label class="label">Choisir un état</mat-label>
+                        <mat-select (selectionChange)="getStructures()" id="filtre-etat" formControlName="est_publie"
+                            name="etatPub">
+                            <div *ngFor="let statut of statuts">
+                                <mat-option [value]="statut.value">{{statut.viewValue}}</mat-option>
+                            </div>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+
             </div>
-            <div fxLayout="column" fxLayoutGap="8px">
-                <label for="">Filtrer par statut publication</label>
-                <mat-form-field class="form-control">
-                    <mat-label class="label">Choisir un état</mat-label>
-                    <mat-select (selectionChange)="getStructures()" id="filtre-etat" formControlName="est_publie"
-                        name="etatPub">
-                        <div *ngFor="let statut of statuts">
-                            <mat-option [value]="statut.value">{{statut.viewValue}}</mat-option>
-                        </div>
-                    </mat-select>
-                </mat-form-field>
-            </div>
+        </form>
+    </div>
 
-        </div>
-    </form>
-  </div>
+    <div *ngIf="!dataSource" fxLayoutAlign="center center">
+        <mat-spinner></mat-spinner>
+    </div>
+    <div *ngIf="dataSource" class="mat-elevation-z8">
+        <table class="table" mat-table matSort [dataSource]="dataSource">
+            <!-- Libelle Column -->
+            <ng-container matColumnDef="libelle">
+                <th mat-header-cell mat-sort-header *matHeaderCellDef> Libelle </th>
+                <td mat-cell *matCellDef="let element"> {{element.libelle }} </td>
+            </ng-container>
 
-  <div *ngIf="!dataSource" fxLayoutAlign="center center">
-      <mat-spinner></mat-spinner>
-  </div>
-  <div *ngIf="dataSource" class="mat-elevation-z8">
-      <table class="table" mat-table matSort [dataSource]="dataSource">
-          <!-- Libelle Column -->
-          <ng-container matColumnDef="libelle">
-              <th mat-header-cell mat-sort-header *matHeaderCellDef> Libelle </th>
-              <td mat-cell *matCellDef="let element"> {{element.libelle }} </td>
-          </ng-container>
+            <!-- Description Column -->
+            <ng-container matColumnDef="description">
+                <th mat-header-cell mat-sort-header *matHeaderCellDef> Description </th>
+                <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+            </ng-container>
 
-          <!-- Description Column -->
-          <ng-container matColumnDef="description">
-              <th mat-header-cell mat-sort-header *matHeaderCellDef> Description </th>
-              <td mat-cell *matCellDef="let element"> {{element.description}} </td>
-          </ng-container>
+            <!-- Localisation Column -->
+            <ng-container matColumnDef="localisation">
+                <th mat-header-cell mat-sort-header *matHeaderCellDef> Localisation </th>
+                <td mat-cell *matCellDef="let element"> {{element.localisation}} </td>
+            </ng-container>
 
-          <!-- Localisation Column -->
-          <ng-container matColumnDef="localisation">
-              <th mat-header-cell mat-sort-header *matHeaderCellDef> Localisation </th>
-              <td mat-cell *matCellDef="let element"> {{element.localisation}} </td>
-          </ng-container>
+            <!-- Responsable Column -->
+            <ng-container matColumnDef="responsable">
+                <th mat-header-cell *matHeaderCellDef> Responsable </th>
+                <td mat-cell *matCellDef="let element"> {{ element.responsable }} </td>
+            </ng-container>
 
-          <!-- Responsable Column -->
-          <ng-container matColumnDef="responsable">
-              <th mat-header-cell *matHeaderCellDef> Responsable </th>
-              <td mat-cell *matCellDef="let element"> {{ element.responsable }} </td>
-          </ng-container>
+            <!-- Date de mise à jour Column -->
+            <ng-container matColumnDef="updated_at">
+                <th mat-header-cell mat-sort-header *matHeaderCellDef> Dernière mise à jour </th>
+                <td mat-cell *matCellDef="let element"> {{element.updated_at | date:'dd/MM/yyyy'}} </td>
+            </ng-container>
 
-          <!-- Date de mise à jour Column -->
-          <ng-container matColumnDef="updated_at">
-              <th mat-header-cell mat-sort-header *matHeaderCellDef> Dernière mise à jour </th>
-              <td mat-cell *matCellDef="let element"> {{element.updated_at | date:'dd/MM/yyyy'}} </td>
-          </ng-container>
+            <ng-container matColumnDef="etat">
+                <th mat-header-cell mat-sort-header *matHeaderCellDef> Etat </th>
+                <td mat-cell *matCellDef="let element"> {{element.etat}} </td>
+            </ng-container>
 
-          <ng-container matColumnDef="etat">
-            <th mat-header-cell mat-sort-header *matHeaderCellDef> Etat </th>
-            <td mat-cell *matCellDef="let element"> {{element.etat}} </td>
-        </ng-container>
+            <ng-container matColumnDef="est_publie">
+                <th mat-header-cell mat-sort-header *matHeaderCellDef> Etat </th>
+                <td mat-cell *matCellDef="let element"> {{element.est_publie ? 'oui' : 'non'}} </td>
+            </ng-container>
 
-        <ng-container matColumnDef="est_publie">
-          <th mat-header-cell mat-sort-header *matHeaderCellDef> Etat </th>
-          <td mat-cell *matCellDef="let element"> {{element.est_publie ? 'oui' : 'non'}} </td>
-      </ng-container>
+            <!-- Zone Column -->
+            <ng-container matColumnDef="zone">
+                <th mat-header-cell mat-sort-header *matHeaderCellDef> Zone </th>
+                <td mat-cell *matCellDef="let element"> {{element.zone}} </td>
+            </ng-container>
 
-          <!-- Zone Column -->
-          <ng-container matColumnDef="zone">
-              <th mat-header-cell mat-sort-header *matHeaderCellDef> Zone </th>
-              <td mat-cell *matCellDef="let element"> {{element.zone}} </td>
-          </ng-container>
+            <!-- Action Column -->
+            <ng-container matColumnDef="action">
+                <th mat-header-cell *matHeaderCellDef> Action </th>
+                <td mat-cell *matCellDef="let element" class="actions-btn">
+                    <span class="btn-icon btn-info" #tooltip="matTooltip"
+                        matTooltip="Info"><mat-icon>help_outline</mat-icon></span>
+                    <span class="btn-icon" #tooltip="matTooltip" matTooltip="Editer"
+                        [routerLink]="[element.id]"><mat-icon>edit</mat-icon></span>
+                    <span class="btn-icon btn--delete" #tooltip="matTooltip" matTooltip="Supprimer"
+                        (click)="handleDeleteStructure(element.id)"><mat-icon>delete_outline</mat-icon></span>
+                    <span *ngIf="!element.est_publie" class="btn-icon btn-publier" #tooltip="matTooltip"
+                        matTooltip="Publier"
+                        (click)="handlePublishStructure(element.id)"><mat-icon>notifications</mat-icon></span>
+                    <span *ngIf="element.est_publie" class="btn-icon btn-dePublier" #tooltip="matTooltip"
+                        matTooltip="Dépublier"
+                        (click)="handleUnPublishStructure(element.id)"><mat-icon>lock</mat-icon></span>
+                </td>
+            </ng-container>
 
-          <!-- Action Column -->
-          <ng-container matColumnDef="action">
-              <th mat-header-cell *matHeaderCellDef> Action </th>
-              <td mat-cell *matCellDef="let element" class="actions-btn">
-                <span class="btn-icon btn--edit" [routerLink]="[element.id]"><mat-icon>edit</mat-icon></span>
-                <span class="btn-icon btn--delete"
-                    (click)="handleDeleteStructure(element.id)"><mat-icon>delete_outline</mat-icon></span>
-                <span *ngIf="!element.est_publie" class="btn-icon btn--delete"
-                    (click)="handlePublishStructure(element.id)"><mat-icon>notifications</mat-icon></span>
-                <span *ngIf="element.est_publie" class="btn-icon btn--delete"
-                    (click)="handleUnPublishStructure(element.id)"><mat-icon>lock</mat-icon></span>
-              </td>
-          </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+            </tr>
 
-          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-          <tr mat-row *matRowDef="let row; columns: displayedColumns;">
-          </tr>
-
-      </table>
-      <mat-paginator [pageSizeOptions]="[5, 10, 20, 50, 100, 200]" showFirstLastButtons
-          aria-label="Select page of structures" [length]="totalItems" [pageIndex]="currentPage - 1"
-          [pageSize]="pageSize" (page)="changePage($event)">
-      </mat-paginator>
-  </div>
+        </table>
+        <mat-paginator [pageSizeOptions]="[5, 10, 20, 50, 100, 200]" showFirstLastButtons
+            aria-label="Select page of structures" [length]="totalItems" [pageIndex]="currentPage - 1"
+            [pageSize]="pageSize" (page)="changePage($event)">
+        </mat-paginator>
+    </div>
 </div>
