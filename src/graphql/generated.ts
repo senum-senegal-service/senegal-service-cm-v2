@@ -253,6 +253,7 @@ export type DemarcheReviewMetric = {
   demarche: Demarche;
   noteAvg: Scalars['Float']['output'];
   numberOfReviews: Scalars['Int']['output'];
+  reviews: Array<DemarcheReview>;
 };
 
 export type DemarcheUpdateInput = {
@@ -570,6 +571,7 @@ export type Mutation = {
   deleteActualite: Scalars['Boolean']['output'];
   deleteAnnonce: Scalars['Boolean']['output'];
   deleteDemarche: Scalars['Boolean']['output'];
+  deleteDemarcheReview: Scalars['Boolean']['output'];
   deleteHub: Scalars['Boolean']['output'];
   deleteService: Scalars['Boolean']['output'];
   deleteStructure: Scalars['Boolean']['output'];
@@ -702,6 +704,11 @@ export type MutationDeleteAnnonceArgs = {
 
 export type MutationDeleteDemarcheArgs = {
   demarcheId: Scalars['Any']['input'];
+};
+
+
+export type MutationDeleteDemarcheReviewArgs = {
+  demarcheReviewId: Scalars['ID']['input'];
 };
 
 
@@ -1947,7 +1954,14 @@ export type FetchDemarcheReviewsMetricsQueryVariables = Exact<{
 }>;
 
 
-export type FetchDemarcheReviewsMetricsQuery = { __typename?: 'Query', fetchDemarcheReviewsMetrics: { __typename?: 'PaginatedDemarcheReviewMetricResult', pagination: { __typename?: 'PaginationInfo', totalItems: number, pageCount: number, pageSize: number, currentPage: number }, results: Array<{ __typename?: 'DemarcheReviewMetric', noteAvg: number, numberOfReviews: number, demarche: { __typename?: 'Demarche', id: any, titre: string } }> } };
+export type FetchDemarcheReviewsMetricsQuery = { __typename?: 'Query', fetchDemarcheReviewsMetrics: { __typename?: 'PaginatedDemarcheReviewMetricResult', pagination: { __typename?: 'PaginationInfo', totalItems: number, pageCount: number, pageSize: number, currentPage: number }, results: Array<{ __typename?: 'DemarcheReviewMetric', noteAvg: number, numberOfReviews: number, demarche: { __typename?: 'Demarche', id: any, titre: string }, reviews: Array<{ __typename?: 'DemarcheReview', id: string, note: number, comment?: string | null }> }> } };
+
+export type DeleteDemarcheReviewMutationVariables = Exact<{
+  demarcheReviewId: Scalars['ID']['input'];
+}>;
+
+
+export type DeleteDemarcheReviewMutation = { __typename?: 'Mutation', deleteDemarcheReview: boolean };
 
 export type FetchServicesQueryVariables = Exact<{
   queryFilter?: InputMaybe<QueryDataConfigInput>;
@@ -3473,6 +3487,11 @@ export const FetchDemarcheReviewsMetricsDocument = gql`
       }
       noteAvg
       numberOfReviews
+      reviews {
+        id
+        note
+        comment
+      }
     }
   }
 }
@@ -3483,6 +3502,22 @@ export const FetchDemarcheReviewsMetricsDocument = gql`
   })
   export class FetchDemarcheReviewsMetricsGQL extends Apollo.Query<FetchDemarcheReviewsMetricsQuery, FetchDemarcheReviewsMetricsQueryVariables> {
     document = FetchDemarcheReviewsMetricsDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const DeleteDemarcheReviewDocument = gql`
+    mutation DeleteDemarcheReview($demarcheReviewId: ID!) {
+  deleteDemarcheReview(demarcheReviewId: $demarcheReviewId)
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class DeleteDemarcheReviewGQL extends Apollo.Mutation<DeleteDemarcheReviewMutation, DeleteDemarcheReviewMutationVariables> {
+    document = DeleteDemarcheReviewDocument;
     
     constructor(apollo: Apollo.Apollo) {
       super(apollo);

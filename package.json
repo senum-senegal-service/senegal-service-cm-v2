@@ -3,12 +3,14 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --port 4500",
+    "start:local": "ng serve --port 4500 --configuration local",
+    "start:dev": "ng serve --port 4500 --configuration development",
     "build": "ng build --configuration production",
     "build:dev": "ng build --configuration development",
     "watch": "ng build --watch --configuration local",
     "test": "ng test",
-    "dev": "run-p start graphql-gen:watch",
+    "local": "run-p start:local graphql-gen:watch",
+    "dev": "run-p start:dev graphql-gen:watch",
     "graphql-gen": "graphql-codegen  --config ./src/app/graphql/codegen.ts --require dotenv/config",
     "graphql-gen:watch": "graphql-codegen  --config ./src/app/graphql/codegen.ts --require dotenv/config --watch"
   },
