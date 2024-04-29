@@ -13,8 +13,16 @@ query FetchDemarcheReviewsMetrics($queryFilter: QueryDataConfigInput) {
 			}
 			noteAvg
 			numberOfReviews
-
+      reviews {
+        id
+        note
+        comment
+      }
 		}
 	}
+}
+
+mutation DeleteDemarcheReview($demarcheReviewId: ID!) {
+  deleteDemarcheReview(demarcheReviewId: $demarcheReviewId)
 }
 

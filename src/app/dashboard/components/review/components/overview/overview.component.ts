@@ -6,6 +6,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MockService } from 'src/app/shared/services/mock.service';
 import { ModalConfirmationComponent } from 'src/app/shared/components/modal-confirmation/modal-confirmation.component';
 import {
+  DemarcheReview,
   DemarcheReviewMetric,
   FetchDemarcheReviewsMetricsGQL,
   PaginationInfo,
@@ -22,6 +23,7 @@ import {
 } from 'rxjs';
 import { SelectOptions } from 'src/app/shared/utils/selec-options';
 import { SnackBarService } from 'src/app/shared/services/snackbar.service';
+import { DemarcheReviewsDetailsModalComponent } from '../demarche-reviews-details-modal/demarche-reviews-details-modal.component';
 
 @Component({
   selector: 'app-overview-review',
@@ -36,7 +38,8 @@ export class OverviewComponent {
   displayedColumns: string[] = [
     'demarche',
     'noteAvg',
-    'numberOfReviews'
+    'numberOfReviews',
+    'details'
   ];
   dataSource = new MatTableDataSource<any>(null);
   //filter
@@ -155,5 +158,18 @@ export class OverviewComponent {
 
   onOptionSelected(value: any) {
     this.selectedState = value;
+  }
+
+  showDetails(reviews: DemarcheReview[], demarcheTitle: string): void {
+    const dialogRef = this.dialog.open(DemarcheReviewsDetailsModalComponent, {
+      maxHeight: '90vh',
+      maxWidth: '100%',
+      width: '80%',
+      data: { reviews, demarcheTitle}
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+
+    });
   }
 }
