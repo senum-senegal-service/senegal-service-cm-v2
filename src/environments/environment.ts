@@ -7,10 +7,8 @@
 // };
 
 export const environment = {
-  // GRAPHQL_URI: "http://localhost:5001/graphql",
-  // API_URI: "http://localhost:5001",
-  GRAPHQL_URI: 'https://senegal-service-cm-api.onrender.com/graphql',
-  API_URI: 'https://senegal-service-cm-api.onrender.com',
+  GRAPHQL_URI: 'http://localhost:5001/graphql',
+  API_URI: 'http://localhost:5001',
   KEYCLOAK_URL: 'https://devauth.sec.gouv.sn',
   KEYCLOACK_REALM: 'senegalservices',
   KEYCLOACK_CLIENT_ID: 'senegalservice',

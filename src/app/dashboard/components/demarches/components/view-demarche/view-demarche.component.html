@@ -3,13 +3,13 @@
         <span class="title">Gestion des démarches</span>
         <span class="sub-title">Informations sur le démarche</span>
     </div>
-    <div class="btn-actions" fxLayout="row" fxLayoutAlign="end start" fxLayoutGap="12px">
+    <div *ngIf="demarche" class="btn-actions" fxLayout="row" fxLayoutAlign="end start" fxLayoutGap="12px">
         <button class="btn btn-primary" fxLayout="row" fxLayoutAlign="start center"
             fxLayoutGap="4px"><mat-icon>check</mat-icon><span>Changer l'état de validation</span></button>
-        <button class="btn btn-success" fxLayout="row" fxLayoutAlign="start center"
-            fxLayoutGap="4px"><mat-icon>screen_share</mat-icon> <span>Publié</span></button>
-        <button class="btn btn-danger" fxLayout="row" fxLayoutAlign="start center"
-            fxLayoutGap="4px"><mat-icon>stop_screen_share</mat-icon>
+        <button class="btn btn-success" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="4px"
+            *ngIf="!demarche.est_publie"><mat-icon title="Publier">notifications</mat-icon> <span>Publié</span></button>
+        <button class="btn btn-danger" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="4px"
+            *ngIf="demarche.est_publie"><mat-icon title="Dépublier">lock</mat-icon>
             <span>Dépublié</span></button>
         <button class="btn btn-warning" fxLayout="row" fxLayoutAlign="start center"
             fxLayoutGap="4px"><mat-icon>edit</mat-icon><span>Modifier</span></button>
@@ -21,33 +21,31 @@
             <li class="nav-link" *ngFor="let link of navList;let i=index" [ngClass]="i==0?'active':''">
                 {{link}}</li>
         </ul>
-        <div fxFlex="auto" class="content">
+        <div *ngIf="demarche" fxFlex="auto" class="content">
             <div class="tab active gap-32" id="tab-0">
                 <div class="top" fxLayout="row" fxLayoutGap="24px" fxLayoutAlign="start start">
                     <ul fxFlex="50" class="list-group">
                         <li class="item">
                             <p>
                                 <span class="txt-bolder">Titre :</span>
-                                <span class="txt-light">Accéder à la documentation du Centre de Recherches et de
-                                    Documentation
-                                    du Sénégal</span>
+                                <span class="txt-light">{{this.demarche.titre}}</span>
                             </p>
                         </li>
                         <li class="item">
                             <p>
                                 <span class="txt-bolder">Est à la une :</span>
-                                <span class="txt-light badge badge-purple">Non</span>
+                                <span class="txt-light badge"
+                                    [ngClass]="demarche.a_la_une?'badge-purple':'badge-danger'">{{this.demarche.a_la_une?'Oui':'Non'}}</span>
                             </p>
                         </li>
                         <li class="item">
-                            <p>
+                            <div>
                                 <span class="txt-bolder">Sous-thèmes :</span>
-                                <span class="txt-light ">
-                                    <span class="link">Enseignement supérieur</span> / <span class="link">Livres,
-                                        lecture
-                                        et
-                                        bibliothèques</span> / </span>
-                            </p>
+                                <p class="txt-light ">
+                                    <span class="link"
+                                        *ngFor="let sousTheme of demarche.sous_themes">{{sousTheme.libelle}}/</span>
+                                </p>
+                            </div>
                         </li>
                         <li class="item">
                             <p>

@@ -28,7 +28,7 @@ export class ViewHubComponent {
       .fetch({ hubId: this.hubId }, { fetchPolicy: 'no-cache' })
       .subscribe((result) => {
         this.hub = result.data.fetchHub as any;
-        // console.log(this.hub.add_by);
+        // console.log(this.hub.sous_themes);
       });
   }
 }

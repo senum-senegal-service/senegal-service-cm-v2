@@ -6,13 +6,13 @@
     <div class="btn-actions" fxLayout="row" fxLayoutAlign="end start" fxLayoutGap="12px">
         <button class="btn btn-primary" fxLayout="row" fxLayoutAlign="start center"
             fxLayoutGap="4px"><mat-icon>check</mat-icon><span>Changer l'état de validation</span></button>
-        <button class="btn btn-success" fxLayout="row" fxLayoutAlign="start center"
-            fxLayoutGap="4px"><mat-icon>screen_share</mat-icon> <span>Publié</span></button>
-        <button class="btn btn-danger" fxLayout="row" fxLayoutAlign="start center"
-            fxLayoutGap="4px"><mat-icon>stop_screen_share</mat-icon>
+        <button class="btn btn-success" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="4px"
+            *ngIf="!hub.est_publie"><mat-icon>notifications</mat-icon> <span>Publié</span></button>
+        <button class="btn btn-danger" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="4px"
+            *ngIf="hub.est_publie"><mat-icon title="Dépublier">lock</mat-icon>
             <span>Dépublié</span></button>
-        <button class="btn btn-warning" fxLayout="row" fxLayoutAlign="start center"
-            fxLayoutGap="4px"><mat-icon>edit</mat-icon><span>Modifier</span></button>
+        <button class="btn btn-warning" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="4px"
+            [routerLink]="'/dashboard/hubs-de-vie/'+hub.id"><mat-icon>edit</mat-icon><span>Modifier</span></button>
         <button class="btn btn-outline-primary" fxLayout="row" fxLayoutAlign="start center"
             fxLayoutGap="4px"><mat-icon>public</mat-icon><span>Voir sur le portail</span></button>
     </div>

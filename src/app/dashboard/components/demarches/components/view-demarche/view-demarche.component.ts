@@ -1,4 +1,6 @@
 import { AfterViewInit, Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Demarche, FetchDemarcheGQL } from 'src/graphql/generated';
 
 @Component({
   selector: 'app-view-demarche',
@@ -6,6 +8,8 @@ import { AfterViewInit, Component } from '@angular/core';
   styleUrl: './view-demarche.component.scss',
 })
 export class ViewDemarcheComponent implements AfterViewInit {
+  demarche!: Demarche;
+  demarcheId!: string;
   navList = [
     `Informations générales`,
     `Services administratifs`,
@@ -15,6 +19,18 @@ export class ViewDemarcheComponent implements AfterViewInit {
     `Foire aux questions`,
     `Historique`,
   ];
+
+  constructor(
+    private route: ActivatedRoute,
+    private fetchDemarcheGql: FetchDemarcheGQL
+  ) {
+    this.route.paramMap.subscribe((params) => {
+      this.demarcheId = params.get('id');
+      if (this.demarcheId) {
+        this.fetchDemarche();
+      }
+    });
+  }
 
   ngAfterViewInit(): void {
     const navList = document.querySelectorAll('.nav-link');
@@ -42,5 +58,17 @@ export class ViewDemarcheComponent implements AfterViewInit {
         }
       });
     }
+  }
+
+  fetchDemarche() {
+    if (!this.demarcheId) {
+      return;
+    }
+    this.fetchDemarcheGql
+      .fetch({ demarcheId: this.demarcheId }, { fetchPolicy: 'no-cache' })
+      .subscribe((result) => {
+        this.demarche = result.data.fetchDemarche as any;
+        console.log(this.demarche.updatedAt);
+      });
   }
 }
