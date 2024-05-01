@@ -4,12 +4,12 @@
         <span class="sub-title">Informations sur l'annonce</span>
     </div>
     <div class="btn-actions" fxLayout="row" fxLayoutAlign="end start" fxLayoutGap="12px">
-        <button class="btn btn-primary" fxLayout="row" fxLayoutAlign="start center"
-            fxLayoutGap="4px"><mat-icon>check</mat-icon><span>Changer l'état de validation</span></button>
-        <button class="btn btn-success" fxLayout="row" fxLayoutAlign="start center"
-            fxLayoutGap="4px"><mat-icon>screen_share</mat-icon> <span>Publié</span></button>
-        <button class="btn btn-danger" fxLayout="row" fxLayoutAlign="start center"
-            fxLayoutGap="4px"><mat-icon>stop_screen_share</mat-icon>
+        <button class="btn btn-primary" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="4px"
+            (click)="handleChangeState()"><mat-icon>check</mat-icon><span>Changer l'état de validation</span></button>
+        <button class="btn btn-success" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="4px"
+            (click)="handlePublish()"><mat-icon title="Publier">notifications</mat-icon><span>Publié</span></button>
+        <button class="btn btn-danger" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="4px"
+            (click)="handleUnPublish()"><mat-icon title="Dépublier">lock</mat-icon>
             <span>Dépublié</span></button>
         <button class="btn btn-warning" fxLayout="row" fxLayoutAlign="start center"
             fxLayoutGap="4px"><mat-icon>edit</mat-icon><span>Modifier</span></button>
@@ -33,10 +33,6 @@
                             organisme public rattaché à l’Université Gaston
                             Berger de Saint louis. Il met son fonds documentaire à la disposition des usagers.</span>
                     </p>
-                    <!-- <p fxLayout="column" fxLayoutGap="8px">
-                        <span class="txt-bolder">Source : </span>
-                        <span class="txt-light">Le Soleil</span>
-                    </p> -->
                 </div>
             </li>
             <li class="item">

@@ -1,5 +1,7 @@
 import { AfterViewInit, Component } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
+import { ModalConfirmationComponent } from 'src/app/shared/components/modal-confirmation/modal-confirmation.component';
 import { Demarche, FetchDemarcheGQL } from 'src/graphql/generated';
 
 @Component({
@@ -22,7 +24,8 @@ export class ViewDemarcheComponent implements AfterViewInit {
 
   constructor(
     private route: ActivatedRoute,
-    private fetchDemarcheGql: FetchDemarcheGQL
+    private fetchDemarcheGql: FetchDemarcheGQL,
+    public dialog: MatDialog
   ) {
     this.route.paramMap.subscribe((params) => {
       this.demarcheId = params.get('id');
@@ -70,5 +73,55 @@ export class ViewDemarcheComponent implements AfterViewInit {
         this.demarche = result.data.fetchDemarche as any;
         console.log(this.demarche.updatedAt);
       });
+  }
+
+  handleChangeState() {
+    const data = {
+      message: `Changer l'état de validation !`,
+      btnMessage: 'Confirmer',
+      btnStyle: 'btn-success',
+    };
+    this.openDialogDelete(this.demarcheId, data);
+  }
+
+  handleUnPublish() {
+    const data = {
+      message: `Confirmer la dépublicaion de la démarche !`,
+      btnMessage: 'Confirmer',
+    };
+    this.openDialogDelete(this.demarcheId, data);
+  }
+
+  handlePublish() {
+    const data = {
+      message: `Confirmer la publication de la démarche !`,
+      btnMessage: 'Confirmer',
+      btnStyle: 'btn-success',
+    };
+    this.openDialogDelete(this.demarcheId, data);
+  }
+
+  openDialogDelete(id: string, data: any): void {
+    const dialogRef = this.dialog.open(ModalConfirmationComponent, {
+      data: data,
+      maxHeight: '90vh',
+      maxWidth: '600px',
+      width: '100%',
+    });
+
+    dialogRef.afterClosed().subscribe((resp) => {
+      if (resp) {
+        // this.deleteHubGQL.mutate({ demarcheId: id }).subscribe(
+        //   (result) => {
+        //     if (result.data.deleteHub) {
+        //       this.getHubs(false);
+        //     }
+        //   },
+        //   (error) => {
+        //     this.snackBarService.showErrorSnackBar();
+        //   }
+        // );
+      }
+    });
   }
 }

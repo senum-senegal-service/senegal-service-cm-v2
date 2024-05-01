@@ -4,12 +4,13 @@
         <span class="sub-title">Informations sur un hubs</span>
     </div>
     <div class="btn-actions" fxLayout="row" fxLayoutAlign="end start" fxLayoutGap="12px">
-        <button class="btn btn-primary" fxLayout="row" fxLayoutAlign="start center"
-            fxLayoutGap="4px"><mat-icon>check</mat-icon><span>Changer l'état de validation</span></button>
+        <button class="btn btn-primary" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="4px"
+            (click)="handleChangeState()"><mat-icon>check</mat-icon><span>Changer l'état de validation</span></button>
         <button class="btn btn-success" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="4px"
-            *ngIf="!hub.est_publie"><mat-icon>notifications</mat-icon> <span>Publié</span></button>
+            *ngIf="!hub.est_publie" (click)="handlePublish()"><mat-icon title="Publier">notifications</mat-icon>
+            <span>Publié</span></button>
         <button class="btn btn-danger" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="4px"
-            *ngIf="hub.est_publie"><mat-icon title="Dépublier">lock</mat-icon>
+            *ngIf="hub.est_publie" (click)="handleUnPublish()"><mat-icon title="Dépublier">lock</mat-icon>
             <span>Dépublié</span></button>
         <button class="btn btn-warning" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="4px"
             [routerLink]="'/dashboard/hubs-de-vie/'+hub.id"><mat-icon>edit</mat-icon><span>Modifier</span></button>
@@ -43,7 +44,7 @@
                     <div>
                         <span class="txt-bolder">Sous thèmes: </span>
                         <p class="txt-light">
-                            <span class="link" *ngFor="let st of hub.sous_themes">{{st.libelle}}/</span>
+                            <span class="link" *ngFor="let st of hub.sous_themes">{{st.nom}}/</span>
                         </p>
                     </div>
                 </li>
@@ -72,7 +73,7 @@
                 <li class="item">
                     <p>
                         <span class="txt-bolder">Date de dernière modification : </span>
-                        <span class="txt-light">13/12/2011</span>
+                        <span class="txt-light">{{hub.updatedAt | date:'dd/MM/yyyy'}}</span>
                     </p>
                 </li>
             </ul>
@@ -87,7 +88,7 @@
                 <li class="item">
                     <p>
                         <span class="txt-bolder">Date de publication :</span>
-                        <span class="txt-light">13/12/2011 à 09:07:53</span>
+                        <span class="txt-light">{{hub.date_publication | date:'dd/MM/yyyy à HH:mm:ss'}}</span>
                     </p>
                 </li>
                 <li class="item">

@@ -3,13 +3,14 @@
         <span class="title">Gestion des démarches</span>
         <span class="sub-title">Informations sur le démarche</span>
     </div>
-    <div *ngIf="demarche" class="btn-actions" fxLayout="row" fxLayoutAlign="end start" fxLayoutGap="12px">
-        <button class="btn btn-primary" fxLayout="row" fxLayoutAlign="start center"
-            fxLayoutGap="4px"><mat-icon>check</mat-icon><span>Changer l'état de validation</span></button>
+    <div class="btn-actions" fxLayout="row" fxLayoutAlign="end start" fxLayoutGap="12px">
+        <button class="btn btn-primary" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="4px"
+            (click)="handleChangeState()"><mat-icon>check</mat-icon><span>Changer l'état de validation</span></button>
         <button class="btn btn-success" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="4px"
-            *ngIf="!demarche.est_publie"><mat-icon title="Publier">notifications</mat-icon> <span>Publié</span></button>
+            *ngIf="!demarche.est_publie" (click)="handlePublish()"><mat-icon title="Publier">notifications</mat-icon>
+            <span>Publié</span></button>
         <button class="btn btn-danger" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="4px"
-            *ngIf="demarche.est_publie"><mat-icon title="Dépublier">lock</mat-icon>
+            *ngIf="demarche.est_publie" (click)="handleUnPublish()"><mat-icon title="Dépublier">lock</mat-icon>
             <span>Dépublié</span></button>
         <button class="btn btn-warning" fxLayout="row" fxLayoutAlign="start center"
             fxLayoutGap="4px"><mat-icon>edit</mat-icon><span>Modifier</span></button>
@@ -21,7 +22,7 @@
             <li class="nav-link" *ngFor="let link of navList;let i=index" [ngClass]="i==0?'active':''">
                 {{link}}</li>
         </ul>
-        <div *ngIf="demarche" fxFlex="auto" class="content">
+        <div fxFlex="auto" class="content">
             <div class="tab active gap-32" id="tab-0">
                 <div class="top" fxLayout="row" fxLayoutGap="24px" fxLayoutAlign="start start">
                     <ul fxFlex="50" class="list-group">
