@@ -20,15 +20,11 @@ export class ModalConfirmationComponent {
     this.btnStyle = data?.btnStyle || 'btn-danger';
   }
 
-  onNoClick(): void {
+  handleCancel(): void {
     this.dialogRef.close(false);
   }
 
-  handleDelete() {
+  handleActionModal() {
     this.dialogRef.close(true);
-  }
-
-  cancel() {
-    this.dialogRef.close();
   }
 }

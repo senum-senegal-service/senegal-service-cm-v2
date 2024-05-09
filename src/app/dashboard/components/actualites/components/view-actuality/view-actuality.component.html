@@ -1,3 +1,5 @@
+<span class="goback" fxLayout="row" fxLayoutAlign="start center" appGoBack><span><mat-icon
+            fxLayoutAlign="start center">arrow_back</mat-icon></span><span>back</span></span>
 <div class="page-wrapper container-wrapper detail-container" fxLayout="column" fxLayoutGap="24px">
     <div fxLayout="column" fxLayoutGap="7px">
         <span class="title">Gestion des actualités</span>
@@ -6,78 +8,81 @@
     <div class="btn-actions" fxLayout="row" fxLayoutAlign="end start" fxLayoutGap="12px">
         <button class="btn btn-primary" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="4px"
             (click)="handleChangeState()"><mat-icon>check</mat-icon><span>Changer l'état de validation</span></button>
-        <button class="btn btn-success" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="4px"
-            (click)="handlePublish()"><mat-icon title="Publier">notifications</mat-icon><span>Publié</span></button>
-        <button class="btn btn-danger" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="4px"
-            (click)="handleUnPublish()"><mat-icon title="Dépublier">lock</mat-icon>
+        <button *ngIf="actuality&&!actuality.est_publie" class="btn btn-success" fxLayout="row"
+            fxLayoutAlign="start center" fxLayoutGap="4px" (click)="handlePublish()"><mat-icon
+                title="Publier">notifications</mat-icon><span>Publié</span></button>
+        <button *ngIf="actuality&&actuality.est_publie" class="btn btn-danger" fxLayout="row"
+            fxLayoutAlign="start center" fxLayoutGap="4px" (click)="handleUnPublish()"><mat-icon
+                title="Dépublier">lock</mat-icon>
             <span>Dépublié</span></button>
-        <button class="btn btn-warning" fxLayout="row" fxLayoutAlign="start center"
-            fxLayoutGap="4px"><mat-icon>edit</mat-icon><span>Modifier</span></button>
+        <button class="btn btn-warning" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="4px"
+            [routerLink]="'/dashboard/actualites/'+actualityId"><mat-icon>edit</mat-icon><span>Modifier</span></button>
         <button class="btn btn-outline-primary" fxLayout="row" fxLayoutAlign="start center"
             fxLayoutGap="4px"><mat-icon>public</mat-icon><span>Voir sur le portail</span></button>
     </div>
-    <div class="tab active gap-32">
+    <div *ngIf="actuality" class="tab active gap-32">
         <ul class="list-group">
             <li class="item">
                 <p fxLayout="column" fxLayoutGap="8px">
                     <span class="txt-bolder">Titre de l'actualité : </span>
-                    <span class="txt-light">Port de Dakar : la modernisation du terminal vraquier améliore sensiblement
-                        les délais de manutention</span>
+                    <span class="txt-light">{{actuality.titre}}</span>
                 </p>
             </li>
             <li class="item">
                 <div fxLayout="column" fxLayoutGap="16px">
                     <p fxLayout="column" fxLayoutGap="8px">
                         <span class="txt-bolder">Contenu de l'actualité : </span>
-                        <span class="txt-light">Le Centre de Recherches et de Documentation du Sénégal (CRDS) est un
-                            organisme public rattaché à l’Université Gaston
-                            Berger de Saint louis. Il met son fonds documentaire à la disposition des usagers.</span>
+                        <span class="txt-light" [innerHTML]="actuality.contenu"></span>
                     </p>
                     <p fxLayout="column" fxLayoutGap="8px">
                         <span class="txt-bolder">Source : </span>
-                        <span class="txt-light">Le Soleil</span>
+                        <span class="txt-light">{{"source"}}</span>
                     </p>
                 </div>
             </li>
             <li class="item">
-                <p>
+                <div fxLayout="column" fxLayoutGap="8px">
                     <span class="txt-bolder">Descriptif :</span>
-                </p>
+                    <div class="txt-light" [innerHTML]="actuality.description"></div>
+                </div>
             </li>
         </ul>
         <div class="top" fxLayout="row" fxLayoutGap="24px" fxLayoutAlign="start start">
             <ul fxFlex="50" class="list-group">
                 <li class="item">
-                    <p>
+                    <div>
                         <span class="txt-bolder">Sous thèmes: </span>
-                        <span class="txt-light"><span class="link">Transports et logistique</span> / <span
-                                class="link">Exportations, importations, transit et droits de douane</span> /</span>
-                    </p>
+                        <p class="txt-light">
+                            <span class="link" *ngFor="let st of actuality.sous_themes">{{st.nom}}/</span>
+                        </p>
+                    </div>
                 </li>
                 <li class="item">
-                    <p>
+                    <div>
                         <span class="txt-bolder">Démarches : </span>
-                        <span class="txt-light "><span class="link">Devenir commissionnaire en douane agréé</span> /
-                            <span class="link">Déclarer des marchandises en douane</span> /</span>
-                    </p>
+                        <p class="txt-light">
+                            <span class="link" *ngFor="let dem of actuality.demarches">{{dem.titre}}/</span>
+                        </p>
+                    </div>
                 </li>
                 <li class="item">
-                    <p>
+                    <div>
                         <span class="txt-bolder">Textes de réferences : </span>
-                        <span class="txt-light ">
-                            <span class="link">Décret relatif à la manutention manuelle des charges</span> / </span>
-                    </p>
+                        <p class="txt-light">
+                            <span class="link" *ngFor="let txtRef of actuality.textes">{{txtRef.nom}}/</span>
+                        </p>
+                    </div>
                 </li>
                 <li class="item">
                     <p>
                         <span class="txt-bolder">Etat de validation : </span>
-                        <span class="txt-light">Validé</span>
+                        <span class="txt-light">{{actuality.etat}}</span>
                     </p>
                 </li>
                 <li class="item">
                     <p>
                         <span class="txt-bolder">Date de dernière modification : </span>
-                        <span class="txt-light">13/12/2011</span>
+                        <span class="txt-light">{{actuality.updatedAt | date:'dd/MM/yyyy'}}</span>
                     </p>
                 </li>
             </ul>
@@ -85,25 +90,26 @@
                 <li class="item">
                     <p>
                         <span class="txt-bolder">Est Publié ? : </span>
-                        <span class="txt-light  badge badge-success">Oui</span>
+                        <span class="txt-light  badge"
+                            [ngClass]="actuality.est_publie?'badge-success':'badge-danger'">{{actuality.est_publie?'Oui':'Non'}}</span>
                     </p>
                 </li>
                 <li class="item">
                     <p>
                         <span class="txt-bolder">Date de publication :</span>
-                        <span class="txt-light">13/12/2011 à 09:07:53</span>
+                        <span class="txt-light">{{actuality.date_publication | date:'dd/MM/yyyy'}}</span>
                     </p>
                 </li>
                 <li class="item">
                     <p>
                         <span class="txt-bolder">Observations : </span>
-                        <span class="txt-light"></span>
+                        <span class="txt-light">{{actuality.observations}}</span>
                     </p>
                 </li>
                 <li class="item">
                     <p>
                         <span class="txt-bolder">Crée par : </span>
-                        <span class="txt-light "></span>
+                        <span class="txt-light ">{{actuality.add_by}}</span>
                     </p>
                 </li>
 

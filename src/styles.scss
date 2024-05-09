@@ -1068,6 +1068,22 @@ textarea {
 }
 
 
+.goback {
+  color: #acacac;
+  cursor: pointer;
+  transition: all .3s;
+  width: max-content;
+  margin-bottom: 24px;
+
+  mat-icon {
+    font-size: 16px;
+  }
+
+  &:hover {
+    color: #00409A;
+  }
+}
+
 
 .page-wrapper {
   margin: 0 auto;
@@ -1090,7 +1106,6 @@ textarea {
   }
 
   .container {
-    width: 100%;
     background-color: #fff;
     padding: 32px;
     border-radius: 12px;
@@ -1115,18 +1130,10 @@ textarea {
   }
 
   .goback {
-    color: #acacac;
-    cursor: pointer;
-    transition: all .3s;
-    width: max-content;
 
-    mat-icon {
-      font-size: 16px;
-    }
+    margin-bottom: 0;
 
-    &:hover {
-      color: #00409A;
-    }
+
   }
 }
 
