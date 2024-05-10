@@ -131,10 +131,17 @@ query FetchDemarche($demarcheId: String!) {
     formulaires {
       id
       nom
+      description
+      etat
+      est_publie
     }
     faqs {
       id
       nom: question
+      question
+      reponse
+      etat
+      est_publie
     }
     descripteurs {
       id
@@ -143,6 +150,9 @@ query FetchDemarche($demarcheId: String!) {
     modele_lettres {
       id
       nom: nom
+      description
+      etat
+      est_publie
     }
     textes {
       id

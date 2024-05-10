@@ -3597,10 +3597,17 @@ export const FetchDemarcheDocument = gql`
       formulaires {
         id
         nom
+        description
+        etat
+        est_publie
       }
       faqs {
         id
         nom: question
+        question
+        reponse
+        etat
+        est_publie
       }
       descripteurs {
         id
@@ -3609,6 +3616,9 @@ export const FetchDemarcheDocument = gql`
       modele_lettres {
         id
         nom: nom
+        description
+        etat
+        est_publie
       }
       textes {
         id

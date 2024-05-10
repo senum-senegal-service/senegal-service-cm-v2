@@ -10,15 +10,17 @@
         <button class="btn btn-primary" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="4px"
             (click)="handleChangeState()"><mat-icon>check</mat-icon><span>Changer l'état de validation</span></button>
         <button class="btn btn-success" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="4px"
-            *ngIf="!demarche.est_publie" (click)="handlePublish()"><mat-icon title="Publier">notifications</mat-icon>
+            (click)="handlePublish()" *ngIf="demarche && !demarche.est_publie"><mat-icon
+                title="Publier">notifications</mat-icon>
             <span>Publié</span></button>
         <button class="btn btn-danger" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="4px"
-            *ngIf="demarche.est_publie" (click)="handleUnPublish()"><mat-icon title="Dépublier">lock</mat-icon>
+            (click)="handleUnPublish()" *ngIf="demarche && demarche.est_publie"><mat-icon
+                title="Dépublier">lock</mat-icon>
             <span>Dépublié</span></button>
         <button class="btn btn-warning" fxLayout="row" fxLayoutAlign="start center"
             fxLayoutGap="4px"><mat-icon>edit</mat-icon><span>Modifier</span></button>
         <button class="btn btn-outline-primary" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="4px"
-            [routerLink]="demarche.url"><mat-icon>public</mat-icon><span>Voir sur le portail</span></button>
+            [routerLink]="demarche?.url"><mat-icon>public</mat-icon><span>Voir sur le portail</span></button>
     </div>
     <div fxLayout="row" fxLayoutGap="24px" fxLayoutAlign="start none">
         <ul class="navs" fxLayout="column" fxLayoutGap="12px">
@@ -179,75 +181,70 @@
             </div>
             <div class="tab gap-20" id="tab-3">
                 <span class="tab-title">Liste des formualires</span>
-                <table fxHide class="table table-liens-references">
+                <table *ngIf="demarche.formulaires.length!=0" class="table table-liens-references">
                     <tr>
                         <th>#</th>
                         <th>Nom</th>
-                        <th>Sigle</th>
-                        <th>Adresse</th>
-                        <th>Email</th>
-                        <th>Téléphone</th>
+                        <th>Description</th>
+                        <th>Etat</th>
+                        <th>Est publié</th>
                     </tr>
-                    <tr>
-                        <td>1</td>
-                        <td class="link">Code de l'urbanisme</td>
-                        <td>Maria Anders</td>
-                        <td>Germany</td>
-                        <td>Maria Anders</td>
-                        <td>Germany</td>
+                    <tr *ngFor="let form of demarche.formulaires;let i=index">
+                        <td>{{i+1}}</td>
+                        <td class="link">{{form.nom}}</td>
+                        <td>{{form.description}}</td>
+                        <td>{{form.etat}}</td>
+                        <td>{{form.est_publie?'Oui':'Non'}}</td>
                     </tr>
                 </table>
-                <p class="list-vide" fxShow>La liste des formulaires est vide.
+                <p *ngIf="demarche.formulaires.length==0" class="list-vide">La liste des formulaires est vide.
                 </p>
             </div>
             <div class="tab gap-20" id="tab-4">
                 <span class="tab-title">Liste des modéles de lettres</span>
-                <table fxHide class="table table-liens-references">
+                <table *ngIf="demarche.modele_lettres.length!=0" class="table table-liens-references">
                     <tr>
                         <th>#</th>
                         <th>Nom</th>
-                        <th>Sigle</th>
-                        <th>Adresse</th>
-                        <th>Email</th>
-                        <th>Téléphone</th>
+                        <th>Description</th>
+                        <th>Etat</th>
+                        <th>Est publié</th>
                     </tr>
-                    <tr>
-                        <td>1</td>
-                        <td class="link">Code de l'urbanisme</td>
-                        <td>Maria Anders</td>
-                        <td>Germany</td>
-                        <td>Maria Anders</td>
-                        <td>Germany</td>
+                    <tr *ngFor="let model of demarche.modele_lettres;let i=index">
+                        <td>{{i+1}}</td>
+                        <td class="link">{{model.nom}}</td>
+                        <td>{{model.description}}</td>
+                        <td>{{model.etat}}</td>
+                        <td>{{model.est_publie?'Oui':'Non'}}</td>
                     </tr>
                 </table>
-                <p class="list-vide" fxShow>La liste des modéles de lettres est vide.
+                <p class="list-vide" *ngIf="demarche.modele_lettres.length==0">La liste des modéles de lettres est vide.
                 </p>
             </div>
             <div class="tab gap-20" id="tab-5">
                 <span class="tab-title">Liste des Questions\Réponses</span>
-                <table fxHide class="table table-liens-references">
+                <table *ngIf="demarche.faqs.length!=0" class="table table-liens-references">
                     <tr>
                         <th>#</th>
-                        <th>Nom</th>
-                        <th>Sigle</th>
-                        <th>Adresse</th>
-                        <th>Email</th>
-                        <th>Téléphone</th>
+                        <th>Question</th>
+                        <th>Reponse</th>
+                        <th>Etat</th>
+                        <th>Est publié</th>
                     </tr>
-                    <tr>
-                        <td>1</td>
-                        <td class="link">Code de l'urbanisme</td>
-                        <td>Maria Anders</td>
-                        <td>Germany</td>
-                        <td>Maria Anders</td>
-                        <td>Germany</td>
+                    <tr *ngFor="let faq of demarche.faqs;let i=index">
+                        <td>{{i+1}}</td>
+                        <td class="link">{{faq.question}}</td>
+                        <td>{{faq.reponse}}</td>
+                        <td>{{faq.etat}}</td>
+                        <td>{{faq.est_publie?'Oui':'Non'}}</td>
                     </tr>
                 </table>
-                <p class="list-vide" fxShow>Cette démarche n'est lié à aucune question.
+                <p class="list-vide" *ngIf="demarche.faqs.length==0">Cette démarche n'est lié à aucune question.
                 </p>
             </div>
             <div class="tab gap-20" id="tab-6">
-                <span class="tab-title">Liste des Questions\Réponses</span>
+                <span class="tab-title">Informations sur l'historique de la démarche
+                </span>
                 <table class="table table-questions-reponses">
                     <tr>
                         <th>#</th>

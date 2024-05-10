@@ -52,7 +52,7 @@ export class ViewDemarcheComponent implements AfterViewInit {
       .fetch({ demarcheId: this.demarcheId }, { fetchPolicy: 'no-cache' })
       .subscribe((result) => {
         this.demarche = result.data.fetchDemarche as any;
-        // console.log(this.demarche.post_scriptum);
+        // console.table(this.demarche.url);
       });
   }
 
