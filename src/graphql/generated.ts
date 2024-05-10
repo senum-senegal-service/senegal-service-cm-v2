@@ -3580,9 +3580,15 @@ export const FetchDemarcheDocument = gql`
       est_publie
       teleprocedure
       hub
+      updatedAt
+      date_publication
       service_administratifs {
         id
         nom
+        sigle
+        adresse
+        email
+        telephone
       }
       sous_themes {
         id
@@ -3607,6 +3613,11 @@ export const FetchDemarcheDocument = gql`
       textes {
         id
         nom
+        type_texte_id
+        slug
+        description
+        url
+        fichier
       }
       lien_utiles {
         id

@@ -2,7 +2,13 @@ import { AfterViewInit, Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { ModalConfirmationComponent } from 'src/app/shared/components/modal-confirmation/modal-confirmation.component';
-import { Demarche, FetchDemarcheGQL } from 'src/graphql/generated';
+import { SnackBarService } from 'src/app/shared/services/snackbar.service';
+import {
+  Demarche,
+  FetchDemarcheGQL,
+  PublishDemarcheGQL,
+  UnPublishDemarcheGQL,
+} from 'src/graphql/generated';
 
 @Component({
   selector: 'app-view-demarche',
@@ -25,7 +31,10 @@ export class ViewDemarcheComponent implements AfterViewInit {
   constructor(
     private route: ActivatedRoute,
     private fetchDemarcheGql: FetchDemarcheGQL,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private publichDemarche: PublishDemarcheGQL,
+    private unPublishDemarche: UnPublishDemarcheGQL,
+    private snackBarService: SnackBarService
   ) {
     this.route.paramMap.subscribe((params) => {
       this.demarcheId = params.get('id');
@@ -33,6 +42,18 @@ export class ViewDemarcheComponent implements AfterViewInit {
         this.fetchDemarche();
       }
     });
+  }
+
+  fetchDemarche() {
+    if (!this.demarcheId) {
+      return;
+    }
+    this.fetchDemarcheGql
+      .fetch({ demarcheId: this.demarcheId }, { fetchPolicy: 'no-cache' })
+      .subscribe((result) => {
+        this.demarche = result.data.fetchDemarche as any;
+        // console.log(this.demarche.post_scriptum);
+      });
   }
 
   ngAfterViewInit(): void {
@@ -63,64 +84,97 @@ export class ViewDemarcheComponent implements AfterViewInit {
     }
   }
 
-  fetchDemarche() {
-    if (!this.demarcheId) {
-      return;
-    }
-    this.fetchDemarcheGql
-      .fetch({ demarcheId: this.demarcheId }, { fetchPolicy: 'no-cache' })
-      .subscribe((result) => {
-        this.demarche = result.data.fetchDemarche as any;
-        console.log(this.demarche.updatedAt);
-      });
-  }
-
   handleChangeState() {
-    const data = {
-      message: `Changer l'état de validation !`,
-      btnMessage: 'Confirmer',
-      btnStyle: 'btn-success',
-    };
-    this.openDialogDelete(this.demarcheId, data);
+    this.openDialog('changeState', this.demarcheId);
   }
 
   handleUnPublish() {
-    const data = {
-      message: `Confirmer la dépublicaion de la démarche !`,
-      btnMessage: 'Confirmer',
-    };
-    this.openDialogDelete(this.demarcheId, data);
+    this.openDialog('unpublish', this.demarcheId);
   }
 
   handlePublish() {
-    const data = {
-      message: `Confirmer la publication de la démarche !`,
-      btnMessage: 'Confirmer',
-      btnStyle: 'btn-success',
-    };
-    this.openDialogDelete(this.demarcheId, data);
+    this.openDialog('publish', this.demarcheId);
   }
 
-  openDialogDelete(id: string, data: any): void {
+  openDialog(
+    action: 'changeState' | 'publish' | 'unpublish',
+    id: string
+  ): void {
+    let message: string;
+    let btnMessage: string;
+    let btnStyle: string;
+
+    switch (action) {
+      case 'changeState':
+        message = `Changer l'état de validation !`;
+        btnMessage = 'Confirmer';
+        btnStyle = 'btn-success';
+        break;
+      case 'publish':
+        message = 'Veuillez confirmer la publication !';
+        btnMessage = 'Publier';
+        btnStyle = 'btn-success';
+        break;
+      case 'unpublish':
+        message = 'Veuillez confirmer la dépublication !';
+        btnMessage = 'Dépublier';
+        btnStyle = 'btn-danger';
+        break;
+      default:
+        return; // Si une action non reconnue est passée, ne rien faire
+    }
+
     const dialogRef = this.dialog.open(ModalConfirmationComponent, {
-      data: data,
       maxHeight: '90vh',
       maxWidth: '600px',
       width: '100%',
+      data: {
+        message: message,
+        btnMessage: btnMessage,
+        btnStyle: btnStyle,
+      },
     });
 
     dialogRef.afterClosed().subscribe((resp) => {
       if (resp) {
-        // this.deleteHubGQL.mutate({ demarcheId: id }).subscribe(
-        //   (result) => {
-        //     if (result.data.deleteHub) {
-        //       this.getHubs(false);
-        //     }
-        //   },
-        //   (error) => {
-        //     this.snackBarService.showErrorSnackBar();
-        //   }
-        // );
+        switch (action) {
+          case 'changeState':
+            // this.deleteHubGQL.mutate({ hubId: id }).subscribe(
+            //   (result) => {
+            //     if (result.data.deleteHub) {
+            //       this.getHubs(false);
+            //     }
+            //   },
+            //   (error) => {
+            //     this.snackBarService.showErrorSnackBar();
+            //   }
+            // );
+            break;
+          case 'publish':
+            this.publichDemarche.mutate({ demarcheId: id }).subscribe(
+              (result) => {
+                if (result.data.publishDemarche) {
+                  this.fetchDemarche();
+                }
+              },
+              (error) => {
+                this.snackBarService.showErrorSnackBar();
+              }
+            );
+            break;
+          case 'unpublish':
+            this.unPublishDemarche.mutate({ demarcheId: id }).subscribe(
+              (result) => {
+                if (result.data.unPublishDemarche) {
+                  this.fetchDemarche();
+                }
+              },
+              (error) => {
+                this.snackBarService.showErrorSnackBar();
+              }
+            );
+            break;
+        }
       }
     });
   }
