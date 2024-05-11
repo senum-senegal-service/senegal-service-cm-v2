@@ -36,7 +36,7 @@
                     </p>
                     <p fxLayout="column" fxLayoutGap="8px">
                         <span class="txt-bolder">Source : </span>
-                        <span class="txt-light">{{"source"}}</span>
+                        <span class="txt-light">{{actuality?.url}}</span>
                     </p>
                 </div>
             </li>
@@ -53,7 +53,7 @@
                     <div>
                         <span class="txt-bolder">Sous thèmes: </span>
                         <p class="txt-light">
-                            <span class="link" *ngFor="let st of actuality.sous_themes">{{st.nom}}/</span>
+                            <span class="link" *ngFor="let st of actuality.sous_themes">{{st.libelle}}/</span>
                         </p>
                     </div>
                 </li>
@@ -97,7 +97,7 @@
                 <li class="item">
                     <p>
                         <span class="txt-bolder">Date de publication :</span>
-                        <span class="txt-light">{{actuality.date_publication | date:'dd/MM/yyyy'}}</span>
+                        <span class="txt-light">{{actuality.date_publication | date:'dd/MM/yyyy à HH:mm:ss'}}</span>
                     </p>
                 </li>
                 <li class="item">

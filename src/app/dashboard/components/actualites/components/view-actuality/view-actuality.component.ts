@@ -17,7 +17,7 @@ import {
 })
 export class ViewActualityComponent {
   actualityId: string = '';
-  actuality: any;
+  actuality: Actualite;
 
   constructor(
     public dialog: MatDialog,
@@ -43,8 +43,7 @@ export class ViewActualityComponent {
       .fetch({ actualiteId: this.actualityId }, { fetchPolicy: 'no-cache' })
       .subscribe((result) => {
         this.actuality = result.data.fetchActualite as any;
-        // console.log(this.actuality.add_by);
-        // console.log(this.actuality.id);
+        // console.log(this.actuality.demarches);
       });
   }
 

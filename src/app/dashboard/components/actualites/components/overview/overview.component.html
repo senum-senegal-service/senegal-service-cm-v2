@@ -42,8 +42,8 @@
                     <label for="">Filtrer par statut "à la une"</label>
                     <mat-form-field class="form-control">
                         <mat-label class="label">Choisir un état</mat-label>
-                        <mat-select (selectionChange)="getActualites()" id="filtre-etat" [(ngModel)]="selectedHeadline"
-                            formControlName="a_la_une" name="a_la_une">
+                        <mat-select (selectionChange)="getActualites()" id="filtre-etat" formControlName="a_la_une"
+                            name="a_la_une">
                             <div *ngFor="let statut of StatutsHeadline">
                                 <mat-option [value]="statut.value">{{statut.viewValue}}</mat-option>
                             </div>

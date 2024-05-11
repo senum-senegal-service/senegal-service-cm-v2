@@ -3117,6 +3117,7 @@ export const FetchActualiteDocument = gql`
       sous_themes {
         id
         nom: libelle
+        libelle
       }
       textes {
         id
@@ -3125,6 +3126,7 @@ export const FetchActualiteDocument = gql`
       demarches {
         id
         nom: titre
+        titre
       }
     }
   }
@@ -3337,6 +3339,9 @@ export const FetchAnnonceDocument = gql`
       action_button_text
       poster
       media_type
+      updatedAt
+      date_publication
+      add_by
       service_administratifs {
         id
         nom
@@ -3344,6 +3349,7 @@ export const FetchAnnonceDocument = gql`
       sous_themes {
         id
         nom: libelle
+        libelle
       }
     }
   }
