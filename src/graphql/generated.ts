@@ -3599,6 +3599,7 @@ export const FetchDemarcheDocument = gql`
       sous_themes {
         id
         nom: libelle
+        libelle
       }
       formulaires {
         id
@@ -3638,6 +3639,7 @@ export const FetchDemarcheDocument = gql`
       lien_utiles {
         id
         nom
+        url
       }
       demarches {
         id
@@ -4411,6 +4413,7 @@ export const FetchHubDocument = gql`
       sous_themes {
         id
         nom: libelle
+        libelle
       }
       formulaires {
         id

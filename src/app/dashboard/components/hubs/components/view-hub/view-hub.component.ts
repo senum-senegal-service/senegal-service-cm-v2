@@ -16,7 +16,7 @@ import {
   styleUrl: './view-hub.component.scss',
 })
 export class ViewHubComponent {
-  hub!: any;
+  hub!: Hub;
   hubId!: string;
 
   constructor(

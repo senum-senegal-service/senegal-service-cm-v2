@@ -18,6 +18,8 @@ import {
 export class ViewServiceComponent {
   serviceId: string;
   service: Service;
+  serviceAdministratif: any;
+
   constructor(
     public dialog: MatDialog,
     private fetchServiceGQL: FetchServiceGQL,
@@ -42,7 +44,8 @@ export class ViewServiceComponent {
       .fetch({ serviceId: this.serviceId }, { fetchPolicy: 'no-cache' })
       .subscribe((result) => {
         this.service = result.data.fetchService as any;
-        console.log(this.service.sous_themes);
+        this.serviceAdministratif = this.service.service_administratifs[0];
+        // console.log(this.service.sous_themes);
       });
   }
 

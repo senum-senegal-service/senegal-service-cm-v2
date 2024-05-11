@@ -178,4 +178,15 @@ export class ViewDemarcheComponent implements AfterViewInit {
       }
     });
   }
+
+  raccourcirURL(url) {
+    const longueurMaximale = 23;
+    if (url.length <= longueurMaximale) {
+      return url;
+    } else {
+      var debut = Math.floor((longueurMaximale - 3) / 2);
+      var fin = longueurMaximale - 3 - debut;
+      return url.substring(0, debut) + '...' + url.substring(url.length - fin);
+    }
+  }
 }

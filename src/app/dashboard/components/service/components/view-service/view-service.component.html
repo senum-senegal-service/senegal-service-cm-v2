@@ -44,25 +44,25 @@
                 <li class="item">
                     <p>
                         <span class="txt-bolder">Adresse : </span>
-                        <span class="txt-light ">{{service?.service_administratifs[0].adresse}} </span>
+                        <span class="txt-light ">{{serviceAdministratif.adresse}} </span>
                     </p>
                 </li>
                 <li class="item">
                     <p>
                         <span class="txt-bolder">Boite postale : </span>
-                        <span class="txt-light">{{service?.service_administratifs[0].boite_postale}} </span>
+                        <span class="txt-light">{{serviceAdministratif.boite_postale}} </span>
                     </p>
                 </li>
                 <li class="item">
                     <p>
                         <span class="txt-bolder">Ville : </span>
-                        <span class="txt-light">{{service?.service_administratifs[0].ville}}</span>
+                        <span class="txt-light">{{serviceAdministratif.ville}}</span>
                     </p>
                 </li>
                 <li class="item">
                     <p>
                         <span class="txt-bolder">Region : </span>
-                        <span class="txt-light">{{service?.service_administratifs[0].region}}</span>
+                        <span class="txt-light">{{serviceAdministratif.region}}</span>
                     </p>
                 </li>
             </ul>
@@ -70,31 +70,31 @@
                 <li class="item">
                     <p>
                         <span class="txt-bolder">Pays : </span>
-                        <span class="txt-light">{{service?.service_administratifs[0].pays_id}}</span>
+                        <span class="txt-light">{{serviceAdministratif.pays_id}}</span>
                     </p>
                 </li>
                 <li class="item">
                     <p>
                         <span class="txt-bolder">Email : </span>
-                        <span class="txt-light">{{service?.service_administratifs[0].email}}</span>
+                        <span class="txt-light">{{serviceAdministratif.email}}</span>
                     </p>
                 </li>
                 <li class="item">
                     <p>
                         <span class="txt-bolder">Numéro de téléphone : </span>
-                        <span class="txt-light">{{service?.service_administratifs[0].telephone}}</span>
+                        <span class="txt-light">{{serviceAdministratif.telephone}}</span>
                     </p>
                 </li>
                 <li class="item">
                     <p>
                         <span class="txt-bolder">Numéro Fax : </span>
-                        <span class="txt-light">{{service?.service_administratifs[0].fax}}</span>
+                        <span class="txt-light">{{serviceAdministratif.fax}}</span>
                     </p>
                 </li>
                 <li class="item">
                     <p>
                         <span class="txt-bolder">Site web : </span>
-                        <span class="txt-light">{{service?.service_administratifs[0].site_web}}</span>
+                        <span class="txt-light">{{serviceAdministratif.site_web}}</span>
                     </p>
                 </li>
                 <li class="item">
@@ -116,25 +116,25 @@
             <li class="item">
                 <p>
                     <span class="txt-bolder">Description : </span>
-                    <span class="txt-light   ">{{service?.service_administratifs[0].description}}</span>
+                    <span class="txt-light   ">{{serviceAdministratif.description}}</span>
                 </p>
             </li>
             <li class="item">
                 <p fxLayout="column">
                     <span class="txt-bolder">Accés : </span>
-                    <span class="txt-light " [innerHTML]="service?.service_administratifs[0].acces"></span>
+                    <span class="txt-light " [innerHTML]="serviceAdministratif.acces"></span>
                 </p>
             </li>
             <li class="item">
                 <p fxLayout="column">
                     <span class="txt-bolder">Remarques : </span>
-                    <span class="txt-light" [innerHTML]="service?.service_administratifs[0].remarque"></span>
+                    <span class="txt-light" [innerHTML]="serviceAdministratif.remarque"></span>
                 </p>
             </li>
             <li class="item">
                 <p>
                     <span class="txt-bolder">Observations : </span>
-                    <span class="txt-light   ">{{service?.service_administratifs[0].observations}}</span>
+                    <span class="txt-light   ">{{serviceAdministratif.observations}}</span>
                 </p>
             </li>
         </ul>

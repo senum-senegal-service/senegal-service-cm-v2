@@ -83,10 +83,14 @@
                             </p>
                         </li>
                         <li class="item">
-                            <p>
+                            <div fxLayout="column">
                                 <span class="txt-bolder">Lien téléprocédure :</span>
-                                <span class="txt-light "></span>
-                            </p>
+                                <p class="txt-light ">
+                                    <a class="link" *ngFor="let lien of demarche.lien_utiles" [href]="lien.url"
+                                        target="_blank">{{
+                                        raccourcirURL(lien.url)}}/</a>
+                                </p>
+                            </div>
                         </li>
                         <li class="item">
                             <p>
@@ -120,10 +124,6 @@
                         <div fxLayout="column" fxLayoutGap="16px">
                             <span class="txt-bolder">Corps :</span>
                             <p fxLayout="column" fxLayoutGap="8px" [innerHTML]="demarche.corps">
-                            </p>
-                            <p fxLayout="column" fxLayoutGap="8px">
-                                <span class="txt-bolder">Quelle est la nature de la pièce délivrée ?</span>
-                                <span class="txt-light">Une carte de lecteur,</span>
                             </p>
                         </div>
                     </li>

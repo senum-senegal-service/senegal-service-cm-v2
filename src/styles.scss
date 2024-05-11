@@ -1252,6 +1252,12 @@ textarea {
       transition: all .3s;
       cursor: pointer;
 
+
+
+      &:hover {
+        background: #F1F7FF;
+      }
+
       &.active {
         background-color: #188ae2;
         color: #fff;
