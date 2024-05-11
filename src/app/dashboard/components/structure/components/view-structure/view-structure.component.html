@@ -1,43 +1,42 @@
+<span class="goback" fxLayout="row" fxLayoutAlign="start center" appGoBack><span><mat-icon
+            fxLayoutAlign="start center">arrow_back</mat-icon></span><span>back</span></span>
 <div class="page-wrapper container-wrapper detail-container" fxLayout="column" fxLayoutGap="24px">
     <div fxLayout="column" fxLayoutGap="7px">
-        <span class="title">Gestion des hubs</span>
-        <span class="sub-title">Informations sur un hubs</span>
+        <span class="title">Gestion des structures ESS</span>
+        <span class="sub-title">Informations sur une structure</span>
     </div>
-    <div class="btn-actions" fxLayout="row" fxLayoutAlign="end start" fxLayoutGap="12px">
+    <div *ngIf="structure" class="btn-actions" fxLayout="row" fxLayoutAlign="end start" fxLayoutGap="12px">
         <button class="btn btn-primary" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="4px"
             (click)="handleChangeState()"><mat-icon>check</mat-icon><span>Changer l'état de validation</span></button>
-        <button class="btn btn-success" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="4px"
-            (click)="handlePublish()"><mat-icon title="Publier">notifications</mat-icon><span>Publié</span></button>
-        <button class="btn btn-danger" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="4px"
-            (click)="handleUnPublish()"><mat-icon title="Dépublier">lock</mat-icon>
+        <button *ngIf="!structure.est_publie" class="btn btn-success" fxLayout="row" fxLayoutAlign="start center"
+            fxLayoutGap="4px" (click)="handlePublish()"><mat-icon
+                title="Publier">notifications</mat-icon><span>Publié</span></button>
+        <button *ngIf="structure.est_publie" class="btn btn-danger" fxLayout="row" fxLayoutAlign="start center"
+            fxLayoutGap="4px" (click)="handleUnPublish()"><mat-icon title="Dépublier">lock</mat-icon>
             <span>Dépublié</span></button>
-        <button class="btn btn-warning" fxLayout="row" fxLayoutAlign="start center"
-            fxLayoutGap="4px"><mat-icon>edit</mat-icon><span>Modifier</span></button>
-        <button class="btn btn-outline-primary" fxLayout="row" fxLayoutAlign="start center"
-            fxLayoutGap="4px"><mat-icon>public</mat-icon><span>Voir sur le portail</span></button>
+        <button class="btn btn-warning" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="4px"
+            [routerLink]="'/dashboard/structures/'+structure.id"><mat-icon>edit</mat-icon><span>Modifier</span></button>
     </div>
-    <div class="tab active gap-32">
+    <div *ngIf="structure" class="tab active gap-32">
         <ul class="list-group">
             <li class="item">
-                <p fxLayout="column" fxLayoutGap="8px">
-                    <span class="txt-bolder">Titre de l'annonce : </span>
-                    <span class="txt-light">Port de Dakar : la modernisation du terminal vraquier améliore sensiblement
-                        les délais de manutention</span>
+                <p>
+                    <span class="txt-bolder">Titre : </span>
+                    <span class="txt-light">{{structure.libelle}}</span>
                 </p>
             </li>
             <li class="item">
                 <div fxLayout="column" fxLayoutGap="16px">
-                    <p fxLayout="column" fxLayoutGap="8px">
-                        <span class="txt-bolder">Contenu de l'annonce : </span>
-                        <span class="txt-light">Le Centre de Recherches et de Documentation du Sénégal (CRDS) est un
-                            organisme public rattaché à l’Université Gaston
-                            Berger de Saint louis. Il met son fonds documentaire à la disposition des usagers.</span>
+                    <p>
+                        <span class="txt-bolder">Description : </span>
+                        <span class="txt-light">{{structure.description}}</span>
                     </p>
                 </div>
             </li>
             <li class="item">
                 <p>
-                    <span class="txt-bolder">Descriptif :</span>
+                    <span class="txt-bolder">Localisation : </span>
+                    <span class="txt-light">{{structure.localisation}}</span>
                 </p>
             </li>
         </ul>
@@ -45,64 +44,56 @@
             <ul fxFlex="50" class="list-group">
                 <li class="item">
                     <p>
-                        <span class="txt-bolder">Sous thèmes: </span>
-                        <span class="txt-light"><span class="link">Transports et logistique</span> / <span
-                                class="link">Exportations, importations, transit et droits de douane</span> /</span>
+                        <span class="txt-bolder">Collectivité : </span>
+                        <span class="txt-light">{{structure.collectivite_id}}</span>
                     </p>
                 </li>
                 <li class="item">
                     <p>
-                        <span class="txt-bolder">Démarches : </span>
-                        <span class="txt-light "><span class="link">Devenir commissionnaire en douane agréé</span> /
-                            <span class="link">Déclarer des marchandises en douane</span> /</span>
+                        <span class="txt-bolder">Zone : </span>
+                        <span class="txt-light">{{structure.zone}}</span>
                     </p>
                 </li>
                 <li class="item">
                     <p>
-                        <span class="txt-bolder">Textes de réferences : </span>
-                        <span class="txt-light ">
-                            <span class="link">Décret relatif à la manutention manuelle des charges</span> / </span>
+                        <span class="txt-bolder">Responsable : </span>
+                        <span class="txt-light">{{structure.responsable}}</span>
                     </p>
                 </li>
                 <li class="item">
                     <p>
-                        <span class="txt-bolder">Etat de validation : </span>
-                        <span class="txt-light">Validé</span>
-                    </p>
-                </li>
-                <li class="item">
-                    <p>
-                        <span class="txt-bolder">Date de dernière modification : </span>
-                        <span class="txt-light">13/12/2011</span>
+                        <span class="txt-bolder">Contact responsable : </span>
+                        <span class="txt-light">{{structure.contact_responsable}}</span>
                     </p>
                 </li>
             </ul>
             <ul fxFlex="50" class="list-group">
                 <li class="item">
                     <p>
-                        <span class="txt-bolder">Est Publié ? : </span>
-                        <span class="txt-light  badge badge-success">Oui</span>
+                        <span class="txt-bolder">Map : </span>
+                        <a class="txt-light  link" [href]="structure.map" target="_blanc">voir map</a>
                     </p>
                 </li>
                 <li class="item">
                     <p>
-                        <span class="txt-bolder">Date de publication :</span>
-                        <span class="txt-light">13/12/2011 à 09:07:53</span>
+                        <span class="txt-bolder">Etat : </span>
+                        <span class="txt-light">{{structure.etat}} </span>
                     </p>
                 </li>
                 <li class="item">
                     <p>
-                        <span class="txt-bolder">Observations : </span>
-                        <span class="txt-light"></span>
+                        <span class="txt-bolder">Est publié ? : </span>
+                        <span class=" badge"
+                            [ngClass]="structure.est_publie?'badge-success':'badge-danger'">{{structure.est_publie?'Oui':'Non'}}
+                        </span>
                     </p>
                 </li>
                 <li class="item">
                     <p>
-                        <span class="txt-bolder">Crée par : </span>
-                        <span class="txt-light "></span>
+                        <span class="txt-bolder">Derniere date de modification :</span>
+                        <span class="txt-light">{{structure.updatedAt | date:'dd/mm/yyyy à hh:mm:ss'}}</span>
                     </p>
                 </li>
-
             </ul>
         </div>
     </div>
