@@ -19,6 +19,7 @@ import { Ng2GoogleChartsModule } from 'ng2-google-charts';
 import { ModalConfirmationModule } from '../../components/modal-confirmation/modal-confirmation.module';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { RouterModule } from '@angular/router';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [],
@@ -47,6 +48,7 @@ import { RouterModule } from '@angular/router';
     AngularEditorModule,
 
     RouterModule,
+    MatTooltipModule,
   ],
   exports: [
     FlexLayoutModule,
@@ -72,6 +74,7 @@ import { RouterModule } from '@angular/router';
 
     Ng2GoogleChartsModule,
     RouterModule,
+    MatTooltipModule,
   ],
 })
 export class MaterialModule {}

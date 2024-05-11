@@ -1,0 +1,142 @@
+<div class="page-wrapper container-wrapper detail-container" fxLayout="column" fxLayoutGap="24px">
+    <div fxLayout="column" fxLayoutGap="7px">
+        <span class="title">Gestion des services</span>
+        <span class="sub-title">Informations sur un service</span>
+    </div>
+    <div *ngIf="service" class="btn-actions" fxLayout="row" fxLayoutAlign="end start" fxLayoutGap="12px">
+        <button class="btn btn-primary" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="4px"
+            (click)="handleChangeState()"><mat-icon>check</mat-icon><span>Changer l'état de validation</span></button>
+        <button *ngIf="!service.est_publie" class="btn btn-success" fxLayout="row" fxLayoutAlign="start center"
+            fxLayoutGap="4px" (click)="handlePublish()"><mat-icon title="Publier">notifications</mat-icon>
+            <span>Publié</span></button>
+        <button *ngIf="service.est_publie" class="btn btn-danger" fxLayout="row" fxLayoutAlign="start center"
+            fxLayoutGap="4px" (click)="handleUnPublish()"><mat-icon title="Dépublier">lock</mat-icon>
+            <span>Dépublié</span></button>
+        <button class="btn btn-warning" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="4px"
+            [routerLink]="'/dashboard/services/'+service.id"><mat-icon>edit</mat-icon><span>Modifier</span></button>
+        <button class="btn btn-outline-primary" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="4px"
+            [routerLink]="service.url?service.url:'/dashboard/services/detail/'+service.id"><mat-icon>public</mat-icon><span>Voir
+                sur le portail</span></button>
+    </div>
+    <div class="tab active gap-32" *ngIf="service">
+        <div class="top" fxLayout="row" fxLayoutGap="24px" fxLayoutAlign="start start">
+            <ul fxFlex="50" class="list-group">
+                <li class="item">
+                    <p>
+                        <span class="txt-bolder">Nom : </span>
+                        <span class="txt-light">{{service.titre}}</span>
+                    </p>
+                </li>
+                <li class="item">
+                    <p>
+                        <span class="txt-bolder">Sigle : </span>
+                        <span class="txt-light"></span>
+                    </p>
+                </li>
+                <li class="item">
+                    <div fxLayout="row">
+                        <span class="txt-bolder">Rataché à : </span>
+                        <p class="txt-light">
+                            <span *ngFor="let st of service.service_administratifs">{{st.nom}}</span>
+                        </p>
+                    </div>
+                </li>
+                <li class="item">
+                    <p>
+                        <span class="txt-bolder">Adresse : </span>
+                        <span class="txt-light ">{{serviceAdministratif.adresse}} </span>
+                    </p>
+                </li>
+                <li class="item">
+                    <p>
+                        <span class="txt-bolder">Boite postale : </span>
+                        <span class="txt-light">{{serviceAdministratif.boite_postale}} </span>
+                    </p>
+                </li>
+                <li class="item">
+                    <p>
+                        <span class="txt-bolder">Ville : </span>
+                        <span class="txt-light">{{serviceAdministratif.ville}}</span>
+                    </p>
+                </li>
+                <li class="item">
+                    <p>
+                        <span class="txt-bolder">Region : </span>
+                        <span class="txt-light">{{serviceAdministratif.region}}</span>
+                    </p>
+                </li>
+            </ul>
+            <ul fxFlex="50" class="list-group">
+                <li class="item">
+                    <p>
+                        <span class="txt-bolder">Pays : </span>
+                        <span class="txt-light">{{serviceAdministratif.pays_id}}</span>
+                    </p>
+                </li>
+                <li class="item">
+                    <p>
+                        <span class="txt-bolder">Email : </span>
+                        <span class="txt-light">{{serviceAdministratif.email}}</span>
+                    </p>
+                </li>
+                <li class="item">
+                    <p>
+                        <span class="txt-bolder">Numéro de téléphone : </span>
+                        <span class="txt-light">{{serviceAdministratif.telephone}}</span>
+                    </p>
+                </li>
+                <li class="item">
+                    <p>
+                        <span class="txt-bolder">Numéro Fax : </span>
+                        <span class="txt-light">{{serviceAdministratif.fax}}</span>
+                    </p>
+                </li>
+                <li class="item">
+                    <p>
+                        <span class="txt-bolder">Site web : </span>
+                        <span class="txt-light">{{serviceAdministratif.site_web}}</span>
+                    </p>
+                </li>
+                <li class="item">
+                    <p>
+                        <span class="txt-bolder">Etat de validation : </span>
+                        <span class="txt-light  badge badge-purple">{{service.etat}}</span>
+                    </p>
+                </li>
+                <li class="item">
+                    <p>
+                        <span class="txt-bolder">Est Publié ? : </span>
+                        <span class="txt-light  badge "
+                            [ngClass]="service.est_publie?'badge-success':'badge-danger'">{{service.est_publie?'Oui':'Non'}}</span>
+                    </p>
+                </li>
+            </ul>
+        </div>
+        <ul class="list-group">
+            <li class="item">
+                <p>
+                    <span class="txt-bolder">Description : </span>
+                    <span class="txt-light   ">{{serviceAdministratif.description}}</span>
+                </p>
+            </li>
+            <li class="item">
+                <p fxLayout="column">
+                    <span class="txt-bolder">Accés : </span>
+                    <span class="txt-light " [innerHTML]="serviceAdministratif.acces"></span>
+                </p>
+            </li>
+            <li class="item">
+                <p fxLayout="column">
+                    <span class="txt-bolder">Remarques : </span>
+                    <span class="txt-light" [innerHTML]="serviceAdministratif.remarque"></span>
+                </p>
+            </li>
+            <li class="item">
+                <p>
+                    <span class="txt-bolder">Observations : </span>
+                    <span class="txt-light   ">{{serviceAdministratif.observations}}</span>
+                </p>
+            </li>
+        </ul>
+    </div>
+</div>

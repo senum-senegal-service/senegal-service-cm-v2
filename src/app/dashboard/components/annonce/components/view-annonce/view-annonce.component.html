@@ -1,0 +1,115 @@
+<span class="goback" fxLayout="row" fxLayoutAlign="start center" appGoBack><span><mat-icon
+            fxLayoutAlign="start center">arrow_back</mat-icon></span><span>back</span></span>
+<div class="page-wrapper container-wrapper detail-container" fxLayout="column" fxLayoutGap="24px">
+    <div fxLayout="column" fxLayoutGap="7px">
+        <span class="title">Gestion des annonces</span>
+        <span class="sub-title">Informations sur l'annonce</span>
+    </div>
+    <div *ngIf="annonce" class="btn-actions" fxLayout="row" fxLayoutAlign="end start" fxLayoutGap="12px">
+        <button class="btn btn-primary" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="4px"
+            (click)="handleChangeState()"><mat-icon>check</mat-icon><span>Changer l'état de validation</span></button>
+        <button class="btn btn-success" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="4px"
+            (click)="handlePublish()" *ngIf="!annonce.est_publie"><mat-icon
+                title="Publier">notifications</mat-icon><span>Publié</span></button>
+        <button class="btn btn-danger" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="4px"
+            (click)="handleUnPublish()" *ngIf=" annonce.est_publie"><mat-icon title="Dépublier">lock</mat-icon>
+            <span>Dépublié</span></button>
+        <button class="btn btn-warning" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="4px"
+            [routerLink]="'/dashboard/annonces/'+annonce.id"><mat-icon>edit</mat-icon><span>Modifier</span></button>
+        <button class="btn btn-outline-primary" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="4px"
+            [routerLink]="annonce.url?annonce.url:'/dashboard/annonces/detail/'+annonce.id"><mat-icon>public</mat-icon><span>Voir
+                sur le portail</span></button>
+    </div>
+    <div *ngIf="annonce" class="tab active gap-32">
+        <ul class="list-group">
+            <li class="item">
+                <p fxLayout="column" fxLayoutGap="8px">
+                    <span class="txt-bolder">Titre de l'annonce : </span>
+                    <span class="txt-light">{{annonce.titre}}</span>
+                </p>
+            </li>
+            <li class="item">
+                <p>
+                    <span class="txt-bolder">Sous-titre :</span>
+                    <span class="txt-light">{{annonce.sous_titre}}</span>
+                </p>
+            </li>
+            <li class="item">
+                <div fxLayout="column" fxLayoutGap="16px">
+                    <p fxLayout="column" fxLayoutGap="8px">
+                        <span class="txt-bolder">Description de l'annonce : </span>
+                        <span class="txt-light">{{annonce.description}}</span>
+                    </p>
+                </div>
+            </li>
+        </ul>
+        <div class="top" fxLayout="row" fxLayoutGap="24px" fxLayoutAlign="start start">
+            <ul fxFlex="50" class="list-group">
+                <li class="item">
+                    <div>
+                        <span class="txt-bolder">Sous thèmes: </span>
+                        <p class="txt-light">
+                            <span class="link" *ngFor="let st of annonce.sous_themes">{{st.libelle}}/</span>
+                        </p>
+                    </div>
+                </li>
+                <li class="item">
+
+                    <div>
+                        <span class="txt-bolder">Service administratifs : </span>
+                        <p class="txt-light">
+                            <span class="link" *ngFor="let sa of annonce.service_administratifs">{{sa.nom}}/</span>
+                        </p>
+                    </div>
+                </li>
+                <li class="item">
+                    <p>
+                        <span class="txt-bolder">Textes de réferences : </span>
+                        <span class="txt-light ">
+                            <span class="link">Décret relatif à la manutention manuelle des charges</span> / </span>
+                    </p>
+                </li>
+                <li class="item">
+                    <p>
+                        <span class="txt-bolder">Etat de validation : </span>
+                        <span class="txt-light">{{annonce.etat}}</span>
+                    </p>
+                </li>
+                <li class="item">
+                    <p>
+                        <span class="txt-bolder">Date de dernière modification : </span>
+                        <span class="txt-light">{{annonce.updatedAt | date:'dd/MM/yyyy'}}</span>
+                    </p>
+                </li>
+            </ul>
+            <ul fxFlex="50" class="list-group">
+                <li class="item">
+                    <p>
+                        <span class="txt-bolder">Est Publié ? : </span>
+                        <span class="txt-light  badge "
+                            [ngClass]="annonce.est_publie?'badge-success':'badge-danger'">{{annonce.est_publie?'Oui':'Non'}}</span>
+                    </p>
+                </li>
+                <li class="item">
+                    <p>
+                        <span class="txt-bolder">Date de publication :</span>
+                        <span class="txt-light">{{annonce.date_publication | date:'dd/mm/yyyy à hh:mm'}}</span>
+                    </p>
+                </li>
+                <li class="item">
+                    <p>
+                        <span class="txt-bolder">Type de média : </span>
+                        <span class="txt-light">{{annonce.media_type}}</span>
+                    </p>
+                </li>
+                <li class="item">
+                    <p>
+                        <span class="txt-bolder">Crée par : </span>
+                        <span class="txt-light ">{{annonce.add_by}}</span>
+                    </p>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</div>

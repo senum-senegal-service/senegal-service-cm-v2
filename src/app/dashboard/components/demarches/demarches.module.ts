@@ -11,6 +11,7 @@ import { DropdownModule } from 'src/app/shared/directives/dropdown/dropdown.modu
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MultiSelectModule } from 'src/app/shared/components/multi-select/multi-select.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { ViewDemarcheComponent } from './components/view-demarche/view-demarche.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     CreateDemarcheComponent,
     DemarcheFormComponent,
     EditDemarcheComponent,
+    ViewDemarcheComponent,
   ],
   imports: [
     CommonModule,

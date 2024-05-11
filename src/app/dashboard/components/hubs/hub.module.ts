@@ -11,6 +11,7 @@ import { DropdownModule } from 'src/app/shared/directives/dropdown/dropdown.modu
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MultiSelectModule } from 'src/app/shared/components/multi-select/multi-select.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { ViewHubComponent } from './components/view-hub/view-hub.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     CreateHubComponent,
     HubFormComponent,
     EditHubComponent,
+    ViewHubComponent,
   ],
   imports: [
     CommonModule,

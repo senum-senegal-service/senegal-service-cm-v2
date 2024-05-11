@@ -52,7 +52,6 @@ export class OverviewComponent {
 
   selectedState: string = 'Choisir un état';
   selectedStatut: string;
-  selectedHeadline: string;
   selectedProcedure: string;
 
   states: any[] = SelectOptions.states;
@@ -116,7 +115,7 @@ export class OverviewComponent {
     });
   }
 
-  getActualites(useCache=true) {
+  getActualites(useCache = true) {
     const actualiteFilter = this.getFilters();
     const queryFilter = {
       limit: this.pageSize,
@@ -124,7 +123,10 @@ export class OverviewComponent {
       search: this.filterForm?.value?.search || null,
     };
     this.fetchActualitesGQL
-      .fetch({ queryFilter, actualiteFilter }, { fetchPolicy: useCache ? 'cache-first': 'no-cache' })
+      .fetch(
+        { queryFilter, actualiteFilter },
+        { fetchPolicy: useCache ? 'cache-first' : 'no-cache' }
+      )
       .subscribe((result) => {
         this.data = result.data.fetchActualites as any;
         this.currentPage = this.data.pagination.currentPage;
@@ -168,11 +170,13 @@ export class OverviewComponent {
 
     dialogRef.afterClosed().subscribe((resp) => {
       if (resp) {
-        this.deleteActualiteGQL.mutate({ actualiteId: id }).subscribe((result) => {
-          if(result.data.deleteActualite) {
-            this.getActualites(false);
-          }
-        });
+        this.deleteActualiteGQL
+          .mutate({ actualiteId: id })
+          .subscribe((result) => {
+            if (result.data.deleteActualite) {
+              this.getActualites(false);
+            }
+          });
       }
     });
   }
@@ -183,20 +187,20 @@ export class OverviewComponent {
       maxWidth: '600px',
       width: '100%',
       data: {
-        message: "Veuillez confirmer la publication !",
-        btnMessage: "Publier"
-      }
+        message: 'Veuillez confirmer la publication !',
+        btnMessage: 'Publier',
+      },
     });
 
     dialogRef.afterClosed().subscribe((resp) => {
       if (resp) {
         this.publishActualiteGQL.mutate({ actualiteId: id }).subscribe(
           (result) => {
-            if(result.data.publishActualite) {
+            if (result.data.publishActualite) {
               this.getActualites(false);
             }
           },
-          error => {
+          (error) => {
             this.snackBarService.showErrorSnackBar();
           }
         );
@@ -210,20 +214,20 @@ export class OverviewComponent {
       maxWidth: '600px',
       width: '100%',
       data: {
-        message: "Veuillez confirmer la dépublication !",
-        btnMessage: "Dépublier"
-      }
+        message: 'Veuillez confirmer la dépublication !',
+        btnMessage: 'Dépublier',
+      },
     });
 
     dialogRef.afterClosed().subscribe((resp) => {
       if (resp) {
         this.unPublishActualiteGQL.mutate({ actualiteId: id }).subscribe(
           (result) => {
-            if(result.data.unPublishActualite) {
+            if (result.data.unPublishActualite) {
               this.getActualites(false);
             }
           },
-          error => {
+          (error) => {
             this.snackBarService.showErrorSnackBar();
           }
         );

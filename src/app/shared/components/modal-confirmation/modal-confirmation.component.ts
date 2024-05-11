@@ -10,24 +10,21 @@ import { MatDialogRef } from '@angular/material/dialog';
 export class ModalConfirmationComponent {
   message: string;
   btnMessage: string;
+  btnStyle: string;
   constructor(
     public dialogRef: MatDialogRef<ModalConfirmationComponent>,
     @Inject(DIALOG_DATA) private data: any
   ) {
-    console.log({data})
-    this.message = data?.message || "Confirmer la suppression !";
-    this.btnMessage = data?.btnMessage || "Supprimer";
+    this.message = data?.message || 'Confirmer la suppression !';
+    this.btnMessage = data?.btnMessage || 'Supprimer';
+    this.btnStyle = data?.btnStyle || 'btn-danger';
   }
 
-  onNoClick(): void {
+  handleCancel(): void {
     this.dialogRef.close(false);
   }
 
-  handleDelete() {
+  handleActionModal() {
     this.dialogRef.close(true);
-  }
-
-  cancel() {
-    this.dialogRef.close();
   }
 }

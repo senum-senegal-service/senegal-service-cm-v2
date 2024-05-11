@@ -6,6 +6,7 @@ import { AnnoncesComponent } from './annonce.component';
 import { OverviewComponent } from './components/overview/overview.component';
 import { CreateAnnonceComponent } from './components/create-annonce/create-annonce.component';
 import { EditAnnonceComponent } from './components/edit-annonce/edit-annonce.component';
+import { ViewAnnonceComponent } from './components/view-annonce/view-annonce.component';
 
 const routes: Routes = [
   {
@@ -24,6 +25,10 @@ const routes: Routes = [
       {
         path: ':id',
         component: EditAnnonceComponent,
+      },
+      {
+        path: 'detail/:id',
+        component: ViewAnnonceComponent,
       },
     ],
   },

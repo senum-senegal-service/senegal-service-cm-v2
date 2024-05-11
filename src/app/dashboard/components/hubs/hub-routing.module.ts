@@ -6,6 +6,7 @@ import { HubsComponent } from './hub.component';
 import { OverviewComponent } from './components/overview/overview.component';
 import { CreateHubComponent } from './components/create-hub/create-hub.component';
 import { EditHubComponent } from './components/edit-hub/edit-hub.component';
+import { ViewHubComponent } from './components/view-hub/view-hub.component';
 
 const routes: Routes = [
   {
@@ -24,6 +25,10 @@ const routes: Routes = [
       {
         path: ':id',
         component: EditHubComponent,
+      },
+      {
+        path: 'detail/:id',
+        component: ViewHubComponent,
       },
     ],
   },

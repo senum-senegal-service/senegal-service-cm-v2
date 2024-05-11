@@ -116,7 +116,7 @@ export class OverviewComponent {
     });
   }
 
-  getHubs(useCache=true) {
+  getHubs(useCache = true) {
     const hubFilter = this.getFilters();
     const queryFilter = {
       limit: this.pageSize,
@@ -124,7 +124,10 @@ export class OverviewComponent {
       search: this.filterForm?.value?.search || null,
     };
     this.fetchHubsGQL
-      .fetch({ queryFilter, hubFilter }, { fetchPolicy: useCache ? 'cache-first' : 'no-cache' })
+      .fetch(
+        { queryFilter, hubFilter },
+        { fetchPolicy: useCache ? 'cache-first' : 'no-cache' }
+      )
       .subscribe((result) => {
         this.data = result.data.fetchHubs as any;
         this.currentPage = this.data.pagination.currentPage;
@@ -144,97 +147,100 @@ export class OverviewComponent {
   }
 
   handleDeleteHub(id: string) {
-    this.openDialogDelete(id);
+    // this.openDialogDelete(id);
+    this.openDialog('delete', id);
   }
 
   handlePublish(id: string) {
-    this.openDialogPublish(id);
+    // this.openDialogPublish(id);
+    this.openDialog('publish', id);
   }
 
   handleUnPublish(id: string) {
-    this.openDialogUnPublish(id);
+    // this.openDialogUnPublish(id);
+    this.openDialog('unpublish', id);
   }
 
   search($event: Event) {
     this.searchTerms.next(($event.target as HTMLInputElement).value);
   }
 
-  openDialogDelete(id: string): void {
-    const dialogRef = this.dialog.open(ModalConfirmationComponent, {
-      maxHeight: '90vh',
-      maxWidth: '600px',
-      width: '100%',
-    });
+  // openDialogDelete(id: string): void {
+  //   const dialogRef = this.dialog.open(ModalConfirmationComponent, {
+  //     maxHeight: '90vh',
+  //     maxWidth: '600px',
+  //     width: '100%',
+  //   });
 
-    dialogRef.afterClosed().subscribe((resp) => {
-      if (resp) {
-        this.deleteHubGQL.mutate({ hubId: id }).subscribe(
-          (result) => {
-            if(result.data.deleteHub) {
-              this.getHubs(false);
-            }
-          },
-          error => {
-            this.snackBarService.showErrorSnackBar();
-          }
-        );
-      }
-    });
-  }
+  //   dialogRef.afterClosed().subscribe((resp) => {
+  //     if (resp) {
+  //       this.deleteHubGQL.mutate({ hubId: id }).subscribe(
+  //         (result) => {
+  //           if (result.data.deleteHub) {
+  //             this.getHubs(false);
+  //           }
+  //         },
+  //         (error) => {
+  //           this.snackBarService.showErrorSnackBar();
+  //         }
+  //       );
+  //     }
+  //   });
+  // }
 
-  openDialogPublish(id: string): void {
-    const dialogRef = this.dialog.open(ModalConfirmationComponent, {
-      maxHeight: '90vh',
-      maxWidth: '600px',
-      width: '100%',
-      data: {
-        message: "Veuillez confirmer la publication !",
-        btnMessage: "Publier"
-      }
-    });
+  // openDialogPublish(id: string): void {
+  //   const dialogRef = this.dialog.open(ModalConfirmationComponent, {
+  //     maxHeight: '90vh',
+  //     maxWidth: '600px',
+  //     width: '100%',
+  //     data: {
+  //       message: 'Veuillez confirmer la publication !',
+  //       btnMessage: 'Publier',
+  //     },
+  //   });
 
-    dialogRef.afterClosed().subscribe((resp) => {
-      if (resp) {
-        this.publishHubGQL.mutate({ hubId: id }).subscribe(
-          (result) => {
-            if(result.data.publishHub) {
-              this.getHubs(false);
-            }
-          },
-          error => {
-            this.snackBarService.showErrorSnackBar();
-          }
-        );
-      }
-    });
-  }
+  //   dialogRef.afterClosed().subscribe((resp) => {
+  //     if (resp) {
+  //       this.publishHubGQL.mutate({ hubId: id }).subscribe(
+  //         (result) => {
+  //           if (result.data.publishHub) {
+  //             this.getHubs(false);
+  //           }
+  //         },
+  //         (error) => {
+  //           this.snackBarService.showErrorSnackBar();
+  //         }
+  //       );
+  //     }
+  //   });
+  // }
 
-  openDialogUnPublish(id: string): void {
-    const dialogRef = this.dialog.open(ModalConfirmationComponent, {
-      maxHeight: '90vh',
-      maxWidth: '600px',
-      width: '100%',
-      data: {
-        message: "Veuillez confirmer la dépublication !",
-        btnMessage: "Dépublier"
-      }
-    });
+  // openDialogUnPublish(id: string): void {
+  //   const dialogRef = this.dialog.open(ModalConfirmationComponent, {
+  //     maxHeight: '90vh',
+  //     maxWidth: '600px',
+  //     width: '100%',
+  //     data: {
+  //       message: 'Veuillez confirmer la dépublication !',
+  //       btnMessage: 'Dépublier',
+  //     },
+  //   });
 
-    dialogRef.afterClosed().subscribe((resp) => {
-      if (resp) {
-        this.unPublishHubGQL.mutate({ hubId: id }).subscribe(
-          (result) => {
-            if(result.data.unPublishHub) {
-              this.getHubs(false);
-            }
-          },
-          error => {
-            this.snackBarService.showErrorSnackBar();
-          }
-        );
-      }
-    });
-  }
+  //   dialogRef.afterClosed().subscribe((resp) => {
+  //     if (resp) {
+  //       this.unPublishHubGQL.mutate({ hubId: id }).subscribe(
+  //         (result) => {
+  //           if (result.data.unPublishHub) {
+  //             this.getHubs(false);
+  //           }
+  //         },
+  //         (error) => {
+  //           this.snackBarService.showErrorSnackBar();
+  //         }
+  //       );
+  //     }
+  //   });
+  // }
 
   truncateString(str: string): string {
     str = str || '';
@@ -253,5 +259,80 @@ export class OverviewComponent {
 
   onOptionSelected(value: any) {
     this.selectedState = value;
+  }
+
+  openDialog(action: 'delete' | 'publish' | 'unpublish', id: string): void {
+    let message: string;
+    let btnMessage: string;
+
+    switch (action) {
+      case 'delete':
+        message = 'Veuillez confirmer la suppression !';
+        btnMessage = 'Supprimer';
+        break;
+      case 'publish':
+        message = 'Veuillez confirmer la publication !';
+        btnMessage = 'Publier';
+        break;
+      case 'unpublish':
+        message = 'Veuillez confirmer la dépublication !';
+        btnMessage = 'Dépublier';
+        break;
+      default:
+        return; // Si une action non reconnue est passée, ne rien faire
+    }
+
+    const dialogRef = this.dialog.open(ModalConfirmationComponent, {
+      maxHeight: '90vh',
+      maxWidth: '600px',
+      width: '100%',
+      data: {
+        message: message,
+        btnMessage: btnMessage,
+      },
+    });
+
+    dialogRef.afterClosed().subscribe((resp) => {
+      if (resp) {
+        switch (action) {
+          case 'delete':
+            this.deleteHubGQL.mutate({ hubId: id }).subscribe(
+              (result) => {
+                if (result.data.deleteHub) {
+                  this.getHubs(false);
+                }
+              },
+              (error) => {
+                this.snackBarService.showErrorSnackBar();
+              }
+            );
+            break;
+          case 'publish':
+            this.publishHubGQL.mutate({ hubId: id }).subscribe(
+              (result) => {
+                if (result.data.publishHub) {
+                  this.getHubs(false);
+                }
+              },
+              (error) => {
+                this.snackBarService.showErrorSnackBar();
+              }
+            );
+            break;
+          case 'unpublish':
+            this.unPublishHubGQL.mutate({ hubId: id }).subscribe(
+              (result) => {
+                if (result.data.unPublishHub) {
+                  this.getHubs(false);
+                }
+              },
+              (error) => {
+                this.snackBarService.showErrorSnackBar();
+              }
+            );
+            break;
+        }
+      }
+    });
   }
 }

@@ -1,0 +1,100 @@
+<span class="goback" fxLayout="row" fxLayoutAlign="start center" appGoBack><span><mat-icon
+            fxLayoutAlign="start center">arrow_back</mat-icon></span><span>back</span></span>
+<div class="page-wrapper container-wrapper detail-container" fxLayout="column" fxLayoutGap="24px">
+    <div fxLayout="column" fxLayoutGap="7px">
+        <span class="title">Gestion des structures ESS</span>
+        <span class="sub-title">Informations sur une structure</span>
+    </div>
+    <div *ngIf="structure" class="btn-actions" fxLayout="row" fxLayoutAlign="end start" fxLayoutGap="12px">
+        <button class="btn btn-primary" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="4px"
+            (click)="handleChangeState()"><mat-icon>check</mat-icon><span>Changer l'état de validation</span></button>
+        <button *ngIf="!structure.est_publie" class="btn btn-success" fxLayout="row" fxLayoutAlign="start center"
+            fxLayoutGap="4px" (click)="handlePublish()"><mat-icon
+                title="Publier">notifications</mat-icon><span>Publié</span></button>
+        <button *ngIf="structure.est_publie" class="btn btn-danger" fxLayout="row" fxLayoutAlign="start center"
+            fxLayoutGap="4px" (click)="handleUnPublish()"><mat-icon title="Dépublier">lock</mat-icon>
+            <span>Dépublié</span></button>
+        <button class="btn btn-warning" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="4px"
+            [routerLink]="'/dashboard/structures/'+structure.id"><mat-icon>edit</mat-icon><span>Modifier</span></button>
+    </div>
+    <div *ngIf="structure" class="tab active gap-32">
+        <ul class="list-group">
+            <li class="item">
+                <p>
+                    <span class="txt-bolder">Titre : </span>
+                    <span class="txt-light">{{structure.libelle}}</span>
+                </p>
+            </li>
+            <li class="item">
+                <div fxLayout="column" fxLayoutGap="16px">
+                    <p>
+                        <span class="txt-bolder">Description : </span>
+                        <span class="txt-light">{{structure.description}}</span>
+                    </p>
+                </div>
+            </li>
+            <li class="item">
+                <p>
+                    <span class="txt-bolder">Localisation : </span>
+                    <span class="txt-light">{{structure.localisation}}</span>
+                </p>
+            </li>
+        </ul>
+        <div class="top" fxLayout="row" fxLayoutGap="24px" fxLayoutAlign="start start">
+            <ul fxFlex="50" class="list-group">
+                <li class="item">
+                    <p>
+                        <span class="txt-bolder">Collectivité : </span>
+                        <span class="txt-light">{{structure.collectivite_id}}</span>
+                    </p>
+                </li>
+                <li class="item">
+                    <p>
+                        <span class="txt-bolder">Zone : </span>
+                        <span class="txt-light">{{structure.zone}}</span>
+                    </p>
+                </li>
+                <li class="item">
+                    <p>
+                        <span class="txt-bolder">Responsable : </span>
+                        <span class="txt-light">{{structure.responsable}}</span>
+                    </p>
+                </li>
+                <li class="item">
+                    <p>
+                        <span class="txt-bolder">Contact responsable : </span>
+                        <span class="txt-light">{{structure.contact_responsable}}</span>
+                    </p>
+                </li>
+            </ul>
+            <ul fxFlex="50" class="list-group">
+                <li class="item">
+                    <p>
+                        <span class="txt-bolder">Map : </span>
+                        <a class="txt-light  link" [href]="structure.map" target="_blanc">voir map</a>
+                    </p>
+                </li>
+                <li class="item">
+                    <p>
+                        <span class="txt-bolder">Etat : </span>
+                        <span class="txt-light">{{structure.etat}} </span>
+                    </p>
+                </li>
+                <li class="item">
+                    <p>
+                        <span class="txt-bolder">Est publié ? : </span>
+                        <span class=" badge"
+                            [ngClass]="structure.est_publie?'badge-success':'badge-danger'">{{structure.est_publie?'Oui':'Non'}}
+                        </span>
+                    </p>
+                </li>
+                <li class="item">
+                    <p>
+                        <span class="txt-bolder">Derniere date de modification :</span>
+                        <span class="txt-light">{{structure.updatedAt | date:'dd/mm/yyyy à hh:mm:ss'}}</span>
+                    </p>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

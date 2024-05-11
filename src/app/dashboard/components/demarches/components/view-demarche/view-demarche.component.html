@@ -1,0 +1,264 @@
+<span class="goback" fxLayout="row" fxLayoutAlign="start center" appGoBack><span><mat-icon
+            fxLayoutAlign="start center">arrow_back</mat-icon></span><span>back</span></span>
+
+<div class="page-wrapper container-wrapper detail-container" fxLayout="column" fxLayoutGap="24px">
+    <div fxLayout="column" fxLayoutGap="7px">
+        <span class="title">Gestion des démarches</span>
+        <span class="sub-title">Informations sur le démarche</span>
+    </div>
+    <div class="btn-actions" fxLayout="row" fxLayoutAlign="end start" fxLayoutGap="12px">
+        <button class="btn btn-primary" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="4px"
+            (click)="handleChangeState()"><mat-icon>check</mat-icon><span>Changer l'état de validation</span></button>
+        <button class="btn btn-success" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="4px"
+            (click)="handlePublish()" *ngIf="demarche && !demarche.est_publie"><mat-icon
+                title="Publier">notifications</mat-icon>
+            <span>Publié</span></button>
+        <button class="btn btn-danger" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="4px"
+            (click)="handleUnPublish()" *ngIf="demarche && demarche.est_publie"><mat-icon
+                title="Dépublier">lock</mat-icon>
+            <span>Dépublié</span></button>
+        <button class="btn btn-warning" fxLayout="row" fxLayoutAlign="start center"
+            fxLayoutGap="4px"><mat-icon>edit</mat-icon><span>Modifier</span></button>
+        <button class="btn btn-outline-primary" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="4px"
+            [routerLink]="demarche?.url"><mat-icon>public</mat-icon><span>Voir sur le portail</span></button>
+    </div>
+    <div fxLayout="row" fxLayoutGap="24px" fxLayoutAlign="start none">
+        <ul class="navs" fxLayout="column" fxLayoutGap="12px">
+            <li class="nav-link" *ngFor="let link of navList;let i=index" [ngClass]="i==0?'active':''">
+                {{link}}</li>
+        </ul>
+        <div *ngIf="demarche" fxFlex="auto" class="content">
+            <div class="tab active gap-32" id="tab-0">
+                <div class="top" fxLayout="row" fxLayoutGap="24px" fxLayoutAlign="start start">
+                    <ul fxFlex="50" class="list-group">
+                        <li class="item">
+                            <p>
+                                <span class="txt-bolder">Titre :</span>
+                                <span class="txt-light">{{this.demarche.titre}}</span>
+                            </p>
+                        </li>
+                        <li class="item">
+                            <p>
+                                <span class="txt-bolder">Est à la une :</span>
+                                <span class="txt-light badge"
+                                    [ngClass]="demarche.a_la_une?'badge-purple':'badge-danger'">{{this.demarche.a_la_une?'Oui':'Non'}}</span>
+                            </p>
+                        </li>
+                        <li class="item">
+                            <div>
+                                <span class="txt-bolder">Sous-thèmes :</span>
+                                <p class="txt-light ">
+                                    <span class="link"
+                                        *ngFor="let sousTheme of demarche.sous_themes">{{sousTheme.libelle}}/</span>
+                                </p>
+
+                            </div>
+                        </li>
+                        <li class="item">
+                            <p>
+                                <span class="txt-bolder">Date de dernière modification :</span>
+                                <span class="txt-light">{{demarche.updatedAt | date:'dd/MM/yyyy'}}</span>
+                            </p>
+                        </li>
+                        <li class="item">
+                            <p>
+                                <span class="txt-bolder">Date de publication :</span>
+                                <span class="txt-light">
+                                    {{demarche.date_publication | date:'dd/MM/yyyy à HH:mm:ss'}}
+                                </span>
+                            </p>
+                        </li>
+                    </ul>
+                    <ul fxFlex="50" class="list-group">
+                        <li class="item">
+                            <p>
+                                <span class="txt-bolder">Coût :</span>
+                                <span class="txt-light">{{demarche.cout}}</span>
+                            </p>
+                        </li>
+                        <li class="item">
+                            <p>
+                                <span class="txt-bolder">Délai :</span>
+                                <span class="txt-light">{{demarche.delai}}</span>
+                            </p>
+                        </li>
+                        <li class="item">
+                            <div fxLayout="column">
+                                <span class="txt-bolder">Lien téléprocédure :</span>
+                                <p class="txt-light ">
+                                    <a class="link" *ngFor="let lien of demarche.lien_utiles" [href]="lien.url"
+                                        target="_blank">{{
+                                        raccourcirURL(lien.url)}}/</a>
+                                </p>
+                            </div>
+                        </li>
+                        <li class="item">
+                            <p>
+                                <span class="txt-bolder">Etat de validation :</span>
+                                <span class="txt-light  badge badge-purple">{{demarche.etat}}</span>
+                            </p>
+                        </li>
+                        <li class="item">
+                            <p>
+                                <span class="txt-bolder">Est Publié ? :</span>
+                                <span class="txt-light  badge"
+                                    [ngClass]="demarche.est_publie?'badge-success':'badge-danger'">{{demarche.est_publie?'Oui':'Non'}}</span>
+                            </p>
+                        </li>
+                    </ul>
+                </div>
+                <ul class="list-group">
+                    <li class="item">
+                        <p>
+                            <span class="txt-bolder">Résumé :</span>
+                            <span class="txt-light">{{demarche.resume}}</span>
+                        </p>
+                    </li>
+                    <li class="item">
+                        <p>
+                            <span class="txt-bolder">Description :</span>
+                            <span class="txt-light">{{demarche.description}}</span>
+                        </p>
+                    </li>
+                    <li class="item">
+                        <div fxLayout="column" fxLayoutGap="16px">
+                            <span class="txt-bolder">Corps :</span>
+                            <p fxLayout="column" fxLayoutGap="8px" [innerHTML]="demarche.corps">
+                            </p>
+                        </div>
+                    </li>
+                    <li class="item">
+                        <p>
+                            <span class="txt-bolder">Post-sciptum : {{demarche.post_scriptum}}</span>
+                        </p>
+                    </li>
+                </ul>
+            </div>
+            <div class="tab gap-20" id="tab-1">
+                <span class="tab-title">Liste des services concernés</span>
+                <table class="table table-administratif" *ngIf="demarche.service_administratifs.length!=0">
+                    <tr>
+                        <th>#</th>
+                        <th>Nom</th>
+                        <th>Sigle</th>
+                        <th>Adresse</th>
+                        <th>Email</th>
+                        <th>Téléphone</th>
+                    </tr>
+                    <tr *ngFor="let serv of demarche.service_administratifs;let i=index">
+                        <td>{{i+1}}</td>
+                        <td><span class="link">{{serv.nom}}</span></td>
+                        <td>{{serv.sigle}}</td>
+                        <td>{{serv.adresse}}</td>
+                        <td>{{serv.email}}</td>
+                        <td>{{serv.telephone}}</td>
+                    </tr>
+                </table>
+                <p class="list-vide" *ngIf="demarche.service_administratifs.length==0">La liste des services
+                    administratifs est vide.
+            </div>
+            <div class="tab gap-20" id="tab-2">
+                <span class="tab-title">Liste des textes de référence</span>
+                <table class="table table-liens-references" *ngIf="demarche.textes.length!=0">
+                    <tr>
+                        <th>#</th>
+                        <th>Nom</th>
+                        <th>Type de texte</th>
+                        <th>Description</th>
+                        <th>Lien</th>
+                        <th>Fichier</th>
+                    </tr>
+                    <tr *ngFor="let txt of demarche.textes;let i=index">
+                        <td>{{i+1}}</td>
+                        <td class="link">{{txt.nom}}</td>
+                        <td>{{txt.slug}}</td>
+                        <td>{{txt.description}}</td>
+                        <td>{{txt.url}}</td>
+                        <td>{{txt.fichier}}</td>
+                    </tr>
+                </table>
+                <p class="list-vide" *ngIf="demarche.textes.length==0">La liste des textes de référence est vide.
+            </div>
+            <div class="tab gap-20" id="tab-3">
+                <span class="tab-title">Liste des formualires</span>
+                <table *ngIf="demarche.formulaires.length!=0" class="table table-liens-references">
+                    <tr>
+                        <th>#</th>
+                        <th>Nom</th>
+                        <th>Description</th>
+                        <th>Etat</th>
+                        <th>Est publié?</th>
+                    </tr>
+                    <tr *ngFor="let form of demarche.formulaires;let i=index">
+                        <td>{{i+1}}</td>
+                        <td class="link">{{form.nom}}</td>
+                        <td>{{form.description}}</td>
+                        <td>{{form.etat}}</td>
+                        <td>{{form.est_publie?'Oui':'Non'}}</td>
+                    </tr>
+                </table>
+                <p *ngIf="demarche.formulaires.length==0" class="list-vide">La liste des formulaires est vide.
+                </p>
+            </div>
+            <div class="tab gap-20" id="tab-4">
+                <span class="tab-title">Liste des modéles de lettres</span>
+                <table *ngIf="demarche.modele_lettres.length!=0" class="table table-liens-references">
+                    <tr>
+                        <th>#</th>
+                        <th>Nom</th>
+                        <th>Description</th>
+                        <th>Etat</th>
+                        <th>Est publié?</th>
+                    </tr>
+                    <tr *ngFor="let model of demarche.modele_lettres;let i=index">
+                        <td>{{i+1}}</td>
+                        <td class="link">{{model.nom}}</td>
+                        <td>{{model.description}}</td>
+                        <td>{{model.etat}}</td>
+                        <td>{{model.est_publie?'Oui':'Non'}}</td>
+                    </tr>
+                </table>
+                <p class="list-vide" *ngIf="demarche.modele_lettres.length==0">La liste des modéles de lettres est vide.
+                </p>
+            </div>
+            <div class="tab gap-20" id="tab-5">
+                <span class="tab-title">Liste des Questions\Réponses</span>
+                <table *ngIf="demarche.faqs.length!=0" class="table table-liens-references">
+                    <tr>
+                        <th>#</th>
+                        <th>Question</th>
+                        <th>Reponse</th>
+                        <th>Etat</th>
+                        <th>Est publié?</th>
+                    </tr>
+                    <tr *ngFor="let faq of demarche.faqs;let i=index">
+                        <td>{{i+1}}</td>
+                        <td class="link">{{faq.question}}</td>
+                        <td>{{faq.reponse}}</td>
+                        <td>{{faq.etat}}</td>
+                        <td>{{faq.est_publie?'Oui':'Non'}}</td>
+                    </tr>
+                </table>
+                <p class="list-vide" *ngIf="demarche.faqs.length==0">Cette démarche n'est lié à aucune question.
+                </p>
+            </div>
+            <div class="tab gap-20" id="tab-6">
+                <span class="tab-title">Informations sur l'historique de la démarche
+                </span>
+                <table class="table table-questions-reponses">
+                    <tr>
+                        <th>#</th>
+                        <th>Action</th>
+                        <th>Commentaire</th>
+                        <th>Effectuée par</th>
+                        <th>Date</th>
+                    </tr>
+                    <tr>
+
+                    </tr>
+                </table>
+            </div>
+
+        </div>
+    </div>
+</div>

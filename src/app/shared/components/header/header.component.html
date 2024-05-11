@@ -1,7 +1,5 @@
 <div class="container" fxLayout="row" fxLayoutAlign="space-between center">
-    <div fxLayout="row" fxLayoutGap="24px">
-        <span class="toggle-sidebar" fxLayoutAlign="center center" (click)="handleToggleSidebar()">&#9776;</span>
-    </div>
+    <app-menu-hamburger></app-menu-hamburger>
     <div class="dropdown" [appDropdown]="'dropdown-user'">
         <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="8px">
             <span class="user-icon" fxLayoutAlign="center center">

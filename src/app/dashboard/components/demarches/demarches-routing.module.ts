@@ -6,6 +6,7 @@ import { DemarchesComponent } from './demarches.component';
 import { OverviewComponent } from './components/overview/overview.component';
 import { CreateDemarcheComponent } from './components/create-demarche/create-demarche.component';
 import { EditDemarcheComponent } from './components/edit-demarche/edit-demarche.component';
+import { ViewDemarcheComponent } from './components/view-demarche/view-demarche.component';
 
 const routes: Routes = [
   {
@@ -24,6 +25,10 @@ const routes: Routes = [
       {
         path: ':id',
         component: EditDemarcheComponent,
+      },
+      {
+        path: 'detail/:id',
+        component: ViewDemarcheComponent,
       },
     ],
   },

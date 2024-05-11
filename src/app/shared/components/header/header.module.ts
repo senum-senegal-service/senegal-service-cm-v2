@@ -7,6 +7,7 @@ import { RouterModule } from '@angular/router';
 import { ApplyContextClassModule } from '../../directives/apply-context-class/apply-context-class.module';
 import { DropdownModule } from '../../directives/dropdown/dropdown.module';
 import { TranslateModule } from '@ngx-translate/core';
+import { MenuHamburgerComponent } from '../menu-hamburger/menu-hamburger.component';
 
 @NgModule({
   declarations: [HeaderComponent],
@@ -18,6 +19,7 @@ import { TranslateModule } from '@ngx-translate/core';
     ApplyContextClassModule,
     DropdownModule,
     // TranslateModule,
+    MenuHamburgerComponent,
   ],
   exports: [HeaderComponent],
 })
