@@ -17,8 +17,9 @@
             <span>Dépublié</span></button>
         <button class="btn btn-warning" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="4px"
             [routerLink]="'/dashboard/actualites/'+actualityId"><mat-icon>edit</mat-icon><span>Modifier</span></button>
-        <button class="btn btn-outline-primary" fxLayout="row" fxLayoutAlign="start center"
-            fxLayoutGap="4px"><mat-icon>public</mat-icon><span>Voir sur le portail</span></button>
+        <button class="btn btn-outline-primary" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="4px"
+            [routerLink]="actuality.url?actuality.url:'/dashboard/actualites/detail/'+actualityId"><mat-icon>public</mat-icon><span>Voir
+                sur le portail</span></button>
     </div>
     <div *ngIf="actuality" class="tab active gap-32">
         <ul class="list-group">

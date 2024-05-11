@@ -4701,10 +4701,24 @@ export const FetchServiceDocument = gql`
       service_administratifs {
         id
         nom
+        adresse
+        boite_postale
+        ville
+        region
+        pays_id
+        email
+        telephone
+        fax
+        site_web
+        description
+        acces
+        remarque
+        observations
       }
       sous_themes {
         id
         nom: libelle
+        libelle
       }
     }
   }
