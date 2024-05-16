@@ -301,6 +301,71 @@ export type DescripteurUpdateInput = {
   status: Scalars['Int']['input'];
 };
 
+export type Edv = {
+  __typename?: 'Edv';
+  a_la_une?: Maybe<Scalars['Boolean']['output']>;
+  add_by?: Maybe<Scalars['String']['output']>;
+  createdAt: Scalars['DateTime']['output'];
+  created_at: Scalars['DateTime']['output'];
+  date_publication?: Maybe<Scalars['DateTime']['output']>;
+  delatedAt?: Maybe<Scalars['DateTime']['output']>;
+  delated_at?: Maybe<Scalars['DateTime']['output']>;
+  demarches: Array<Demarche>;
+  description: Scalars['String']['output'];
+  est_publie?: Maybe<Scalars['Boolean']['output']>;
+  etat?: Maybe<Scalars['String']['output']>;
+  faqs: Array<Faq>;
+  icon?: Maybe<Scalars['String']['output']>;
+  id: Scalars['Any']['output'];
+  lien_utiles: Array<LienUtile>;
+  mot_cle?: Maybe<Scalars['String']['output']>;
+  observations?: Maybe<Scalars['String']['output']>;
+  poster?: Maybe<Scalars['String']['output']>;
+  resume?: Maybe<Scalars['String']['output']>;
+  service_administratifs: Array<ServiceAdministratif>;
+  slug: Scalars['String']['output'];
+  sous_themes: Array<SousTheme>;
+  titre: Scalars['String']['output'];
+  updatedAt: Scalars['DateTime']['output'];
+  updated_at: Scalars['DateTime']['output'];
+};
+
+export type EdvInput = {
+  demarches?: InputMaybe<Array<Scalars['Any']['input']>>;
+  description: Scalars['String']['input'];
+  est_publie: Scalars['Boolean']['input'];
+  etat: Scalars['String']['input'];
+  faqs?: InputMaybe<Array<Scalars['Any']['input']>>;
+  lien_utiles?: InputMaybe<Array<Scalars['Any']['input']>>;
+  mot_cle?: InputMaybe<Scalars['String']['input']>;
+  observations?: InputMaybe<Scalars['String']['input']>;
+  resume?: InputMaybe<Scalars['String']['input']>;
+  service_administratifs?: InputMaybe<Array<Scalars['Any']['input']>>;
+  sous_themes?: InputMaybe<Array<Scalars['String']['input']>>;
+  titre: Scalars['String']['input'];
+};
+
+export type EdvInputSearchInput = {
+  a_la_une?: InputMaybe<Scalars['Boolean']['input']>;
+  est_publie?: InputMaybe<Scalars['Boolean']['input']>;
+  etat?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type EdvUpdateInput = {
+  demarches?: InputMaybe<Array<Scalars['Any']['input']>>;
+  description: Scalars['String']['input'];
+  est_publie: Scalars['Boolean']['input'];
+  etat: Scalars['String']['input'];
+  faqs?: InputMaybe<Array<Scalars['Any']['input']>>;
+  lien_utiles?: InputMaybe<Array<Scalars['Any']['input']>>;
+  mot_cle?: InputMaybe<Scalars['String']['input']>;
+  observations?: InputMaybe<Scalars['String']['input']>;
+  resume?: InputMaybe<Scalars['String']['input']>;
+  service_administratifs?: InputMaybe<Array<Scalars['Any']['input']>>;
+  sous_themes?: InputMaybe<Array<Scalars['String']['input']>>;
+  titre: Scalars['String']['input'];
+};
+
 export type Faq = {
   __typename?: 'Faq';
   add_by?: Maybe<Scalars['String']['output']>;
@@ -556,11 +621,13 @@ export type Mutation = {
   createDemarche: Demarche;
   createDemarcheReview: DemarcheReview;
   createDescripteur: Descripteur;
+  createEdv: Edv;
   createFaq: Faq;
   createFormulaire: Formulaire;
   createHub: Hub;
   createLienUtile: LienUtile;
   createModeleLettre: ModeleLettre;
+  createPays: Pays;
   createService: Service;
   createServiceAdministratif: ServiceAdministratif;
   createSousTheme: SousTheme;
@@ -572,12 +639,14 @@ export type Mutation = {
   deleteAnnonce: Scalars['Boolean']['output'];
   deleteDemarche: Scalars['Boolean']['output'];
   deleteDemarcheReview: Scalars['Boolean']['output'];
+  deleteEdv: Scalars['Boolean']['output'];
   deleteHub: Scalars['Boolean']['output'];
   deleteService: Scalars['Boolean']['output'];
   deleteStructure: Scalars['Boolean']['output'];
   publishActualite: Scalars['Boolean']['output'];
   publishAnnonce: Scalars['Boolean']['output'];
   publishDemarche: Scalars['Boolean']['output'];
+  publishEdv: Scalars['Boolean']['output'];
   publishHub: Scalars['Boolean']['output'];
   publishService: Scalars['Boolean']['output'];
   publishStructure: Scalars['Boolean']['output'];
@@ -585,6 +654,7 @@ export type Mutation = {
   unPublishActualite: Scalars['Boolean']['output'];
   unPublishAnnonce: Scalars['Boolean']['output'];
   unPublishDemarche: Scalars['Boolean']['output'];
+  unPublishEdv: Scalars['Boolean']['output'];
   unPublishHub: Scalars['Boolean']['output'];
   unPublishService: Scalars['Boolean']['output'];
   unPublishStructure: Scalars['Boolean']['output'];
@@ -592,11 +662,13 @@ export type Mutation = {
   updateAnnonce: Scalars['Boolean']['output'];
   updateDemarche: Scalars['Boolean']['output'];
   updateDescripteur: Scalars['Boolean']['output'];
+  updateEdv: Scalars['Boolean']['output'];
   updateFaq: Scalars['Boolean']['output'];
   updateFormulaire: Scalars['Boolean']['output'];
   updateHub: Scalars['Boolean']['output'];
   updateLienUtile: Scalars['Boolean']['output'];
   updateModeleLettre: Scalars['Boolean']['output'];
+  updatePays: Scalars['Boolean']['output'];
   updateService: Scalars['Boolean']['output'];
   updateServiceAdministratif: Scalars['Boolean']['output'];
   updateSousTheme: Scalars['Boolean']['output'];
@@ -632,6 +704,11 @@ export type MutationCreateDescripteurArgs = {
 };
 
 
+export type MutationCreateEdvArgs = {
+  edvInput: EdvInput;
+};
+
+
 export type MutationCreateFaqArgs = {
   faqInput: FaqInput;
 };
@@ -654,6 +731,11 @@ export type MutationCreateLienUtileArgs = {
 
 export type MutationCreateModeleLettreArgs = {
   modeleLettreInput: ModeleLettreInput;
+};
+
+
+export type MutationCreatePaysArgs = {
+  paysInput: PaysInput;
 };
 
 
@@ -712,6 +794,11 @@ export type MutationDeleteDemarcheReviewArgs = {
 };
 
 
+export type MutationDeleteEdvArgs = {
+  edvId: Scalars['String']['input'];
+};
+
+
 export type MutationDeleteHubArgs = {
   hubId: Scalars['String']['input'];
 };
@@ -739,6 +826,11 @@ export type MutationPublishAnnonceArgs = {
 
 export type MutationPublishDemarcheArgs = {
   demarcheId: Scalars['Any']['input'];
+};
+
+
+export type MutationPublishEdvArgs = {
+  edvId: Scalars['String']['input'];
 };
 
 
@@ -774,6 +866,11 @@ export type MutationUnPublishAnnonceArgs = {
 
 export type MutationUnPublishDemarcheArgs = {
   demarcheId: Scalars['Any']['input'];
+};
+
+
+export type MutationUnPublishEdvArgs = {
+  edvId: Scalars['String']['input'];
 };
 
 
@@ -816,6 +913,12 @@ export type MutationUpdateDescripteurArgs = {
 };
 
 
+export type MutationUpdateEdvArgs = {
+  edvId: Scalars['ID']['input'];
+  edvInput: EdvUpdateInput;
+};
+
+
 export type MutationUpdateFaqArgs = {
   faqId: Scalars['ID']['input'];
   faqInput: FaqUpdateInput;
@@ -843,6 +946,12 @@ export type MutationUpdateLienUtileArgs = {
 export type MutationUpdateModeleLettreArgs = {
   modeleLettreId: Scalars['ID']['input'];
   modeleLettreInput: ModeleLettreUpdateInput;
+};
+
+
+export type MutationUpdatePaysArgs = {
+  paysId: Scalars['ID']['input'];
+  paysInput: PaysUpdateInput;
 };
 
 
@@ -928,6 +1037,12 @@ export type PaginatedDescripteurResult = {
   results: Array<Descripteur>;
 };
 
+export type PaginatedEdvResult = {
+  __typename?: 'PaginatedEdvResult';
+  pagination: PaginationInfo;
+  results: Array<Edv>;
+};
+
 export type PaginatedFaqResult = {
   __typename?: 'PaginatedFaqResult';
   pagination: PaginationInfo;
@@ -1002,6 +1117,26 @@ export type PaginationInfo = {
   totalItems: Scalars['Int']['output'];
 };
 
+export type Pays = {
+  __typename?: 'Pays';
+  alpha2?: Maybe<Scalars['String']['output']>;
+  alpha3?: Maybe<Scalars['String']['output']>;
+  code?: Maybe<Scalars['Int']['output']>;
+  est_visible?: Maybe<Scalars['Boolean']['output']>;
+  id: Scalars['Any']['output'];
+  nationalite?: Maybe<Scalars['String']['output']>;
+  nom_en_gb?: Maybe<Scalars['String']['output']>;
+  nom_fr_fr?: Maybe<Scalars['String']['output']>;
+};
+
+export type PaysInput = {
+  id: Scalars['String']['input'];
+};
+
+export type PaysUpdateInput = {
+  id: Scalars['String']['input'];
+};
+
 export type Query = {
   __typename?: 'Query';
   fetchActualite: Actualite;
@@ -1009,6 +1144,7 @@ export type Query = {
   fetchAllActualites: Actualite;
   fetchAllAnnonces: Annonce;
   fetchAllDemarches: Demarche;
+  fetchAllEdvs: Array<Edv>;
   fetchAllHubs: Array<Hub>;
   fetchAllServices: Service;
   fetchAllStructures: Structure;
@@ -1022,6 +1158,8 @@ export type Query = {
   fetchDemarches: PaginatedDemarcheResult;
   fetchDescripteur: Descripteur;
   fetchDescripteurs: PaginatedDescripteurResult;
+  fetchEdv: Edv;
+  fetchEdvs: PaginatedEdvResult;
   fetchFaq: Faq;
   fetchFaqs: PaginatedFaqResult;
   fetchFormulaire: Formulaire;
@@ -1032,6 +1170,8 @@ export type Query = {
   fetchLienUtiles: PaginatedLienUtileResult;
   fetchModeleLettre: ModeleLettre;
   fetchModeleLettres: PaginatedModeleLettreResult;
+  fetchPays: Pays;
+  fetchPayss: Array<Pays>;
   fetchService: Service;
   fetchServiceAdministratif: ServiceAdministratif;
   fetchServiceAdministratifs: PaginatedServiceAdministratifResult;
@@ -1072,6 +1212,11 @@ export type QueryFetchAllAnnoncesArgs = {
 
 
 export type QueryFetchAllDemarchesArgs = {
+  queryFilter?: InputMaybe<QueryDataConfigInput>;
+};
+
+
+export type QueryFetchAllEdvsArgs = {
   queryFilter?: InputMaybe<QueryDataConfigInput>;
 };
 
@@ -1138,6 +1283,17 @@ export type QueryFetchDescripteursArgs = {
 };
 
 
+export type QueryFetchEdvArgs = {
+  edvId: Scalars['String']['input'];
+};
+
+
+export type QueryFetchEdvsArgs = {
+  edvFilter?: InputMaybe<EdvInputSearchInput>;
+  queryFilter?: InputMaybe<QueryDataConfigInput>;
+};
+
+
 export type QueryFetchFaqArgs = {
   faqId: Scalars['String']['input'];
 };
@@ -1186,6 +1342,11 @@ export type QueryFetchModeleLettreArgs = {
 
 export type QueryFetchModeleLettresArgs = {
   queryFilter?: InputMaybe<QueryDataConfigInput>;
+};
+
+
+export type QueryFetchPaysArgs = {
+  paysId: Scalars['ID']['input'];
 };
 
 
@@ -1316,6 +1477,7 @@ export type ServiceAdministratif = {
   nom: Scalars['String']['output'];
   observations?: Maybe<Scalars['String']['output']>;
   parent_id?: Maybe<Scalars['Int']['output']>;
+  pays?: Maybe<Pays>;
   pays_id?: Maybe<Scalars['Int']['output']>;
   region?: Maybe<Scalars['String']['output']>;
   remarque?: Maybe<Scalars['String']['output']>;
@@ -1781,6 +1943,61 @@ export type UnPublishDemarcheMutationVariables = Exact<{
 
 
 export type UnPublishDemarcheMutation = { __typename?: 'Mutation', unPublishDemarche: boolean };
+
+export type FetchEdvsQueryVariables = Exact<{
+  queryFilter?: InputMaybe<QueryDataConfigInput>;
+  edvFilter?: InputMaybe<EdvInputSearchInput>;
+}>;
+
+
+export type FetchEdvsQuery = { __typename?: 'Query', fetchEdvs: { __typename?: 'PaginatedEdvResult', pagination: { __typename?: 'PaginationInfo', totalItems: number, pageCount: number, pageSize: number, currentPage: number }, results: Array<{ __typename?: 'Edv', id: any, titre: string, resume?: string | null, updatedAt: any, etat?: string | null, est_publie?: boolean | null, observations?: string | null, a_la_une?: boolean | null, demarches: Array<{ __typename?: 'Demarche', id: any, titre: string }> }> } };
+
+export type SearchEdvsQueryVariables = Exact<{
+  queryFilter?: InputMaybe<QueryDataConfigInput>;
+}>;
+
+
+export type SearchEdvsQuery = { __typename?: 'Query', searchResults: { __typename?: 'PaginatedEdvResult', pagination: { __typename?: 'PaginationInfo', totalItems: number, pageCount: number, pageSize: number, currentPage: number }, results: Array<{ __typename?: 'Edv', id: any, nom: string }> } };
+
+export type CreateEdvMutationVariables = Exact<{
+  edvInput: EdvInput;
+}>;
+
+
+export type CreateEdvMutation = { __typename?: 'Mutation', createEdv: { __typename?: 'Edv', id: any, titre: string, mot_cle?: string | null, description: string, resume?: string | null, slug: string, observations?: string | null, etat?: string | null, est_publie?: boolean | null, a_la_une?: boolean | null, sous_themes: Array<{ __typename?: 'SousTheme', id: string, libelle: string }>, demarches: Array<{ __typename?: 'Demarche', id: any, titre: string }>, service_administratifs: Array<{ __typename?: 'ServiceAdministratif', id: number, nom: string }>, faqs: Array<{ __typename?: 'Faq', id: number, question: string }>, lien_utiles: Array<{ __typename?: 'LienUtile', id: number, nom: string }> } };
+
+export type FetchAllEdvsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FetchAllEdvsQuery = { __typename?: 'Query', fetchAllEdvs: Array<{ __typename?: 'Edv', id: any, titre: string, mot_cle?: string | null, description: string, resume?: string | null, slug: string, observations?: string | null, etat?: string | null, est_publie?: boolean | null, a_la_une?: boolean | null }> };
+
+export type FetchEdvQueryVariables = Exact<{
+  edvId: Scalars['String']['input'];
+}>;
+
+
+export type FetchEdvQuery = { __typename?: 'Query', fetchEdv: { __typename?: 'Edv', id: any, titre: string, mot_cle?: string | null, description: string, resume?: string | null, slug: string, observations?: string | null, etat?: string | null, est_publie?: boolean | null, a_la_une?: boolean | null, poster?: string | null, icon?: string | null, service_administratifs: Array<{ __typename?: 'ServiceAdministratif', id: number, nom: string }>, sous_themes: Array<{ __typename?: 'SousTheme', id: string, nom: string }>, faqs: Array<{ __typename?: 'Faq', id: number, nom: string }>, demarches: Array<{ __typename?: 'Demarche', id: any, nom: string }>, lien_utiles: Array<{ __typename?: 'LienUtile', id: number, nom: string }> } };
+
+export type DeleteEdvMutationVariables = Exact<{
+  edvId: Scalars['String']['input'];
+}>;
+
+
+export type DeleteEdvMutation = { __typename?: 'Mutation', deleteEdv: boolean };
+
+export type PublishEdvMutationVariables = Exact<{
+  edvId: Scalars['String']['input'];
+}>;
+
+
+export type PublishEdvMutation = { __typename?: 'Mutation', publishEdv: boolean };
+
+export type UnPublishEdvMutationVariables = Exact<{
+  edvId: Scalars['String']['input'];
+}>;
+
+
+export type UnPublishEdvMutation = { __typename?: 'Mutation', unPublishEdv: boolean };
 
 export type FetchDescripteursQueryVariables = Exact<{
   queryFilter?: InputMaybe<QueryDataConfigInput>;
@@ -2751,6 +2968,241 @@ export const UnPublishDemarcheDocument = gql`
   })
   export class UnPublishDemarcheGQL extends Apollo.Mutation<UnPublishDemarcheMutation, UnPublishDemarcheMutationVariables> {
     document = UnPublishDemarcheDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const FetchEdvsDocument = gql`
+    query FetchEdvs($queryFilter: QueryDataConfigInput, $edvFilter: EdvInputSearchInput) {
+  fetchEdvs(queryFilter: $queryFilter, edvFilter: $edvFilter) {
+    pagination {
+      totalItems
+      pageCount
+      pageSize
+      currentPage
+    }
+    results {
+      id
+      titre
+      resume
+      updatedAt
+      etat
+      est_publie
+      observations
+      a_la_une
+      demarches {
+        id
+        titre
+      }
+    }
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class FetchEdvsGQL extends Apollo.Query<FetchEdvsQuery, FetchEdvsQueryVariables> {
+    document = FetchEdvsDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const SearchEdvsDocument = gql`
+    query SearchEdvs($queryFilter: QueryDataConfigInput) {
+  searchResults: fetchEdvs(queryFilter: $queryFilter) {
+    pagination {
+      totalItems
+      pageCount
+      pageSize
+      currentPage
+    }
+    results {
+      id
+      nom: titre
+    }
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class SearchEdvsGQL extends Apollo.Query<SearchEdvsQuery, SearchEdvsQueryVariables> {
+    document = SearchEdvsDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const CreateEdvDocument = gql`
+    mutation CreateEdv($edvInput: EdvInput!) {
+  createEdv(edvInput: $edvInput) {
+    id
+    titre
+    mot_cle
+    description
+    resume
+    slug
+    observations
+    etat
+    est_publie
+    a_la_une
+    sous_themes {
+      id
+      libelle
+    }
+    demarches {
+      id
+      titre
+    }
+    service_administratifs {
+      id
+      nom
+    }
+    faqs {
+      id
+      question
+    }
+    lien_utiles {
+      id
+      nom
+    }
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class CreateEdvGQL extends Apollo.Mutation<CreateEdvMutation, CreateEdvMutationVariables> {
+    document = CreateEdvDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const FetchAllEdvsDocument = gql`
+    query FetchAllEdvs {
+  fetchAllEdvs {
+    id
+    titre
+    mot_cle
+    description
+    resume
+    slug
+    observations
+    etat
+    est_publie
+    a_la_une
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class FetchAllEdvsGQL extends Apollo.Query<FetchAllEdvsQuery, FetchAllEdvsQueryVariables> {
+    document = FetchAllEdvsDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const FetchEdvDocument = gql`
+    query FetchEdv($edvId: String!) {
+  fetchEdv(edvId: $edvId) {
+    id
+    titre
+    mot_cle
+    description
+    resume
+    slug
+    observations
+    etat
+    est_publie
+    a_la_une
+    poster
+    icon
+    service_administratifs {
+      id
+      nom
+    }
+    sous_themes {
+      id
+      nom: libelle
+    }
+    faqs {
+      id
+      nom: question
+    }
+    demarches {
+      id
+      nom: titre
+    }
+    lien_utiles {
+      id
+      nom
+    }
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class FetchEdvGQL extends Apollo.Query<FetchEdvQuery, FetchEdvQueryVariables> {
+    document = FetchEdvDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const DeleteEdvDocument = gql`
+    mutation DeleteEdv($edvId: String!) {
+  deleteEdv(edvId: $edvId)
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class DeleteEdvGQL extends Apollo.Mutation<DeleteEdvMutation, DeleteEdvMutationVariables> {
+    document = DeleteEdvDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const PublishEdvDocument = gql`
+    mutation PublishEdv($edvId: String!) {
+  publishEdv(edvId: $edvId)
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class PublishEdvGQL extends Apollo.Mutation<PublishEdvMutation, PublishEdvMutationVariables> {
+    document = PublishEdvDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const UnPublishEdvDocument = gql`
+    mutation UnPublishEdv($edvId: String!) {
+  unPublishEdv(edvId: $edvId)
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class UnPublishEdvGQL extends Apollo.Mutation<UnPublishEdvMutation, UnPublishEdvMutationVariables> {
+    document = UnPublishEdvDocument;
     
     constructor(apollo: Apollo.Apollo) {
       super(apollo);

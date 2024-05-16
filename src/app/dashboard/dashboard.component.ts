@@ -20,6 +20,11 @@ export class DashboardComponent implements OnInit {
       icon: 'device_hub',
     },
     {
+      label: 'Evènements de vie',
+      link: 'evenements-de-vie',
+      icon: 'event',
+    },
+    {
       label: 'Gestion des demarches',
       link: 'demarches',
       icon: 'list_alt',

@@ -1,0 +1,144 @@
+query FetchEdvs($queryFilter: QueryDataConfigInput, $edvFilter: EdvInputSearchInput) {
+	fetchEdvs(queryFilter: $queryFilter, edvFilter: $edvFilter) {
+		pagination {
+			totalItems
+			pageCount
+			pageSize
+			currentPage
+		}
+		results {
+			id
+			titre
+      resume
+      updatedAt
+      etat
+      est_publie
+      observations
+      a_la_une
+			demarches {
+				id
+				titre
+			}
+		}
+
+	}
+}
+
+query SearchEdvs($queryFilter: QueryDataConfigInput) {
+	searchResults: fetchEdvs(queryFilter: $queryFilter) {
+		pagination {
+			totalItems
+			pageCount
+			pageSize
+			currentPage
+		}
+		results {
+			id
+			nom: titre
+		}
+
+	}
+}
+
+mutation CreateEdv($edvInput: EdvInput!) {
+	createEdv(edvInput: $edvInput) {
+		id
+		titre
+		mot_cle
+		description
+		resume
+		slug
+		observations
+		etat
+		est_publie
+    a_la_une
+		sous_themes {
+			id
+			libelle
+		}
+		demarches {
+			id
+			titre
+		}
+		service_administratifs {
+			id
+			nom
+		}
+		faqs {
+			id
+			question
+		}
+		lien_utiles {
+			id
+			nom
+		}
+
+	}
+}
+
+query FetchAllEdvs {
+	fetchAllEdvs {
+		id
+		titre
+		mot_cle
+		description
+		resume
+		slug
+		observations
+		etat
+		est_publie
+    a_la_une
+
+  }
+}
+
+
+query FetchEdv($edvId: String!) {
+	fetchEdv(edvId: $edvId) {
+		id
+		titre
+		mot_cle
+		description
+		resume
+		slug
+		observations
+		etat
+		est_publie
+    a_la_une
+    poster
+    icon
+		service_administratifs {
+				id
+				nom
+			}
+			sous_themes {
+				id
+				nom: libelle
+			}
+			faqs {
+				id
+				nom: question
+			}
+		demarches {
+			id
+			nom: titre
+		}
+		lien_utiles {
+			id
+			nom
+		}
+	}
+}
+
+mutation DeleteEdv($edvId: String!) {
+  deleteEdv(edvId: $edvId)
+}
+
+mutation PublishEdv($edvId: String!) {
+  publishEdv(edvId: $edvId)
+}
+
+mutation UnPublishEdv($edvId: String!) {
+  unPublishEdv(edvId: $edvId)
+}
+
