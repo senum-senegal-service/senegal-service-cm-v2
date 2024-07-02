@@ -55,7 +55,7 @@
                 <div fxLayout="column" fxLayoutGap="24px">
                     <div fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="24px">
                         <mat-slide-toggle formControlName="teleprocedure">
-                            <span class="label">Dispose d'une teleprocedure</span>
+                            <span class="label">Lien externe de la procédure</span>
                         </mat-slide-toggle>
                         <div fxFlex="50" *ngIf="teleprocedure" fxLayout="column" fxLayoutGap="8px">
                             <label for="url">Url</label>
@@ -103,8 +103,11 @@
                     <div fxLayout="row" fxLayoutGap="24px">
                         <div fxFlex="50" fxLayout="column" fxLayoutGap="8px">
                             <label for="formulaires">Formulaires</label>
-                            <app-multi-select [value]="demarche?.formulaires || []" [name]="'formulaires'" [form]="demarcheForm"
-                                [options]="formulaires"></app-multi-select>
+                            <select formControlName="formId" name="formId" class="form-control">
+                              <option *ngFor="let f of formulaires" [value]="f.id">{{f.nom}}</option>
+                            </select>
+                            <!-- <app-multi-select [value]="demarche?.formulaires || []" [name]="'formulaires'" [form]="demarcheForm"
+                                [options]="formulaires"></app-multi-select> -->
                         </div>
                         <div fxFlex="50" fxLayout="column" fxLayoutGap="8px">
                             <label for="modeles-lettres">Modéles de lettres </label>

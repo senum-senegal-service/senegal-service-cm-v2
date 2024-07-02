@@ -180,6 +180,7 @@ export type Demarche = {
   est_publie?: Maybe<Scalars['Boolean']['output']>;
   etat?: Maybe<Scalars['String']['output']>;
   faqs: Array<Faq>;
+  formId?: Maybe<Scalars['ID']['output']>;
   formulaires: Array<Formulaire>;
   hub?: Maybe<Scalars['ID']['output']>;
   id: Scalars['Any']['output'];
@@ -211,6 +212,7 @@ export type DemarcheInput = {
   est_publie: Scalars['Boolean']['input'];
   etat: Scalars['String']['input'];
   faqs?: InputMaybe<Array<Scalars['Any']['input']>>;
+  formId?: InputMaybe<Scalars['ID']['input']>;
   formulaires?: InputMaybe<Array<Scalars['Any']['input']>>;
   hub?: InputMaybe<Scalars['ID']['input']>;
   lien_utiles?: InputMaybe<Array<Scalars['Any']['input']>>;
@@ -267,6 +269,7 @@ export type DemarcheUpdateInput = {
   est_publie?: InputMaybe<Scalars['Int']['input']>;
   etat?: InputMaybe<Scalars['String']['input']>;
   faqs: Array<Scalars['String']['input']>;
+  formId?: InputMaybe<Scalars['ID']['input']>;
   formulaires: Array<Scalars['String']['input']>;
   hub?: InputMaybe<Scalars['ID']['input']>;
   lien_utiles: Array<Scalars['String']['input']>;
@@ -1921,7 +1924,7 @@ export type FetchDemarcheQueryVariables = Exact<{
 }>;
 
 
-export type FetchDemarcheQuery = { __typename?: 'Query', fetchDemarche: { __typename?: 'Demarche', id: any, titre: string, url?: string | null, cout?: number | null, corps?: string | null, mot_cle?: string | null, delai?: number | null, description: string, resume?: string | null, a_la_une?: boolean | null, slug: string, observations?: string | null, post_scriptum?: string | null, etat?: string | null, est_publie?: boolean | null, teleprocedure?: boolean | null, hub?: string | null, service_administratifs: Array<{ __typename?: 'ServiceAdministratif', id: number, nom: string }>, sous_themes: Array<{ __typename?: 'SousTheme', id: string, nom: string }>, formulaires: Array<{ __typename?: 'Formulaire', id: number, nom: string }>, faqs: Array<{ __typename?: 'Faq', id: number, nom: string }>, descripteurs: Array<{ __typename?: 'Descripteur', id: number, nom: string }>, modele_lettres: Array<{ __typename?: 'ModeleLettre', id: number, nom: string }>, textes: Array<{ __typename?: 'Texte', id: number, nom: string }>, lien_utiles: Array<{ __typename?: 'LienUtile', id: number, nom: string }>, demarches: Array<{ __typename?: 'Demarche', id: any, nom: string }> } };
+export type FetchDemarcheQuery = { __typename?: 'Query', fetchDemarche: { __typename?: 'Demarche', id: any, titre: string, url?: string | null, cout?: number | null, corps?: string | null, mot_cle?: string | null, delai?: number | null, description: string, resume?: string | null, a_la_une?: boolean | null, slug: string, observations?: string | null, post_scriptum?: string | null, etat?: string | null, est_publie?: boolean | null, teleprocedure?: boolean | null, hub?: string | null, formId?: string | null, service_administratifs: Array<{ __typename?: 'ServiceAdministratif', id: number, nom: string }>, sous_themes: Array<{ __typename?: 'SousTheme', id: string, nom: string }>, formulaires: Array<{ __typename?: 'Formulaire', id: number, nom: string }>, faqs: Array<{ __typename?: 'Faq', id: number, nom: string }>, descripteurs: Array<{ __typename?: 'Descripteur', id: number, nom: string }>, modele_lettres: Array<{ __typename?: 'ModeleLettre', id: number, nom: string }>, textes: Array<{ __typename?: 'Texte', id: number, nom: string }>, lien_utiles: Array<{ __typename?: 'LienUtile', id: number, nom: string }>, demarches: Array<{ __typename?: 'Demarche', id: any, nom: string }> } };
 
 export type DeleteDemarcheMutationVariables = Exact<{
   demarcheId: Scalars['Any']['input'];
@@ -2875,6 +2878,7 @@ export const FetchDemarcheDocument = gql`
     est_publie
     teleprocedure
     hub
+    formId
     service_administratifs {
       id
       nom

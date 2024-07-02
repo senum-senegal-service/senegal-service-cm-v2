@@ -9,6 +9,7 @@
 export const environment = {
   GRAPHQL_URI: "http://localhost:5001/graphql",
   API_URI: "http://localhost:5001",
+  RDV_SERVICE: "http://localhost:3000",
   KEYCLOAK_URL: "https://devauth.sec.gouv.sn",
   KEYCLOACK_REALM: "senegalservices",
   KEYCLOACK_CLIENT_ID: "senegalservice"

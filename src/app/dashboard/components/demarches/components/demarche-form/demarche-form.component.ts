@@ -104,6 +104,7 @@ export class DemarcheFormComponent implements OnChanges {
       demarches: [],
       a_la_une: [false],
       formulaires: [],
+      formId: [null],
       textes: [],
     });
   }
@@ -242,11 +243,19 @@ export class DemarcheFormComponent implements OnChanges {
   }
 
   getFormulaires() {
-    this.searchFormulairesGQL
-      .fetch({ queryFilter: { limit: 10000 } }, { fetchPolicy: 'cache-first' })
-      .subscribe((result) => {
-        this.formulaires = result.data.searchResults.results;
-      });
+    // this.searchFormulairesGQL
+    //   .fetch({ queryFilter: { limit: 10000 } }, { fetchPolicy: 'cache-first' })
+    //   .subscribe((result) => {
+    //     this.formulaires = result.data.searchResults.results;
+    //   });
+
+    this.http.get(`${environment.RDV_SERVICE}/api/business/public/form`).subscribe(
+      (result: any) => {
+        this.formulaires = result?.payload?.map?.(f => {
+          return { nom: f.name, id: f._id }
+        });
+      }
+    )
   }
 
   getModeleLettres() {
