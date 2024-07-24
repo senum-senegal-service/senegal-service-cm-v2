@@ -1452,7 +1452,7 @@ export type Service = {
   id: Scalars['Any']['output'];
   media_type?: Maybe<Scalars['String']['output']>;
   mot_cle?: Maybe<Scalars['String']['output']>;
-  poster: Scalars['String']['output'];
+  poster?: Maybe<Scalars['String']['output']>;
   service_administratifs: Array<ServiceAdministratif>;
   slug: Scalars['String']['output'];
   sous_themes: Array<SousTheme>;
@@ -2210,7 +2210,7 @@ export type FetchServiceQueryVariables = Exact<{
 }>;
 
 
-export type FetchServiceQuery = { __typename?: 'Query', fetchService: { __typename?: 'Service', id: any, titre: string, url?: string | null, mot_cle?: string | null, description?: string | null, contenu: string, a_la_une?: boolean | null, slug: string, etat?: string | null, est_publie?: boolean | null, poster: string, media_type?: string | null, service_administratifs: Array<{ __typename?: 'ServiceAdministratif', id: number, nom: string }>, sous_themes: Array<{ __typename?: 'SousTheme', id: string, nom: string }> } };
+export type FetchServiceQuery = { __typename?: 'Query', fetchService: { __typename?: 'Service', id: any, titre: string, url?: string | null, mot_cle?: string | null, description?: string | null, contenu: string, a_la_une?: boolean | null, slug: string, etat?: string | null, est_publie?: boolean | null, poster?: string | null, media_type?: string | null, service_administratifs: Array<{ __typename?: 'ServiceAdministratif', id: number, nom: string }>, sous_themes: Array<{ __typename?: 'SousTheme', id: string, nom: string }> } };
 
 export type DeleteServiceMutationVariables = Exact<{
   serviceId: Scalars['Any']['input'];
