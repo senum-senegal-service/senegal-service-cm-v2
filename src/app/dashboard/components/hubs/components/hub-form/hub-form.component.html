@@ -40,7 +40,8 @@
                     <div fxLayout="row" fxLayoutGap="24px">
                         <div fxFlex="50" fxLayout="column" fxLayoutGap="8px">
                             <label for="services-concernés">Services concernés</label>
-                            <app-multi-select [value]="hub?.service_administratifs || []" [name]="'service_administratifs'" [form]="hubForm"
+                            <app-multi-select [value]="hub?.service_administratifs || []"
+                                [name]="'service_administratifs'" [form]="hubForm"
                                 [options]="servicesAdministratifs"></app-multi-select>
                         </div>
                         <div fxFlex="50" fxLayout="column" fxLayoutGap="8px">
@@ -53,13 +54,14 @@
 
                         <div fxFlex="50" fxLayout="column" fxLayoutGap="8px">
                             <label for="modeles-lettres">Modéles de lettres </label>
-                            <app-multi-select [value]="hub?.modele_lettres || []" [name]="'modele_lettres'" [form]="hubForm"
-                                [options]="modeleLettres"></app-multi-select>
+                            <app-multi-select [value]="hub?.modele_lettres || []" [name]="'modele_lettres'"
+                                [form]="hubForm" [options]="modeleLettres"></app-multi-select>
                         </div>
                         <div fxFlex="50" fxLayout="column" fxLayoutGap="8px">
-                          <label for="faqs">FAQs</label>
-                          <app-multi-select [name]="'faqs'" [value]="hub?.faqs || []" [form]="hubForm" [options]="faqs"></app-multi-select>
-                      </div>
+                            <label for="faqs">FAQs</label>
+                            <app-multi-select [name]="'faqs'" [value]="hub?.faqs || []" [form]="hubForm"
+                                [options]="faqs"></app-multi-select>
+                        </div>
                     </div>
                     <div fxLayout="row" fxLayoutGap="24px">
 
@@ -69,10 +71,10 @@
                                 [options]="descripteurs"></app-multi-select>
                         </div>
                         <div fxFlex="50" fxLayout="column" fxLayoutGap="8px">
-                          <label for="liens-utiles">Liens utiles </label>
-                          <app-multi-select [value]="hub?.lien_utiles || []" [name]="'lien_utiles'" [form]="hubForm"
-                              [options]="liensUtils"></app-multi-select>
-                      </div>
+                            <label for="liens-utiles">Liens utiles </label>
+                            <app-multi-select [value]="hub?.lien_utiles || []" [name]="'lien_utiles'" [form]="hubForm"
+                                [options]="liensUtils"></app-multi-select>
+                        </div>
                     </div>
 
 
@@ -87,25 +89,27 @@
                             id="observation" cols="30" rows="2" placeholder="Ajoutez un observation privée"></textarea>
                     </div>
                     <div class="form-image">
-                      <input type="file" id="hub-image" accept="image/*" (change)="changePoster($event)">
-                      <label for="hub-image" fxLayout="column" fxLayoutGap="8px">
-                          <span class="label">Image/Video <span class="color-danger">*</span></span>
-                          <div class="image-container">
-                              <img *ngIf="mediaType === 'image' && mediaPreview" [src]="mediaPreview" alt="Image preview">
-                              <video *ngIf="mediaType === 'video' && mediaPreview" [src]="mediaPreview" id="poster" autoplay muted>
-                                  Your browser does not support the video tag.
-                              </video>
-                              <div *ngIf="!mediaPreview" fxLayout="column" fxLayoutAlign="center center"
-                                  fxLayoutGap="12px">
-                                  <mat-icon>cloud_upload</mat-icon>
-                                  <span fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="6px">
-                                      <span class="label">Upload Image</span>
-                                      <span class="image-size">Media size must be less than 50MB</span>
-                                  </span>
-                              </div>
-                          </div>
-                      </label>
-                  </div>
+                        <input type="file" id="hub-image" accept="image/*" (change)="changePoster($event)">
+                        <label for="hub-image" fxLayout="column" fxLayoutGap="8px">
+                            <span class="label">Image/Video <span class="color-danger">*</span></span>
+                            <div class="image-container">
+                                <img *ngIf="mediaType === 'image' && mediaPreview" [src]="mediaPreview"
+                                    alt="Image preview">
+                                <video *ngIf="mediaType === 'video' && mediaPreview" [src]="mediaPreview" id="poster"
+                                    autoplay muted>
+                                    Your browser does not support the video tag.
+                                </video>
+                                <div *ngIf="!mediaPreview" fxLayout="column" fxLayoutAlign="center center"
+                                    fxLayoutGap="12px">
+                                    <mat-icon>cloud_upload</mat-icon>
+                                    <span fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="6px">
+                                        <span class="label">Upload Image</span>
+                                        <span class="image-size">Media size must be less than 50MB</span>
+                                    </span>
+                                </div>
+                            </div>
+                        </label>
+                    </div>
                     <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="24px">
 
 
@@ -121,19 +125,19 @@
                             </mat-form-field>
                         </div>
                         <div fxLayout="column" fxLayoutGap="8px">
-                          <span class="label">Publication</span>
-                          <div fxLayout="row" fxLayoutGap="12px">
-                              <mat-slide-toggle formControlName="est_publie">
-                                  <span class="label">Cliquez pour publier</span>
-                              </mat-slide-toggle>
+                            <span class="label">Publication</span>
+                            <div fxLayout="row" fxLayoutGap="12px">
+                                <mat-slide-toggle formControlName="est_publie">
+                                    <span class="label">Cliquez pour publier</span>
+                                </mat-slide-toggle>
 
-                          </div>
-                      </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="form-action" fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="24px">
-                <button class="btn  btn-form-cancel" appGoBack>Annuler</button>
+                <span class="btn  btn-form-cancel" appGoBack>Annuler</span>
                 <button class="btn btn-form-primary" (click)="onSubmit()">Enregistrer</button>
             </div>
         </form>
