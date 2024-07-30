@@ -32,10 +32,10 @@
             <div fxLayout="column" fxLayoutGap="32px">
                 <span class="title">Autres informations</span>
                 <div fxLayout="column" fxLayoutGap="24px">
-                  <div fxLayout="column" fxLayoutGap="8px">
-                    <label for="services-concernés">Démarches</label>
-                    <app-multi-select [value]="edv?.demarches || []" [name]="'demarches'" [form]="edvForm"
-                        [options]="demarches"></app-multi-select>
+                    <div fxLayout="column" fxLayoutGap="8px">
+                        <label for="services-concernés">Démarches</label>
+                        <app-multi-select [value]="edv?.demarches || []" [name]="'demarches'" [form]="edvForm"
+                            [options]="demarches"></app-multi-select>
                     </div>
                     <div fxLayout="row" fxLayoutGap="24px">
 
@@ -46,21 +46,23 @@
                         </div>
 
                         <div fxFlex="50" fxLayout="column" fxLayoutGap="8px">
-                          <label for="services-concernés">Services concernés</label>
-                          <app-multi-select [value]="edv?.service_administratifs || []" [name]="'service_administratifs'" [form]="edvForm"
-                              [options]="servicesAdministratifs"></app-multi-select>
-                      </div>
+                            <label for="services-concernés">Services concernés</label>
+                            <app-multi-select [value]="edv?.service_administratifs || []"
+                                [name]="'service_administratifs'" [form]="edvForm"
+                                [options]="servicesAdministratifs"></app-multi-select>
+                        </div>
                     </div>
                     <div fxLayout="row" fxLayoutGap="24px">
-                    <div fxFlex="50" fxLayout="column" fxLayoutGap="8px">
-                      <label for="liens-utiles">Liens utiles </label>
-                      <app-multi-select [value]="edv?.lien_utiles || []" [name]="'lien_utiles'" [form]="edvForm"
-                          [options]="liensUtils"></app-multi-select>
-                  </div>
                         <div fxFlex="50" fxLayout="column" fxLayoutGap="8px">
-                          <label for="faqs">FAQs</label>
-                          <app-multi-select [name]="'faqs'" [value]="edv?.faqs || []" [form]="edvForm" [options]="faqs"></app-multi-select>
-                      </div>
+                            <label for="liens-utiles">Liens utiles </label>
+                            <app-multi-select [value]="edv?.lien_utiles || []" [name]="'lien_utiles'" [form]="edvForm"
+                                [options]="liensUtils"></app-multi-select>
+                        </div>
+                        <div fxFlex="50" fxLayout="column" fxLayoutGap="8px">
+                            <label for="faqs">FAQs</label>
+                            <app-multi-select [name]="'faqs'" [value]="edv?.faqs || []" [form]="edvForm"
+                                [options]="faqs"></app-multi-select>
+                        </div>
                     </div>
 
 
@@ -76,50 +78,54 @@
                     </div>
 
                     <div fxLayout="row wrap" fxLayoutAlign="start start" fxLayoutGap="24">
-                      <div fxFlex="40">
-                        <div class="form-image">
-                          <input type="file" id="edv-icon" accept="image/*" (change)="changeIcon($event)">
-                          <label for="edv-icon" fxLayout="column" fxLayoutGap="8px">
-                              <span class="label">Icon <span class="color-danger">*</span></span>
-                              <div class="image-container">
-                                  <img *ngIf="mediaType === 'image' && mediaPreviewIcon" [src]="mediaPreviewIcon" alt="Image preview">
-                                  <video *ngIf="mediaType === 'video' && mediaPreviewIcon" [src]="mediaPreviewIcon" id="icon" autoplay muted>
-                                      Your browser does not support the video tag.
-                                  </video>
-                                  <div *ngIf="!mediaPreviewIcon" fxLayout="column" fxLayoutAlign="center center"
-                                      fxLayoutGap="12px">
-                                      <mat-icon>cloud_upload</mat-icon>
-                                      <span fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="6px">
-                                          <span class="label">Upload Image</span>
-                                          <span class="image-size">Media size must be less than 50MB</span>
-                                      </span>
-                                  </div>
-                              </div>
-                          </label>
+                        <div fxFlex="40">
+                            <div class="form-image">
+                                <input type="file" id="edv-icon" accept="image/*" (change)="changeIcon($event)">
+                                <label for="edv-icon" fxLayout="column" fxLayoutGap="8px">
+                                    <span class="label">Icon <span class="color-danger">*</span></span>
+                                    <div class="image-container">
+                                        <img *ngIf="mediaType === 'image' && mediaPreviewIcon" [src]="mediaPreviewIcon"
+                                            alt="Image preview">
+                                        <video *ngIf="mediaType === 'video' && mediaPreviewIcon"
+                                            [src]="mediaPreviewIcon" id="icon" autoplay muted>
+                                            Your browser does not support the video tag.
+                                        </video>
+                                        <div *ngIf="!mediaPreviewIcon" fxLayout="column" fxLayoutAlign="center center"
+                                            fxLayoutGap="12px">
+                                            <mat-icon>cloud_upload</mat-icon>
+                                            <span fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="6px">
+                                                <span class="label">Upload Image</span>
+                                                <span class="image-size">Media size must be less than 50MB</span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </label>
+                            </div>
                         </div>
-                      </div>
-                      <div fxFlex="40">
-                        <div class="form-image">
-                          <input type="file" id="edv-image" accept="image/*" (change)="changePoster($event)">
-                          <label for="edv-image" fxLayout="column" fxLayoutGap="8px">
-                              <span class="label">Image <span class="color-danger">*</span></span>
-                              <div class="image-container">
-                                  <img *ngIf="mediaType === 'image' && mediaPreview" [src]="mediaPreview" alt="Image preview">
-                                  <video *ngIf="mediaType === 'video' && mediaPreview" [src]="mediaPreview" id="poster" autoplay muted>
-                                      Your browser does not support the video tag.
-                                  </video>
-                                  <div *ngIf="!mediaPreview" fxLayout="column" fxLayoutAlign="center center"
-                                      fxLayoutGap="12px">
-                                      <mat-icon>cloud_upload</mat-icon>
-                                      <span fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="6px">
-                                          <span class="label">Upload Image</span>
-                                          <span class="image-size">Media size must be less than 50MB</span>
-                                      </span>
-                                  </div>
-                              </div>
-                          </label>
+                        <div fxFlex="40">
+                            <div class="form-image">
+                                <input type="file" id="edv-image" accept="image/*" (change)="changePoster($event)">
+                                <label for="edv-image" fxLayout="column" fxLayoutGap="8px">
+                                    <span class="label">Image <span class="color-danger">*</span></span>
+                                    <div class="image-container">
+                                        <img *ngIf="mediaType === 'image' && mediaPreview" [src]="mediaPreview"
+                                            alt="Image preview">
+                                        <video *ngIf="mediaType === 'video' && mediaPreview" [src]="mediaPreview"
+                                            id="poster" autoplay muted>
+                                            Your browser does not support the video tag.
+                                        </video>
+                                        <div *ngIf="!mediaPreview" fxLayout="column" fxLayoutAlign="center center"
+                                            fxLayoutGap="12px">
+                                            <mat-icon>cloud_upload</mat-icon>
+                                            <span fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="6px">
+                                                <span class="label">Upload Image</span>
+                                                <span class="image-size">Media size must be less than 50MB</span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </label>
+                            </div>
                         </div>
-                      </div>
                     </div>
                     <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="24px">
 
@@ -136,19 +142,19 @@
                             </mat-form-field>
                         </div>
                         <div fxLayout="column" fxLayoutGap="8px">
-                          <span class="label">Publication</span>
-                          <div fxLayout="row" fxLayoutGap="12px">
-                              <mat-slide-toggle formControlName="est_publie">
-                                  <span class="label">Cliquez pour publier</span>
-                              </mat-slide-toggle>
+                            <span class="label">Publication</span>
+                            <div fxLayout="row" fxLayoutGap="12px">
+                                <mat-slide-toggle formControlName="est_publie">
+                                    <span class="label">Cliquez pour publier</span>
+                                </mat-slide-toggle>
 
-                          </div>
-                      </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="form-action" fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="24px">
-                <button class="btn  btn-form-cancel" appGoBack>Annuler</button>
+                <span class="btn  btn-form-cancel" appGoBack>Annuler</span>
                 <button class="btn btn-form-primary" (click)="onSubmit()">Enregistrer</button>
             </div>
         </form>

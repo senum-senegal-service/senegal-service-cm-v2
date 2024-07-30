@@ -20,90 +20,92 @@
                 </div>
 
                 <div fxLayout="column" fxLayoutGap="8px">
-                  <label for="description">Description</label>
-                  <textarea formControlName="description" class="form-control" name="" id="description" cols="30"
-                      rows="3"></textarea>
-              </div>
-
-              <div fxLayout="column" fxLayoutGap="8px">
-                <label for="contenu">Contenu</label>
-                <angular-editor formControlName="contenu" name="angular-editor" id="contenu"
-                        [config]="editorConfig"></angular-editor>
-              </div>
-
-              <div fxLayout="column" fxLayoutGap="8px">
-                <label for="url">Lien</label>
-                <div class="input-wrapper" fxLayout="row">
-                    <span class="text label" fxLayoutAlign="start center">https:\\</span>
-                    <input formControlName="url" class="form-control" type="text" id="url">
+                    <label for="description">Description</label>
+                    <textarea formControlName="description" class="form-control" name="" id="description" cols="30"
+                        rows="3"></textarea>
                 </div>
-              </div>
-            </div>
-                <div fxLayout="column" fxLayoutGap="24px">
-                    <div fxLayout="row" fxLayoutGap="24px">
-                        <div fxFlex="50" fxLayout="column" fxLayoutGap="8px">
-                          <label for="services-concernes">Services concernés</label>
-                          <app-multi-select [value]="service?.service_administratifs || []" [name]="'service_administratifs'" [form]="serviceForm"
-                              [options]="servicesAdministratifs"></app-multi-select>
-                        </div>
-                        <div fxFlex="50" fxLayout="column" fxLayoutGap="8px">
-                          <label for="service-subtitle">Sous-thémes <span class="color-danger">*</span></label>
-                          <app-multi-select [value]="service?.sous_themes || []" [name]="'sous_themes'" [form]="serviceForm"
-                              [options]="sousThemes"></app-multi-select>
-                        </div>
+
+                <div fxLayout="column" fxLayoutGap="8px">
+                    <label for="contenu">Contenu</label>
+                    <angular-editor formControlName="contenu" name="angular-editor" id="contenu"
+                        [config]="editorConfig"></angular-editor>
+                </div>
+
+                <div fxLayout="column" fxLayoutGap="8px">
+                    <label for="url">Lien</label>
+                    <div class="input-wrapper" fxLayout="row">
+                        <span class="text label" fxLayoutAlign="start center">https:\\</span>
+                        <input formControlName="url" class="form-control" type="text" id="url">
                     </div>
+                </div>
+            </div>
+            <div fxLayout="column" fxLayoutGap="24px">
+                <div fxLayout="row" fxLayoutGap="24px">
+                    <div fxFlex="50" fxLayout="column" fxLayoutGap="8px">
+                        <label for="services-concernes">Services concernés</label>
+                        <app-multi-select [value]="service?.service_administratifs || []"
+                            [name]="'service_administratifs'" [form]="serviceForm"
+                            [options]="servicesAdministratifs"></app-multi-select>
+                    </div>
+                    <div fxFlex="50" fxLayout="column" fxLayoutGap="8px">
+                        <label for="service-subtitle">Sous-thémes <span class="color-danger">*</span></label>
+                        <app-multi-select [value]="service?.sous_themes || []" [name]="'sous_themes'"
+                            [form]="serviceForm" [options]="sousThemes"></app-multi-select>
+                    </div>
+                </div>
+
+                <div fxLayout="column" fxLayoutGap="8px">
+                    <label for="mot-cles">Mot clés </label>
+                    <input type="text" id="mot-cles" formControlName="mot_cle" class="form-control"
+                        placeholder="Liste des mots clés pour la recherche">
+                </div>
+                <div class="form-image">
+                    <input type="file" id="hub-image" accept="image/*,video/*" (change)="changePoster($event)">
+                    <label for="hub-image" fxLayout="column" fxLayoutGap="8px">
+                        <span class="label">Image/Video <span class="color-danger">*</span></span>
+                        <div class="image-container">
+                            <img *ngIf="mediaType === 'image' && mediaPreview" [src]="mediaPreview" alt="Image preview">
+                            <video *ngIf="mediaType === 'video' && mediaPreview" [src]="mediaPreview" id="poster"
+                                autoplay muted>
+                                Your browser does not support the video tag.
+                            </video>
+                            <div *ngIf="!mediaPreview" fxLayout="column" fxLayoutAlign="center center"
+                                fxLayoutGap="12px">
+                                <mat-icon>cloud_upload</mat-icon>
+                                <span fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="6px">
+                                    <span class="label">Upload Image/Video</span>
+                                    <span class="image-size">Media size must be less than 50MB</span>
+                                </span>
+                            </div>
+                        </div>
+                    </label>
+                </div>
+                <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="24px">
 
                     <div fxLayout="column" fxLayoutGap="8px">
-                        <label for="mot-cles">Mot clés </label>
-                        <input type="text" id="mot-cles" formControlName="mot_cle" class="form-control"
-                            placeholder="Liste des mots clés pour la recherche">
+                        <label for="">Etat</label>
+                        <mat-form-field class="form-control">
+                            <mat-label class="label">Choisir un état</mat-label>
+                            <mat-select formControlName="etat">
+                                <div *ngFor="let stat of states">
+                                    <mat-option [value]="stat.value">{{stat.viewValue}}</mat-option>
+                                </div>
+                            </mat-select>
+                        </mat-form-field>
                     </div>
-                    <div class="form-image">
-                      <input type="file" id="hub-image" accept="image/*,video/*" (change)="changePoster($event)">
-                      <label for="hub-image" fxLayout="column" fxLayoutGap="8px">
-                          <span class="label">Image/Video <span class="color-danger">*</span></span>
-                          <div class="image-container">
-                              <img *ngIf="mediaType === 'image' && mediaPreview" [src]="mediaPreview" alt="Image preview">
-                              <video *ngIf="mediaType === 'video' && mediaPreview" [src]="mediaPreview" id="poster" autoplay muted>
-                                  Your browser does not support the video tag.
-                              </video>
-                              <div *ngIf="!mediaPreview" fxLayout="column" fxLayoutAlign="center center"
-                                  fxLayoutGap="12px">
-                                  <mat-icon>cloud_upload</mat-icon>
-                                  <span fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="6px">
-                                      <span class="label">Upload Image/Video</span>
-                                      <span class="image-size">Media size must be less than 50MB</span>
-                                  </span>
-                              </div>
-                          </div>
-                      </label>
-                  </div>
-                    <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="24px">
+                    <div fxLayout="column" fxLayoutGap="8px">
+                        <span class="label">Publication</span>
+                        <div fxLayout="row" fxLayoutGap="12px">
+                            <mat-slide-toggle formControlName="est_publie">
+                                <span class="label">Cliquez pour publier</span>
+                            </mat-slide-toggle>
 
-                        <div fxLayout="column" fxLayoutGap="8px">
-                            <label for="">Etat</label>
-                            <mat-form-field class="form-control">
-                                <mat-label class="label">Choisir un état</mat-label>
-                                <mat-select formControlName="etat">
-                                    <div *ngFor="let stat of states">
-                                        <mat-option [value]="stat.value">{{stat.viewValue}}</mat-option>
-                                    </div>
-                                </mat-select>
-                            </mat-form-field>
                         </div>
-                        <div fxLayout="column" fxLayoutGap="8px">
-                          <span class="label">Publication</span>
-                          <div fxLayout="row" fxLayoutGap="12px">
-                              <mat-slide-toggle formControlName="est_publie">
-                                  <span class="label">Cliquez pour publier</span>
-                              </mat-slide-toggle>
-
-                          </div>
-                      </div>
                     </div>
                 </div>
+            </div>
             <div class="form-action" fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="24px">
-                <button class="btn  btn-form-cancel" appGoBack>Annuler</button>
+                <span class="btn  btn-form-cancel" appGoBack>Annuler</span>
                 <button class="btn btn-form-primary" (click)="onSubmit()">Enregistrer</button>
             </div>
         </form>
