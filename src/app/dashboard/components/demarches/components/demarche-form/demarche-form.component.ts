@@ -118,7 +118,7 @@ export class DemarcheFormComponent implements OnChanges {
       return;
     }
     this.fetchDemarcheGQL
-      .fetch({ demarcheId: this.demarcheId })
+      .fetch({ demarcheId: this.demarcheId }, { fetchPolicy: 'no-cache' })
       .subscribe((result) => {
         this.demarche = result.data.fetchDemarche as any;
         const demarcheObject = Object.assign({}, this.demarche);
