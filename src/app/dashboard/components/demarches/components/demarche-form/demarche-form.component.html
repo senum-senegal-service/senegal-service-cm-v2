@@ -19,10 +19,10 @@
 
                 </div>
                 <div fxLayout="column" fxLayoutGap="8px">
-                  <label for="demarche-subtitle">Hub de vie <span class="color-danger"></span></label>
-                  <select class="form-control" [value]="demarche?.hub" [name]="'hub'" formControlName="hub">
-                    <option *ngFor="let h of hubs" [value]="h.id">{{ h.titre }}</option>
-                  </select>
+                    <label for="demarche-subtitle">Hub de vie <span class="color-danger"></span></label>
+                    <select class="form-control" [value]="demarche?.hub" [name]="'hub'" formControlName="hub">
+                        <option *ngFor="let h of hubs" [value]="h.id">{{ h.titre }}</option>
+                    </select>
                 </div>
                 <div fxLayout="column" fxLayoutGap="8px">
                     <label for="demarche-subtitle">Sous-thémes <span class="color-danger">*</span></label>
@@ -91,7 +91,8 @@
                     <div fxLayout="row" fxLayoutGap="24px">
                         <div fxFlex="50" fxLayout="column" fxLayoutGap="8px">
                             <label for="services-concernés">Services concernés</label>
-                            <app-multi-select [value]="demarche?.service_administratifs || []" [name]="'service_administratifs'" [form]="demarcheForm"
+                            <app-multi-select [value]="demarche?.service_administratifs || []"
+                                [name]="'service_administratifs'" [form]="demarcheForm"
                                 [options]="servicesAdministratifs"></app-multi-select>
                         </div>
                         <div fxFlex="50" fxLayout="column" fxLayoutGap="8px">
@@ -104,26 +105,27 @@
                         <div fxFlex="50" fxLayout="column" fxLayoutGap="8px">
                             <label for="formulaires">Formulaires</label>
                             <select formControlName="formId" name="formId" class="form-control">
-                              <option *ngFor="let f of formulaires" [value]="f.id">{{f.nom}}</option>
+                                <option *ngFor="let f of formulaires" [value]="f.id">{{f.nom}}</option>
                             </select>
                             <!-- <app-multi-select [value]="demarche?.formulaires || []" [name]="'formulaires'" [form]="demarcheForm"
                                 [options]="formulaires"></app-multi-select> -->
                         </div>
                         <div fxFlex="50" fxLayout="column" fxLayoutGap="8px">
                             <label for="modeles-lettres">Modéles de lettres </label>
-                            <app-multi-select [value]="demarche?.modele_lettres || []" [name]="'modele_lettres'" [form]="demarcheForm"
-                                [options]="modeleLettres"></app-multi-select>
+                            <app-multi-select [value]="demarche?.modele_lettres || []" [name]="'modele_lettres'"
+                                [form]="demarcheForm" [options]="modeleLettres"></app-multi-select>
                         </div>
                     </div>
                     <div fxLayout="row" fxLayoutGap="24px">
                         <div fxFlex="50" fxLayout="column" fxLayoutGap="8px">
                             <label for="faqs">FAQs</label>
-                            <app-multi-select [name]="'faqs'" [value]="demarche?.faqs || []" [form]="demarcheForm" [options]="faqs"></app-multi-select>
+                            <app-multi-select [name]="'faqs'" [value]="demarche?.faqs || []" [form]="demarcheForm"
+                                [options]="faqs"></app-multi-select>
                         </div>
                         <div fxFlex="50" fxLayout="column" fxLayoutGap="8px">
                             <label for="desripteurs"> Descripteurs </label>
-                            <app-multi-select [value]="demarche?.descripteurs || []" [name]="'descripteurs'" [form]="demarcheForm"
-                                [options]="descripteurs"></app-multi-select>
+                            <app-multi-select [value]="demarche?.descripteurs || []" [name]="'descripteurs'"
+                                [form]="demarcheForm" [options]="descripteurs"></app-multi-select>
                         </div>
                     </div>
                     <div fxLayout="column" fxLayoutGap="8px">
@@ -133,8 +135,8 @@
                     </div>
                     <div fxLayout="column" fxLayoutGap="8px">
                         <label for="liens-utiles">Liens utiles </label>
-                        <app-multi-select [value]="demarche?.lien_utiles || []" [name]="'lien_utiles'" [form]="demarcheForm"
-                            [options]="liensUtils"></app-multi-select>
+                        <app-multi-select [value]="demarche?.lien_utiles || []" [name]="'lien_utiles'"
+                            [form]="demarcheForm" [options]="liensUtils"></app-multi-select>
                     </div>
                     <div fxLayout="column" fxLayoutGap="8px">
                         <label for="mot-cles">Mot clés </label>
@@ -166,19 +168,19 @@
                             </mat-form-field>
                         </div>
                         <div fxLayout="column" fxLayoutGap="8px">
-                          <span class="label">Publication</span>
-                          <div fxLayout="row" fxLayoutGap="12px">
-                              <mat-slide-toggle formControlName="est_publie">
-                                  <span class="label">Cliquez pour publier</span>
-                              </mat-slide-toggle>
+                            <span class="label">Publication</span>
+                            <div fxLayout="row" fxLayoutGap="12px">
+                                <mat-slide-toggle formControlName="est_publie">
+                                    <span class="label">Cliquez pour publier</span>
+                                </mat-slide-toggle>
 
-                          </div>
-                      </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="form-action" fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="24px">
-                <button class="btn  btn-form-cancel" appGoBack>Annuler</button>
+                <span class="btn  btn-form-cancel" appGoBack>Annuler</span>
                 <button class="btn btn-form-primary" (click)="onSubmit()">Enregistrer</button>
             </div>
         </form>
